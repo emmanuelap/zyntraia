@@ -14,6 +14,7 @@ pero tenes que recordar siempre la regla de no romper codigo que ya funciona.
 - Revisar caracteres rotos de codificacion antes de cerrar cambios en HTML.
 - Verificar enlaces de WhatsApp con formato internacional antes de publicarlos.
 - Incluir opcion de reducir movimiento cuando agregue animaciones nuevas.
+- Revisar padding, botones y grillas en mobile y tablet antes de cerrar cambios visuales.
 
 ## Uso
 - Actualizar este archivo al crear, editar o borrar codigo.

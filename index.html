@@ -374,11 +374,17 @@
                 animation: none !important;
             }
         }
+        @media (max-width: 767px) {
+            .hero-visual::before,
+            .hero-visual::after {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
 <header class="site-header fixed top-0 z-50 w-full bg-zinc-950/60 shadow-2xl shadow-black/40 backdrop-blur-xl">
-<nav class="mx-auto flex max-w-7xl items-center justify-between px-8 py-4 tracking-tight">
+<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 tracking-tight sm:px-6 lg:px-8">
 <div class="flex items-center gap-2">
 <span class="text-2xl font-bold tracking-tighter text-zinc-100">Zyntra</span>
 </div>
@@ -398,44 +404,44 @@
 </nav>
 </header>
 <main>
-<section class="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-0 pt-24 sm:pt-28">
 <div class="absolute inset-0 z-0 opacity-40">
 <img alt="Visual futurista de una mano robótica alcanzando un núcleo de energía en un entorno oscuro" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHlyLkkXHmsnGHDpzLEvsEMlPYNkTe5yGfjE9Wj7Lq44VAnPx1kxNgJMfYzCjwt7SCwN9mfO5uwq7MahbyQIJL5LKrRQ_Nncfr8pDXdMnoXvDJWgjkP4AaxbioDhx6xzlm4oucWrJZrPwd-7umiUY8wthak3zKkv89SAtv-u46qNsN1YAhyurIZ-UHCnjOLjirEDeQ0xF8ggVdP6JlITRJuldfjixP_Vp1p2a6uMfamyRWeQdPIkCrGiO2dX01c2M5cwPKe_c5R44"/>
 </div>
 <div class="absolute inset-0 z-0 bg-gradient-to-b from-background via-transparent to-background"></div>
 <div class="mesh-glow absolute inset-0 z-0"></div>
-<div class="container relative z-10 mx-auto grid items-center gap-12 px-6 lg:grid-cols-2">
-<div class="space-y-8">
+<div class="container relative z-10 mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
+<div class="space-y-6 sm:space-y-8">
 <img alt="Símbolo tecnológico de Zyntra" class="h-24 w-24 rounded-2xl object-cover shadow-2xl shadow-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJOdboQpImQ8YhbXvTPHrZxQv8ZR02K_8C8Wzcu91MFxqEoivESWoFYvbqRhgG_D4uofRdZs12d6oFizgog2cLcl9-AyAiqVHEwJkYdno0G2HxHZlkQy-72wAl8Rq6Az6Vsd50sfO1io5E1HFNHuLMlwAmrzsNpzXNvata7xLy7Pjr13OyrPEMOVJZmhghUak_fRpz-bFbrvpYkB-sttFooWQFApl1wziOfZzpqII3HkihsLbRtGgZCoUkQQ1-BY2WLazqiA7n-aY"/>
-<h1 class="text-5xl font-bold leading-none tracking-tighter text-on-surface md:text-7xl">
+<h1 class="text-4xl font-bold leading-tight tracking-tighter text-on-surface sm:text-5xl md:text-6xl lg:text-7xl">
                     Automatización con <span class="italic text-primary">Visión</span> e IA
                 </h1>
-<p class="max-w-xl text-xl font-light text-on-surface-variant md:text-2xl">
+<p class="max-w-xl text-lg font-light text-on-surface-variant sm:text-xl md:text-2xl">
                     Potenciamos tu negocio con chatbots, automatizaciones y software a medida para vender más, ordenar procesos y responder mejor.
                 </p>
-<div class="flex flex-wrap gap-4 pt-4">
-<a class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-lg font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20pedir%20una%20auditor%C3%ADa%20gratuita.">
+<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:gap-4 sm:pt-4">
+<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto sm:px-8 sm:text-lg" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20pedir%20una%20auditor%C3%ADa%20gratuita.">
                         Solicitar Auditoría Gratuita
                     </a>
-<a class="inline-flex items-center justify-center rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="#services">
+<a class="inline-flex w-full items-center justify-center rounded-full border border-outline-variant/30 px-6 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto sm:px-8" href="#services">
                         Ver Servicios
                     </a>
 </div>
 </div>
-<div class="hero-visual hidden lg:block">
+<div class="hero-visual mx-auto w-full max-w-md md:max-w-xl lg:block lg:max-w-none">
 <div class="absolute -inset-4 rounded-full bg-primary/10 blur-3xl"></div>
 <img alt="Interfaz futurista que representa visión artificial e inteligencia aplicada" class="relative rounded-2xl border border-outline-variant/20 shadow-2xl shadow-black" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8af_vXvk30aIM8YM9hTfQXGNuoVpygW_WLGQx9rvdIazA9kfqL8tV1OSG_-QSuqOP6FYsDXygySS7KlAYTi_3-elanp6VzQc73HZgzeQmxZAsIgb2aKlTOTRmbCRSujx-6rHexWRxESuLbGP01Egp04-ZtL9zBVUhMEk_JADAHKq2l8HNkokIoTeliNq9474Xr1u0aQaSsrADizLPYMYvQ1j1WNh9IIY65OMIwuzBqjGq_0o5bqbj-OZbJaaTTMCVxbPCp9QdYow"/>
 </div>
 </div>
 </section>
 <section class="bg-surface py-24" id="services">
-<div class="container mx-auto px-6">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
 <div class="mb-16">
 <span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-primary">Nuestra Expertise</span>
-<h2 class="mt-4 text-4xl font-bold md:text-5xl">Soluciones de Próxima Generación</h2>
+<h2 class="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">Soluciones de Próxima Generación</h2>
 </div>
 <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-<div class="relative flex min-h-[400px] flex-col justify-between overflow-hidden rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high md:col-span-2">
+<div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8 md:col-span-2">
 <div class="relative z-10">
 <span class="material-symbols-outlined mb-6 text-5xl text-primary">smart_toy</span>
 <h3 class="mb-4 text-3xl font-bold">Chatbots Inteligentes</h3>
@@ -452,7 +458,7 @@
 <span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">chat</span>
 </div>
 </div>
-<div class="flex flex-col justify-between rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<div class="flex flex-col justify-between rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
 <div>
 <span class="material-symbols-outlined mb-6 text-5xl text-secondary">analytics</span>
 <h3 class="mb-4 text-2xl font-bold">Software de Gestión</h3>
@@ -469,21 +475,21 @@
                         </li>
 </ul>
 </div>
-<div class="rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<div class="rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
 <span class="material-symbols-outlined mb-6 text-5xl text-tertiary">hub</span>
 <h3 class="mb-4 text-2xl font-bold">Automatización de Procesos</h3>
 <p class="text-on-surface-variant">
                         Conectamos formularios, WhatsApp, correo, CRM y tareas internas para que tu equipo deje de hacer trabajo repetitivo.
                     </p>
 </div>
-<div class="rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<div class="rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
 <span class="material-symbols-outlined mb-6 text-5xl text-primary">campaign</span>
 <h3 class="mb-4 text-2xl font-bold">Embudos y Seguimiento Comercial</h3>
 <p class="text-on-surface-variant">
                         Automatizamos contacto inicial, recordatorios, recupero de consultas y seguimiento de oportunidades comerciales.
                     </p>
 </div>
-<div class="rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<div class="rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
 <span class="material-symbols-outlined mb-6 text-5xl text-secondary">insights</span>
 <h3 class="mb-4 text-2xl font-bold">Paneles e Indicadores</h3>
 <p class="text-on-surface-variant">
@@ -496,39 +502,39 @@
 <section class="relative overflow-hidden py-24">
 <div class="soft-grid absolute inset-0 z-0 opacity-20"></div>
 <div class="absolute inset-0 z-0 bg-gradient-to-r from-background to-background/60"></div>
-<div class="container relative z-10 mx-auto px-6">
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 <div class="max-w-5xl">
-<h2 class="mb-12 text-4xl font-bold leading-tight md:text-6xl">Industrias que <span class="text-secondary">Transformamos</span></h2>
-<div class="grid grid-cols-2 gap-6 md:grid-cols-4">
-<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<h2 class="mb-10 text-3xl font-bold leading-tight sm:text-4xl md:mb-12 md:text-6xl">Industrias que <span class="text-secondary">Transformamos</span></h2>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
+<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-primary">restaurant</span>
 <p class="font-bold">Gastronomía</p>
 </div>
-<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-secondary">medical_services</span>
 <p class="font-bold">Salud</p>
 </div>
-<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-tertiary">payments</span>
 <p class="font-bold">Finanzas</p>
 </div>
-<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-primary">fitness_center</span>
 <p class="font-bold">Fitness</p>
 </div>
-<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-secondary">badge</span>
 <p class="font-bold">Profesionales</p>
 </div>
-<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-tertiary">factory</span>
 <p class="font-bold">Industrias</p>
 </div>
-<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-primary">shopping_bag</span>
 <p class="font-bold">Comercio</p>
 </div>
-<div class="industry-card industry-accent-neutral rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<div class="industry-card industry-accent-neutral rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
 <span class="material-symbols-outlined mb-2 text-on-surface">more_horiz</span>
 <p class="font-bold">... y más</p>
 </div>
@@ -537,7 +543,7 @@
 </div>
 </section>
 <section class="bg-surface-container-low py-24">
-<div class="container mx-auto grid items-center gap-16 px-6 md:grid-cols-2">
+<div class="container mx-auto grid items-center gap-12 px-4 sm:px-6 md:grid-cols-2 lg:gap-16 lg:px-8">
 <div class="relative order-2 md:order-1">
 <img alt="Imagen conceptual sobre educación e inteligencia artificial" class="rotate-3 rounded-3xl shadow-2xl grayscale transition-transform duration-500 hover:rotate-0" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyXhmxzbU5TrpPlp2Y_GN17CwTjmImXTQJguNP7kjDYMBopbwLjREHknN_RzxpNnrVThe4BYcRJgylzX26vBJniwfKyj_kW374LMs6GyKCQjGGmCxKUBdtNQ_co38_3VpMxJDqpVbcAG6a6c0xNbKB4VBlNIxz2K_zvVyMh-W99_vcC2EMeuhHueBp0R7mfU4LZkJHtf_qjCwrRY61I5XRovw-0Dd4i9C8zLv2c1QasCT-D8_iVkmikMdJw7PJJMXdVJTFOKQ13n0"/>
 <div class="glass-panel absolute -bottom-6 -right-6 max-w-xs rounded-2xl p-6 shadow-xl">
@@ -545,7 +551,7 @@
 </div>
 </div>
 <div class="order-1 space-y-6 md:order-2">
-<h2 class="text-4xl font-bold">Educación y Futuro: Mitos de la IA</h2>
+<h2 class="text-3xl font-bold sm:text-4xl">Educación y Futuro: Mitos de la IA</h2>
 <p class="text-lg text-on-surface-variant">
                     La inteligencia artificial no viene a borrar equipos, sino a liberar tiempo, acelerar respuestas y ordenar información. La clave está en implementarla con criterio y objetivos claros.
                 </p>
@@ -564,10 +570,10 @@
 </div>
 </section>
 <section class="relative overflow-hidden py-32" id="contact-form">
-<div class="container relative z-10 mx-auto px-6">
-<div class="glass-panel mx-auto max-w-4xl rounded-[40px] border border-outline-variant/10 p-8 md:p-16">
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+<div class="glass-panel mx-auto max-w-4xl rounded-[28px] border border-outline-variant/10 p-6 sm:rounded-[40px] sm:p-8 md:p-12 lg:p-16">
 <div class="mb-12 text-center">
-<h2 class="mb-4 text-4xl font-bold italic md:text-5xl">Impulsa tu <span class="text-primary">Evolución</span></h2>
+<h2 class="mb-4 text-3xl font-bold italic sm:text-4xl md:text-5xl">Impulsa tu <span class="text-primary">Evolución</span></h2>
 <p class="text-lg text-on-surface-variant">Completa el formulario y nos pondremos en contacto para una auditoría personalizada gratuita.</p>
 </div>
 <form action="https://formsubmit.co/emmanuel.ap77@gmail.com" class="grid grid-cols-1 gap-6 md:grid-cols-2" method="POST">
@@ -610,14 +616,14 @@
 </div>
 </section>
 <section class="bg-surface-container-lowest py-24" id="contact">
-<div class="container mx-auto px-6 text-center">
+<div class="container mx-auto px-4 text-center sm:px-6 lg:px-8">
 <h2 class="mb-12 text-3xl font-bold">Conectemos</h2>
 <div class="flex flex-col justify-center gap-6 md:flex-row">
-<a class="flex items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-8 py-4 transition-all hover:border-primary/50" href="https://wa.me/5491166439309">
+<a class="flex w-full items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-6 py-4 transition-all hover:border-primary/50 md:w-auto md:px-8" href="https://wa.me/5491166439309">
 <span class="material-symbols-outlined text-primary">chat</span>
 <span class="font-medium">WhatsApp: 15-6643-9309</span>
 </a>
-<a class="flex items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-8 py-4 transition-all hover:border-secondary/50" href="mailto:emmanuel.ap77@gmail.com">
+<a class="flex w-full items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-6 py-4 transition-all hover:border-secondary/50 md:w-auto md:px-8" href="mailto:emmanuel.ap77@gmail.com">
 <span class="material-symbols-outlined text-secondary">mail</span>
 <span class="font-medium">emmanuel.ap77@gmail.com</span>
 </a>
@@ -626,11 +632,11 @@
 </section>
 <section class="relative overflow-hidden border-t border-outline-variant/10 bg-zinc-950 py-24" id="about">
 <div class="mesh-glow absolute inset-0 opacity-40"></div>
-<div class="container relative z-10 mx-auto px-6">
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
 <div class="space-y-6">
 <span class="text-sm font-bold uppercase tracking-[0.25em] text-primary">Sobre Nosotros</span>
-<h2 class="text-4xl font-bold md:text-5xl">Compromiso, conocimiento y seriedad en cada implementación</h2>
+<h2 class="text-3xl font-bold sm:text-4xl md:text-5xl">Compromiso, conocimiento y seriedad en cada implementación</h2>
 <p class="max-w-3xl text-lg text-on-surface-variant">
                         En Zyntra trabajamos con una idea simple: la tecnología tiene que resolver problemas reales. Por eso analizamos cada caso, proponemos soluciones concretas y construimos sistemas que puedan sostenerse en el tiempo.
                     </p>
@@ -657,8 +663,8 @@
 </section>
 </main>
 <footer class="w-full border-t border-outline-variant/10 bg-zinc-950 py-12">
-<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-8 md:flex-row md:items-center">
-<div class="flex flex-col items-center md:items-start">
+<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 sm:px-6 lg:px-8 md:flex-row md:items-center">
+<div class="flex flex-col items-start">
 <span class="mb-2 text-2xl font-black text-zinc-100">Zyntra</span>
 <div class="mb-4 flex items-center gap-2 text-zinc-500">
 <span class="material-symbols-outlined text-sm">location_on</span>
@@ -666,7 +672,7 @@
 </div>
 <p class="text-sm uppercase tracking-widest text-zinc-600">© 2026 Zyntra Digital. Automatización con visión.</p>
 </div>
-<div class="flex flex-wrap gap-x-8 gap-y-4">
+<div class="flex flex-wrap gap-x-6 gap-y-4">
 <a class="text-sm uppercase tracking-widest text-zinc-500 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://wa.me/5491166439309">WhatsApp</a>
 <a class="text-sm uppercase tracking-widest text-zinc-500 opacity-80 transition-all hover:text-primary hover:opacity-100" href="mailto:emmanuel.ap77@gmail.com">Email</a>
 </div>
