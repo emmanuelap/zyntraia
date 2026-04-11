@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zyntra | Automatización con Visión e IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#000000",
+                        "on-secondary-fixed-variant": "#00586b",
+                        "on-background": "#ffffff",
+                        "surface-container-high": "#20201f",
+                        "on-primary": "#005762",
+                        "secondary-container": "#00677d",
+                        "inverse-primary": "#006976",
+                        "error-container": "#9f0519",
+                        "tertiary": "#70aaff",
+                        "inverse-on-surface": "#565555",
+                        "secondary-dim": "#00c6ee",
+                        "surface-container": "#1a1a1a",
+                        "on-secondary-fixed": "#003a47",
+                        "primary-fixed-dim": "#00d4ec",
+                        "outline": "#767575",
+                        "on-secondary-container": "#edfaff",
+                        "tertiary-fixed-dim": "#65a4ff",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary-container": "#001d3f",
+                        "error-dim": "#d7383b",
+                        "surface-tint": "#81ecff",
+                        "on-tertiary-fixed": "#001835",
+                        "tertiary-dim": "#5c9ffc",
+                        "surface-container-highest": "#262626",
+                        "on-primary-fixed-variant": "#005762",
+                        "surface-variant": "#262626",
+                        "secondary": "#10d5ff",
+                        "surface-bright": "#2c2c2c",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-fixed": "#80b2ff",
+                        "surface-container-low": "#131313",
+                        "secondary-fixed-dim": "#10d5ff",
+                        "background": "#0e0e0e",
+                        "primary": "#81ecff",
+                        "surface": "#0e0e0e",
+                        "on-tertiary": "#002a55",
+                        "primary-fixed": "#00e3fd",
+                        "primary-container": "#00e3fd",
+                        "on-error": "#490006",
+                        "on-error-container": "#ffa8a3",
+                        "on-primary-container": "#004d57",
+                        "on-tertiary-fixed-variant": "#003971",
+                        "secondary-fixed": "#78dfff",
+                        "inverse-surface": "#fcf9f8",
+                        "tertiary-container": "#599cf9",
+                        "on-secondary": "#004554",
+                        "on-surface": "#ffffff",
+                        "error": "#ff716c",
+                        "primary-dim": "#00d4ec",
+                        "on-primary-fixed": "#003840",
+                        "outline-variant": "#484847"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    fontFamily: {
+                        headline: ["Space Grotesk"],
+                        body: ["Inter"],
+                        label: ["Inter"]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .site-header {
+            transition: background-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+        }
+        .site-header::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(129, 236, 255, 0.6), transparent);
+            opacity: 0.55;
+            animation: headerLineFlow 6s linear infinite;
+        }
+        .site-header.is-scrolled {
+            background: rgba(10, 10, 10, 0.84);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.45rem;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #81ecff, #10d5ff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+        .mesh-glow::before,
+        .mesh-glow::after {
+            content: "";
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(70px);
+            opacity: 0.28;
+            pointer-events: none;
+        }
+        .mesh-glow::before {
+            width: 18rem;
+            height: 18rem;
+            top: -4rem;
+            left: -3rem;
+            background: #00d4ec;
+        }
+        .mesh-glow::after {
+            width: 22rem;
+            height: 22rem;
+            right: -6rem;
+            bottom: -8rem;
+            background: #599cf9;
+        }
+        .soft-grid {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .hero-visual {
+            position: relative;
+            isolation: isolate;
+            animation: heroVisualFloat 7s ease-in-out infinite;
+        }
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: -1.5rem;
+            z-index: -2;
+            border-radius: 2rem;
+            background:
+                radial-gradient(circle at 25% 25%, rgba(129, 236, 255, 0.28), transparent 40%),
+                radial-gradient(circle at 75% 75%, rgba(89, 156, 249, 0.24), transparent 42%);
+            filter: blur(26px);
+            animation: heroAuraPulse 6.5s ease-in-out infinite;
+        }
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            inset: -8% 38% -8% -22%;
+            z-index: 2;
+            background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.22) 45%, transparent 75%);
+            transform: skewX(-18deg) translateX(-140%);
+            animation: heroLightSweep 5.5s ease-in-out infinite;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+        .hero-visual img {
+            animation: heroImageTilt 7s ease-in-out infinite;
+            transform-origin: center center;
+        }
+        .industry-card {
+            position: relative;
+            overflow: hidden;
+            animation: industryFloat 6s ease-in-out infinite;
+            transition: transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+        }
+        .industry-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(129, 236, 255, 0.15), transparent 45%, rgba(89, 156, 249, 0.14));
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .industry-card:hover {
+            transform: translateY(-6px) scale(1.01);
+        }
+        .industry-card:hover::before {
+            opacity: 1;
+        }
+        .industry-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .industry-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+        .industry-card:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        .industry-card:nth-child(5) {
+            animation-delay: 2s;
+        }
+        .industry-card:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+        .industry-card:nth-child(7) {
+            animation-delay: 3s;
+        }
+        .industry-card:nth-child(8) {
+            animation-delay: 3.5s;
+        }
+        .industry-card .material-symbols-outlined,
+        .industry-card p {
+            position: relative;
+            z-index: 1;
+        }
+        .industry-accent-primary {
+            animation: accentPulsePrimary 4.8s ease-in-out infinite;
+        }
+        .industry-accent-secondary {
+            animation: accentPulseSecondary 4.8s ease-in-out infinite;
+        }
+        .industry-accent-tertiary {
+            animation: accentPulseTertiary 4.8s ease-in-out infinite;
+        }
+        .industry-accent-neutral {
+            animation: accentPulseNeutral 4.8s ease-in-out infinite;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #81ecff !important;
+            box-shadow: 0 0 0 2px rgba(129, 236, 255, 0.2);
+        }
+        @keyframes headerLineFlow {
+            0% {
+                transform: translateX(-30%);
+                opacity: 0.25;
+            }
+            50% {
+                transform: translateX(0%);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(30%);
+                opacity: 0.25;
+            }
+        }
+        @keyframes industryFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        @keyframes heroVisualFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-0.8deg);
+            }
+        }
+        @keyframes heroImageTilt {
+            0%, 100% {
+                transform: perspective(1200px) rotateY(-7deg) rotateX(2deg) scale(1);
+            }
+            50% {
+                transform: perspective(1200px) rotateY(5deg) rotateX(-1deg) scale(1.018);
+            }
+        }
+        @keyframes heroAuraPulse {
+            0%, 100% {
+                opacity: 0.45;
+                transform: scale(0.98);
+            }
+            50% {
+                opacity: 0.95;
+                transform: scale(1.04);
+            }
+        }
+        @keyframes heroLightSweep {
+            0%, 20% {
+                transform: skewX(-18deg) translateX(-140%);
+                opacity: 0;
+            }
+            35% {
+                opacity: 1;
+            }
+            55% {
+                transform: skewX(-18deg) translateX(210%);
+                opacity: 0.75;
+            }
+            100% {
+                transform: skewX(-18deg) translateX(210%);
+                opacity: 0;
+            }
+        }
+        @keyframes accentPulsePrimary {
+            0%, 100% {
+                border-color: #81ecff;
+                box-shadow: 0 0 0 rgba(129, 236, 255, 0);
+            }
+            50% {
+                border-color: #10d5ff;
+                box-shadow: 0 0 22px rgba(129, 236, 255, 0.16);
+            }
+        }
+        @keyframes accentPulseSecondary {
+            0%, 100% {
+                border-color: #10d5ff;
+                box-shadow: 0 0 0 rgba(16, 213, 255, 0);
+            }
+            50% {
+                border-color: #78dfff;
+                box-shadow: 0 0 22px rgba(16, 213, 255, 0.16);
+            }
+        }
+        @keyframes accentPulseTertiary {
+            0%, 100% {
+                border-color: #70aaff;
+                box-shadow: 0 0 0 rgba(112, 170, 255, 0);
+            }
+            50% {
+                border-color: #80b2ff;
+                box-shadow: 0 0 22px rgba(112, 170, 255, 0.16);
+            }
+        }
+        @keyframes accentPulseNeutral {
+            0%, 100% {
+                border-color: rgba(255, 255, 255, 0.35);
+                box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+            50% {
+                border-color: rgba(255, 255, 255, 0.65);
+                box-shadow: 0 0 18px rgba(255, 255, 255, 0.1);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .site-header::after,
+            .hero-visual,
+            .hero-visual::before,
+            .hero-visual::after,
+            .hero-visual img,
+            .industry-card,
+            .industry-accent-primary,
+            .industry-accent-secondary,
+            .industry-accent-tertiary,
+            .industry-accent-neutral {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
+<header class="site-header fixed top-0 z-50 w-full bg-zinc-950/60 shadow-2xl shadow-black/40 backdrop-blur-xl">
+<nav class="mx-auto flex max-w-7xl items-center justify-between px-8 py-4 tracking-tight">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-zinc-100">Zyntra</span>
+</div>
+<div class="hidden items-center gap-8 md:flex">
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#services">Servicios</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#about">Sobre Nosotros</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#contact-form">Contacto</a>
+</div>
+<div class="flex items-center gap-6">
+<a class="hidden rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-2 font-bold text-on-primary-fixed transition-transform hover:scale-95 active:scale-90 md:block" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20pedir%20una%20auditor%C3%ADa%20gratuita.">
+                Auditoría Gratuita
+            </a>
+<button aria-label="Abrir menú" class="text-zinc-100 md:hidden" type="button">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+<div class="absolute inset-0 z-0 opacity-40">
+<img alt="Visual futurista de una mano robótica alcanzando un núcleo de energía en un entorno oscuro" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHlyLkkXHmsnGHDpzLEvsEMlPYNkTe5yGfjE9Wj7Lq44VAnPx1kxNgJMfYzCjwt7SCwN9mfO5uwq7MahbyQIJL5LKrRQ_Nncfr8pDXdMnoXvDJWgjkP4AaxbioDhx6xzlm4oucWrJZrPwd-7umiUY8wthak3zKkv89SAtv-u46qNsN1YAhyurIZ-UHCnjOLjirEDeQ0xF8ggVdP6JlITRJuldfjixP_Vp1p2a6uMfamyRWeQdPIkCrGiO2dX01c2M5cwPKe_c5R44"/>
+</div>
+<div class="absolute inset-0 z-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+<div class="mesh-glow absolute inset-0 z-0"></div>
+<div class="container relative z-10 mx-auto grid items-center gap-12 px-6 lg:grid-cols-2">
+<div class="space-y-8">
+<img alt="Símbolo tecnológico de Zyntra" class="h-24 w-24 rounded-2xl object-cover shadow-2xl shadow-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJOdboQpImQ8YhbXvTPHrZxQv8ZR02K_8C8Wzcu91MFxqEoivESWoFYvbqRhgG_D4uofRdZs12d6oFizgog2cLcl9-AyAiqVHEwJkYdno0G2HxHZlkQy-72wAl8Rq6Az6Vsd50sfO1io5E1HFNHuLMlwAmrzsNpzXNvata7xLy7Pjr13OyrPEMOVJZmhghUak_fRpz-bFbrvpYkB-sttFooWQFApl1wziOfZzpqII3HkihsLbRtGgZCoUkQQ1-BY2WLazqiA7n-aY"/>
+<h1 class="text-5xl font-bold leading-none tracking-tighter text-on-surface md:text-7xl">
+                    Automatización con <span class="italic text-primary">Visión</span> e IA
+                </h1>
+<p class="max-w-xl text-xl font-light text-on-surface-variant md:text-2xl">
+                    Potenciamos tu negocio con chatbots, automatizaciones y software a medida para vender más, ordenar procesos y responder mejor.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<a class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-lg font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20pedir%20una%20auditor%C3%ADa%20gratuita.">
+                        Solicitar Auditoría Gratuita
+                    </a>
+<a class="inline-flex items-center justify-center rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="#services">
+                        Ver Servicios
+                    </a>
+</div>
+</div>
+<div class="hero-visual hidden lg:block">
+<div class="absolute -inset-4 rounded-full bg-primary/10 blur-3xl"></div>
+<img alt="Interfaz futurista que representa visión artificial e inteligencia aplicada" class="relative rounded-2xl border border-outline-variant/20 shadow-2xl shadow-black" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8af_vXvk30aIM8YM9hTfQXGNuoVpygW_WLGQx9rvdIazA9kfqL8tV1OSG_-QSuqOP6FYsDXygySS7KlAYTi_3-elanp6VzQc73HZgzeQmxZAsIgb2aKlTOTRmbCRSujx-6rHexWRxESuLbGP01Egp04-ZtL9zBVUhMEk_JADAHKq2l8HNkokIoTeliNq9474Xr1u0aQaSsrADizLPYMYvQ1j1WNh9IIY65OMIwuzBqjGq_0o5bqbj-OZbJaaTTMCVxbPCp9QdYow"/>
+</div>
+</div>
+</section>
+<section class="bg-surface py-24" id="services">
+<div class="container mx-auto px-6">
+<div class="mb-16">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-primary">Nuestra Expertise</span>
+<h2 class="mt-4 text-4xl font-bold md:text-5xl">Soluciones de Próxima Generación</h2>
+</div>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+<div class="relative flex min-h-[400px] flex-col justify-between overflow-hidden rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high md:col-span-2">
+<div class="relative z-10">
+<span class="material-symbols-outlined mb-6 text-5xl text-primary">smart_toy</span>
+<h3 class="mb-4 text-3xl font-bold">Chatbots Inteligentes</h3>
+<p class="max-w-md text-lg text-on-surface-variant">
+                            Diseñamos agentes conversacionales para ventas, soporte y seguimiento de clientes, adaptados al lenguaje y ritmo de cada negocio.
+                        </p>
+</div>
+<div class="mt-8 flex flex-wrap gap-2">
+<span class="rounded-full bg-surface-container-highest px-4 py-1 text-xs font-bold text-primary">Atención 24/7</span>
+<span class="rounded-full bg-surface-container-highest px-4 py-1 text-xs font-bold text-primary">Respuestas Automáticas</span>
+<span class="rounded-full bg-surface-container-highest px-4 py-1 text-xs font-bold text-primary">Calificación de Leads</span>
+</div>
+<div class="absolute bottom-[-10%] right-[-10%] opacity-10 transition-opacity hover:opacity-30">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+</div>
+<div class="flex flex-col justify-between rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<div>
+<span class="material-symbols-outlined mb-6 text-5xl text-secondary">analytics</span>
+<h3 class="mb-4 text-2xl font-bold">Software de Gestión</h3>
+<p class="text-on-surface-variant">
+                            Centralizamos turnos, inventario, cobros y operación diaria en herramientas claras, rápidas y hechas a medida.
+                        </p>
+</div>
+<ul class="mt-6 space-y-3">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-primary">check_circle</span> Inventario en Tiempo Real
+                        </li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-primary">check_circle</span> Gestión de Turnos
+                        </li>
+</ul>
+</div>
+<div class="rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<span class="material-symbols-outlined mb-6 text-5xl text-tertiary">hub</span>
+<h3 class="mb-4 text-2xl font-bold">Automatización de Procesos</h3>
+<p class="text-on-surface-variant">
+                        Conectamos formularios, WhatsApp, correo, CRM y tareas internas para que tu equipo deje de hacer trabajo repetitivo.
+                    </p>
+</div>
+<div class="rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<span class="material-symbols-outlined mb-6 text-5xl text-primary">campaign</span>
+<h3 class="mb-4 text-2xl font-bold">Embudos y Seguimiento Comercial</h3>
+<p class="text-on-surface-variant">
+                        Automatizamos contacto inicial, recordatorios, recupero de consultas y seguimiento de oportunidades comerciales.
+                    </p>
+</div>
+<div class="rounded-full-lg bg-surface-container-low p-8 transition-all duration-500 hover:bg-surface-container-high">
+<span class="material-symbols-outlined mb-6 text-5xl text-secondary">insights</span>
+<h3 class="mb-4 text-2xl font-bold">Paneles e Indicadores</h3>
+<p class="text-on-surface-variant">
+                        Convertimos datos operativos en tableros simples para tomar decisiones más rápidas y con mejor visibilidad.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden py-24">
+<div class="soft-grid absolute inset-0 z-0 opacity-20"></div>
+<div class="absolute inset-0 z-0 bg-gradient-to-r from-background to-background/60"></div>
+<div class="container relative z-10 mx-auto px-6">
+<div class="max-w-5xl">
+<h2 class="mb-12 text-4xl font-bold leading-tight md:text-6xl">Industrias que <span class="text-secondary">Transformamos</span></h2>
+<div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-primary">restaurant</span>
+<p class="font-bold">Gastronomía</p>
+</div>
+<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-secondary">medical_services</span>
+<p class="font-bold">Salud</p>
+</div>
+<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-tertiary">payments</span>
+<p class="font-bold">Finanzas</p>
+</div>
+<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-primary">fitness_center</span>
+<p class="font-bold">Fitness</p>
+</div>
+<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-secondary">badge</span>
+<p class="font-bold">Profesionales</p>
+</div>
+<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-tertiary">factory</span>
+<p class="font-bold">Industrias</p>
+</div>
+<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-primary">shopping_bag</span>
+<p class="font-bold">Comercio</p>
+</div>
+<div class="industry-card industry-accent-neutral rounded-xl border-l-4 bg-surface-container-low/80 p-6 backdrop-blur-md">
+<span class="material-symbols-outlined mb-2 text-on-surface">more_horiz</span>
+<p class="font-bold">... y más</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low py-24">
+<div class="container mx-auto grid items-center gap-16 px-6 md:grid-cols-2">
+<div class="relative order-2 md:order-1">
+<img alt="Imagen conceptual sobre educación e inteligencia artificial" class="rotate-3 rounded-3xl shadow-2xl grayscale transition-transform duration-500 hover:rotate-0" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyXhmxzbU5TrpPlp2Y_GN17CwTjmImXTQJguNP7kjDYMBopbwLjREHknN_RzxpNnrVThe4BYcRJgylzX26vBJniwfKyj_kW374LMs6GyKCQjGGmCxKUBdtNQ_co38_3VpMxJDqpVbcAG6a6c0xNbKB4VBlNIxz2K_zvVyMh-W99_vcC2EMeuhHueBp0R7mfU4LZkJHtf_qjCwrRY61I5XRovw-0Dd4i9C8zLv2c1QasCT-D8_iVkmikMdJw7PJJMXdVJTFOKQ13n0"/>
+<div class="glass-panel absolute -bottom-6 -right-6 max-w-xs rounded-2xl p-6 shadow-xl">
+<p class="font-medium italic text-primary">"La IA no reemplaza tu criterio: lo potencia."</p>
+</div>
+</div>
+<div class="order-1 space-y-6 md:order-2">
+<h2 class="text-4xl font-bold">Educación y Futuro: Mitos de la IA</h2>
+<p class="text-lg text-on-surface-variant">
+                    La inteligencia artificial no viene a borrar equipos, sino a liberar tiempo, acelerar respuestas y ordenar información. La clave está en implementarla con criterio y objetivos claros.
+                </p>
+<div class="space-y-4 pt-4">
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/20">
+<span class="material-symbols-outlined text-primary">school</span>
+</div>
+<div>
+<h4 class="font-bold">Consultoría Estratégica</h4>
+<p class="text-sm text-on-surface-variant">Acompañamos a tu equipo para implementar automatizaciones sin fricciones y con impacto real.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden py-32" id="contact-form">
+<div class="container relative z-10 mx-auto px-6">
+<div class="glass-panel mx-auto max-w-4xl rounded-[40px] border border-outline-variant/10 p-8 md:p-16">
+<div class="mb-12 text-center">
+<h2 class="mb-4 text-4xl font-bold italic md:text-5xl">Impulsa tu <span class="text-primary">Evolución</span></h2>
+<p class="text-lg text-on-surface-variant">Completa el formulario y nos pondremos en contacto para una auditoría personalizada gratuita.</p>
+</div>
+<form action="https://formsubmit.co/emmanuel.ap77@gmail.com" class="grid grid-cols-1 gap-6 md:grid-cols-2" method="POST">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-widest text-primary" for="name">Nombre Completo</label>
+<input class="rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="name" name="name" placeholder="Ej: Juan Pérez" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-widest text-primary" for="email">Email Corporativo</label>
+<input class="rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="email" name="email" placeholder="juan@empresa.com" required="" type="email"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-bold uppercase tracking-widest text-primary" for="industry">Industria / Rubro</label>
+<select class="appearance-none rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="industry" name="industry" required="">
+<option disabled="" selected="" value="">Selecciona tu industria</option>
+<option value="gastronomia">Gastronomía</option>
+<option value="salud">Salud</option>
+<option value="finanzas">Finanzas</option>
+<option value="fitness">Fitness</option>
+<option value="profesionales">Profesionales</option>
+<option value="industrias">Industrias</option>
+<option value="comercio">Comercio</option>
+<option value="otro">Otro</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-bold uppercase tracking-widest text-primary" for="message">¿En qué podemos ayudarte?</label>
+<textarea class="resize-none rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="message" name="message" placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..." required="" rows="4"></textarea>
+</div>
+<div class="pt-4 md:col-span-2">
+<button class="w-full rounded-full bg-gradient-to-r from-primary to-secondary py-5 text-xl font-black text-on-primary-fixed shadow-xl shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-95" type="submit">
+                            Enviar Solicitud
+                        </button>
+<p class="mt-4 text-center text-xs italic text-on-surface-variant opacity-60">Al enviar, aceptas que procesemos tus datos para contactarte.</p>
+</div>
+<input name="_next" type="hidden" value="https://zyntra.digital/thanks"/>
+<input name="_subject" type="hidden" value="Nueva Solicitud de Auditoría - Zyntra"/>
+</form>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest py-24" id="contact">
+<div class="container mx-auto px-6 text-center">
+<h2 class="mb-12 text-3xl font-bold">Conectemos</h2>
+<div class="flex flex-col justify-center gap-6 md:flex-row">
+<a class="flex items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-8 py-4 transition-all hover:border-primary/50" href="https://wa.me/5491166439309">
+<span class="material-symbols-outlined text-primary">chat</span>
+<span class="font-medium">WhatsApp: 15-6643-9309</span>
+</a>
+<a class="flex items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-8 py-4 transition-all hover:border-secondary/50" href="mailto:emmanuel.ap77@gmail.com">
+<span class="material-symbols-outlined text-secondary">mail</span>
+<span class="font-medium">emmanuel.ap77@gmail.com</span>
+</a>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden border-t border-outline-variant/10 bg-zinc-950 py-24" id="about">
+<div class="mesh-glow absolute inset-0 opacity-40"></div>
+<div class="container relative z-10 mx-auto px-6">
+<div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+<div class="space-y-6">
+<span class="text-sm font-bold uppercase tracking-[0.25em] text-primary">Sobre Nosotros</span>
+<h2 class="text-4xl font-bold md:text-5xl">Compromiso, conocimiento y seriedad en cada implementación</h2>
+<p class="max-w-3xl text-lg text-on-surface-variant">
+                        En Zyntra trabajamos con una idea simple: la tecnología tiene que resolver problemas reales. Por eso analizamos cada caso, proponemos soluciones concretas y construimos sistemas que puedan sostenerse en el tiempo.
+                    </p>
+<p class="max-w-3xl text-lg text-on-surface-variant">
+                        Combinamos criterio estratégico, experiencia en automatización y foco en la operación diaria de cada cliente. Nuestro compromiso es entregar herramientas útiles, claras y confiables, con un trato profesional desde el primer contacto hasta la puesta en marcha.
+                    </p>
+</div>
+<div class="grid gap-4">
+<div class="rounded-3xl border border-outline-variant/20 bg-white/5 p-6">
+<h3 class="mb-2 text-xl font-bold">Compromiso</h3>
+<p class="text-sm text-on-surface-variant">Acompañamos cada proyecto con seguimiento real, comunicación clara y foco en resultados.</p>
+</div>
+<div class="rounded-3xl border border-outline-variant/20 bg-white/5 p-6">
+<h3 class="mb-2 text-xl font-bold">Conocimiento</h3>
+<p class="text-sm text-on-surface-variant">Diseñamos soluciones pensadas para procesos, atención, ventas y operación interna.</p>
+</div>
+<div class="rounded-3xl border border-outline-variant/20 bg-white/5 p-6">
+<h3 class="mb-2 text-xl font-bold">Seriedad</h3>
+<p class="text-sm text-on-surface-variant">Priorizamos implementaciones sólidas, medibles y alineadas con la realidad del negocio.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full border-t border-outline-variant/10 bg-zinc-950 py-12">
+<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-8 md:flex-row md:items-center">
+<div class="flex flex-col items-center md:items-start">
+<span class="mb-2 text-2xl font-black text-zinc-100">Zyntra</span>
+<div class="mb-4 flex items-center gap-2 text-zinc-500">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs uppercase tracking-widest">Capital Federal, Buenos Aires, Argentina</p>
+</div>
+<p class="text-sm uppercase tracking-widest text-zinc-600">© 2026 Zyntra Digital. Automatización con visión.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="text-sm uppercase tracking-widest text-zinc-500 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://wa.me/5491166439309">WhatsApp</a>
+<a class="text-sm uppercase tracking-widest text-zinc-500 opacity-80 transition-all hover:text-primary hover:opacity-100" href="mailto:emmanuel.ap77@gmail.com">Email</a>
+</div>
+</div>
+</footer>
+<script>
+        const siteHeader = document.querySelector('.site-header');
+
+        function updateHeaderState() {
+            if (!siteHeader) return;
+            siteHeader.classList.toggle('is-scrolled', window.scrollY > 24);
+        }
+
+        updateHeaderState();
+        window.addEventListener('scroll', updateHeaderState, { passive: true });
+    </script>
+</body>
+</html>
