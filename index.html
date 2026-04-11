@@ -375,9 +375,23 @@
             }
         }
         @media (max-width: 767px) {
-            .hero-visual::before,
+            .hero-visual {
+                max-width: 100%;
+                animation-duration: 6s;
+            }
+            .hero-visual::before {
+                inset: -0.75rem;
+                filter: blur(20px);
+                opacity: 0.75;
+            }
             .hero-visual::after {
-                display: none;
+                inset: -6% 30% -6% -18%;
+                opacity: 0.8;
+                animation-duration: 4.8s;
+            }
+            .hero-visual img {
+                animation-duration: 6s;
+                transform: perspective(900px) rotateY(-4deg) rotateX(1deg) scale(1);
             }
         }
     </style>
