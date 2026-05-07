@@ -374,6 +374,71 @@
                 animation: none !important;
             }
         }
+
+        /* ===== PROJECTS SECTION ===== */
+        .project-card {
+            transition: box-shadow 0.4s ease;
+        }
+        .project-card:hover {
+            box-shadow: 0 0 0 1px rgba(129,236,255,0.13), 0 36px 80px rgba(0,0,0,0.55);
+        }
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+            z-index: 0;
+        }
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.22);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .carousel-dot.active {
+            background: #81ecff;
+            width: 20px;
+        }
+        .carousel-dot:hover:not(.active) {
+            background: rgba(255,255,255,0.5);
+        }
+        .phone-frame {
+            border-radius: 38px;
+            border: 6px solid rgba(255,255,255,0.09);
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.04),
+                0 28px 70px rgba(0,0,0,0.75),
+                inset 0 0 0 1px rgba(255,255,255,0.05);
+            overflow: hidden;
+            background: #000;
+        }
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-slide { transition: none !important; }
+            .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+        }
         @media (max-width: 767px) {
             .hero-visual {
                 max-width: 100%;
@@ -404,6 +469,7 @@
 </div>
 <div class="hidden items-center gap-8 md:flex">
 <a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#services">Servicios</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#proyectos">Proyectos</a>
 <a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#about">Sobre Nosotros</a>
 <a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#contact-form">Contacto</a>
 </div>
@@ -513,6 +579,183 @@
 </div>
 </div>
 </section>
+<!-- ===== PROYECTOS ===== -->
+<section class="relative overflow-hidden py-24 bg-surface-container" id="proyectos">
+    <div class="soft-grid absolute inset-0 z-0 opacity-10"></div>
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+    <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent"></div>
+
+    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="mb-16 reveal">
+            <span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-primary">Proyectos Destacados</span>
+            <h2 class="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">Lo que <span class="text-secondary">Construimos</span></h2>
+            <p class="mt-4 max-w-2xl text-lg text-on-surface-variant">Soluciones reales desarrolladas de punta a punta — diseño, backend, deploy en producción.</p>
+        </div>
+
+        <!-- Cards -->
+        <div class="flex flex-col gap-10 lg:gap-14">
+
+            <!-- ── PROJECT 1: Stratos Admin Web ── -->
+            <div class="project-card glass-panel reveal rounded-[24px] border border-outline-variant/10 overflow-hidden">
+                <div class="grid lg:grid-cols-[1.15fr_0.85fr]">
+                    <!-- Carousel -->
+                    <div class="relative overflow-hidden bg-zinc-100" style="min-height:280px;" data-carousel>
+                        <img src="portfolio/stratos-web-1.jpeg" class="carousel-slide active" alt="Stratos Admin — Landing">
+                        <img src="portfolio/stratos-web-2.jpeg" class="carousel-slide" alt="Stratos Admin — Dashboard">
+                        <img src="portfolio/stratos-web-3.jpg" class="carousel-slide" alt="Stratos Admin — Socios">
+                        <img src="portfolio/stratos-web-4.jpg" class="carousel-slide" alt="Stratos Admin — Calendario">
+                        <!-- Gradient overlay for dot readability -->
+                        <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none"></div>
+                        <!-- Dots -->
+                        <div class="absolute bottom-4 inset-x-0 flex justify-center gap-2 z-20">
+                            <button class="carousel-dot active" aria-label="Slide 1"></button>
+                            <button class="carousel-dot" aria-label="Slide 2"></button>
+                            <button class="carousel-dot" aria-label="Slide 3"></button>
+                            <button class="carousel-dot" aria-label="Slide 4"></button>
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="flex flex-col justify-center p-8 lg:p-10">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-bold text-primary">SaaS</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-bold text-on-surface-variant">Fitness · Gestión</span>
+                        </div>
+                        <h3 class="text-2xl font-bold sm:text-3xl mb-3">Stratos Admin</h3>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">Plataforma SaaS completa para centros fitness y gimnasios. Socios, planes por disciplina, reservas con check-in QR, facturación electrónica AFIP y analytics en tiempo real. Multi-gym, multi-idioma.</p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Facturación electrónica AFIP (CAE)
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Check-in por QR · Chat en tiempo real
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> ES · PT · EN · FR — Analytics reales
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">React 19</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">TypeScript</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Tailwind v4</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Supabase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── PROJECT 2: Stratos Mobile ── -->
+            <div class="project-card glass-panel reveal rounded-[24px] border border-outline-variant/10 overflow-hidden" style="transition-delay:120ms">
+                <div class="grid lg:grid-cols-[0.85fr_1.15fr]">
+                    <!-- Content left on desktop -->
+                    <div class="flex flex-col justify-center p-8 lg:p-10 order-2 lg:order-1">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="rounded-full bg-secondary/10 border border-secondary/20 px-3 py-1 text-xs font-bold text-secondary">App Móvil</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-bold text-on-surface-variant">iOS · Android</span>
+                        </div>
+                        <h3 class="text-2xl font-bold sm:text-3xl mb-3">Stratos Mobile</h3>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">App nativa para socios del gimnasio. Panel con plan activo y créditos en tiempo real, reserva de clases, check-in QR, rutinas de entrenamiento, calculadores de nutrición y timer WOD con historial.</p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Check-in QR + huella biométrica
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Timer WOD con historial de sesiones
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Chat grupal · Eventos · Nutrición
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">React Native</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Expo SDK 54</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">TypeScript</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Supabase</span>
+                        </div>
+                    </div>
+                    <!-- Phone mockup right on desktop -->
+                    <div class="order-1 lg:order-2 flex flex-col items-center justify-center gap-5 bg-gradient-to-br from-surface-container-high to-surface-container-highest py-10 px-6" data-carousel>
+                        <div class="phone-frame" style="width:min(210px,62vw)">
+                            <div style="aspect-ratio:9/19.5;position:relative;overflow:hidden;background:#000;">
+                                <img src="portfolio/stratos-mobile-1.jpeg" class="carousel-slide active" style="object-position:center;" alt="Stratos Mobile — Home">
+                                <img src="portfolio/stratos-mobile-2.jpeg" class="carousel-slide" style="object-position:center;" alt="Stratos Mobile — Clases">
+                                <img src="portfolio/stratos-mobile-3.jpeg" class="carousel-slide" style="object-position:center;" alt="Stratos Mobile — Perfil">
+                                <img src="portfolio/stratos-mobile-4.jpeg" class="carousel-slide" style="object-position:center;" alt="Stratos Mobile — Eventos">
+                                <img src="portfolio/stratos-mobile-5.jpeg" class="carousel-slide" style="object-position:center;" alt="Stratos Mobile — Nutrición">
+                                <img src="portfolio/stratos-mobile-6.jpeg" class="carousel-slide" style="object-position:center;" alt="Stratos Mobile — Chat">
+                                <img src="portfolio/stratos-mobile-7.jpeg" class="carousel-slide" style="object-position:center;" alt="Stratos Mobile — Timer">
+                            </div>
+                        </div>
+                        <!-- Dots below phone -->
+                        <div class="flex gap-2">
+                            <button class="carousel-dot active" aria-label="Slide 1"></button>
+                            <button class="carousel-dot" aria-label="Slide 2"></button>
+                            <button class="carousel-dot" aria-label="Slide 3"></button>
+                            <button class="carousel-dot" aria-label="Slide 4"></button>
+                            <button class="carousel-dot" aria-label="Slide 5"></button>
+                            <button class="carousel-dot" aria-label="Slide 6"></button>
+                            <button class="carousel-dot" aria-label="Slide 7"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── PROJECT 3: Mini Turnos App ── -->
+            <div class="project-card glass-panel reveal rounded-[24px] border border-outline-variant/10 overflow-hidden" style="transition-delay:240ms">
+                <div class="grid lg:grid-cols-[1.15fr_0.85fr]">
+                    <!-- Carousel -->
+                    <div class="relative overflow-hidden bg-zinc-50" style="min-height:280px;" data-carousel>
+                        <img src="portfolio/mini-turnos-1.jpg" class="carousel-slide active" alt="Mini Turnos — Inicio">
+                        <img src="portfolio/mini-turnos-2.jpg" class="carousel-slide" alt="Mini Turnos — Profesional">
+                        <img src="portfolio/mini-turnos-3.jpg" class="carousel-slide" alt="Mini Turnos — Reserva">
+                        <img src="portfolio/mini-turnos-4.jpg" class="carousel-slide" alt="Mini Turnos — Dashboard">
+                        <img src="portfolio/mini-turnos-5.jpg" class="carousel-slide" alt="Mini Turnos — Gestión">
+                        <img src="portfolio/mini-turnos-6.jpg" class="carousel-slide" alt="Mini Turnos — Comprobante">
+                        <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none"></div>
+                        <div class="absolute bottom-4 inset-x-0 flex justify-center gap-2 z-20">
+                            <button class="carousel-dot active" aria-label="Slide 1"></button>
+                            <button class="carousel-dot" aria-label="Slide 2"></button>
+                            <button class="carousel-dot" aria-label="Slide 3"></button>
+                            <button class="carousel-dot" aria-label="Slide 4"></button>
+                            <button class="carousel-dot" aria-label="Slide 5"></button>
+                            <button class="carousel-dot" aria-label="Slide 6"></button>
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="flex flex-col justify-center p-8 lg:p-10">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="rounded-full bg-tertiary/10 border border-tertiary/20 px-3 py-1 text-xs font-bold text-tertiary">Web App</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-bold text-on-surface-variant">Turnos · Gestión</span>
+                        </div>
+                        <h3 class="text-2xl font-bold sm:text-3xl mb-3">Mini Turnos App</h3>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">Plataforma de gestión de turnos online totalmente personalizable por rubro. Cada negocio adapta colores, texto y estilo. Los clientes reservan ingresando el código del negocio — sin crear cuenta.</p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-tertiary">check_circle</span> Diseño personalizable por rubro
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-tertiary">check_circle</span> Dashboard propio + código único por negocio
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-base text-tertiary">check_circle</span> Comprobante de reserva instantáneo
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">React</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">TypeScript</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Tailwind CSS</span>
+                            <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Supabase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ===== / PROYECTOS ===== -->
+
 <section class="relative overflow-hidden py-24">
 <div class="soft-grid absolute inset-0 z-0 opacity-20"></div>
 <div class="absolute inset-0 z-0 bg-gradient-to-r from-background to-background/60"></div>
@@ -702,6 +945,51 @@
 
         updateHeaderState();
         window.addEventListener('scroll', updateHeaderState, { passive: true });
+
+        // ===== CAROUSELS =====
+        document.querySelectorAll('[data-carousel]').forEach(function(container) {
+            var slides = Array.from(container.querySelectorAll('.carousel-slide'));
+            var dots   = Array.from(container.querySelectorAll('.carousel-dot'));
+            if (!slides.length) return;
+            var current = 0;
+            var timer;
+
+            function goTo(n) {
+                slides[current].classList.remove('active');
+                if (dots[current]) dots[current].classList.remove('active');
+                current = ((n % slides.length) + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                if (dots[current]) dots[current].classList.add('active');
+            }
+
+            dots.forEach(function(dot, i) {
+                dot.addEventListener('click', function() {
+                    goTo(i);
+                    clearInterval(timer);
+                    timer = setInterval(function() { goTo(current + 1); }, 3800);
+                });
+            });
+
+            container.addEventListener('mouseenter', function() { clearInterval(timer); });
+            container.addEventListener('mouseleave', function() {
+                timer = setInterval(function() { goTo(current + 1); }, 3800);
+            });
+
+            timer = setInterval(function() { goTo(current + 1); }, 3800);
+        });
+
+        // ===== SCROLL REVEAL =====
+        var revealObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    // respect transition-delay set inline
+                    e.target.classList.add('visible');
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
     </script>
 </body>
 </html>
