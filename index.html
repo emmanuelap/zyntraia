@@ -439,6 +439,133 @@
             .carousel-slide { transition: none !important; }
             .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
         }
+        /* ===== NAV MOBILE ===== */
+        .mobile-menu[hidden] {
+            display: none;
+        }
+        .mobile-menu {
+            animation: menuDrop 0.25s ease;
+        }
+        @keyframes menuDrop {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== WHATSAPP FLOTANTE ===== */
+        .wa-float {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            background: #25d366;
+            color: #04310f;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+            transition: transform 0.25s ease;
+        }
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+        .wa-float::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            border: 2px solid rgba(37, 211, 102, 0.55);
+            animation: waPing 2.6s ease-out infinite;
+        }
+        @keyframes waPing {
+            0% { transform: scale(1); opacity: 0.8; }
+            80%, 100% { transform: scale(1.7); opacity: 0; }
+        }
+
+        /* ===== SEÑALES ===== */
+        .signal-item {
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .signal-item:hover {
+            border-color: rgba(255, 255, 255, 0.28);
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ===== CALCULADORA ===== */
+        .calc-field input {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(72, 72, 71, 0.5);
+            background: rgba(38, 38, 38, 0.5);
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        .calc-result {
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .calc-result.is-hidden {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        /* ===== ACORDEON DE SERVICIOS ===== */
+        details.svc > summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.7rem 0;
+        }
+        details.svc > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.svc > summary:hover {
+            color: #81ecff;
+        }
+        details.svc[open] > summary .svc-chevron {
+            transform: rotate(180deg);
+        }
+        .svc-chevron {
+            transition: transform 0.3s ease;
+        }
+
+        /* ===== FAQ ===== */
+        details.faq > summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        details.faq > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.faq[open] > summary .faq-chevron {
+            transform: rotate(45deg);
+        }
+        .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .wa-float::after,
+            .mobile-menu,
+            .calc-result,
+            .svc-chevron,
+            .faq-chevron {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
         @media (max-width: 767px) {
             .hero-visual {
                 max-width: 100%;
@@ -468,301 +595,414 @@
 <span class="text-2xl font-bold tracking-tighter text-zinc-100">Zyntra</span>
 </div>
 <div class="hidden items-center gap-8 md:flex">
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#senales">Diagnóstico</a>
 <a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#services">Servicios</a>
 <a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#proyectos">Proyectos</a>
-<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#about">Sobre Nosotros</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#faq">Preguntas</a>
 <a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="#contact-form">Contacto</a>
 </div>
-<div class="flex items-center gap-6">
-<a class="hidden rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-2 font-bold text-on-primary-fixed transition-transform hover:scale-95 active:scale-90 md:block" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20pedir%20una%20auditor%C3%ADa%20gratuita.">
-                Auditoría Gratuita
+<div class="flex items-center gap-4">
+<a class="hidden rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-2 font-bold text-on-primary-fixed transition-transform hover:scale-95 active:scale-90 md:block" href="#contact-form">
+                Diagnóstico Gratuito
             </a>
-<button aria-label="Abrir menú" class="text-zinc-100 md:hidden" type="button">
-<span class="material-symbols-outlined">menu</span>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="text-zinc-100 md:hidden" id="menu-toggle" type="button">
+<span class="material-symbols-outlined" id="menu-icon">menu</span>
 </button>
 </div>
 </nav>
+<div class="mobile-menu border-t border-outline-variant/10 bg-zinc-950/95 backdrop-blur-xl md:hidden" hidden id="mobile-menu">
+<div class="flex flex-col gap-1 px-4 py-4 sm:px-6">
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="#senales">Diagnóstico</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="#services">Servicios</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="#proyectos">Proyectos</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="#faq">Preguntas frecuentes</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="#about">Sobre Nosotros</a>
+<a class="mt-2 rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-3 text-center font-bold text-on-primary-fixed" href="#contact-form">
+                    Pedir diagnóstico gratuito
+                </a>
+</div>
+</div>
 </header>
 <main>
-<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-0 pt-24 sm:pt-28">
-<div class="absolute inset-0 z-0 opacity-40">
-<img alt="Visual futurista de una mano robótica alcanzando un núcleo de energía en un entorno oscuro" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHlyLkkXHmsnGHDpzLEvsEMlPYNkTe5yGfjE9Wj7Lq44VAnPx1kxNgJMfYzCjwt7SCwN9mfO5uwq7MahbyQIJL5LKrRQ_Nncfr8pDXdMnoXvDJWgjkP4AaxbioDhx6xzlm4oucWrJZrPwd-7umiUY8wthak3zKkv89SAtv-u46qNsN1YAhyurIZ-UHCnjOLjirEDeQ0xF8ggVdP6JlITRJuldfjixP_Vp1p2a6uMfamyRWeQdPIkCrGiO2dX01c2M5cwPKe_c5R44"/>
-</div>
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-0 pt-28 pb-16 sm:pt-32">
+<div class="soft-grid absolute inset-0 z-0 opacity-[0.07]"></div>
 <div class="absolute inset-0 z-0 bg-gradient-to-b from-background via-transparent to-background"></div>
 <div class="mesh-glow absolute inset-0 z-0"></div>
-<div class="container relative z-10 mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
+<div class="container relative z-10 mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
 <div class="space-y-6 sm:space-y-8">
-<img alt="Símbolo tecnológico de Zyntra" class="h-24 w-24 rounded-2xl object-cover shadow-2xl shadow-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJOdboQpImQ8YhbXvTPHrZxQv8ZR02K_8C8Wzcu91MFxqEoivESWoFYvbqRhgG_D4uofRdZs12d6oFizgog2cLcl9-AyAiqVHEwJkYdno0G2HxHZlkQy-72wAl8Rq6Az6Vsd50sfO1io5E1HFNHuLMlwAmrzsNpzXNvata7xLy7Pjr13OyrPEMOVJZmhghUak_fRpz-bFbrvpYkB-sttFooWQFApl1wziOfZzpqII3HkihsLbRtGgZCoUkQQ1-BY2WLazqiA7n-aY"/>
+<!-- TODO: reemplazar por el logo real de Zyntra cuando esté en el repo -->
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/20 to-secondary/5 shadow-2xl shadow-primary/10">
+<span class="font-headline text-3xl font-black text-primary">Z</span>
+</div>
 <h1 class="text-4xl font-bold leading-tight tracking-tighter text-on-surface sm:text-5xl md:text-6xl lg:text-7xl">
                     Creación con <span class="italic text-primary">Visión</span> e IA
                 </h1>
 <p class="max-w-xl text-lg font-light text-on-surface-variant sm:text-xl md:text-2xl">
-                    Potenciamos tu negocio con chatbots, automatizaciones y software a medida para vender más, ordenar procesos y responder mejor.
+                    Cada consulta sin responder, cada turno olvidado y cada cobro que se atrasa es plata que se va en silencio. Construimos los sistemas que hacen ese trabajo por vos — todos los días, sin fallar y sin sueldo.
                 </p>
 <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:gap-4 sm:pt-4">
-<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto sm:px-8 sm:text-lg" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20pedir%20una%20auditor%C3%ADa%20gratuita.">
-                        Solicitar Auditoría Gratuita
+<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto sm:px-8 sm:text-lg" href="#contact-form">
+                        Pedir diagnóstico gratuito
                     </a>
-<a class="inline-flex w-full items-center justify-center rounded-full border border-outline-variant/30 px-6 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto sm:px-8" href="#services">
-                        Ver Servicios
+<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-6 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto sm:px-8" href="#calculadora">
+<span class="material-symbols-outlined text-xl">calculate</span>
+                        Calcular lo que estoy perdiendo
                     </a>
+</div>
+<div class="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-xs uppercase tracking-widest text-zinc-500 sm:text-sm">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-zinc-500">check_small</span>5 sistemas en producción</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-zinc-500">check_small</span>Facturación AFIP real</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-zinc-500">check_small</span>Web · Móvil · Escritorio</span>
 </div>
 </div>
 <div class="hero-visual mx-auto w-full max-w-md md:max-w-xl lg:block lg:max-w-none">
 <div class="absolute -inset-4 rounded-full bg-primary/10 blur-3xl"></div>
-<img alt="Interfaz futurista que representa visión artificial e inteligencia aplicada" class="relative rounded-2xl border border-outline-variant/20 shadow-2xl shadow-black" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8af_vXvk30aIM8YM9hTfQXGNuoVpygW_WLGQx9rvdIazA9kfqL8tV1OSG_-QSuqOP6FYsDXygySS7KlAYTi_3-elanp6VzQc73HZgzeQmxZAsIgb2aKlTOTRmbCRSujx-6rHexWRxESuLbGP01Egp04-ZtL9zBVUhMEk_JADAHKq2l8HNkokIoTeliNq9474Xr1u0aQaSsrADizLPYMYvQ1j1WNh9IIY65OMIwuzBqjGq_0o5bqbj-OZbJaaTTMCVxbPCp9QdYow"/>
+<img alt="Panel de control de Stratos Admin, uno de los sistemas desarrollados por Zyntra" class="relative rounded-2xl border border-outline-variant/20 shadow-2xl shadow-black" src="portfolio/stratos-web-2.jpeg"/>
 </div>
 </div>
 </section>
+<!-- ===== SEÑALES ===== -->
+<section class="relative overflow-hidden border-y border-outline-variant/10 bg-zinc-950 py-24" id="senales">
+<div class="mesh-glow absolute inset-0 z-0 opacity-30"></div>
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-12 max-w-3xl reveal">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-500">Autodiagnóstico</span>
+<h2 class="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">Señales de que tu negocio <span class="text-secondary">ya necesita esto</span></h2>
+<p class="mt-4 text-lg text-on-surface-variant">Leé la lista sin apuro. No hace falta que te pasen todas.</p>
+</div>
+<div class="grid grid-cols-1 gap-3 md:grid-cols-2 reveal">
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Anotás turnos en un cuaderno o en un Excel que solo entiende una persona.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Perdés consultas de WhatsApp porque entran fuera de horario.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">No sabés con certeza cuántos clientes o socios te deben plata hoy.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Reimprimís el menú o la lista de precios cada vez que algo cambia.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Tu web está igual que hace cinco años. O directamente no tenés.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Alguien de tu equipo dedica horas a copiar datos de un lado a otro.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Tus clientes te encuentran de casualidad, no cuando buscan en Google.</p>
+</div>
+<div class="signal-item flex items-start gap-3 rounded-xl border border-outline-variant/15 bg-white/[0.02] p-4">
+<span class="material-symbols-outlined mt-0.5 shrink-0 text-lg text-zinc-500">radio_button_unchecked</span>
+<p class="text-on-surface-variant">Sabés que hay clientes que no volvieron. No sabés quiénes.</p>
+</div>
+</div>
+<div class="mt-10 rounded-[24px] border border-outline-variant/15 bg-surface-container-low p-6 text-center sm:p-8 reveal">
+<p class="text-xl font-bold sm:text-2xl">¿Te pasan tres o más?</p>
+<p class="mx-auto mt-2 max-w-xl text-lg text-on-surface-variant">No es falta de esfuerzo. Es falta de sistema.</p>
+<a class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-3.5 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="#calculadora">
+<span class="material-symbols-outlined text-xl">calculate</span>
+                    Ver cuánto me está costando
+                </a>
+</div>
+</div>
+</section>
+<!-- ===== / SEÑALES ===== -->
+<!-- ===== CALCULADORA ===== -->
+<section class="relative overflow-hidden py-24" id="calculadora">
+<div class="soft-grid absolute inset-0 z-0 opacity-10"></div>
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+<div class="glass-panel mx-auto max-w-4xl rounded-[28px] border border-outline-variant/10 p-6 sm:rounded-[40px] sm:p-10 md:p-12 reveal">
+<div class="mb-8 text-center">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-500">Calculadora</span>
+<h2 class="mt-4 text-3xl font-bold sm:text-4xl">¿Cuánto te está costando <span class="text-secondary">seguir igual</span>?</h2>
+<p class="mx-auto mt-4 max-w-xl text-on-surface-variant">Tres datos tuyos y te mostramos el número. No pedimos email ni nada a cambio.</p>
+</div>
+<div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+<div class="calc-field">
+<label class="mb-2 block text-xs font-bold uppercase tracking-widest text-zinc-500" for="calc-volumen">Turnos, pedidos o ventas por semana</label>
+<input id="calc-volumen" inputmode="numeric" min="0" placeholder="40" type="number" value="40"/>
+</div>
+<div class="calc-field">
+<label class="mb-2 block text-xs font-bold uppercase tracking-widest text-zinc-500" for="calc-perdidos">De esos, cuántos se caen o no se presentan</label>
+<input id="calc-perdidos" inputmode="numeric" min="0" placeholder="6" type="number" value="6"/>
+</div>
+<div class="calc-field">
+<label class="mb-2 block text-xs font-bold uppercase tracking-widest text-zinc-500" for="calc-ticket">Ticket promedio (pesos)</label>
+<input id="calc-ticket" inputmode="numeric" min="0" placeholder="15000" type="number" value="15000"/>
+</div>
+</div>
+<div class="calc-result mt-8 rounded-[24px] border border-primary/20 bg-primary/[0.06] p-6 text-center sm:p-8" id="calc-result">
+<p class="text-sm uppercase tracking-widest text-zinc-400">Estás dejando de facturar aproximadamente</p>
+<p class="my-3 text-4xl font-black tracking-tight text-primary sm:text-5xl md:text-6xl" id="calc-anual">$4.680.000</p>
+<p class="text-sm uppercase tracking-widest text-zinc-400">por año</p>
+<p class="mx-auto mt-5 max-w-lg text-on-surface-variant" id="calc-detalle">Son <strong class="text-on-surface">6 oportunidades por semana</strong> que se pierden. Un sistema de recordatorios y seguimiento automático recupera buena parte de eso.</p>
+<a class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="#contact-form">
+                        Quiero recuperarlo
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</a>
+</div>
+<p class="mt-5 text-center text-xs text-zinc-600">La cuenta es simple y transparente: pérdidas semanales × ticket × 52 semanas. Es una estimación con tus propios números, no una promesa de resultado.</p>
+</div>
+</div>
+</section>
+<!-- ===== / CALCULADORA ===== -->
+<!-- ===== SERVICIOS (4 familias) ===== -->
 <section class="bg-surface py-24" id="services">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="mb-16">
-<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-primary">Nuestra Expertise</span>
-<h2 class="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">Soluciones de Próxima Generación</h2>
+<div class="mb-14 max-w-3xl reveal">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-500">Qué hacemos</span>
+<h2 class="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">Cuatro frentes donde <span class="text-secondary">se te escapa la plata</span></h2>
+<p class="mt-4 text-lg text-on-surface-variant">Tocá cualquier servicio para ver qué resuelve y qué pasa si lo seguís postergando. No hace falta empezar por todo: se arranca por el que más te duele hoy.</p>
 </div>
-<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-<div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8 md:col-span-2">
-<div class="relative z-10">
-<span class="material-symbols-outlined mb-6 text-5xl text-primary">smart_toy</span>
-<h3 class="mb-4 text-3xl font-bold">Chatbots Inteligentes</h3>
-<p class="max-w-md text-lg text-on-surface-variant">
-                            Diseñamos agentes conversacionales para ventas, soporte y seguimiento de clientes, adaptados al lenguaje y ritmo de cada negocio.
-                        </p>
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+
+<!-- FAMILIA 1 -->
+<div class="flex flex-col rounded-[24px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container sm:p-8 reveal">
+<div class="mb-5 flex items-center gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06]">
+<span class="material-symbols-outlined text-2xl text-zinc-200">campaign</span>
 </div>
-<div class="mt-8 flex flex-wrap gap-2">
-<span class="rounded-full bg-surface-container-highest px-4 py-1 text-xs font-bold text-primary">Atención 24/7</span>
-<span class="rounded-full bg-surface-container-highest px-4 py-1 text-xs font-bold text-primary">Respuestas Automáticas</span>
-<span class="rounded-full bg-surface-container-highest px-4 py-1 text-xs font-bold text-primary">Calificación de Leads</span>
-</div>
-<div class="absolute bottom-[-10%] right-[-10%] opacity-10 transition-opacity hover:opacity-30">
-<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">chat</span>
-</div>
-</div>
-<div class="flex flex-col justify-between rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
 <div>
-<span class="material-symbols-outlined mb-6 text-5xl text-secondary">analytics</span>
-<h3 class="mb-4 text-2xl font-bold">Software de Gestión</h3>
-<p class="text-on-surface-variant">
-                            Centralizamos turnos, inventario, cobros y operación diaria en herramientas claras, rápidas y hechas a medida.
-                        </p>
-</div>
-<ul class="mt-6 space-y-3">
-<li class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-base text-primary">check_circle</span> Inventario en Tiempo Real
-                        </li>
-<li class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-base text-primary">check_circle</span> Gestión de Turnos
-                        </li>
-</ul>
-</div>
-<div class="rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-<span class="material-symbols-outlined mb-6 text-5xl text-tertiary">hub</span>
-<h3 class="mb-4 text-2xl font-bold">Automatización de Procesos</h3>
-<p class="text-on-surface-variant">
-                        Conectamos formularios, WhatsApp, correo, CRM y tareas internas para que tu equipo deje de hacer trabajo repetitivo.
-                    </p>
-</div>
-<div class="rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-<span class="material-symbols-outlined mb-6 text-5xl text-primary">campaign</span>
-<h3 class="mb-4 text-2xl font-bold">Embudos y Seguimiento Comercial</h3>
-<p class="text-on-surface-variant">
-                        Automatizamos contacto inicial, recordatorios, recupero de consultas y seguimiento de oportunidades comerciales.
-                    </p>
-</div>
-<div class="rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-<span class="material-symbols-outlined mb-6 text-5xl text-secondary">insights</span>
-<h3 class="mb-4 text-2xl font-bold">Paneles e Indicadores</h3>
-<p class="text-on-surface-variant">
-                        Convertimos datos operativos en tableros simples para tomar decisiones más rápidas y con mejor visibilidad.
-                    </p>
+<p class="text-xs font-bold uppercase tracking-widest text-zinc-500">Frente 1</p>
+<h3 class="text-xl font-bold sm:text-2xl">Captar más clientes</h3>
 </div>
 </div>
+<p class="mb-5 text-on-surface-variant">Si dependés de que alguien conteste a tiempo, estás perdiendo ventas todos los días sin enterarte.</p>
+<div class="mt-auto divide-y divide-outline-variant/10 border-t border-outline-variant/10">
+
+<details class="svc">
+<summary><span class="font-medium">Chatbots Inteligentes</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Agentes conversacionales para ventas, soporte y seguimiento, adaptados al lenguaje y al ritmo de tu negocio.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> respondés al instante las 24 horas y llegás a la conversación con el cliente ya calificado.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> las consultas de la noche y del fin de semana se contestan tarde, o no se contestan.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20un%20chatbot%20inteligente%20para%20mi%20negocio." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Turnos y Reservas Online</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Tus clientes reservan solos, las 24 horas, sin depender de que alguien atienda el teléfono o el WhatsApp.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> menos ausencias gracias a confirmaciones y recordatorios automáticos, y turnos que se agendan solos hasta de noche.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> se pierden reservas por líneas ocupadas o fuera de horario, y el personal agenda uno por uno a mano.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20un%20sistema%20de%20turnos%20y%20reservas%20online." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Embudos y Seguimiento Comercial</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Automatizamos el contacto inicial, los recordatorios, el recupero de consultas frías y el seguimiento de cada oportunidad.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> ninguna consulta queda sin respuesta ni sin seguimiento, aunque el equipo esté desbordado.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> el interesado que hoy no recibió respuesta, mañana ya le compró a otro.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20automatizar%20el%20seguimiento%20comercial." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Reputación en Google Maps</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Pedido automático de reseñas por WhatsApp o QR después de cada compra o turno, para sumar calificaciones reales en Google.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> más reseñas recientes mejoran tu posición en Google Maps y en las búsquedas locales, y generan confianza inmediata.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> quedás invisible frente a competidores mejor rankeados en el mapa, aunque tu servicio sea mejor.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20mejorar%20mi%20reputaci%C3%B3n%20en%20Google%20Maps." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+</div>
+</div>
+
+<!-- FAMILIA 2 -->
+<div class="flex flex-col rounded-[24px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container sm:p-8 reveal" style="transition-delay:100ms">
+<div class="mb-5 flex items-center gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06]">
+<span class="material-symbols-outlined text-2xl text-zinc-200">hub</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-zinc-500">Frente 2</p>
+<h3 class="text-xl font-bold sm:text-2xl">Ordenar la operación</h3>
+</div>
+</div>
+<p class="mb-5 text-on-surface-variant">Si la información vive en cuadernos, planillas sueltas y la cabeza de una sola persona, el negocio no escala.</p>
+<div class="mt-auto divide-y divide-outline-variant/10 border-t border-outline-variant/10">
+
+<details class="svc">
+<summary><span class="font-medium">Software de Gestión a Medida</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Centralizamos turnos, inventario, cobros y operación diaria en una herramienta clara, rápida y hecha a la medida de tu negocio.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> todo el equipo mira la misma información actualizada, sin versiones paralelas ni planillas que se pisan.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> cada área maneja su propio Excel y nadie sabe con certeza cuál es el dato bueno.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20un%20software%20de%20gesti%C3%B3n%20a%20medida." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Automatización de Procesos</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Conectamos formularios, WhatsApp, correo, CRM y tareas internas para que tu equipo deje de hacer trabajo repetitivo.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> lo que hoy hace una persona a mano pasa a ejecutarse solo, sin olvidos ni errores de tipeo.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> estás pagando sueldos para copiar y pegar datos de un sistema a otro.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20automatizar%20procesos%20internos." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Admin para Gimnasios y Centros Fitness</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Control de socios, planes, horarios y disciplinas desde un solo panel, con estado de cuenta y vencimientos en tiempo real.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> visibilidad total de quién pagó, quién debe y quién vence esta semana, sin superposición de turnos ni disciplinas.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> planillas sueltas o Excel desactualizado esconden pérdidas de ingresos y errores que terminan en bajas de socios.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20el%20sistema%20de%20administraci%C3%B3n%20para%20gimnasios." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Accesos por QR</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Control de ingreso a gimnasios, oficinas, eventos o edificios con un código QR único por persona, sin llaves, tarjetas ni personal fijo en la puerta.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> ingreso instantáneo con registro automático de cada acceso, y bloqueo solo a quien tenga la cuota vencida.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> control manual en la puerta, sin registro y sin cruce de datos — cualquiera con cuota vencida sigue entrando.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20el%20control%20de%20accesos%20por%20QR." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Paneles e Indicadores</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Convertimos datos operativos en tableros simples para tomar decisiones más rápidas y con mejor visibilidad.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> ves en una pantalla qué está funcionando y qué no, sin esperar al cierre de mes.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> decidís por intuición y te enterás de los problemas cuando ya costaron plata.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesan%20los%20paneles%20e%20indicadores." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+</div>
+</div>
+
+<!-- FAMILIA 3 -->
+<div class="flex flex-col rounded-[24px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container sm:p-8 reveal" style="transition-delay:200ms">
+<div class="mb-5 flex items-center gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06]">
+<span class="material-symbols-outlined text-2xl text-zinc-200">payments</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-zinc-500">Frente 3</p>
+<h3 class="text-xl font-bold sm:text-2xl">Cobrar mejor</h3>
+</div>
+</div>
+<p class="mb-5 text-on-surface-variant">La plata que no entra a tiempo es la que más caro sale: financiás vos lo que debería estar cobrado.</p>
+<div class="mt-auto divide-y divide-outline-variant/10 border-t border-outline-variant/10">
+
+<details class="svc">
+<summary><span class="font-medium">Cobros y Recordatorios Automáticos</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Aviso automático antes del vencimiento y cobro directo por link de pago, sin perseguir a nadie por teléfono.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> menos morosidad y menos tiempo administrativo perdido reclamando pagos atrasados uno por uno.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> los pagos atrasados se acumulan sin que nadie los note a tiempo, y cobrar a mano genera roces con el cliente.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesan%20los%20cobros%20y%20recordatorios%20autom%C3%A1ticos." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Facturación Electrónica AFIP</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Emisión de facturas A, B y C con CAE real de AFIP, integrada al mismo sistema donde ya cargás las ventas.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> facturás en el momento de la venta, sin cargar dos veces los mismos datos ni entrar al portal de AFIP.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> alguien copia cada venta a mano en la web de AFIP, con el riesgo de error y el tiempo que eso se lleva.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20la%20facturaci%C3%B3n%20electr%C3%B3nica%20AFIP." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Fidelización Digital con QR</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Tarjeta de puntos y beneficios sin apps ni plástico: el cliente acumula y canjea escaneando un QR.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> los clientes vuelven más seguido por el incentivo, y vos te quedás con el dato de quién compra y cada cuánto.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> no hay motivo extra para elegirte frente a la competencia, y perdés de vista quién es tu cliente recurrente.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20el%20programa%20de%20fidelizaci%C3%B3n%20con%20QR." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+</div>
+</div>
+
+<!-- FAMILIA 4 -->
+<div class="flex flex-col rounded-[24px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container sm:p-8 reveal" style="transition-delay:300ms">
+<div class="mb-5 flex items-center gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06]">
+<span class="material-symbols-outlined text-2xl text-zinc-200">palette</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-zinc-500">Frente 4</p>
+<h3 class="text-xl font-bold sm:text-2xl">Imagen y presencia digital</h3>
+</div>
+</div>
+<p class="mb-5 text-on-surface-variant">Si no te encuentran, o te encuentran y no te toman en serio, todo lo demás importa poco.</p>
+<div class="mt-auto divide-y divide-outline-variant/10 border-t border-outline-variant/10">
+
+<details class="svc">
+<summary><span class="font-medium">Sitios Web desde Cero</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Desarrollamos tu web completa, a medida y pensada para convertir visitas en clientes — sin plantillas genéricas.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> un sitio propio funciona como vendedor 24/7, ordena tu información y te hace encontrable en Google.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> dependés 100% de redes sociales o del boca en boca, y perdés a todo el que investiga antes de decidir.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20una%20web%20nueva%20desde%20cero." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Renovación de Webs Abandonadas</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Actualizamos sitios viejos, lentos o desactualizados —diseño, velocidad, seguridad y contenido— sin perder lo que ya funciona.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> un sitio moderno y rápido mejora el posicionamiento en Google y la primera impresión del visitante.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> una web vieja y abandonada transmite que el negocio también dejó de funcionar, aunque no sea cierto.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20renovar%20la%20web%20que%20ya%20tengo." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Creación de Marcas desde Cero</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">Diseñamos tu marca completa —logo, paleta de colores, tipografías y piezas gráficas— para que tengas una identidad profesional desde el primer día.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> una imagen coherente en todos lados genera confianza inmediata y te diferencia de la competencia.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> cada pieza se ve distinta y el cliente duda si está tratando con un negocio serio.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20crear%20la%20marca%20de%20mi%20negocio%20desde%20cero." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+<details class="svc">
+<summary><span class="font-medium">Menús Digitales con QR</span><span class="material-symbols-outlined svc-chevron text-base text-zinc-500">expand_more</span></summary>
+<div class="space-y-3 pb-5">
+<p class="text-sm leading-relaxed text-on-surface-variant">El cliente escanea un código en la mesa y ve el menú actualizado al instante, con fotos, precios y disponibilidad — sin imprimir nada.</p>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> actualizás precios y platos en segundos, reducís personal para tomar pedidos y proyectás una imagen más moderna.</span></div>
+<div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> menús impresos desactualizados generan reclamos por precios, gasto de imprenta recurrente y ventas perdidas por demora.</span></div>
+<a class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20un%20men%C3%BA%20digital%20con%20QR." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</details>
+
+</div>
+</div>
+
+</div>
+
+<!-- TODO: reemplazar XXX por el precio real de entrada antes de publicar. Si no querés mostrar precio, borrá este bloque entero. -->
+<div class="mx-auto mt-12 max-w-3xl rounded-[24px] border border-outline-variant/15 bg-surface-container-low p-6 text-center sm:p-8 reveal">
+<p class="text-xs font-bold uppercase tracking-widest text-zinc-500">Para que puedas calcular</p>
+<p class="mt-3 text-lg text-on-surface-variant">Los proyectos arrancan desde <strong class="text-on-surface">$XXX.XXX</strong> y los sistemas con soporte mensual desde <strong class="text-on-surface">$XX.XXX por mes</strong>. El número final depende del alcance, y siempre lo sabés antes de empezar: no trabajamos con presupuestos abiertos.</p>
+</div>
+
 </div>
 </section>
-<!-- ===== SOLUCIONES EXTRA ===== -->
-<section class="bg-surface py-24" id="soluciones">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-16 reveal">
-            <span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-primary">Más Soluciones</span>
-            <h2 class="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">Herramientas que <span class="text-secondary">Suman Ingresos</span></h2>
-            <p class="mt-4 max-w-2xl text-lg text-on-surface-variant">Se integran solas o combinadas con lo anterior, según lo que tu negocio necesite hoy.</p>
-        </div>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-
-            <!-- Accesos QR -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-primary">qr_code_2</span>
-                <h3 class="mb-2 text-xl font-bold">Accesos por QR</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Control de ingreso a gimnasios, oficinas, eventos o edificios con un código QR único por persona, sin llaves, tarjetas ni personal fijo en la puerta.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-primary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> ingreso instantáneo con registro automático de cada acceso, y bloqueo solo a quien tenga la cuota vencida.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> control manual en la puerta, sin registro y sin cruce de datos — cualquiera con cuota vencida sigue entrando.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Menús Digitales con QR -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-secondary">restaurant_menu</span>
-                <h3 class="mb-2 text-xl font-bold">Menús Digitales con QR</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">El cliente escanea un código en la mesa y ve el menú actualizado al instante, con fotos, precios y disponibilidad — sin imprimir nada.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-secondary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> actualizás precios y platos en segundos, reducís personal para tomar pedidos y proyectás una imagen más moderna.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> menús impresos desactualizados generan reclamos por precios, gasto de imprenta recurrente y ventas perdidas por demora.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Admin Gym/Fitness -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-tertiary">fitness_center</span>
-                <h3 class="mb-2 text-xl font-bold">Admin para Gimnasios y Centros Fitness</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Control de socios, planes, horarios y disciplinas desde un solo panel, con estado de cuenta y vencimientos en tiempo real.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-tertiary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> visibilidad total de quién pagó, quién debe y quién vence esta semana, sin superposición de turnos ni disciplinas.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> planillas sueltas o Excel desactualizado esconden pérdidas de ingresos y errores que terminan en bajas de socios.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Turnos y Reservas Online -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-primary">event_available</span>
-                <h3 class="mb-2 text-xl font-bold">Turnos y Reservas Online</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Tus clientes reservan solos, las 24 horas, sin depender de que alguien atienda el teléfono o el WhatsApp.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-primary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> menos ausencias gracias a confirmaciones y recordatorios automáticos, y turnos que se agendan solos hasta de noche.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> se pierden reservas por líneas ocupadas o fuera de horario, y el personal agenda uno por uno a mano.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cobros y Recordatorios Automáticos -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-secondary">payments</span>
-                <h3 class="mb-2 text-xl font-bold">Cobros y Recordatorios Automáticos</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Aviso automático antes del vencimiento y cobro directo por link de pago, sin perseguir a nadie por teléfono.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-secondary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> menos morosidad y menos tiempo administrativo perdido reclamando pagos atrasados uno por uno.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> los pagos atrasados se acumulan sin que nadie los note a tiempo, y cobrar a mano genera roces con el cliente.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fidelización Digital con QR -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-tertiary">loyalty</span>
-                <h3 class="mb-2 text-xl font-bold">Fidelización Digital con QR</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Tarjeta de puntos y beneficios sin apps ni plástico: el cliente acumula y canjea escaneando un QR.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-tertiary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> los clientes vuelven más seguido por el incentivo, y vos te quedás con el dato de quién compra y cada cuánto.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> no hay motivo extra para elegirte frente a la competencia, y perdés de vista quién es tu cliente recurrente.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reputación y Posicionamiento en Google Maps -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-primary">reviews</span>
-                <h3 class="mb-2 text-xl font-bold">Reputación en Google Maps</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Pedido automático de reseñas por WhatsApp o QR después de cada compra o turno, para sumar calificaciones reales en Google.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-primary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> más reseñas recientes mejoran tu posición en Google Maps y en las búsquedas locales, y generan confianza inmediata.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> quedás invisible frente a competidores mejor rankeados en el mapa, aunque tu servicio sea mejor.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Creación de Marcas desde Cero -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-secondary">palette</span>
-                <h3 class="mb-2 text-xl font-bold">Creación de Marcas desde Cero</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Diseñamos tu marca completa —logo, paleta de colores, tipografías y piezas gráficas— para que tengas una identidad profesional desde el primer día.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-secondary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> una imagen coherente en todos lados genera confianza inmediata y te diferencia de la competencia.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> cada pieza se ve distinta y el cliente duda si está tratando con un negocio serio.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sitios Web desde Cero -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8">
-                <span class="material-symbols-outlined mb-4 text-4xl text-tertiary">web</span>
-                <h3 class="mb-2 text-xl font-bold">Sitios Web desde Cero</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Desarrollamos tu web completa, a medida y pensada para convertir visitas en clientes — sin plantillas genéricas.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-tertiary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> un sitio propio funciona como vendedor 24/7, ordena tu información y te hace encontrable en Google.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> dependés 100% de redes sociales o el boca en boca, y perdés clientes que buscan antes de decidir.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Renovación de Webs Abandonadas -->
-            <div class="flex flex-col rounded-full-lg bg-surface-container-low p-6 transition-all duration-500 hover:bg-surface-container-high sm:p-8 md:col-span-2 lg:col-span-1">
-                <span class="material-symbols-outlined mb-4 text-4xl text-primary">autorenew</span>
-                <h3 class="mb-2 text-xl font-bold">Renovación de Webs Abandonadas</h3>
-                <p class="mb-4 text-sm text-on-surface-variant leading-relaxed">Actualizamos sitios viejos, lentos o desactualizados —diseño, velocidad, seguridad y contenido— sin perder lo que ya funciona.</p>
-                <div class="mt-auto space-y-3 border-t border-outline-variant/10 pt-4">
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-primary">check_circle</span>
-                        <span><strong class="text-on-surface">Con esto:</strong> un sitio moderno y rápido mejora el posicionamiento en Google y la primera impresión del visitante.</span>
-                    </div>
-                    <div class="flex items-start gap-2 text-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined mt-0.5 text-sm text-error">cancel</span>
-                        <span><strong class="text-on-surface">Sin esto:</strong> una web vieja y abandonada transmite que el negocio también dejó de funcionar, aunque no sea cierto.</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<!-- ===== / SOLUCIONES EXTRA ===== -->
+<!-- ===== / SERVICIOS ===== -->
 <!-- ===== PROYECTOS ===== -->
 <section class="relative overflow-hidden py-24 bg-surface-container" id="proyectos">
     <div class="soft-grid absolute inset-0 z-0 opacity-10"></div>
@@ -810,13 +1050,13 @@
                         <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">Plataforma SaaS completa para centros fitness y gimnasios. Socios, planes por disciplina, reservas con check-in QR, facturación electrónica AFIP y analytics en tiempo real. Multi-gym, multi-idioma.</p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Facturación electrónica AFIP (CAE)
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Facturación electrónica AFIP (CAE)
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Check-in por QR · Chat en tiempo real
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Check-in por QR · Chat en tiempo real
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> ES · PT · EN · FR — Analytics reales
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> ES · PT · EN · FR — Analytics reales
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
@@ -846,13 +1086,13 @@
                         <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">App nativa para socios del gimnasio. Panel con plan activo y créditos en tiempo real, reserva de clases, check-in QR, rutinas de entrenamiento, calculadores de nutrición y timer WOD con historial.</p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Check-in QR + huella biométrica
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Check-in QR + huella biométrica
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Timer WOD con historial de sesiones
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Timer WOD con historial de sesiones
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Chat grupal · Eventos · Nutrición
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Chat grupal · Eventos · Nutrición
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
@@ -924,13 +1164,13 @@
                         <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">Plataforma de gestión de turnos online totalmente personalizable por rubro. Cada negocio adapta colores, texto y estilo. Los clientes reservan ingresando el código del negocio — sin crear cuenta.</p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-tertiary">check_circle</span> Diseño personalizable por rubro
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Diseño personalizable por rubro
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-tertiary">check_circle</span> Dashboard propio + código único por negocio
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Dashboard propio + código único por negocio
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-tertiary">check_circle</span> Comprobante de reserva instantáneo
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Comprobante de reserva instantáneo
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
@@ -988,13 +1228,13 @@
                         <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">Sistema de gestión administrativa y facturación electrónica para escritorio. Emite facturas tipo A, B y C con integración real a AFIP vía WSFEv1, obtiene CAE automáticamente y cubre todo el ciclo comercial: presupuestos, remitos, cuenta corriente, cheques, notas de crédito/débito, gastos e impuestos.</p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Facturación electrónica AFIP — CAE real (WSFEv1)
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Facturación electrónica AFIP — CAE real (WSFEv1)
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Presupuestos, remitos, notas de C/D y cheques
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Presupuestos, remitos, notas de C/D y cheques
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-primary">check_circle</span> Cuenta corriente, pagos de IVA e IIBB y reportes
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Cuenta corriente, pagos de IVA e IIBB y reportes
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
@@ -1036,13 +1276,13 @@
                         <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">Landing y catálogo de trabajos para una marca argentina de marroquinería a medida (empresas, pymes y particulares). Diseño glassmorphism a medida, catálogo por WhatsApp sin carrito ni precios públicos, y una capa completa de SEO/GEO para posicionamiento y recomendaciones de IA.</p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Catálogo de productos con consulta directa por WhatsApp
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Catálogo de productos con consulta directa por WhatsApp
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> SEO/GEO: JSON-LD LocalBusiness, sitemap y llms.txt
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> SEO/GEO: JSON-LD LocalBusiness, sitemap y llms.txt
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-secondary">check_circle</span> Formulario de contacto integrado + mapa de ubicación
+                                <span class="material-symbols-outlined text-base text-emerald-400">check_circle</span> Formulario de contacto integrado + mapa de ubicación
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
@@ -1063,6 +1303,48 @@
     </div>
 </section>
 <!-- ===== / PROYECTOS ===== -->
+<!-- ===== PRUEBA OBJETIVA ===== -->
+<section class="border-y border-outline-variant/10 bg-zinc-950 py-14">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-6 text-center lg:grid-cols-4 reveal">
+<div>
+<p class="text-3xl font-black text-on-surface sm:text-4xl">5</p>
+<p class="mt-1 text-xs uppercase tracking-widest text-zinc-500">Sistemas propios en producción</p>
+</div>
+<div>
+<p class="text-3xl font-black text-on-surface sm:text-4xl">CAE</p>
+<p class="mt-1 text-xs uppercase tracking-widest text-zinc-500">Facturación AFIP real, no simulada</p>
+</div>
+<div>
+<p class="text-3xl font-black text-on-surface sm:text-4xl">3</p>
+<p class="mt-1 text-xs uppercase tracking-widest text-zinc-500">Plataformas: web, móvil y escritorio</p>
+</div>
+<div>
+<p class="text-3xl font-black text-on-surface sm:text-4xl">4</p>
+<p class="mt-1 text-xs uppercase tracking-widest text-zinc-500">Idiomas en un mismo sistema</p>
+</div>
+</div>
+</div>
+</section>
+<!--
+    TODO PRUEBA SOCIAL: cuando tengas 2 o 3 testimonios REALES de clientes, pegalos aca.
+    Que cada uno traiga un numero concreto ("dejamos de perder 40 clases por mes"),
+    no un adjetivo ("excelente servicio"). Plantilla lista para copiar y rellenar:
+
+    <section class="bg-surface py-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2">
+        <figure class="rounded-[24px] border border-outline-variant/10 bg-surface-container-low p-6 sm:p-8">
+        <blockquote class="text-lg text-on-surface">"[Frase textual del cliente, con el numero adentro]"</blockquote>
+        <figcaption class="mt-4 text-sm text-zinc-500">[Nombre] - [Negocio]</figcaption>
+        </figure>
+    </div>
+    </div>
+    </section>
+
+    No inventar testimonios: si un cliente pide la fuente y no existe, se pierde el negocio y la reputacion.
+-->
+<!-- ===== / PRUEBA OBJETIVA ===== -->
 
 <section class="relative overflow-hidden py-24">
 <div class="soft-grid absolute inset-0 z-0 opacity-20"></div>
@@ -1072,86 +1354,170 @@
 <h2 class="mb-10 text-3xl font-bold leading-tight sm:text-4xl md:mb-12 md:text-6xl">Industrias que <span class="text-secondary">Transformamos</span></h2>
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
 <div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-primary">restaurant</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">restaurant</span>
 <p class="font-bold">Gastronomía</p>
 </div>
 <div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-secondary">medical_services</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">medical_services</span>
 <p class="font-bold">Salud</p>
 </div>
 <div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-tertiary">payments</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">payments</span>
 <p class="font-bold">Finanzas</p>
 </div>
 <div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-primary">fitness_center</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">fitness_center</span>
 <p class="font-bold">Fitness</p>
 </div>
 <div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-secondary">badge</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">badge</span>
 <p class="font-bold">Profesionales</p>
 </div>
 <div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-tertiary">factory</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">factory</span>
 <p class="font-bold">Industrias</p>
 </div>
 <div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-primary">shopping_bag</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">shopping_bag</span>
 <p class="font-bold">Comercio</p>
 </div>
 <div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-secondary">construction</span>
+<span class="material-symbols-outlined mb-2 text-zinc-300">construction</span>
 <p class="font-bold">Construcción</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section class="bg-surface-container-low py-24">
-<div class="container mx-auto grid items-center gap-12 px-4 sm:px-6 md:grid-cols-2 lg:gap-16 lg:px-8">
-<div class="relative order-2 md:order-1">
-<img alt="Imagen conceptual sobre educación e inteligencia artificial" class="rotate-3 rounded-3xl shadow-2xl grayscale transition-transform duration-500 hover:rotate-0" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyXhmxzbU5TrpPlp2Y_GN17CwTjmImXTQJguNP7kjDYMBopbwLjREHknN_RzxpNnrVThe4BYcRJgylzX26vBJniwfKyj_kW374LMs6GyKCQjGGmCxKUBdtNQ_co38_3VpMxJDqpVbcAG6a6c0xNbKB4VBlNIxz2K_zvVyMh-W99_vcC2EMeuhHueBp0R7mfU4LZkJHtf_qjCwrRY61I5XRovw-0Dd4i9C8zLv2c1QasCT-D8_iVkmikMdJw7PJJMXdVJTFOKQ13n0"/>
-<div class="glass-panel absolute -bottom-6 -right-6 max-w-xs rounded-2xl p-6 shadow-xl">
-<p class="font-medium italic text-primary">"La IA no reemplaza tu criterio: lo potencia."</p>
+<!-- ===== FAQ / OBJECIONES ===== -->
+<section class="bg-surface-container-low py-24" id="faq">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+<div class="space-y-6 reveal">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-500">Antes de que preguntes</span>
+<h2 class="text-3xl font-bold sm:text-4xl md:text-5xl">Lo que casi todos <span class="text-secondary">nos preguntan</span></h2>
+<p class="text-lg text-on-surface-variant">Preferimos contestarlo acá y no en la primera reunión. Si tu duda no está, escribinos y te respondemos sin vueltas.</p>
+<div class="glass-panel rounded-2xl border border-outline-variant/10 p-6">
+<p class="font-medium italic text-on-surface">"La IA no reemplaza tu criterio: lo potencia."</p>
 </div>
 </div>
-<div class="order-1 space-y-6 md:order-2">
-<h2 class="text-3xl font-bold sm:text-4xl">Educación y Futuro: Mitos de la IA</h2>
-<p class="text-lg text-on-surface-variant">
-                    La inteligencia artificial no viene a borrar equipos, sino a liberar tiempo, acelerar respuestas y ordenar información. La clave está en implementarla con criterio y objetivos claros.
-                </p>
-<div class="space-y-4 pt-4">
-<div class="flex items-start gap-4">
-<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/20">
-<span class="material-symbols-outlined text-primary">school</span>
-</div>
-<div>
-<h4 class="font-bold">Consultoría Estratégica</h4>
-<p class="text-sm text-on-surface-variant">Acompañamos a tu equipo para implementar automatizaciones sin fricciones y con impacto real.</p>
-</div>
-</div>
+<div class="space-y-3 reveal" style="transition-delay:120ms">
+
+<details class="faq rounded-2xl border border-outline-variant/15 bg-surface-container p-5 sm:p-6">
+<summary class="text-base font-bold sm:text-lg">¿Esto no es carísimo?<span class="material-symbols-outlined faq-chevron shrink-0 text-xl text-zinc-500">add</span></summary>
+<p class="mt-4 leading-relaxed text-on-surface-variant">Depende de con qué lo compares. Casi siempre el costo del sistema es menor que el de las horas que hoy se van en tareas manuales, o que el de las ventas que se pierden por no responder a tiempo. Te pasamos el número cerrado antes de arrancar: no trabajamos con presupuestos abiertos ni con sorpresas a mitad de camino. Y si el proyecto no cierra por números, te lo decimos de entrada.</p>
+</details>
+
+<details class="faq rounded-2xl border border-outline-variant/15 bg-surface-container p-5 sm:p-6">
+<summary class="text-base font-bold sm:text-lg">¿Sirve para un negocio chico?<span class="material-symbols-outlined faq-chevron shrink-0 text-xl text-zinc-500">add</span></summary>
+<p class="mt-4 leading-relaxed text-on-surface-variant">Es justamente donde más se nota. En un negocio chico no hay un equipo administrativo que absorba el desorden: lo absorbe el dueño, con sus horas. Podés empezar por una sola cosa —los turnos, los cobros, la web— y sumar el resto cuando tenga sentido. No hace falta cambiar todo de golpe.</p>
+</details>
+
+<details class="faq rounded-2xl border border-outline-variant/15 bg-surface-container p-5 sm:p-6">
+<summary class="text-base font-bold sm:text-lg">¿Cuánto tarda en estar funcionando?<span class="material-symbols-outlined faq-chevron shrink-0 text-xl text-zinc-500">add</span></summary>
+<p class="mt-4 leading-relaxed text-on-surface-variant">Varía según el alcance: una web o un menú digital es cuestión de días; un sistema de gestión completo lleva semanas. Lo que sí hacemos siempre es entregar por partes, para que veas algo funcionando temprano y no esperes meses a ciegas. En el diagnóstico gratuito te damos el plazo estimado de tu caso puntual.</p>
+</details>
+
+<details class="faq rounded-2xl border border-outline-variant/15 bg-surface-container p-5 sm:p-6">
+<summary class="text-base font-bold sm:text-lg">¿Y si no entiendo nada de tecnología?<span class="material-symbols-outlined faq-chevron shrink-0 text-xl text-zinc-500">add</span></summary>
+<p class="mt-4 leading-relaxed text-on-surface-variant">Mejor: ese es exactamente nuestro trabajo. No necesitás saber nada técnico para trabajar con nosotros. Te explicamos cada decisión en castellano, sin jerga, y te dejamos el sistema andando y explicado. Si algo requiere que alguien de tu equipo lo use todos los días, lo capacitamos.</p>
+</details>
+
+<details class="faq rounded-2xl border border-outline-variant/15 bg-surface-container p-5 sm:p-6">
+<summary class="text-base font-bold sm:text-lg">¿La IA va a reemplazar a mi equipo?<span class="material-symbols-outlined faq-chevron shrink-0 text-xl text-zinc-500">add</span></summary>
+<p class="mt-4 leading-relaxed text-on-surface-variant">No es lo que buscamos ni lo que vemos en la práctica. Lo que reemplaza la automatización es el trabajo repetitivo: copiar datos, mandar el mismo recordatorio cien veces, revisar planillas. Eso libera a tu gente para lo que una máquina no hace, que es atender bien y decidir. La tecnología ordena; el criterio sigue siendo tuyo.</p>
+</details>
+
+<details class="faq rounded-2xl border border-outline-variant/15 bg-surface-container p-5 sm:p-6">
+<summary class="text-base font-bold sm:text-lg">¿Quedo atado a ustedes para siempre?<span class="material-symbols-outlined faq-chevron shrink-0 text-xl text-zinc-500">add</span></summary>
+<p class="mt-4 leading-relaxed text-on-surface-variant">No. El sistema es tuyo, y te lo entregamos documentado. Ofrecemos soporte y mejoras continuas porque a la mayoría le conviene, pero es una decisión tuya, no una condición para que las cosas sigan funcionando.</p>
+</details>
+
 </div>
 </div>
 </div>
 </section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Contratar un sistema a medida es caro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depende de con qué se compare. Casi siempre el costo del sistema es menor que el de las horas que se van en tareas manuales, o que el de las ventas que se pierden por no responder a tiempo. En Zyntra el presupuesto se cierra antes de arrancar, sin presupuestos abiertos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La automatización sirve para un negocio chico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es donde más se nota. En un negocio chico el desorden lo absorbe el dueño con sus propias horas. Se puede empezar por una sola area, como turnos, cobros o la web, y sumar el resto despues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tarda en estar funcionando un proyecto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una web o un menú digital lleva días; un sistema de gestión completo lleva semanas. Zyntra entrega por partes para que el cliente vea resultados temprano. El plazo puntual se define en el diagnóstico gratuito."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hace falta saber de tecnología para contratar el servicio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Cada decisión se explica sin jerga técnica y el sistema se entrega funcionando y explicado, con capacitación al equipo que lo vaya a usar a diario."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La inteligencia artificial reemplaza al equipo de trabajo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La automatización reemplaza el trabajo repetitivo, como copiar datos o enviar recordatorios manuales, y libera al equipo para atender y decidir. El criterio sigue siendo de las personas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El cliente queda atado al proveedor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. El sistema queda documentado y es propiedad del cliente. El soporte y las mejoras continuas son opcionales, no una condición para que el sistema siga funcionando."
+      }
+    }
+  ]
+}
+</script>
+<!-- ===== / FAQ ===== -->
 <section class="relative overflow-hidden py-32" id="contact-form">
 <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 <div class="glass-panel mx-auto max-w-4xl rounded-[28px] border border-outline-variant/10 p-6 sm:rounded-[40px] sm:p-8 md:p-12 lg:p-16">
-<div class="mb-12 text-center">
-<h2 class="mb-4 text-3xl font-bold italic sm:text-4xl md:text-5xl">Impulsa tu <span class="text-primary">Evolución</span></h2>
-<p class="text-lg text-on-surface-variant">Completa el formulario y nos pondremos en contacto para una auditoría personalizada gratuita.</p>
+<div class="mb-10 text-center">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-500">Sin costo y sin compromiso</span>
+<h2 class="mt-4 mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">Diagnóstico gratuito, <span class="text-secondary">20 minutos</span></h2>
+<p class="mx-auto max-w-xl text-lg text-on-surface-variant">Te decimos qué automatizar primero, cuánto tiempo te devuelve y qué costaría. <strong class="text-on-surface">El informe te queda aunque no trabajes con nosotros.</strong></p>
+<div class="mt-6 flex flex-col items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-500 sm:flex-row">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base text-emerald-400">check_small</span>No es una llamada de venta</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base text-emerald-400">check_small</span>Respondemos en 24-48 hs</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base text-emerald-400">check_small</span>Te queda el informe</span>
+</div>
 </div>
 <form action="https://formsubmit.co/zyntraconsultoraia@gmail.com" class="grid grid-cols-1 gap-6 md:grid-cols-2" method="POST">
 <div class="flex flex-col gap-2">
-<label class="text-sm font-bold uppercase tracking-widest text-primary" for="name">Nombre Completo</label>
+<label class="text-sm font-bold uppercase tracking-widest text-zinc-500" for="name">Nombre Completo</label>
 <input class="rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="name" name="name" placeholder="Ej: Juan Pérez" required="" type="text"/>
 </div>
 <div class="flex flex-col gap-2">
-<label class="text-sm font-bold uppercase tracking-widest text-primary" for="email">Email Corporativo</label>
+<label class="text-sm font-bold uppercase tracking-widest text-zinc-500" for="email">Email Corporativo</label>
 <input class="rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="email" name="email" placeholder="juan@empresa.com" required="" type="email"/>
 </div>
 <div class="flex flex-col gap-2 md:col-span-2">
-<label class="text-sm font-bold uppercase tracking-widest text-primary" for="industry">Industria / Rubro</label>
+<label class="text-sm font-bold uppercase tracking-widest text-zinc-500" for="industry">Industria / Rubro</label>
 <select class="appearance-none rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="industry" name="industry" required="">
 <option disabled="" selected="" value="">Selecciona tu industria</option>
 <option value="gastronomia">Gastronomía</option>
@@ -1165,17 +1531,17 @@
 </select>
 </div>
 <div class="flex flex-col gap-2 md:col-span-2">
-<label class="text-sm font-bold uppercase tracking-widest text-primary" for="message">¿En qué podemos ayudarte?</label>
-<textarea class="resize-none rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="message" name="message" placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..." required="" rows="4"></textarea>
+<label class="text-sm font-bold uppercase tracking-widest text-zinc-500" for="message">¿Qué querés resolver?</label>
+<textarea class="resize-none rounded-xl border border-outline-variant/30 bg-surface-container-highest/50 px-4 py-3 text-on-surface transition-all focus:bg-surface-container-highest" id="message" name="message" placeholder="Contanos brevemente qué te está costando tiempo o plata hoy..." required="" rows="4"></textarea>
 </div>
 <div class="pt-4 md:col-span-2">
 <button class="w-full rounded-full bg-gradient-to-r from-primary to-secondary py-5 text-xl font-black text-on-primary-fixed shadow-xl shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-95" type="submit">
-                            Enviar Solicitud
+                            Pedir mi diagnóstico gratuito
                         </button>
-<p class="mt-4 text-center text-xs italic text-on-surface-variant opacity-60">Al enviar, aceptas que procesemos tus datos para contactarte.</p>
+<p class="mt-4 text-center text-xs italic text-on-surface-variant opacity-60">Al enviar aceptás que usemos tus datos para contactarte. No los compartimos con nadie.</p>
 </div>
 <input name="_next" type="hidden" value="https://emmanuelap.github.io/zyntraia/gracias.html"/>
-<input name="_subject" type="hidden" value="Nueva Solicitud de Auditoría - Zyntra"/>
+<input name="_subject" type="hidden" value="Nuevo pedido de diagnóstico - Zyntra"/>
 </form>
 </div>
 </div>
@@ -1298,6 +1664,84 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
         document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+        // ===== MENU MOBILE =====
+        (function () {
+            var toggle = document.getElementById('menu-toggle');
+            var menu   = document.getElementById('mobile-menu');
+            var icon   = document.getElementById('menu-icon');
+            if (!toggle || !menu) return;
+
+            function setMenu(open) {
+                menu.hidden = !open;
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (icon) icon.textContent = open ? 'close' : 'menu';
+            }
+
+            function closeMenu() { setMenu(false); }
+
+            toggle.addEventListener('click', function () {
+                setMenu(menu.hidden);
+            });
+
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+        })();
+
+        // ===== CALCULADORA DE PERDIDAS =====
+        (function () {
+            var vol    = document.getElementById('calc-volumen');
+            var perd   = document.getElementById('calc-perdidos');
+            var ticket = document.getElementById('calc-ticket');
+            var anual  = document.getElementById('calc-anual');
+            var detalle = document.getElementById('calc-detalle');
+            if (!vol || !perd || !ticket || !anual) return;
+
+            var fmt = new Intl.NumberFormat('es-AR', {
+                style: 'currency', currency: 'ARS', maximumFractionDigits: 0
+            });
+
+            function num(el) {
+                var n = parseFloat(el.value);
+                return isNaN(n) || n < 0 ? 0 : n;
+            }
+
+            function calcular() {
+                var volumen  = num(vol);
+                var perdidos = Math.min(num(perd), volumen);
+                var precio   = num(ticket);
+                var porAnio  = perdidos * precio * 52;
+
+                anual.textContent = fmt.format(porAnio);
+
+                if (!detalle) return;
+                if (porAnio <= 0) {
+                    detalle.innerHTML = 'Completá los tres campos con tus números reales para ver la estimación.';
+                } else {
+                    var uno = perdidos === 1;
+                    detalle.innerHTML = (uno ? 'Es ' : 'Son ') +
+                        '<strong class="text-on-surface">' + perdidos +
+                        (uno ? ' oportunidad' : ' oportunidades') +
+                        ' por semana</strong> que ' + (uno ? 'se pierde' : 'se pierden') +
+                        '. Un sistema de recordatorios y seguimiento automático recupera buena parte de eso.';
+                }
+            }
+
+            [vol, perd, ticket].forEach(function (el) {
+                el.addEventListener('input', calcular);
+            });
+            calcular();
+        })();
     </script>
+<a aria-label="Escribinos por WhatsApp" class="wa-float" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
 </body>
 </html>
