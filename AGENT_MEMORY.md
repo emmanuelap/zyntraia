@@ -21,12 +21,20 @@ Orden de secciones: hero -> #senales -> #calculadora -> #services -> #proyectos 
 prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 
 - El sitio se publica solo en GitHub Pages con cada push a main (https://emmanuelap.github.io/zyntraia/).
-- Los 16 servicios viven agrupados en 4 familias dentro de #services, cada uno en un
-  <details class="svc"> con el patron "Con esto:" / "Sin esto:" y un micro-CTA a WhatsApp.
+- Los 16 servicios viven en #services, agrupados en 4 frentes. Cada servicio es una card
+  SIEMPRE VISIBLE con icono, descripcion, "Con esto:" / "Sin esto:" y micro-CTA a WhatsApp.
   Si agrego servicios, respetar ese patron.
-- Jerarquia de color: el cyan (primary/secondary) queda reservado para acciones
-  (botones y links). Los checks van en emerald-400, los contras en text-error y los
-  iconos decorativos en zinc. No volver a pintar todo de cyan.
+  OJO: se probo esconderlos en acordeones <details> y el dueno pidio volver atras porque
+  el copy de venta quedaba oculto. No volver a colapsarlos.
+- Jerarquia de color (medida por area en pantalla, no a ojo):
+  cyan = acciones (botones y links), ambar-400 = numeros y datos (calculadora, franja
+  de prueba), emerald-400/70 = "Con esto", error/70 = "Sin esto", zinc = decorativo.
+  El verde y el rojo van con opacidad a proposito: si se ponen a full le ganan al cyan
+  y la pagina se lee como semaforo. No volver a pintar todo de cyan ni subirles el peso.
+- Contraste: no usar text-zinc-500 ni zinc-600 para texto (dan 3.99:1 y 2.6:1 sobre el
+  fondo, no pasan WCAG AA). El minimo del sitio es zinc-400.
+- La base es calida a proposito (#100f0d, no gris neutro) y los fondos oscuros usan
+  #0a0908 en vez de zinc-950, que es frio y desentona.
 - Sin imagenes generadas por IA: las capturas son reales, de la carpeta portfolio/.
 - La calculadora de perdidas y el menu mobile son JS vanilla al final del archivo.
 - gracias.html es la pagina de destino del formulario (FormSubmit, campo _next).
