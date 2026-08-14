@@ -46,6 +46,17 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   pastilla no entraba en una linea dentro de la card de proyecto.
 - La calculadora de perdidas y el menu mobile son JS vanilla al final del archivo.
 - gracias.html es la pagina de destino del formulario (FormSubmit, campo _next).
+- privacidad.html y terminos.html son las paginas legales. Copian el <head> de
+  gracias.html (config de Tailwind + fuentes) y usan la clase .legal para la
+  columna de lectura de 68ch. El texto describe el sitio REAL: sin cookies, sin
+  analytics, y con FormSubmit / GitHub Pages / Google Fonts / Tailwind CDN como
+  unicos terceros. Si se agrega alguna herramienta de medicion hay que corregir
+  el punto 4 de privacidad.html, que hoy afirma que no existe ninguna.
+- El footer de index.html y el de gracias.html llevan "CEO - Pavon Emmanuel" y
+  los enlaces a las dos paginas legales.
+- Identidad legal, igual en las dos paginas: Zyntra, EMPRESA de Emmanuel Pavon
+  (no "emprendimiento" ni "proyecto"), CUIT 20-35971857-9, domicilio en Villa
+  Urquiza, CABA. Sin altura de calle a pedido del dueno.
 
 ## Pendientes que necesitan datos del dueno
 - Precio real de entrada: hay un bloque con $XXX.XXX marcado con TODO en #services.
