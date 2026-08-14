@@ -597,37 +597,6 @@
             80%, 100% { transform: scale(1.7); opacity: 0; }
         }
 
-        /* ===== PUERTAS DE ENTRADA ===== */
-        .puerta {
-            position: relative;
-            overflow: hidden;
-            transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
-        }
-        .puerta::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #81ecff, #10d5ff);
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 0.35s ease;
-        }
-        .puerta:hover {
-            background-color: #1b1a17;
-            border-color: rgba(129, 236, 255, 0.28);
-            transform: translateY(-3px);
-        }
-        .puerta:hover::before {
-            transform: scaleY(1);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .puerta, .puerta::before { transition: none !important; }
-            .puerta:hover { transform: none !important; }
-        }
-
         /* ===== SEÑALES ===== */
         .signal-item {
             transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -805,82 +774,6 @@
 </div>
 </div>
 </section>
-<!-- ===== PUERTAS DE ENTRADA ===== -->
-<section class="relative overflow-hidden bg-surface py-24" id="puertas">
-<div class="soft-grid absolute inset-0 z-0 opacity-[0.06]"></div>
-<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-<div class="mb-12 max-w-3xl reveal">
-<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">Por dónde empezar</span>
-<h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Encontramos por dónde se te <span class="text-secondary">escapa el tiempo y la plata</span>, y construimos el sistema que lo cierra</h2>
-<p class="mt-4 text-lg text-on-surface-variant">Cada negocio pierde por un lado distinto. Buscá el que más se parezca al tuyo.</p>
-</div>
-<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
-<a class="puerta group reveal flex flex-col rounded-[20px] border border-outline-variant/12 bg-surface-container-low p-6 sm:p-7" href="#services">
-<span class="material-symbols-outlined mb-4 text-3xl text-zinc-300 transition-colors duration-300 group-hover:text-primary">event_available</span>
-<span class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">Turnos y reservas</span>
-<p class="text-lg font-bold leading-snug text-on-surface">Dejá de vivir contestando WhatsApp para dar un turno.</p>
-<span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary">
-                    Ver cómo lo resolvemos
-<span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-</span>
-</a>
-
-<a class="puerta group reveal flex flex-col rounded-[20px] border border-outline-variant/12 bg-surface-container-low p-6 sm:p-7" href="#services" style="transition-delay:60ms">
-<span class="material-symbols-outlined mb-4 text-3xl text-zinc-300 transition-colors duration-300 group-hover:text-primary">fitness_center</span>
-<span class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">Gimnasios y centros fitness</span>
-<p class="text-lg font-bold leading-snug text-on-surface">Dejá de administrar socios y vencimientos en un Excel.</p>
-<span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary">
-                    Ver cómo lo resolvemos
-<span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-</span>
-</a>
-
-<a class="puerta group reveal flex flex-col rounded-[20px] border border-outline-variant/12 bg-surface-container-low p-6 sm:p-7" href="#services" style="transition-delay:120ms">
-<span class="material-symbols-outlined mb-4 text-3xl text-zinc-300 transition-colors duration-300 group-hover:text-primary">restaurant_menu</span>
-<span class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">Gastronomía</span>
-<p class="text-lg font-bold leading-snug text-on-surface">Dejá de reimprimir la carta cada vez que cambia un precio, y de hacer esperar a la mesa.</p>
-<span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary">
-                    Ver cómo lo resolvemos
-<span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-</span>
-</a>
-
-<a class="puerta group reveal flex flex-col rounded-[20px] border border-outline-variant/12 bg-surface-container-low p-6 sm:p-7" href="#services" style="transition-delay:180ms">
-<span class="material-symbols-outlined mb-4 text-3xl text-zinc-300 transition-colors duration-300 group-hover:text-primary">storefront</span>
-<span class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">Comercios</span>
-<p class="text-lg font-bold leading-snug text-on-surface">Que las consultas, los pedidos y el seguimiento dejen de depender de vos.</p>
-<span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary">
-                    Ver cómo lo resolvemos
-<span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-</span>
-</a>
-
-<a class="puerta group reveal flex flex-col rounded-[20px] border border-outline-variant/12 bg-surface-container-low p-6 sm:p-7" href="#services" style="transition-delay:240ms">
-<span class="material-symbols-outlined mb-4 text-3xl text-zinc-300 transition-colors duration-300 group-hover:text-primary">corporate_fare</span>
-<span class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">Pymes y empresas</span>
-<p class="text-lg font-bold leading-snug text-on-surface">Dejá de pasar los mismos datos de un sistema a otro, a mano.</p>
-<span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary">
-                    Ver cómo lo resolvemos
-<span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-</span>
-</a>
-
-<a class="puerta group reveal flex flex-col rounded-[20px] border border-outline-variant/12 bg-surface-container-low p-6 sm:p-7" href="#services" style="transition-delay:300ms">
-<span class="material-symbols-outlined mb-4 text-3xl text-zinc-300 transition-colors duration-300 group-hover:text-primary">language</span>
-<span class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">Sitios web</span>
-<p class="text-lg font-bold leading-snug text-on-surface">Convertí una web que no hace nada en tu mejor vendedor.</p>
-<span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-primary">
-                    Ver cómo lo resolvemos
-<span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-</span>
-</a>
-
-</div>
-<p class="mt-8 text-center text-on-surface-variant reveal">¿No entrás en ninguna? Casi siempre el problema es el mismo con otra ropa. <a class="font-semibold text-primary underline-offset-4 hover:underline" href="#contact-form">Contanos tu caso</a> y te decimos si tiene solución.</p>
-</div>
-</section>
-<!-- ===== / PUERTAS DE ENTRADA ===== -->
 <!-- ===== SEÑALES ===== -->
 <section class="relative overflow-hidden border-y border-outline-variant/10 bg-[#0a0908] py-24" id="senales">
 <div class="mesh-glow absolute inset-0 z-0 opacity-30"></div>
