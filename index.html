@@ -473,6 +473,60 @@
         .carousel-dot:hover:not(.active) {
             background: rgba(255,255,255,0.5);
         }
+
+        /* Descarga de la propuesta en PDF. Va como pastilla y no como link suelto
+           para que se lea como archivo y no se confunda con el CTA de al lado. */
+        .doc-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            align-self: flex-start;
+            max-width: 100%;
+            flex-wrap: wrap;
+            border-radius: 9999px;
+            border: 1px solid rgba(129, 236, 255, 0.28);
+            background: rgba(129, 236, 255, 0.07);
+            padding: 0.5rem 0.95rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #81ecff;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+        }
+        .doc-download:hover {
+            background: rgba(129, 236, 255, 0.14);
+            border-color: rgba(129, 236, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        .doc-download:active {
+            transform: translateY(0);
+        }
+        .doc-download--secondary {
+            border-color: rgba(16, 213, 255, 0.28);
+            background: rgba(16, 213, 255, 0.07);
+            color: #10d5ff;
+        }
+        .doc-download--secondary:hover {
+            background: rgba(16, 213, 255, 0.14);
+            border-color: rgba(16, 213, 255, 0.5);
+        }
+        .doc-download-meta {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            /* zinc-400: es el minimo de contraste del sitio */
+            color: #a1a1aa;
+        }
+        /* En celular la pastilla no entra en una linea dentro de la card de proyecto:
+           se cae el peso del archivo y queda "PDF", que ya alcanza como senal. */
+        @media (max-width: 480px) {
+            .doc-download { padding: 0.5rem 0.8rem; }
+            .doc-download-size { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .doc-download { transition: none; }
+            .doc-download:hover { transform: none; }
+        }
         .phone-frame {
             border-radius: 38px;
             border: 6px solid rgba(255,255,255,0.09);
@@ -842,6 +896,11 @@
 <div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-emerald-400/70">check_circle</span><span><strong class="text-on-surface">Con esto:</strong> respondés al instante las 24 horas y llegás a la conversación con el cliente ya calificado.</span></div>
 <div class="flex items-start gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined mt-0.5 shrink-0 text-base text-error/70">cancel</span><span><strong class="text-on-surface">Sin esto:</strong> las consultas de la noche y del fin de semana se contestan tarde, o no se contestan.</span></div>
 <a class="inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-primary underline-offset-4 hover:underline" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20me%20interesa%20un%20chatbot%20inteligente%20para%20mi%20negocio." rel="noopener noreferrer" target="_blank">Quiero esto en mi negocio<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+<a class="doc-download" href="docs/propuesta-chatbot-zyntra.pdf" download="Propuesta Chatbot WhatsApp - Zyntra.pdf">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Leé nuestra propuesta</span>
+<span class="doc-download-meta">PDF<span class="doc-download-size"> · 126 KB</span></span>
+</a>
 </div>
 </div>
 
@@ -1406,10 +1465,17 @@
                             <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">Google Calendar</span>
                             <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-medium text-on-surface-variant">IA conversacional</span>
                         </div>
-                        <a href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20ver%20una%20demo%20del%20chat%20bot%20para%20mi%20rubro." target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-secondary hover:underline underline-offset-4 transition-opacity hover:opacity-80">
-                            <span class="material-symbols-outlined text-base">chat</span> Pedir una demo
-                        </a>
+                        <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20ver%20una%20demo%20del%20chat%20bot%20para%20mi%20rubro." target="_blank" rel="noopener noreferrer"
+                               class="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary hover:underline underline-offset-4 transition-opacity hover:opacity-80">
+                                <span class="material-symbols-outlined text-base">chat</span> Pedir una demo
+                            </a>
+                            <a class="doc-download doc-download--secondary" href="docs/propuesta-chatbot-zyntra.pdf" download="Propuesta Chatbot WhatsApp - Zyntra.pdf">
+                                <span class="material-symbols-outlined text-lg">download</span>
+                                <span>Leé nuestra propuesta</span>
+                                <span class="doc-download-meta">PDF<span class="doc-download-size"> · 126 KB</span></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

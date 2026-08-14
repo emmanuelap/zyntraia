@@ -36,6 +36,14 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 - La base es calida a proposito (#100f0d, no gris neutro) y los fondos oscuros usan
   #0a0908 en vez de zinc-950, que es frio y desentona.
 - Sin imagenes generadas por IA: las capturas son reales, de la carpeta portfolio/.
+- docs/ guarda los PDF descargables del sitio. Hoy vive ahi
+  docs/propuesta-chatbot-zyntra.pdf (8 paginas, planes USD 400 / 700 / 1.000).
+  Se ofrece con la pastilla .doc-download ("Lee nuestra propuesta" + icono de
+  descarga + peso del archivo), presente en dos lugares: la card "Chatbots
+  Inteligentes" de #services y el proyecto "Chat Bot Multi Rubro" de #proyectos.
+  Si se regenera el PDF hay que actualizar el peso escrito en el HTML (dos lugares).
+  En pantallas menores a 480px se oculta el peso (.doc-download-size) porque la
+  pastilla no entraba en una linea dentro de la card de proyecto.
 - La calculadora de perdidas y el menu mobile son JS vanilla al final del archivo.
 - gracias.html es la pagina de destino del formulario (FormSubmit, campo _next).
 
