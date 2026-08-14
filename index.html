@@ -397,6 +397,12 @@
             opacity: 1;
             z-index: 1;
         }
+        /* Capturas anchas (conversaciones de WhatsApp): se muestran enteras.
+           El contenedor lleva el mismo gris de la captura para que no se noten las bandas. */
+        .carousel-slide.fit-full {
+            object-fit: contain;
+            object-position: center;
+        }
         .carousel-dot {
             width: 6px;
             height: 6px;
@@ -1305,11 +1311,11 @@
             <div class="project-card glass-panel reveal rounded-[24px] border border-outline-variant/10 overflow-hidden" style="transition-delay:560ms">
                 <div class="grid lg:grid-cols-[1.15fr_0.85fr]">
                     <!-- Carousel -->
-                    <div class="relative overflow-hidden bg-zinc-900" style="min-height:280px;" data-carousel>
-                        <img src="portfolio/Chat Bot Multi Rubro 1.jpg" class="carousel-slide active" alt="Chat Bot Multi Rubro — Consulta y reserva de turno por WhatsApp">
-                        <img src="portfolio/Chat Bot Multi Rubro 2.jpg" class="carousel-slide" alt="Chat Bot Multi Rubro — Confirmación y gestión del turno">
-                        <img src="portfolio/Chat Bot Multi Rubro 3.jpg" class="carousel-slide" alt="Chat Bot Multi Rubro — Pedido de productos con carrito y total">
-                        <img src="portfolio/Chat Bot Multi Rubro 4.jpg" class="carousel-slide" alt="Chat Bot Multi Rubro — Recordatorios y seguimiento automático">
+                    <div class="relative overflow-hidden" style="min-height:280px;background:#181818;" data-carousel>
+                        <img src="portfolio/Chat Bot Multi Rubro 1.jpg" class="carousel-slide fit-full active" alt="Chat Bot Multi Rubro — Consulta y reserva de turno por WhatsApp">
+                        <img src="portfolio/Chat Bot Multi Rubro 2.jpg" class="carousel-slide fit-full" alt="Chat Bot Multi Rubro — Confirmación y gestión del turno">
+                        <img src="portfolio/Chat Bot Multi Rubro 3.jpg" class="carousel-slide fit-full" alt="Chat Bot Multi Rubro — Pedido de productos con carrito y total">
+                        <img src="portfolio/Chat Bot Multi Rubro 4.jpg" class="carousel-slide fit-full" alt="Chat Bot Multi Rubro — Recordatorios y seguimiento automático">
                         <!-- Gradient overlay for dot readability -->
                         <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none"></div>
                         <!-- Dots -->
