@@ -192,64 +192,88 @@
             animation: heroImageTilt 7s ease-in-out infinite;
             transform-origin: center center;
         }
-        .industry-card {
+        /* ===== PUERTAS POR INDUSTRIA ===== */
+        .industry-door {
             position: relative;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            animation: industryFloat 6s ease-in-out infinite;
-            transition: transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+            border-radius: 18px;
+            border: 1px solid rgba(72, 72, 71, 0.35);
+            border-left: 3px solid rgba(129, 236, 255, 0.25);
+            background: rgba(21, 20, 18, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 1.4rem 1.4rem 1.25rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
-        .industry-card::before {
+        .industry-door::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(129, 236, 255, 0.15), transparent 45%, rgba(89, 156, 249, 0.14));
+            background: linear-gradient(135deg, rgba(129, 236, 255, 0.12), transparent 55%);
             opacity: 0;
-            transition: opacity 0.35s ease;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
-        .industry-card:hover {
-            transform: translateY(-6px) scale(1.01);
+        .industry-door:hover {
+            transform: translateY(-4px);
+            border-color: rgba(129, 236, 255, 0.3);
+            border-left-color: #81ecff;
+            background: rgba(27, 26, 23, 0.9);
         }
-        .industry-card:hover::before {
-            opacity: 1;
+        .industry-door:hover::before { opacity: 1; }
+        .industry-door > * { position: relative; z-index: 1; }
+        .door-icon {
+            font-size: 26px;
+            color: #d4d4d8;
+            margin-bottom: 0.7rem;
+            transition: color 0.3s ease;
         }
-        .industry-card:nth-child(2) {
-            animation-delay: 0.5s;
+        .industry-door:hover .door-icon { color: #81ecff; }
+        .door-rubro {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #a1a1aa;
+            margin-bottom: 0.45rem;
         }
-        .industry-card:nth-child(3) {
-            animation-delay: 1s;
+        .door-dolor {
+            font-size: 1.02rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #ffffff;
+            margin-bottom: 1rem;
         }
-        .industry-card:nth-child(4) {
-            animation-delay: 1.5s;
+        .door-cta {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #81ecff;
         }
-        .industry-card:nth-child(5) {
-            animation-delay: 2s;
+        .door-arrow {
+            font-size: 16px;
+            transition: transform 0.3s ease;
         }
-        .industry-card:nth-child(6) {
-            animation-delay: 2.5s;
+        .industry-door:hover .door-arrow { transform: translateX(4px); }
+
+        /* El servicio de destino se enciende al llegar desde una puerta */
+        .svc-card {
+            scroll-margin-top: 96px;
         }
-        .industry-card:nth-child(7) {
-            animation-delay: 3s;
+        .svc-card.destacado {
+            animation: destacarServicio 2.8s ease-out;
         }
-        .industry-card:nth-child(8) {
-            animation-delay: 3.5s;
+        @keyframes destacarServicio {
+            0%   { box-shadow: 0 0 0 0 rgba(129, 236, 255, 0); border-color: rgba(72, 72, 71, 0.35); }
+            12%  { box-shadow: 0 0 0 4px rgba(129, 236, 255, 0.45), 0 0 40px rgba(129, 236, 255, 0.25); border-color: #81ecff; }
+            70%  { box-shadow: 0 0 0 4px rgba(129, 236, 255, 0.28), 0 0 30px rgba(129, 236, 255, 0.14); border-color: rgba(129, 236, 255, 0.7); }
+            100% { box-shadow: 0 0 0 0 rgba(129, 236, 255, 0); border-color: rgba(72, 72, 71, 0.35); }
         }
-        .industry-card .material-symbols-outlined,
-        .industry-card p {
-            position: relative;
-            z-index: 1;
-        }
-        .industry-accent-primary {
-            animation: accentPulsePrimary 4.8s ease-in-out infinite;
-        }
-        .industry-accent-secondary {
-            animation: accentPulseSecondary 4.8s ease-in-out infinite;
-        }
-        .industry-accent-tertiary {
-            animation: accentPulseTertiary 4.8s ease-in-out infinite;
-        }
-        .industry-accent-neutral {
-            animation: accentPulseNeutral 4.8s ease-in-out infinite;
-        }
+
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #81ecff !important;
@@ -267,14 +291,6 @@
             100% {
                 transform: translateX(30%);
                 opacity: 0.25;
-            }
-        }
-        @keyframes industryFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
             }
         }
         @keyframes heroVisualFloat {
@@ -320,57 +336,14 @@
                 opacity: 0;
             }
         }
-        @keyframes accentPulsePrimary {
-            0%, 100% {
-                border-color: #81ecff;
-                box-shadow: 0 0 0 rgba(129, 236, 255, 0);
-            }
-            50% {
-                border-color: #10d5ff;
-                box-shadow: 0 0 22px rgba(129, 236, 255, 0.16);
-            }
-        }
-        @keyframes accentPulseSecondary {
-            0%, 100% {
-                border-color: #10d5ff;
-                box-shadow: 0 0 0 rgba(16, 213, 255, 0);
-            }
-            50% {
-                border-color: #78dfff;
-                box-shadow: 0 0 22px rgba(16, 213, 255, 0.16);
-            }
-        }
-        @keyframes accentPulseTertiary {
-            0%, 100% {
-                border-color: #70aaff;
-                box-shadow: 0 0 0 rgba(112, 170, 255, 0);
-            }
-            50% {
-                border-color: #80b2ff;
-                box-shadow: 0 0 22px rgba(112, 170, 255, 0.16);
-            }
-        }
-        @keyframes accentPulseNeutral {
-            0%, 100% {
-                border-color: rgba(255, 255, 255, 0.35);
-                box-shadow: 0 0 0 rgba(255, 255, 255, 0);
-            }
-            50% {
-                border-color: rgba(255, 255, 255, 0.65);
-                box-shadow: 0 0 18px rgba(255, 255, 255, 0.1);
-            }
-        }
         @media (prefers-reduced-motion: reduce) {
             .site-header::after,
             .hero-visual,
             .hero-visual::before,
             .hero-visual::after,
             .hero-visual img,
-            .industry-card,
-            .industry-accent-primary,
-            .industry-accent-secondary,
-            .industry-accent-tertiary,
-            .industry-accent-neutral {
+            .industry-door,
+            .svc-card.destacado {
                 animation: none !important;
             }
         }
@@ -888,7 +861,7 @@
 </div>
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" id="svc-chatbot">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">smart_toy</span>
 <h4 class="mb-2 text-xl font-bold">Chatbots Inteligentes</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Agentes conversacionales para ventas, soporte y seguimiento, adaptados al lenguaje y al ritmo de tu negocio.</p>
@@ -904,7 +877,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms" id="svc-turnos">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">event_available</span>
 <h4 class="mb-2 text-xl font-bold">Turnos y Reservas Online</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Tus clientes reservan solos, las 24 horas, sin depender de que alguien atienda el teléfono o el WhatsApp.</p>
@@ -915,7 +888,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms" id="svc-embudos">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">campaign</span>
 <h4 class="mb-2 text-xl font-bold">Embudos y Seguimiento Comercial</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Automatizamos el contacto inicial, los recordatorios, el recupero de consultas frías y el seguimiento de cada oportunidad.</p>
@@ -926,7 +899,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:240ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:240ms" id="svc-resenas">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">reviews</span>
 <h4 class="mb-2 text-xl font-bold">Reseñas y Reputación en Google Maps</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Pedido automático de reseñas por WhatsApp, QR o tarjeta NFC después de cada compra o turno. Diseñamos la tarjeta o el cartel NFC: el cliente lo apoya con el celular y cae directo en la pantalla para dejar su calificación y su opinión en Google, sin buscar nada.</p>
@@ -951,7 +924,7 @@
 </div>
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" id="svc-gestion">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">analytics</span>
 <h4 class="mb-2 text-xl font-bold">Software de Gestión a Medida</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Centralizamos turnos, inventario, cobros y operación diaria en una herramienta clara, rápida y hecha a la medida de tu negocio.</p>
@@ -962,7 +935,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms" id="svc-automatizacion">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">hub</span>
 <h4 class="mb-2 text-xl font-bold">Automatización de Procesos</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Conectamos formularios, WhatsApp, correo, CRM y tareas internas para que tu equipo deje de hacer trabajo repetitivo.</p>
@@ -973,7 +946,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms" id="svc-gimnasios">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">fitness_center</span>
 <h4 class="mb-2 text-xl font-bold">Admin para Gimnasios y Centros Fitness</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Control de socios, planes, horarios y disciplinas desde un solo panel, con estado de cuenta y vencimientos en tiempo real.</p>
@@ -984,7 +957,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:240ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:240ms" id="svc-accesos">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">qr_code_2</span>
 <h4 class="mb-2 text-xl font-bold">Accesos por QR</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Control de ingreso a gimnasios, oficinas, eventos o edificios con un código QR único por persona, sin llaves, tarjetas ni personal fijo en la puerta.</p>
@@ -995,7 +968,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:320ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:320ms" id="svc-paneles">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">insights</span>
 <h4 class="mb-2 text-xl font-bold">Paneles e Indicadores</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Convertimos datos operativos en tableros simples para tomar decisiones más rápidas y con mejor visibilidad.</p>
@@ -1020,7 +993,7 @@
 </div>
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" id="svc-cobros">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">payments</span>
 <h4 class="mb-2 text-xl font-bold">Cobros y Recordatorios Automáticos</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Aviso automático antes del vencimiento y cobro directo por link de pago, sin perseguir a nadie por teléfono.</p>
@@ -1031,7 +1004,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms" id="svc-afip">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">receipt_long</span>
 <h4 class="mb-2 text-xl font-bold">Facturación Electrónica AFIP</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Emisión de facturas A, B y C con CAE real de AFIP, integrada al mismo sistema donde ya cargás las ventas.</p>
@@ -1042,7 +1015,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms" id="svc-fidelizacion">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">loyalty</span>
 <h4 class="mb-2 text-xl font-bold">Fidelización Digital con QR</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Tarjeta de puntos y beneficios sin apps ni plástico: el cliente acumula y canjea escaneando un QR.</p>
@@ -1067,7 +1040,7 @@
 </div>
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" id="svc-web">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">web</span>
 <h4 class="mb-2 text-xl font-bold">Sitios Web desde Cero</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Desarrollamos tu web completa, a medida y pensada para convertir visitas en clientes — sin plantillas genéricas.</p>
@@ -1078,7 +1051,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:80ms" id="svc-renovacion">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">autorenew</span>
 <h4 class="mb-2 text-xl font-bold">Renovación de Webs Abandonadas</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Actualizamos sitios viejos, lentos o desactualizados —diseño, velocidad, seguridad y contenido— sin perder lo que ya funciona.</p>
@@ -1089,7 +1062,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:160ms" id="svc-marca">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">palette</span>
 <h4 class="mb-2 text-xl font-bold">Creación de Marcas desde Cero</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">Diseñamos tu marca completa —logo, paleta de colores, tipografías y piezas gráficas— para que tengas una identidad profesional desde el primer día.</p>
@@ -1100,7 +1073,7 @@
 </div>
 </div>
 
-<div class="flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:240ms">
+<div class="svc-card flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface-container reveal" style="transition-delay:240ms" id="svc-menu">
 <span class="material-symbols-outlined mb-4 text-4xl text-zinc-200">restaurant_menu</span>
 <h4 class="mb-2 text-xl font-bold">Menús Digitales con QR</h4>
 <p class="mb-5 text-sm leading-relaxed text-on-surface-variant">El cliente escanea un código en la mesa y ve el menú actualizado al instante, con fotos, precios y disponibilidad — sin imprimir nada.</p>
@@ -1527,49 +1500,107 @@
 -->
 <!-- ===== / PRUEBA OBJETIVA ===== -->
 
-<section class="relative overflow-hidden py-24">
+<!-- ===== INDUSTRIAS / PUERTAS DE ENTRADA ===== -->
+<section class="relative overflow-hidden py-24" id="industrias">
 <div class="soft-grid absolute inset-0 z-0 opacity-20"></div>
 <div class="absolute inset-0 z-0 bg-gradient-to-r from-background to-background/60"></div>
 <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-<div class="max-w-5xl">
-<h2 class="mb-10 text-3xl font-bold leading-tight sm:text-4xl md:mb-12 md:text-6xl">Industrias que <span class="text-secondary">Transformamos</span></h2>
-<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
-<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">restaurant</span>
-<p class="font-bold">Gastronomía</p>
+<div class="mb-10 max-w-3xl reveal">
+<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">Encontrá tu caso</span>
+<h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Industrias que <span class="text-secondary">Transformamos</span></h2>
+<p class="mt-4 text-lg text-on-surface-variant">Cada rubro pierde por un lado distinto. Tocá el tuyo y te llevamos directo a la solución.</p>
 </div>
-<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">medical_services</span>
-<p class="font-bold">Salud</p>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+<a class="industry-door group reveal" href="#svc-menu">
+<span class="material-symbols-outlined door-icon">restaurant</span>
+<span class="door-rubro">Gastronomía</span>
+<p class="door-dolor">Dejá de reimprimir la carta cada vez que cambia un precio.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-turnos" style="transition-delay:50ms">
+<span class="material-symbols-outlined door-icon">medical_services</span>
+<span class="door-rubro">Salud</span>
+<p class="door-dolor">Dejá de perder pacientes por turnos que nadie confirma.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-chatbot" style="transition-delay:100ms">
+<span class="material-symbols-outlined door-icon">spa</span>
+<span class="door-rubro">Estética y Belleza</span>
+<p class="door-dolor">Dejá de contestar WhatsApp mientras estás atendiendo.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-gimnasios" style="transition-delay:150ms">
+<span class="material-symbols-outlined door-icon">fitness_center</span>
+<span class="door-rubro">Fitness</span>
+<p class="door-dolor">Dejá de administrar socios y vencimientos en un Excel.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-gestion" style="transition-delay:200ms">
+<span class="material-symbols-outlined door-icon">shopping_bag</span>
+<span class="door-rubro">Comercio</span>
+<p class="door-dolor">Dejá de enterarte tarde de que te quedaste sin stock.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-turnos" style="transition-delay:250ms">
+<span class="material-symbols-outlined door-icon">badge</span>
+<span class="door-rubro">Profesionales</span>
+<p class="door-dolor">Dejá de coordinar cada turno por chat, uno por uno.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-afip" style="transition-delay:300ms">
+<span class="material-symbols-outlined door-icon">payments</span>
+<span class="door-rubro">Finanzas</span>
+<p class="door-dolor">Dejá de cargar cada factura a mano en el portal de AFIP.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-automatizacion" style="transition-delay:350ms">
+<span class="material-symbols-outlined door-icon">factory</span>
+<span class="door-rubro">Industria</span>
+<p class="door-dolor">Dejá de pasar los mismos datos de un sistema a otro, a mano.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-embudos" style="transition-delay:400ms">
+<span class="material-symbols-outlined door-icon">construction</span>
+<span class="door-rubro">Construcción</span>
+<p class="door-dolor">Dejá de perder presupuestos enterrados en el chat del celular.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-cobros" style="transition-delay:450ms">
+<span class="material-symbols-outlined door-icon">school</span>
+<span class="door-rubro">Educación</span>
+<p class="door-dolor">Dejá de perseguir cuotas atrasadas alumno por alumno.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-embudos" style="transition-delay:500ms">
+<span class="material-symbols-outlined door-icon">pets</span>
+<span class="door-rubro">Veterinarias</span>
+<p class="door-dolor">Dejá de que las vacunas se venzan sin que nadie avise.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
+<a class="industry-door group reveal" href="#svc-web" style="transition-delay:550ms">
+<span class="material-symbols-outlined door-icon">directions_car</span>
+<span class="door-rubro">Automotor y Talleres</span>
+<p class="door-dolor">Dejá de que te encuentren de casualidad y no cuando te buscan.</p>
+<span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
+</a>
+
 </div>
-<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">payments</span>
-<p class="font-bold">Finanzas</p>
-</div>
-<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">fitness_center</span>
-<p class="font-bold">Fitness</p>
-</div>
-<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">badge</span>
-<p class="font-bold">Profesionales</p>
-</div>
-<div class="industry-card industry-accent-tertiary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">factory</span>
-<p class="font-bold">Industrias</p>
-</div>
-<div class="industry-card industry-accent-primary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">shopping_bag</span>
-<p class="font-bold">Comercio</p>
-</div>
-<div class="industry-card industry-accent-secondary rounded-xl border-l-4 bg-surface-container-low/80 p-5 backdrop-blur-md sm:p-6">
-<span class="material-symbols-outlined mb-2 text-zinc-300">construction</span>
-<p class="font-bold">Construcción</p>
-</div>
-</div>
-</div>
+<p class="mt-8 text-on-surface-variant reveal">¿Tu rubro no está en la lista? Casi siempre el problema es el mismo con otra ropa. <a class="font-semibold text-primary underline-offset-4 hover:underline" href="#contact-form">Contanos tu caso</a> y te decimos si tiene solución.</p>
 </div>
 </section>
+<!-- ===== / INDUSTRIAS ===== -->
 <!-- ===== FAQ / OBJECIONES ===== -->
 <section class="bg-surface-container-low py-24" id="faq">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -1895,6 +1926,24 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
         document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+        // ===== PUERTAS POR INDUSTRIA: resaltar el servicio de destino =====
+        (function () {
+            var t;
+            function destacar() {
+                var id = location.hash.replace('#', '');
+                if (!id) return;
+                var el = document.getElementById(id);
+                if (!el || !el.classList.contains('svc-card')) return;
+                clearTimeout(t);
+                el.classList.remove('destacado');
+                void el.offsetWidth;            // reinicia la animacion si se repite el mismo destino
+                el.classList.add('destacado');
+                t = setTimeout(function () { el.classList.remove('destacado'); }, 3000);
+            }
+            window.addEventListener('hashchange', destacar);
+            if (location.hash) setTimeout(destacar, 260);
+        })();
 
         // ===== MENU MOBILE =====
         (function () {
