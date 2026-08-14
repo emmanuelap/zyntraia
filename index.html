@@ -403,6 +403,58 @@
             object-fit: contain;
             object-position: center;
         }
+        /* Flechas del carrusel: siempre visibles, tambien en celular */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(10, 9, 8, 0.55);
+            backdrop-filter: blur(6px);
+            color: #ffffff;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+        }
+        .carousel-nav .material-symbols-outlined {
+            font-size: 22px;
+            line-height: 1;
+        }
+        .carousel-nav:hover {
+            background: rgba(10, 9, 8, 0.88);
+            border-color: rgba(129, 236, 255, 0.55);
+            transform: translateY(-50%) scale(1.08);
+        }
+        .carousel-nav:active {
+            transform: translateY(-50%) scale(0.96);
+        }
+        .carousel-nav.prev { left: 0.75rem; }
+        .carousel-nav.next { right: 0.75rem; }
+
+        .carousel-count {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            z-index: 20;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(10, 9, 8, 0.6);
+            backdrop-filter: blur(6px);
+            padding: 0.15rem 0.6rem;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.85);
+            pointer-events: none;
+        }
+
         .carousel-dot {
             width: 6px;
             height: 6px;
@@ -443,6 +495,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .carousel-slide { transition: none !important; }
+            .carousel-nav { transition: none !important; }
             .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
         }
         /* ===== NAV MOBILE ===== */
@@ -1690,13 +1743,12 @@
         window.addEventListener('scroll', updateHeaderState, { passive: true });
         window.addEventListener('resize', updateHeaderState, { passive: true });
 
-        // ===== CAROUSELS =====
+        // ===== CAROUSELS (manuales: los pasa el visitante, no se mueven solos) =====
         document.querySelectorAll('[data-carousel]').forEach(function(container) {
             var slides = Array.from(container.querySelectorAll('.carousel-slide'));
             var dots   = Array.from(container.querySelectorAll('.carousel-dot'));
             if (!slides.length) return;
             var current = 0;
-            var timer;
 
             function goTo(n) {
                 slides[current].classList.remove('active');
@@ -1704,22 +1756,62 @@
                 current = ((n % slides.length) + slides.length) % slides.length;
                 slides[current].classList.add('active');
                 if (dots[current]) dots[current].classList.add('active');
+                if (contador) contador.textContent = (current + 1) + ' / ' + slides.length;
             }
 
             dots.forEach(function(dot, i) {
-                dot.addEventListener('click', function() {
-                    goTo(i);
-                    clearInterval(timer);
-                    timer = setInterval(function() { goTo(current + 1); }, 3800);
+                dot.addEventListener('click', function() { goTo(i); });
+            });
+
+            var contador = null;
+            if (slides.length > 1) {
+                // Las flechas van absolutas: el contenedor tiene que ser el ancestro posicionado.
+                if (getComputedStyle(container).position === 'static') {
+                    container.style.position = 'relative';
+                }
+
+                // Flechas
+                [['prev', 'chevron_left', 'Imagen anterior'],
+                 ['next', 'chevron_right', 'Imagen siguiente']].forEach(function(cfg) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'carousel-nav ' + cfg[0];
+                    b.setAttribute('aria-label', cfg[2]);
+                    b.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">' + cfg[1] + '</span>';
+                    b.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        goTo(current + (cfg[0] === 'next' ? 1 : -1));
+                    });
+                    container.appendChild(b);
                 });
-            });
 
-            container.addEventListener('mouseenter', function() { clearInterval(timer); });
-            container.addEventListener('mouseleave', function() {
-                timer = setInterval(function() { goTo(current + 1); }, 3800);
-            });
+                // Contador
+                contador = document.createElement('span');
+                contador.className = 'carousel-count';
+                contador.textContent = '1 / ' + slides.length;
+                container.appendChild(contador);
 
-            timer = setInterval(function() { goTo(current + 1); }, 3800);
+                // Teclado, cuando el carrusel tiene el foco
+                container.setAttribute('tabindex', '0');
+                container.setAttribute('role', 'group');
+                container.setAttribute('aria-label', 'Galería del proyecto');
+                container.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+                    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+                });
+
+                // Deslizar con el dedo en celular
+                var x0 = null;
+                container.addEventListener('touchstart', function(e) {
+                    x0 = e.changedTouches[0].clientX;
+                }, { passive: true });
+                container.addEventListener('touchend', function(e) {
+                    if (x0 === null) return;
+                    var dx = e.changedTouches[0].clientX - x0;
+                    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+                    x0 = null;
+                }, { passive: true });
+            }
         });
 
         // ===== SCROLL REVEAL =====
