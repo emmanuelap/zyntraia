@@ -537,6 +537,27 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* ===== TELEGRAM FLOTANTE (canal secundario, sin pulso) ===== */
+        .tg-float {
+            position: fixed;
+            right: 1rem;
+            bottom: 5.25rem;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            background: #229ed9;
+            color: #ffffff;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+            transition: transform 0.25s ease;
+        }
+        .tg-float:hover {
+            transform: scale(1.08);
+        }
+
         /* ===== WHATSAPP FLOTANTE ===== */
         .wa-float {
             position: fixed;
@@ -642,6 +663,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .wa-float::after,
+            .tg-float,
             .mobile-menu,
             .calc-result,
             .scroll-progress,
@@ -1774,7 +1796,12 @@
 <span class="material-symbols-outlined text-secondary">mail</span>
 <span class="font-medium">zyntraconsultoraia@gmail.com</span>
 </a>
+<a class="flex w-full items-center justify-center gap-3 rounded-xl border border-outline-variant/20 bg-zinc-900 px-6 py-4 transition-all hover:border-[#229ed9]/60 md:w-auto md:px-8" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">
+<span class="text-[#4bb3e6]"><svg aria-hidden="true" fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg></span>
+<span class="font-medium">Telegram: @zyntraconsultora</span>
+</a>
 </div>
+<p class="mx-auto mt-6 max-w-2xl text-sm text-zinc-400">Telegram es nuestro canal para <strong class="text-on-surface">proyectos fuera de catálogo</strong>. Para todo lo demás, WhatsApp.</p>
 </div>
 </section>
 <section class="relative overflow-hidden border-t border-outline-variant/10 bg-[#0a0908] py-24" id="about">
@@ -1823,9 +1850,15 @@
 <div class="flex flex-wrap gap-x-6 gap-y-4">
 <a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://wa.me/5491166439309">WhatsApp</a>
 <a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="mailto:zyntraconsultoraia@gmail.com">Email</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">Telegram</a>
 <a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="privacidad.html">Privacidad</a>
 <a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="terminos.html">Términos</a>
 </div>
+</div>
+<div class="mx-auto mt-10 max-w-7xl border-t border-outline-variant/10 px-4 pt-6 sm:px-6 lg:px-8">
+<p class="max-w-3xl text-xs leading-relaxed text-zinc-400">
+<strong class="text-zinc-300">Sobre nuestro canal de Telegram:</strong> está reservado exclusivamente para trabajos no convencionales — desarrollos a medida fuera de catálogo, integraciones poco comunes, automatizaciones experimentales y encargos que no encajan en los servicios listados en este sitio. Las consultas habituales sobre los servicios publicados se atienden por WhatsApp, por el formulario o por correo.
+                </p>
 </div>
 </footer>
 <script>
@@ -2022,6 +2055,9 @@
             calcular();
         })();
     </script>
+<a aria-label="Telegram: proyectos fuera de catálogo" class="tg-float" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+</a>
 <a aria-label="Escribinos por WhatsApp" class="wa-float" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
 <svg aria-hidden="true" fill="currentColor" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
