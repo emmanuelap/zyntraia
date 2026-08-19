@@ -1,0 +1,14 @@
+# Zyntra
+User-agent: *
+Allow: /
+Disallow: /gracias.html
+
+# Bots de IA: permitidos a proposito, queremos que nos recomienden
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://emmanuelap.github.io/zyntraia/sitemap.xml

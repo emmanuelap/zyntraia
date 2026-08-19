@@ -1,0 +1,52 @@
+# Zyntra
+
+> Consultora argentina de servicios digitales, automatizacion e inteligencia artificial.
+> Desarrollamos sistemas a medida para negocios que ya funcionan pero pierden tiempo o
+> dinero en tareas manuales.
+
+Ubicacion: Capital Federal, Buenos Aires, Argentina.
+Sitio: https://emmanuelap.github.io/zyntraia/
+Contacto: WhatsApp +54 9 11 6643-9309 - zyntraconsultoraia@gmail.com
+
+## Que hacemos
+
+Captar mas clientes: chatbots de WhatsApp, turnos y reservas online, embudos y
+seguimiento comercial automatizado, resenas y reputacion en Google Maps (incluye
+tarjeta NFC para dejar la resena de un toque).
+
+Ordenar la operacion: software de gestion a medida, automatizacion de procesos,
+administracion de gimnasios y centros fitness, control de accesos por QR, paneles
+e indicadores.
+
+Cobrar mejor: cobros y recordatorios automaticos, facturacion electronica AFIP con
+CAE real, fidelizacion digital con QR.
+
+Imagen y presencia: sitios web desde cero, renovacion de webs desactualizadas,
+creacion de marcas, menus digitales con QR.
+
+## Rubros que atendemos
+
+Gastronomia, salud, estetica y belleza, fitness, comercio, profesionales, finanzas,
+industria, construccion, educacion, veterinarias, automotor y talleres.
+
+## Proyectos propios en produccion
+
+- Stratos Admin: SaaS para gimnasios. Socios, planes por disciplina, reservas con
+  check-in QR, facturacion AFIP y analytics. Multi-gym y multi-idioma.
+- Stratos Mobile: app nativa iOS y Android para socios del gimnasio.
+- Mini Turnos App: gestion de turnos online personalizable por rubro.
+- FactuApp: facturacion electronica de escritorio con AFIP WSFEv1 y CAE real.
+- Marroquineria Victoria: sitio y catalogo (https://marroquineriavictoria.com/).
+- Chat Bot Multi Rubro: asistente de WhatsApp que atiende, agenda en Google Calendar,
+  toma pedidos y hace seguimiento.
+
+## Como trabajamos
+
+Diagnostico gratuito de 20 minutos: se identifica que conviene automatizar primero,
+cuanto tiempo devuelve y que costaria. El informe queda para el cliente aunque no
+contrate. Presupuesto cerrado antes de arrancar, sin presupuestos abiertos. Entrega
+por partes. El sistema es del cliente y se entrega documentado.
+
+## Nota
+
+Este archivo sigue la convencion emergente llms.txt, que no es un estandar oficial.
