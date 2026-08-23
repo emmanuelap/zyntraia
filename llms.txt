@@ -24,6 +24,10 @@ CAE real, fidelizacion digital con QR.
 Imagen y presencia: sitios web desde cero, renovacion de webs desactualizadas,
 creacion de marcas, menus digitales con QR.
 
+Seguridad: pentesting y pruebas de intrusion autorizadas para empresas, y revision de
+seguridad de cuentas y dispositivos para particulares. Siempre con autorizacion firmada
+del titular, alcance definido por escrito y acuerdo de confidencialidad.
+
 ## Rubros que atendemos
 
 Gastronomia, salud, estetica y belleza, fitness, comercio, profesionales, finanzas,
