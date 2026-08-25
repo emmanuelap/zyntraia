@@ -47,43 +47,43 @@
                         "secondary-dim": "#00c6ee",
                         "surface-container": "#1b1a17",
                         "on-secondary-fixed": "#003a47",
-                        "primary-fixed-dim": "#00d4ec",
+                        "primary-fixed-dim": "rgb(var(--marca-dim) / <alpha-value>)",
                         "outline": "#767575",
                         "on-secondary-container": "#edfaff",
                         "tertiary-fixed-dim": "#65a4ff",
                         "surface-dim": "#100f0d",
                         "on-tertiary-container": "#001d3f",
                         "error-dim": "#d7383b",
-                        "surface-tint": "#81ecff",
+                        "surface-tint": "rgb(var(--marca) / <alpha-value>)",
                         "on-tertiary-fixed": "#001835",
                         "tertiary-dim": "#5c9ffc",
                         "surface-container-highest": "#272521",
                         "on-primary-fixed-variant": "#005762",
                         "surface-variant": "#272521",
-                        "secondary": "#10d5ff",
+                        "secondary": "rgb(var(--marca-2) / <alpha-value>)",
                         "surface-bright": "#2e2b26",
                         "on-surface-variant": "#adaaaa",
                         "tertiary-fixed": "#80b2ff",
                         "surface-container-low": "#151412",
-                        "secondary-fixed-dim": "#10d5ff",
+                        "secondary-fixed-dim": "rgb(var(--marca-2) / <alpha-value>)",
                         "background": "#100f0d",
-                        "primary": "#81ecff",
+                        "primary": "rgb(var(--marca) / <alpha-value>)",
                         "surface": "#100f0d",
                         "on-tertiary": "#002a55",
-                        "primary-fixed": "#00e3fd",
-                        "primary-container": "#00e3fd",
+                        "primary-fixed": "rgb(var(--marca-2) / <alpha-value>)",
+                        "primary-container": "rgb(var(--marca-2) / <alpha-value>)",
                         "on-error": "#490006",
                         "on-error-container": "#ffa8a3",
                         "on-primary-container": "#004d57",
                         "on-tertiary-fixed-variant": "#003971",
-                        "secondary-fixed": "#78dfff",
+                        "secondary-fixed": "rgb(var(--marca) / <alpha-value>)",
                         "inverse-surface": "#fcf9f8",
                         "tertiary-container": "#599cf9",
                         "on-secondary": "#004554",
                         "on-surface": "#ffffff",
                         "error": "#ff716c",
-                        "primary-dim": "#00d4ec",
-                        "on-primary-fixed": "#003840",
+                        "primary-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "on-primary-fixed": "rgb(var(--marca-txt) / <alpha-value>)",
                         "outline-variant": "#484847"
                     },
                     borderRadius: {
@@ -102,6 +102,14 @@
         };
     </script>
 <style>
+        /* Colores de marca como canales RGB, para que el selector de paleta
+           del corazon pueda repintar toda la web de una sola vez. */
+        :root {
+            --marca:     129 236 255;   /* acento principal   */
+            --marca-2:    16 213 255;   /* acento secundario  */
+            --marca-dim:   0 212 236;   /* acento profundo    */
+            --marca-txt:   0  56  64;   /* texto sobre acento */
+        }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -126,7 +134,7 @@
             position: absolute;
             inset: auto 0 0 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(129, 236, 255, 0.6), transparent);
+            background-image: linear-gradient(90deg, transparent, rgb(var(--marca) / 0.6), transparent);
             opacity: 0.55;
             animation: headerLineFlow 6s linear infinite;
         }
@@ -144,7 +152,7 @@
             bottom: -0.45rem;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, #81ecff, #10d5ff);
+            background-image: linear-gradient(90deg, rgb(var(--marca)), rgb(var(--marca-2)));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.25s ease;
@@ -166,7 +174,7 @@
             height: 18rem;
             top: -4rem;
             left: -3rem;
-            background: #00d4ec;
+            background-color: rgb(var(--marca-dim));
         }
         .mesh-glow::after {
             width: 22rem;
@@ -192,8 +200,8 @@
             inset: -1.5rem;
             z-index: -2;
             border-radius: 2rem;
-            background:
-                radial-gradient(circle at 25% 25%, rgba(129, 236, 255, 0.28), transparent 40%),
+            background-image:
+                radial-gradient(circle at 25% 25%, rgb(var(--marca) / 0.28), transparent 40%),
                 radial-gradient(circle at 75% 75%, rgba(89, 156, 249, 0.24), transparent 42%);
             filter: blur(26px);
             animation: heroAuraPulse 6.5s ease-in-out infinite;
@@ -221,7 +229,9 @@
             overflow: hidden;
             border-radius: 18px;
             border: 1px solid rgba(72, 72, 71, 0.35);
-            border-left: 3px solid rgba(129, 236, 255, 0.25);
+            border-left-width: 3px;
+            border-left-style: solid;
+            border-left-color: rgb(var(--marca) / 0.25);
             background: rgba(21, 20, 18, 0.75);
             backdrop-filter: blur(8px);
             padding: 1.4rem 1.4rem 1.25rem;
@@ -231,15 +241,15 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(129, 236, 255, 0.12), transparent 55%);
+            background-image: linear-gradient(135deg, rgb(var(--marca) / 0.12), transparent 55%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
         }
         .industry-door:hover {
             transform: translateY(-4px);
-            border-color: rgba(129, 236, 255, 0.3);
-            border-left-color: #81ecff;
+            border-color: rgb(var(--marca) / 0.3);
+            border-left-color: rgb(var(--marca));
             background: rgba(27, 26, 23, 0.9);
         }
         .industry-door:hover::before { opacity: 1; }
@@ -250,7 +260,7 @@
             margin-bottom: 0.7rem;
             transition: color 0.3s ease;
         }
-        .industry-door:hover .door-icon { color: #81ecff; }
+        .industry-door:hover .door-icon { color: rgb(var(--marca)); }
         .door-rubro {
             font-size: 11px;
             font-weight: 700;
@@ -273,7 +283,7 @@
             gap: 0.35rem;
             font-size: 0.82rem;
             font-weight: 600;
-            color: #81ecff;
+            color: rgb(var(--marca));
         }
         .door-arrow {
             font-size: 16px;
@@ -289,16 +299,16 @@
             animation: destacarServicio 2.8s ease-out;
         }
         @keyframes destacarServicio {
-            0%   { box-shadow: 0 0 0 0 rgba(129, 236, 255, 0); border-color: rgba(72, 72, 71, 0.35); }
-            12%  { box-shadow: 0 0 0 4px rgba(129, 236, 255, 0.45), 0 0 40px rgba(129, 236, 255, 0.25); border-color: #81ecff; }
-            70%  { box-shadow: 0 0 0 4px rgba(129, 236, 255, 0.28), 0 0 30px rgba(129, 236, 255, 0.14); border-color: rgba(129, 236, 255, 0.7); }
-            100% { box-shadow: 0 0 0 0 rgba(129, 236, 255, 0); border-color: rgba(72, 72, 71, 0.35); }
+            0%   { box-shadow: 0 0 0 0 rgb(var(--marca) / 0); border-color: rgba(72, 72, 71, 0.35); }
+            12%  { box-shadow: 0 0 0 4px rgb(var(--marca) / 0.45), 0 0 40px rgb(var(--marca) / 0.25); border-color: rgb(var(--marca)); }
+            70%  { box-shadow: 0 0 0 4px rgb(var(--marca) / 0.28), 0 0 30px rgb(var(--marca) / 0.14); border-color: rgb(var(--marca) / 0.7); }
+            100% { box-shadow: 0 0 0 0 rgb(var(--marca) / 0); border-color: rgba(72, 72, 71, 0.35); }
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #81ecff !important;
-            box-shadow: 0 0 0 2px rgba(129, 236, 255, 0.2);
+            border-color: rgb(var(--marca)) !important;
+            box-shadow: 0 0 0 2px rgb(var(--marca) / 0.2);
         }
         @keyframes headerLineFlow {
             0% {
@@ -374,7 +384,7 @@
             transition: box-shadow 0.4s ease;
         }
         .project-card:hover {
-            box-shadow: 0 0 0 1px rgba(129,236,255,0.13), 0 36px 80px rgba(0,0,0,0.55);
+            box-shadow: 0 0 0 1px rgb(var(--marca) / 0.13), 0 36px 80px rgba(0,0,0,0.55);
         }
         .carousel-slide {
             position: absolute;
@@ -423,7 +433,7 @@
         }
         .carousel-nav:hover {
             background: rgba(10, 9, 8, 0.88);
-            border-color: rgba(129, 236, 255, 0.55);
+            border-color: rgb(var(--marca) / 0.55);
             transform: translateY(-50%) scale(1.08);
         }
         .carousel-nav:active {
@@ -461,7 +471,7 @@
             flex-shrink: 0;
         }
         .carousel-dot.active {
-            background: #81ecff;
+            background-color: rgb(var(--marca));
             width: 20px;
         }
         .carousel-dot:hover:not(.active) {
@@ -478,31 +488,33 @@
             max-width: 100%;
             flex-wrap: wrap;
             border-radius: 9999px;
-            border: 1px solid rgba(129, 236, 255, 0.28);
-            background: rgba(129, 236, 255, 0.07);
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(var(--marca) / 0.28);
+            background-color: rgb(var(--marca) / 0.07);
             padding: 0.5rem 0.95rem;
             font-size: 0.875rem;
             font-weight: 600;
             line-height: 1.2;
-            color: #81ecff;
+            color: rgb(var(--marca));
             transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
         }
         .doc-download:hover {
-            background: rgba(129, 236, 255, 0.14);
-            border-color: rgba(129, 236, 255, 0.5);
+            background-color: rgb(var(--marca) / 0.14);
+            border-color: rgb(var(--marca) / 0.5);
             transform: translateY(-1px);
         }
         .doc-download:active {
             transform: translateY(0);
         }
         .doc-download--secondary {
-            border-color: rgba(16, 213, 255, 0.28);
-            background: rgba(16, 213, 255, 0.07);
-            color: #10d5ff;
+            border-color: rgb(var(--marca-2) / 0.28);
+            background-color: rgb(var(--marca-2) / 0.07);
+            color: rgb(var(--marca-2));
         }
         .doc-download--secondary:hover {
-            background: rgba(16, 213, 255, 0.14);
-            border-color: rgba(16, 213, 255, 0.5);
+            background-color: rgb(var(--marca-2) / 0.14);
+            border-color: rgb(var(--marca-2) / 0.5);
         }
         .doc-download-meta {
             font-size: 11px;
@@ -645,7 +657,9 @@
         a:focus-visible,
         button:focus-visible,
         summary:focus-visible {
-            outline: 2px solid #81ecff;
+            outline-width: 2px;
+            outline-style: solid;
+            outline-color: rgb(var(--marca));
             outline-offset: 3px;
             border-radius: 6px;
         }
@@ -658,7 +672,7 @@
             z-index: 70;
             height: 2px;
             width: 0;
-            background: linear-gradient(90deg, #81ecff, #10d5ff);
+            background-image: linear-gradient(90deg, rgb(var(--marca)), rgb(var(--marca-2)));
             transition: width 0.12s linear;
             pointer-events: none;
         }
@@ -714,6 +728,320 @@
                 transform: perspective(900px) rotateY(-4deg) rotateX(1deg) scale(1);
             }
         }
+
+        /* =====================================================================
+           MOTION IA — Corazón reactivo del hero  (prefijo .hc-)
+           Todo se maneja con custom properties sobre #hcEscena, así el panel
+           de personalización sólo tiene que reescribir variables.
+           ===================================================================== */
+        #hcEscena {
+            --hc-dur: 0.682s;          /* 60 / BPM, lo escribe el JS */
+            --hc-mx: 0;
+            --hc-my: 0;
+            --hc-c0: #e6fbff;          /* luz alta   */
+            --hc-c1: #81ecff;          /* acento     */
+            --hc-c2: #2f7fc8;          /* medio      */
+            --hc-c3: #12305f;          /* profundo   */
+            --hc-w1: #ffd08a;          /* cálido 1   */
+            --hc-w2: #f6ae55;          /* cálido 2   */
+            --hc-chip: #0b2731;        /* cuerpo del chip */
+            --hc-nucleo: #10d5ff;
+            --hc-glow: rgba(129, 236, 255, 0.22);
+        }
+
+        /* ---------- parallax por capas ---------- */
+        .hc-capa { will-change: transform; }
+        .hc-capa-corazon {
+            transform: translate3d(calc(var(--hc-mx) * 22px), calc(var(--hc-my) * 18px), 0)
+                       rotateY(calc(var(--hc-mx) * 6deg))
+                       rotateX(calc(var(--hc-my) * -6deg));
+        }
+        .hc-capa-frente {
+            transform: translate3d(calc(var(--hc-mx) * 42px), calc(var(--hc-my) * 34px), 0);
+        }
+
+        .hc-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            overflow: visible;
+            filter: drop-shadow(0 0 60px var(--hc-glow));
+            transition: filter 0.5s ease;
+            cursor: pointer;
+        }
+
+        /* ---------- latido ---------- */
+        .hc-late {
+            animation: hcLatido var(--hc-dur) cubic-bezier(0.22, 1, 0.36, 1) infinite;
+            transform-origin: 50% 55%;
+        }
+        @keyframes hcLatido {
+            0%   { transform: scale(1); }
+            7%   { transform: scale(1.055); }
+            15%  { transform: scale(1.005); }
+            23%  { transform: scale(1.032); }
+            34%  { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        .hc-aura {
+            animation: hcAura var(--hc-dur) cubic-bezier(0.22, 1, 0.36, 1) infinite;
+            transform-origin: 50% 55%;
+        }
+        @keyframes hcAura {
+            0%   { opacity: 0.30; transform: scale(1); }
+            7%   { opacity: 0.62; transform: scale(1.10); }
+            34%  { opacity: 0.30; transform: scale(1); }
+            100% { opacity: 0.30; transform: scale(1); }
+        }
+
+        /* ---------- dibujado inicial ---------- */
+        .hc-trazo {
+            stroke-dasharray: var(--hc-largo, 920);
+            stroke-dashoffset: var(--hc-largo, 920);
+            animation: hcDibujar 1.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes hcDibujar { to { stroke-dashoffset: 0; } }
+        .hc-aparece { opacity: 0; animation: hcAparecer 0.9s ease forwards; }
+        @keyframes hcAparecer { to { opacity: 1; } }
+
+        /* ---------- señal que viaja por los circuitos ---------- */
+        .hc-senal {
+            stroke-dasharray: 14 200;
+            stroke-dashoffset: 214;
+            animation: hcViajar var(--hc-dur) cubic-bezier(0.3, 0, 0.2, 1) infinite;
+            animation-delay: calc(var(--hc-dur) * var(--hc-d, 0));
+        }
+        @keyframes hcViajar {
+            0%   { stroke-dashoffset: 214; }
+            55%  { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        .hc-nodo {
+            animation: hcEncender var(--hc-dur) ease-in-out infinite;
+            animation-delay: calc(var(--hc-dur) * var(--hc-d, 0));
+        }
+        @keyframes hcEncender {
+            0%, 100% { opacity: 0.35; }
+            12%      { opacity: 1; }
+            45%      { opacity: 0.45; }
+        }
+
+        /* ---------- onda de choque al tocar el corazón ---------- */
+        .hc-onda {
+            fill: none;
+            stroke: var(--hc-c1);
+            stroke-width: 3;
+            transform-origin: 232px 300px;
+            animation: hcOnda 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            pointer-events: none;
+        }
+        @keyframes hcOnda {
+            0%   { opacity: 0.85; transform: scale(0.25); stroke-width: 6; }
+            100% { opacity: 0;    transform: scale(1.9);  stroke-width: 0.5; }
+        }
+
+        /* ---------- chispas ---------- */
+        .hc-chispa {
+            position: absolute;
+            border-radius: 9999px;
+            background-color: var(--hc-c1);
+            pointer-events: none;
+            animation: hcFlotar linear infinite;
+        }
+        @keyframes hcFlotar {
+            0%   { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+            15%  { opacity: 0.85; }
+            85%  { opacity: 0.55; }
+            100% { transform: translate3d(var(--hc-dx), var(--hc-dy), 0) scale(1.05); opacity: 0; }
+        }
+
+        /* ---------- modo holograma ---------- */
+        .hc-holo-only { opacity: 0; }
+        #hcEscena.hc-holograma .hc-holo-only {
+            opacity: 0.14;
+            animation: hcScan 3.2s linear infinite;
+        }
+        @keyframes hcScan { to { transform: translateY(24px); } }
+        #hcEscena.hc-holograma .hc-relleno { opacity: 0.28; }
+        #hcEscena.hc-holograma .hc-svg {
+            filter: drop-shadow(0 0 22px var(--hc-c1)) drop-shadow(0 0 70px var(--hc-glow));
+            animation: hcParpadeo 4.5s steps(1, end) infinite;
+        }
+        @keyframes hcParpadeo {
+            0%, 96%, 100% { opacity: 1; }
+            97%           { opacity: 0.72; }
+            98%           { opacity: 1; }
+            99%           { opacity: 0.85; }
+        }
+
+        /* ---------- apagados de capas ---------- */
+        #hcEscena.hc-sin-pcb .hc-pcb { display: none; }
+        #hcEscena.hc-sin-particulas .hc-chispa { display: none; }
+        #hcEscena.hc-sin-aura .hc-aura { display: none; }
+
+        /* ---------- telemetría ---------- */
+        .hc-panel {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.025);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .hc-rotulo {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.625rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #8d8b89;
+        }
+        .hc-cifra {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            color: var(--hc-c1);
+            line-height: 1.1;
+            transition: color 0.4s ease;
+        }
+        .hc-latir-punto {
+            width: 7px; height: 7px; border-radius: 9999px;
+            background-color: var(--hc-c1);
+            animation: hcPunto var(--hc-dur) ease-in-out infinite;
+        }
+        @keyframes hcPunto {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            8%       { opacity: 1;   transform: scale(1.35); }
+        }
+
+        /* chips de ritmo y toggles */
+        .hc-chip-btn {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 9999px;
+            padding: 0.4rem 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #d4d4d8;
+            background: transparent;
+            cursor: pointer;
+            transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+        }
+        .hc-chip-btn:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+        .hc-chip-btn[aria-pressed="true"] {
+            border-color: var(--hc-c1);
+            color: var(--hc-c1);
+            background-color: color-mix(in srgb, var(--hc-c1) 12%, transparent);
+        }
+        .hc-chip-btn:focus-visible,
+        .hc-swatch:focus-visible,
+        .hc-toggle:focus-visible,
+        .hc-svg:focus-visible {
+            outline-width: 2px;
+            outline-style: solid;
+            outline-color: var(--hc-c1);
+            outline-offset: 3px;
+        }
+
+        /* slider */
+        .hc-rango {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 9999px;
+            background-image: linear-gradient(to right,
+                        var(--hc-c1) 0%, var(--hc-c1) var(--hc-pct, 40%),
+                        rgba(255, 255, 255, 0.14) var(--hc-pct, 40%), rgba(255, 255, 255, 0.14) 100%);
+            cursor: pointer;
+        }
+        .hc-rango::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px; height: 18px;
+            border-radius: 9999px;
+            background-color: var(--hc-c1);
+            border: 3px solid #100f0d;
+            box-shadow: 0 0 12px var(--hc-glow);
+            cursor: pointer;
+        }
+        .hc-rango::-moz-range-thumb {
+            width: 18px; height: 18px;
+            border-radius: 9999px;
+            background-color: var(--hc-c1);
+            border: 3px solid #100f0d;
+            box-shadow: 0 0 12px var(--hc-glow);
+            cursor: pointer;
+        }
+
+        /* swatches de paleta */
+        .hc-swatch {
+            width: 30px; height: 30px;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .hc-swatch:hover { transform: scale(1.12); }
+        .hc-swatch[aria-pressed="true"] {
+            border-color: #fff;
+            transform: scale(1.12);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+        }
+
+        /* toggles */
+        .hc-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 0.55rem 0.7rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            background: transparent;
+            color: #d4d4d8;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.25s ease, background-color 0.25s ease;
+        }
+        .hc-toggle:hover { background: rgba(255, 255, 255, 0.05); }
+        .hc-toggle-pista {
+            flex: 0 0 auto;
+            width: 32px; height: 18px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.16);
+            position: relative;
+            transition: background-color 0.25s ease;
+        }
+        .hc-toggle-pista::after {
+            content: "";
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 12px; height: 12px;
+            border-radius: 9999px;
+            background: #100f0d;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .hc-toggle[aria-pressed="true"] { border-color: color-mix(in srgb, var(--hc-c1) 45%, transparent); color: #fff; }
+        .hc-toggle[aria-pressed="true"] .hc-toggle-pista { background-color: var(--hc-c1); }
+        .hc-toggle[aria-pressed="true"] .hc-toggle-pista::after { transform: translateX(14px); }
+
+        /* desplegable de controles */
+        .hc-abrir { background: transparent; cursor: pointer; }
+        .hc-abrir .hc-flecha { transition: transform 0.3s ease; }
+        .hc-abrir[aria-expanded="false"] .hc-flecha { transform: rotate(-90deg); }
+        .hc-abrir[aria-expanded="false"] + .hc-controles { display: none; }
+        .hc-abrir:focus-visible { outline-width: 2px; outline-style: solid; outline-color: var(--hc-c1); outline-offset: 3px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hc-late, .hc-aura, .hc-senal, .hc-nodo, .hc-chispa,
+            .hc-latir-punto, .hc-onda, .hc-holo-only,
+            #hcEscena.hc-holograma .hc-svg {
+                animation: none !important;
+            }
+            .hc-trazo { animation: none !important; stroke-dashoffset: 0 !important; }
+            .hc-aparece { animation: none !important; opacity: 1 !important; }
+            .hc-capa { transform: none !important; }
+        }
+
     </style>
 <script type="application/ld+json">
 {
@@ -865,7 +1193,7 @@
 </div>
 </header>
 <main>
-<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-0 pt-28 pb-16 sm:pt-32">
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-0 pt-28 pb-16 sm:pt-32" id="hcEscena">
 <div class="soft-grid absolute inset-0 z-0 opacity-[0.07]"></div>
 <div class="absolute inset-0 z-0 bg-gradient-to-b from-background via-transparent to-background"></div>
 <div class="mesh-glow absolute inset-0 z-0"></div>
@@ -896,9 +1224,212 @@
 <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-zinc-400">check_small</span>Web · Móvil · Escritorio</span>
 </div>
 </div>
-<div class="hero-visual mx-auto w-full max-w-md md:max-w-xl lg:block lg:max-w-none">
-<div class="absolute -inset-4 rounded-full bg-primary/10 blur-3xl"></div>
-<img alt="Panel de control de Stratos Admin, uno de los sistemas desarrollados por Zyntra" class="relative rounded-2xl border border-outline-variant/20 shadow-2xl shadow-black" src="portfolio/stratos-web-2.jpeg"/>
+<div class="mx-auto w-full max-w-[440px] space-y-5 lg:max-w-none">
+<!-- ============ CORAZÓN ============ -->
+<div class="relative mx-auto w-full max-w-[400px] lg:max-w-[368px]">
+<div class="hc-capa hc-capa-corazon" style="perspective:900px">
+<svg aria-label="Corazón anatómico translúcido con un chip que lleva la Z de Zyntra en su interior. Tocalo para generar un pulso." class="hc-svg" id="hcSvg" role="img" tabindex="0" viewbox="0 0 440 530">
+<defs>
+<linearGradient id="hcCuerpo" x1=".15" x2=".85" y1=".05" y2=".95">
+<stop offset="0%" style="stop-color:var(--hc-c0);stop-opacity:.92"></stop>
+<stop offset="34%" style="stop-color:var(--hc-c1);stop-opacity:.68"></stop>
+<stop offset="68%" style="stop-color:var(--hc-c2);stop-opacity:.62"></stop>
+<stop offset="100%" style="stop-color:var(--hc-c3);stop-opacity:.85"></stop>
+</linearGradient>
+<linearGradient id="hcBorde" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" style="stop-color:var(--hc-c0);stop-opacity:.95"></stop>
+<stop offset="55%" style="stop-color:var(--hc-c1);stop-opacity:.75"></stop>
+<stop offset="100%" style="stop-color:var(--hc-c2);stop-opacity:.55"></stop>
+</linearGradient>
+<linearGradient id="hcTubo" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" style="stop-color:var(--hc-c2);stop-opacity:.8"></stop>
+<stop offset="38%" style="stop-color:var(--hc-c1);stop-opacity:.95"></stop>
+<stop offset="62%" style="stop-color:var(--hc-c0);stop-opacity:.98"></stop>
+<stop offset="100%" style="stop-color:var(--hc-c2);stop-opacity:.8"></stop>
+</linearGradient>
+<radialGradient cx="40%" cy="32%" id="hcLuz" r="60%">
+<stop offset="0%" style="stop-color:var(--hc-c0);stop-opacity:.55"></stop>
+<stop offset="48%" style="stop-color:var(--hc-c1);stop-opacity:.16"></stop>
+<stop offset="100%" style="stop-color:var(--hc-c3);stop-opacity:0"></stop>
+</radialGradient>
+<radialGradient cx="34%" cy="74%" id="hcCalor" r="44%">
+<stop offset="0%" style="stop-color:var(--hc-w1);stop-opacity:.26"></stop>
+<stop offset="60%" style="stop-color:var(--hc-w2);stop-opacity:.08"></stop>
+<stop offset="100%" style="stop-color:var(--hc-w2);stop-opacity:0"></stop>
+</radialGradient>
+<radialGradient id="hcNucleo">
+<stop offset="0%" style="stop-color:#ffffff;stop-opacity:.95"></stop>
+<stop offset="42%" style="stop-color:var(--hc-c1);stop-opacity:.5"></stop>
+<stop offset="100%" style="stop-color:var(--hc-nucleo);stop-opacity:0"></stop>
+</radialGradient>
+<filter height="220%" id="hcBrillo" width="220%" x="-60%" y="-60%">
+<feGaussianBlur result="b" stddeviation="7"></feGaussianBlur>
+<feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+</filter>
+<filter height="190%" id="hcSuave" width="190%" x="-45%" y="-45%">
+<feGaussianBlur stddeviation="15"></feGaussianBlur>
+</filter>
+<pattern height="8" id="hcScan" patternunits="userSpaceOnUse" width="8">
+<rect height="3" style="fill:var(--hc-c1)" width="8"></rect>
+</pattern>
+<clipPath id="hcRecorte">
+<path d="M182 470 C150 438 120 392 108 340 C96 288 98 240 118 208 C134 182 162 166 194 168 C216 169 232 178 244 194 C260 180 284 174 306 182 C336 193 356 222 358 262 C361 312 344 366 312 408 C282 447 236 472 200 474 C193 474 187 473 182 470 Z"></path>
+</clipPath>
+</defs>
+<!-- aura exterior -->
+<g class="hc-aura"><ellipse cx="230" cy="318" fill="url(#hcCalor)" opacity=".55" rx="158" ry="172"></ellipse></g>
+<g class="hc-aura"><ellipse cx="230" cy="300" fill="url(#hcLuz)" rx="150" ry="168"></ellipse></g>
+<g class="hc-late">
+<!-- vasos traseros -->
+<g class="hc-aparece" fill="none" stroke-linecap="round" style="animation-delay:1.05s">
+<path d="M300 186 C310 146 310 122 304 98" stroke-width="25" style="stroke:var(--hc-c2);opacity:.5"></path>
+<path d="M300 186 C310 146 310 122 304 98" stroke="url(#hcTubo)" stroke-width="18"></path>
+<path d="M214 172 C204 128 190 104 164 100" stroke-width="25" style="stroke:var(--hc-c2);opacity:.5"></path>
+<path d="M214 172 C204 128 190 104 164 100" stroke="url(#hcTubo)" stroke-width="18"></path>
+</g>
+<!-- cuerpo -->
+<path class="hc-trazo hc-relleno" d="M182 470 C150 438 120 392 108 340 C96 288 98 240 118 208 C134 182 162 166 194 168 C216 169 232 178 244 194 C260 180 284 174 306 182 C336 193 356 222 358 262 C361 312 344 366 312 408 C282 447 236 472 200 474 C193 474 187 473 182 470 Z" fill="url(#hcCuerpo)" id="hcSilueta" stroke="url(#hcBorde)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"></path>
+<!-- todo lo que vive DENTRO del vidrio -->
+<g clip-path="url(#hcRecorte)">
+<rect class="hc-relleno" fill="url(#hcLuz)" height="530" width="440" x="0" y="0"></rect>
+<rect class="hc-relleno" fill="url(#hcCalor)" height="530" width="440" x="0" y="0"></rect>
+<!-- coronarias -->
+<g class="hc-aparece" fill="none" stroke-linecap="round" style="animation-delay:1.15s;stroke:var(--hc-c0);opacity:.22">
+<path d="M246 196 C250 240 246 286 232 330" stroke-width="3.6"></path>
+<path d="M232 356 C222 392 206 420 190 442" stroke-width="3.2"></path>
+<path d="M252 214 C226 226 202 242 184 266" stroke-width="2.6"></path>
+<path d="M300 220 C312 252 314 290 306 322" stroke-width="2.2"></path>
+<path d="M156 262 C144 292 140 322 146 352" stroke-width="1.9"></path>
+<path d="M170 356 C196 372 224 378 250 372" stroke-width="2"></path>
+</g>
+<!-- trazas del chip -->
+<g class="hc-aparece hc-pcb" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="animation-delay:1.3s;stroke:var(--hc-c1);opacity:.62">
+<path d="M194 274 H160 L142 256 H126"></path>
+<path d="M194 310 H166 L148 330 H132"></path>
+<path d="M270 274 H304 L322 256 H336"></path>
+<path d="M270 310 H300 L318 330 H332"></path>
+<path d="M214 254 V214 L196 196 H182"></path>
+<path d="M250 254 V220 L270 200 H282"></path>
+<path d="M214 330 V378 L196 398 H186"></path>
+<path d="M250 330 V372 L270 392 H282"></path>
+</g>
+<!-- señales que viajan -->
+<g class="hc-pcb" fill="none" filter="url(#hcBrillo)" stroke="#ffffff" stroke-linecap="round" stroke-width="2.8">
+<path class="hc-senal" d="M194 274 H160 L142 256 H126"></path>
+<path class="hc-senal" d="M270 274 H304 L322 256 H336" style="--hc-d:.05"></path>
+<path class="hc-senal" d="M214 330 V378 L196 398 H186" style="--hc-d:.1"></path>
+<path class="hc-senal" d="M250 254 V220 L270 200 H282" style="--hc-d:.14"></path>
+<path class="hc-senal" d="M194 310 H166 L148 330 H132" style="--hc-d:.07"></path>
+<path class="hc-senal" d="M270 310 H300 L318 330 H332" style="--hc-d:.12"></path>
+</g>
+<!-- pads -->
+<g class="hc-aparece hc-pcb" style="animation-delay:1.42s;fill:var(--hc-c1)">
+<rect class="hc-nodo" height="10" rx="2.4" width="10" x="120" y="250"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.07" width="10" x="331" y="250"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.14" width="10" x="126" y="324"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.2" width="10" x="327" y="324"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.1" width="10" x="176" y="190"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.17" width="10" x="277" y="194"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.24" width="10" x="180" y="392"></rect>
+<rect class="hc-nodo" height="10" rx="2.4" style="--hc-d:.03" width="10" x="277" y="386"></rect>
+</g>
+<!-- resplandor del núcleo -->
+<circle class="hc-aura" cx="232" cy="292" fill="url(#hcNucleo)" r="76"></circle>
+<!-- chip con la Z -->
+<g class="hc-aparece" style="animation-delay:1.55s">
+<g class="hc-pcb" stroke-linecap="round" stroke-width="2.3" style="stroke:var(--hc-c1);opacity:.85">
+<path d="M210 254 V244"></path><path d="M232 254 V242"></path><path d="M254 254 V244"></path>
+<path d="M210 330 V340"></path><path d="M232 330 V342"></path><path d="M254 330 V340"></path>
+<path d="M194 270 H184"></path><path d="M194 292 H182"></path><path d="M194 314 H184"></path>
+<path d="M270 270 H280"></path><path d="M270 292 H282"></path><path d="M270 314 H280"></path>
+</g>
+<rect fill-opacity=".93" filter="url(#hcBrillo)" height="76" rx="12" stroke="url(#hcBorde)" stroke-width="2.4" style="fill:var(--hc-chip)" width="76" x="194" y="254"></rect>
+<rect fill="none" height="60" rx="8" stroke-width=".9" style="stroke:var(--hc-c1);opacity:.35" width="60" x="202" y="262"></rect>
+<path d="M215 278 H251 L215 307 H251" fill="none" filter="url(#hcBrillo)" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.4"></path>
+</g>
+<!-- brillos de vidrio -->
+<ellipse cx="166" cy="242" fill="#ffffff" filter="url(#hcSuave)" opacity=".14" rx="46" ry="66" transform="rotate(-24 166 242)"></ellipse>
+<ellipse cx="150" cy="344" fill="#ffffff" filter="url(#hcSuave)" opacity=".08" rx="17" ry="48" transform="rotate(-12 150 344)"></ellipse>
+<!-- scanlines del modo holograma -->
+<rect class="hc-holo-only" fill="url(#hcScan)" height="600" width="440" x="0" y="-30"></rect>
+</g>
+<!-- aurículas -->
+<g class="hc-aparece" style="animation-delay:1.1s">
+<path class="hc-relleno" d="M194 168 C172 152 144 154 132 170 C120 186 128 206 152 210 C170 213 186 198 194 180 Z" fill="url(#hcCuerpo)" opacity=".95" stroke="url(#hcBorde)" stroke-width="2"></path>
+<path class="hc-relleno" d="M306 182 C326 166 350 170 358 186 C366 202 356 218 334 218 C318 218 308 202 306 190 Z" fill="url(#hcCuerpo)" opacity=".95" stroke="url(#hcBorde)" stroke-width="2"></path>
+</g>
+<!-- aorta -->
+<g class="hc-aparece" fill="none" stroke-linecap="round" style="animation-delay:1s">
+<path d="M254 182 C252 132 264 96 298 92 C326 89 342 108 340 132" stroke-width="33" style="stroke:var(--hc-c2);opacity:.5"></path>
+<path d="M254 182 C252 132 264 96 298 92 C326 89 342 108 340 132" stroke="url(#hcTubo)" stroke-width="25"></path>
+<g stroke-width="16" style="stroke:var(--hc-c2);opacity:.5">
+<path d="M274 100 V58"></path><path d="M300 90 V50"></path><path d="M324 96 V60"></path>
+</g>
+<g stroke="url(#hcTubo)" stroke-width="11">
+<path d="M274 100 V58"></path><path d="M300 90 V50"></path><path d="M324 96 V60"></path>
+</g>
+</g>
+</g>
+<g id="hcOndas"></g>
+</svg>
+</div>
+<div class="hc-capa hc-capa-frente pointer-events-none absolute inset-0" id="hcChispas"></div>
+</div>
+<p class="text-center font-headline text-sm font-medium tracking-wide text-zinc-400 sm:text-base">El corazón del futuro <span class="italic text-primary">ya está latiendo</span></p>
+<!-- ============ TELEMETRÍA + CONTROLES ============ -->
+<div class="hc-panel px-4 py-3.5 sm:px-5">
+<div class="mb-3 flex items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="hc-latir-punto"></span>
+<span class="hc-rotulo">Telemetría cardíaca // AI-ECG</span>
+</div>
+<span class="hc-rotulo">Pulsos <span class="hc-cifra" id="hcPulsos" style="font-size:.75rem">0</span></span>
+</div>
+<dl class="grid grid-cols-2 gap-x-4 gap-y-2.5 sm:grid-cols-4">
+<div><dt class="hc-rotulo">Frecuencia</dt><dd class="hc-cifra text-lg"><span id="hcBpmOut">75</span> <span class="text-[0.6rem] font-normal text-zinc-500">BPM</span></dd></div>
+<div><dt class="hc-rotulo">Sinapsis</dt><dd class="hc-cifra text-lg"><span id="hcSinapsis">32.1k</span> <span class="text-[0.6rem] font-normal text-zinc-500">/s</span></dd></div>
+<div><dt class="hc-rotulo">Coherencia</dt><dd class="hc-cifra text-lg"><span id="hcCoherencia">99.8</span><span class="text-[0.6rem] font-normal text-zinc-500">%</span></dd></div>
+<div><dt class="hc-rotulo">Latidos</dt><dd class="hc-cifra text-lg" id="hcLatidos">0</dd></div>
+</dl>
+<div class="mt-3 flex flex-wrap items-center gap-2 border-t border-white/[0.06] pt-3">
+<button class="hc-chip-btn" data-hc-bpm="55" type="button">Calma · 55</button>
+<button aria-pressed="true" class="hc-chip-btn" data-hc-bpm="75" type="button">Estándar · 75</button>
+<button class="hc-chip-btn" data-hc-bpm="120" type="button">Overclock · 120</button>
+<span class="ml-auto text-[0.6875rem] text-zinc-500">Tocá el corazón para pulsar</span>
+</div>
+<!-- ---- controles ---- -->
+<button aria-controls="hcControles" aria-expanded="true" class="hc-abrir mt-3 flex w-full items-center gap-2 border-t border-white/[0.06] pt-3 text-left" id="hcAbrir" type="button">
+<span class="material-symbols-outlined text-base" style="color:var(--hc-c1)">tune</span>
+<span class="flex-1">
+<span class="block text-xs font-semibold text-on-surface">Personalización en tiempo real</span>
+<span class="hc-rotulo">Propiedades reactivas // vista instantánea</span>
+</span>
+<span class="material-symbols-outlined hc-flecha text-lg text-zinc-500">expand_more</span>
+</button>
+<div class="hc-controles" id="hcControles">
+<div class="pt-4">
+<div class="mb-1.5 flex items-baseline justify-between">
+<label class="text-xs font-medium text-zinc-300" for="hcBpm">Ritmo cardíaco</label>
+<span class="hc-cifra text-sm"><span id="hcBpmEtiqueta">75</span> <span class="text-[0.6rem] font-normal text-zinc-500">BPM</span></span>
+</div>
+<input class="hc-rango" id="hcBpm" max="160" min="40" step="1" type="range" value="75"/>
+<div class="mt-1 flex justify-between text-[0.625rem] text-zinc-500">
+<span>40 · Bradicardia</span><span>75 · Normal</span><span>160 · Taquicardia</span>
+</div>
+</div>
+<div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+<span class="text-xs font-medium text-zinc-300">Paleta</span>
+<div class="flex flex-wrap gap-2" id="hcPaletas"></div>
+<span class="hc-rotulo ml-auto" id="hcPaletaNombre">Cian Zyntra</span>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2">
+<button aria-pressed="true" class="hc-toggle" data-hc-capa="pcb" type="button"><span class="hc-toggle-pista"></span>Circuitos PCB</button>
+<button aria-pressed="true" class="hc-toggle" data-hc-capa="particulas" type="button"><span class="hc-toggle-pista"></span>Partículas</button>
+<button aria-pressed="true" class="hc-toggle" data-hc-capa="aura" type="button"><span class="hc-toggle-pista"></span>Aura de luz</button>
+<button aria-pressed="false" class="hc-toggle" data-hc-capa="holograma" type="button"><span class="hc-toggle-pista"></span>Holograma</button>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -2191,5 +2722,253 @@
 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
 </svg>
 </a>
+<script>
+    /* =====================================================================
+       MOTION IA — corazón reactivo del hero
+       Un solo estado (bpm + paleta + capas) que se escribe como custom
+       properties sobre #hcEscena. El SVG y el panel leen de ahí.
+       ===================================================================== */
+    (function () {
+        var escena = document.getElementById('hcEscena');
+        var svg = document.getElementById('hcSvg');
+        if (!escena || !svg) return;
+
+        var suave = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var PALETAS = [
+            { id: 'cian', nombre: 'Cian Zyntra', punto: '#81ecff', v: {
+                '--hc-c0': '#e6fbff', '--hc-c1': '#81ecff', '--hc-c2': '#2f7fc8', '--hc-c3': '#12305f',
+                '--hc-w1': '#ffd08a', '--hc-w2': '#f6ae55', '--hc-chip': '#0b2731',
+                '--hc-nucleo': '#10d5ff', '--hc-glow': 'rgba(129,236,255,.22)' },
+                m: { '--marca': '129 236 255', '--marca-2': '16 213 255', '--marca-dim': '0 212 236', '--marca-txt': '0 56 64' } },
+            { id: 'esmeralda', nombre: 'Esmeralda bioluminiscente', punto: '#4dffb8', v: {
+                '--hc-c0': '#e3fff3', '--hc-c1': '#4dffb8', '--hc-c2': '#17a06a', '--hc-c3': '#04331f',
+                '--hc-w1': '#d9ffab', '--hc-w2': '#8ce06a', '--hc-chip': '#06291d',
+                '--hc-nucleo': '#16f0a0', '--hc-glow': 'rgba(77,255,184,.22)' },
+                m: { '--marca': '77 255 184', '--marca-2': '22 240 160', '--marca-dim': '0 214 148', '--marca-txt': '0 48 32' } },
+            { id: 'violeta', nombre: 'Violeta cuántico', punto: '#b18cff', v: {
+                '--hc-c0': '#f2ecff', '--hc-c1': '#b18cff', '--hc-c2': '#6a3fc0', '--hc-c3': '#1b1042',
+                '--hc-w1': '#ffb0e8', '--hc-w2': '#e060c8', '--hc-chip': '#170c2c',
+                '--hc-nucleo': '#9a5cff', '--hc-glow': 'rgba(177,140,255,.24)' },
+                m: { '--marca': '177 140 255', '--marca-2': '154 92 255', '--marca-dim': '138 92 255', '--marca-txt': '26 8 60' } },
+            { id: 'ambar', nombre: 'Ámbar solar', punto: '#ffc46b', v: {
+                '--hc-c0': '#fff4e0', '--hc-c1': '#ffc46b', '--hc-c2': '#c9762c', '--hc-c3': '#35190a',
+                '--hc-w1': '#ffe9a8', '--hc-w2': '#ff9d2e', '--hc-chip': '#241205',
+                '--hc-nucleo': '#ff9d2e', '--hc-glow': 'rgba(255,196,107,.22)' },
+                m: { '--marca': '255 196 107', '--marca-2': '255 176 66', '--marca-dim': '255 157 46', '--marca-txt': '58 30 0' } },
+            { id: 'carmesi', nombre: 'Carmesí vital', punto: '#ff7b8a', v: {
+                '--hc-c0': '#ffeaee', '--hc-c1': '#ff7b8a', '--hc-c2': '#c8304f', '--hc-c3': '#3a0714',
+                '--hc-w1': '#ffc2a0', '--hc-w2': '#ff7a4d', '--hc-chip': '#26060e',
+                '--hc-nucleo': '#ff3d5e', '--hc-glow': 'rgba(255,123,138,.24)' },
+                m: { '--marca': '255 123 138', '--marca-2': '255 94 116', '--marca-dim': '255 61 94', '--marca-txt': '62 6 20' } }
+        ];
+
+        var bpm = 75;
+        var latidos = 0;
+        var pulsos = 0;
+
+        /* ---------- largo real de la silueta, para el dibujado ---------- */
+        var sil = document.getElementById('hcSilueta');
+        if (sil && sil.getTotalLength) {
+            escena.style.setProperty('--hc-largo', Math.ceil(sil.getTotalLength()));
+        }
+
+        /* ---------- BPM ---------- */
+        var salidaBpm = document.getElementById('hcBpmOut');
+        var etiquetaBpm = document.getElementById('hcBpmEtiqueta');
+        var rango = document.getElementById('hcBpm');
+
+        function aplicarBpm(v, desdeRango) {
+            bpm = Math.min(160, Math.max(40, Math.round(v)));
+            escena.style.setProperty('--hc-dur', (60 / bpm).toFixed(4) + 's');
+            if (salidaBpm) salidaBpm.textContent = bpm;
+            if (etiquetaBpm) etiquetaBpm.textContent = bpm;
+            if (rango) {
+                if (!desdeRango) rango.value = bpm;
+                rango.style.setProperty('--hc-pct', ((bpm - 40) / 120 * 100).toFixed(1) + '%');
+            }
+            [].forEach.call(escena.querySelectorAll('[data-hc-bpm]'), function (b) {
+                b.setAttribute('aria-pressed', Number(b.dataset.hcBpm) === bpm ? 'true' : 'false');
+            });
+            refrescarTelemetria();
+        }
+
+        if (rango) rango.addEventListener('input', function () { aplicarBpm(this.value, true); });
+        [].forEach.call(escena.querySelectorAll('[data-hc-bpm]'), function (b) {
+            b.addEventListener('click', function () { aplicarBpm(Number(b.dataset.hcBpm)); });
+        });
+
+        /* ---------- paletas ---------- */
+        var cajaPaletas = document.getElementById('hcPaletas');
+        var nombrePaleta = document.getElementById('hcPaletaNombre');
+
+        var raiz = document.documentElement;
+
+        function aplicarPaleta(p) {
+            for (var k in p.v) { if (Object.prototype.hasOwnProperty.call(p.v, k)) escena.style.setProperty(k, p.v[k]); }
+            /* los canales de marca viven en :root, asi el acento de toda la
+               web (titulos, botones, bordes, iconos) sigue a la paleta. */
+            for (var m in p.m) { if (Object.prototype.hasOwnProperty.call(p.m, m)) raiz.style.setProperty(m, p.m[m]); }
+            if (nombrePaleta) nombrePaleta.textContent = p.nombre;
+            if (cajaPaletas) {
+                [].forEach.call(cajaPaletas.children, function (b) {
+                    b.setAttribute('aria-pressed', b.dataset.hcPaleta === p.id ? 'true' : 'false');
+                });
+            }
+        }
+
+        if (cajaPaletas) {
+            PALETAS.forEach(function (p) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'hc-swatch';
+                b.dataset.hcPaleta = p.id;
+                b.style.background = p.punto;
+                b.title = p.nombre;
+                b.setAttribute('aria-label', 'Paleta ' + p.nombre);
+                b.setAttribute('aria-pressed', p.id === 'cian' ? 'true' : 'false');
+                b.addEventListener('click', function () { aplicarPaleta(p); });
+                cajaPaletas.appendChild(b);
+            });
+        }
+
+        /* ---------- capas ---------- */
+        var CLASE_CAPA = {
+            pcb: 'hc-sin-pcb',
+            particulas: 'hc-sin-particulas',
+            aura: 'hc-sin-aura'
+        };
+        [].forEach.call(escena.querySelectorAll('[data-hc-capa]'), function (b) {
+            b.addEventListener('click', function () {
+                var activo = b.getAttribute('aria-pressed') !== 'true';
+                b.setAttribute('aria-pressed', activo ? 'true' : 'false');
+                var capa = b.dataset.hcCapa;
+                if (capa === 'holograma') {
+                    escena.classList.toggle('hc-holograma', activo);
+                } else {
+                    escena.classList.toggle(CLASE_CAPA[capa], !activo);
+                }
+            });
+        });
+
+        /* ---------- telemetría ---------- */
+        var elSinapsis = document.getElementById('hcSinapsis');
+        var elCoherencia = document.getElementById('hcCoherencia');
+        var elLatidos = document.getElementById('hcLatidos');
+        var elPulsos = document.getElementById('hcPulsos');
+
+        function refrescarTelemetria() {
+            if (elSinapsis) {
+                var s = bpm * 428 * (0.985 + Math.random() * 0.03);
+                elSinapsis.textContent = (s / 1000).toFixed(1) + 'k';
+            }
+            if (elCoherencia) {
+                var c = 99.9 - Math.abs(bpm - 72) * 0.055 - Math.random() * 0.06;
+                elCoherencia.textContent = Math.max(92, c).toFixed(1);
+            }
+        }
+
+        /* ---------- onda de choque ---------- */
+        var capaOndas = document.getElementById('hcOndas');
+        function emitirOnda() {
+            if (suave || !capaOndas) return;
+            var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            c.setAttribute('cx', '232');
+            c.setAttribute('cy', '300');
+            c.setAttribute('r', '120');
+            c.setAttribute('class', 'hc-onda');
+            capaOndas.appendChild(c);
+            setTimeout(function () { if (c.parentNode) c.parentNode.removeChild(c); }, 950);
+        }
+
+        function pulsoManual() {
+            pulsos++;
+            if (elPulsos) elPulsos.textContent = pulsos;
+            emitirOnda();
+            refrescarTelemetria();
+        }
+        svg.addEventListener('click', pulsoManual);
+        svg.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pulsoManual(); }
+        });
+
+        /* ---------- reloj del corazón ---------- */
+        var acumulado = 0, ultimo = 0, acumTele = 0;
+        function tic(t) {
+            if (!ultimo) ultimo = t;
+            var dt = Math.min(t - ultimo, 250);
+            ultimo = t;
+
+            acumulado += dt;
+            var periodo = 60000 / bpm;
+            while (acumulado >= periodo) {
+                acumulado -= periodo;
+                latidos++; pulsos++;
+                if (elLatidos) elLatidos.textContent = latidos;
+                if (elPulsos) elPulsos.textContent = pulsos;
+            }
+
+            acumTele += dt;
+            if (acumTele >= 900) { acumTele = 0; refrescarTelemetria(); }
+
+            requestAnimationFrame(tic);
+        }
+        requestAnimationFrame(tic);
+
+        /* ---------- parallax ---------- */
+        if (!suave && window.matchMedia('(pointer:fine)').matches) {
+            var tx = 0, ty = 0, cx = 0, cy = 0, corriendo = false;
+            escena.addEventListener('pointermove', function (e) {
+                var r = escena.getBoundingClientRect();
+                tx = ((e.clientX - r.left) / r.width) * 2 - 1;
+                ty = ((e.clientY - r.top) / r.height) * 2 - 1;
+                if (!corriendo) { corriendo = true; requestAnimationFrame(suavizar); }
+            });
+            escena.addEventListener('pointerleave', function () { tx = 0; ty = 0; });
+            var suavizar = function () {
+                cx += (tx - cx) * 0.07; cy += (ty - cy) * 0.07;
+                escena.style.setProperty('--hc-mx', cx.toFixed(4));
+                escena.style.setProperty('--hc-my', cy.toFixed(4));
+                if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) requestAnimationFrame(suavizar);
+                else corriendo = false;
+            };
+        }
+
+        /* ---------- chispas ---------- */
+        var cont = document.getElementById('hcChispas');
+        if (cont && !suave) {
+            var n = window.innerWidth < 768 ? 8 : 16;
+            for (var i = 0; i < n; i++) {
+                var s = document.createElement('span');
+                s.className = 'hc-chispa';
+                var t = 1.5 + Math.random() * 2.5;
+                s.style.width = s.style.height = t.toFixed(1) + 'px';
+                s.style.left = (10 + Math.random() * 80) + '%';
+                s.style.top = (15 + Math.random() * 70) + '%';
+                s.style.setProperty('--hc-dx', (Math.random() * 70 - 35).toFixed(0) + 'px');
+                s.style.setProperty('--hc-dy', (-50 - Math.random() * 90).toFixed(0) + 'px');
+                s.style.animationDuration = (5 + Math.random() * 6).toFixed(1) + 's';
+                s.style.animationDelay = (Math.random() * 6).toFixed(1) + 's';
+                cont.appendChild(s);
+            }
+        }
+
+
+        /* ---------- desplegable de controles ---------- */
+        var botonAbrir = document.getElementById('hcAbrir');
+        if (botonAbrir) {
+            /* en pantallas chicas el hero ya es largo: los controles arrancan plegados */
+            if (window.innerWidth < 1024) botonAbrir.setAttribute('aria-expanded', 'false');
+            botonAbrir.addEventListener('click', function () {
+                var abierto = botonAbrir.getAttribute('aria-expanded') === 'true';
+                botonAbrir.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+            });
+        }
+
+        /* ---------- arranque ---------- */
+        aplicarPaleta(PALETAS[0]);
+        aplicarBpm(75);
+    })();
+    </script>
 </body>
 </html>
