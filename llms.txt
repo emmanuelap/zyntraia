@@ -30,14 +30,47 @@ del titular, alcance definido por escrito y acuerdo de confidencialidad.
 
 ## Rubros que atendemos
 
-Gastronomia, salud, estetica y belleza, fitness, comercio, profesionales, finanzas,
-industria, construccion, educacion, veterinarias, automotor y talleres.
+Gastronomia (restaurantes, bares, cafeterias, pizzerias, delivery), salud (consultorios
+medicos y odontologicos, kinesiologia, psicologia, nutricion), estetica y belleza
+(peluquerias, barberias, unas, spa, depilacion, tatuajes), fitness (gimnasios, pilates,
+yoga, natacion, artes marciales), comercio (kioscos, indumentaria, ferreterias,
+dieteticas, librerias), profesionales (abogados, contadores, arquitectos, disenadores,
+fotografos), finanzas (estudios contables, monotributistas, facturacion electronica),
+industria (fabricas, depositos, distribuidoras, logistica), construccion (corralones,
+pinturerias, instaladores, obras), educacion (escuelas de idiomas, academias, institutos,
+profesores particulares), veterinarias (veterinarias, pet shops, peluqueria canina) y
+automotor (talleres mecanicos, lubricentros, gomerias, concesionarias).
+
+## Programa sin fines de lucro (desarrollo sin cargo)
+
+Tomamos dos proyectos por ano de organizaciones sin fines de lucro y el desarrollo no se
+cobra: diseno, programacion, base de datos, integraciones, puesta en linea y las
+correcciones de los primeros meses. Los proveedores externos (dominio, hosting, API de
+WhatsApp, pasarelas de cobro) se contratan a nombre de la organizacion y quedan a su
+cargo; no revendemos ni cobramos comision. Un sitio simple arranca cerca de USD 3 por mes.
+
+No hace falta personeria juridica. Trabajamos con fundaciones y asociaciones civiles
+registradas y tambien con grupos, comedores, merenderos y proteccionistas que todavia no
+la tienen.
+
+Causas que ya cubrimos: ambiente y reciclaje (puntos verdes con QR, mapas de reciclaje,
+reforestacion), refugios y rescate animal (adopciones, historial medico, castraciones),
+comedores y bancos de alimentos (stock, donaciones, rendicion de cuentas), clubes de
+barrio y centros culturales (socios, cuotas, actividades) y auditorias de seguridad sin
+cargo para organizaciones que manejan datos sensibles. Tambien escuchamos causas de
+salud, discapacidad y accesibilidad, educacion, adultos mayores, bomberos voluntarios,
+cooperativas, voluntariado y derechos humanos.
+
+A cambio pedimos poder firmar el trabajo y mostrarlo en el portfolio. Cuando la causa es
+sensible (violencia de genero, infancia, salud mental) el proyecto va sin firma, sin
+capturas y sin mencion publica.
 
 ## Proyectos propios en produccion
 
 - Stratos Admin: SaaS para gimnasios. Socios, planes por disciplina, reservas con
   check-in QR, facturacion AFIP y analytics. Multi-gym y multi-idioma.
-- Stratos Mobile: app nativa iOS y Android para socios del gimnasio.
+- Stratos Mobile: app nativa iOS y Android para socios del gimnasio. Plan activo,
+  reserva de clases, check-in QR, rutinas y cronometro de entrenamiento.
 - Mini Turnos App: gestion de turnos online personalizable por rubro.
 - FactuApp: facturacion electronica de escritorio con AFIP WSFEv1 y CAE real.
 - Marroquineria Victoria: sitio y catalogo (https://marroquineriavictoria.com/).

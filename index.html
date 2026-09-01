@@ -4,9 +4,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="vvA9v1vjaE9F2UQuNgbGPsFFg-bhZAo6Oci0qTN1khM" name="google-site-verification"/>
-<title>Zyntra | Automatización con Visión e IA</title>
-<meta content="Sistemas a medida para tu negocio: turnos online, chatbots de WhatsApp, gestión, cobros automáticos y webs. Diagnóstico gratuito de 20 min. Buenos Aires." name="description"/>
+<title>Zyntra | Sistemas a medida, turnos y chatbots para tu negocio</title>
+<meta content="Sistemas a medida para peluquerías, consultorios, gimnasios, talleres y comercios: turnos, chatbots de WhatsApp, cobros y facturación AFIP. Diagnóstico gratis." name="description"/>
 <meta content="Zyntra" name="author"/>
+<meta content="#100f0d" name="theme-color"/>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
 <link href="https://emmanuelap.github.io/zyntraia/" rel="canonical"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -14,16 +15,16 @@
 <meta content="website" property="og:type"/>
 <meta content="es_AR" property="og:locale"/>
 <meta content="Zyntra" property="og:site_name"/>
-<meta content="Zyntra | Automatización con Visión e IA" property="og:title"/>
-<meta content="Sistemas a medida para tu negocio: turnos online, chatbots de WhatsApp, gestión, cobros automáticos y webs. Diagnóstico gratuito de 20 min. Buenos Aires." property="og:description"/>
+<meta content="Zyntra | Sistemas a medida, turnos y chatbots para tu negocio" property="og:title"/>
+<meta content="Sistemas a medida para peluquerías, consultorios, gimnasios, talleres y comercios: turnos, chatbots de WhatsApp, cobros y facturación AFIP. Diagnóstico gratis." property="og:description"/>
 <meta content="https://emmanuelap.github.io/zyntraia/" property="og:url"/>
 <meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="Zyntra - servicios digitales, automatización e IA" property="og:image:alt"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Zyntra | Automatización con Visión e IA" name="twitter:title"/>
-<meta content="Sistemas a medida para tu negocio: turnos online, chatbots de WhatsApp, gestión, cobros automáticos y webs. Diagnóstico gratuito de 20 min. Buenos Aires." name="twitter:description"/>
+<meta content="Zyntra | Sistemas a medida, turnos y chatbots para tu negocio" name="twitter:title"/>
+<meta content="Sistemas a medida para peluquerías, consultorios, gimnasios, talleres y comercios: turnos, chatbots de WhatsApp, cobros y facturación AFIP. Diagnóstico gratis." name="twitter:description"/>
 <meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" name="twitter:image"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -268,6 +269,23 @@
             text-transform: uppercase;
             color: #a1a1aa;
             margin-bottom: 0.45rem;
+        }
+        .pulso-punto {
+            width: 7px;
+            height: 7px;
+            border-radius: 9999px;
+            background-color: rgb(var(--marca));
+            animation: pulsoPunto 1.8s ease-in-out infinite;
+        }
+        @keyframes pulsoPunto {
+            0%, 100% { opacity: 0.35; transform: scale(0.8); }
+            12%      { opacity: 1;    transform: scale(1.35); }
+        }
+        .door-tags {
+            margin-top: 0.3rem;
+            font-size: 0.6875rem;
+            line-height: 1.5;
+            color: #8d8b89;
         }
         .door-dolor {
             font-size: 1.02rem;
@@ -1082,7 +1100,15 @@
     "Menús digitales con QR",
     "Desarrollo de sitios web",
     "Inteligencia artificial aplicada a negocios",
-    "Pentesting y seguridad informática"
+    "Pentesting y seguridad informática",
+    "Sistemas de gestión para ONG y fundaciones",
+    "Desarrollo pro bono para organizaciones sin fines de lucro",
+    "Software para comedores comunitarios y bancos de alimentos",
+    "Software para refugios de animales y proteccionistas",
+    "Gestión de socios para clubes de barrio y centros culturales",
+    "Sistemas para peluquerías, barberías y centros de estética",
+    "Turnos para consultorios médicos y odontológicos",
+    "Gestión para talleres mecánicos y veterinarias"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -1150,9 +1176,96 @@
           "@type": "Service",
           "name": "Pentesting y pruebas de intrusión autorizadas"
         }
+      },
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Desarrollo sin cargo para proyectos sin fines de lucro. Cupo de dos proyectos por año. Los proveedores externos (dominio, hosting, APIs) quedan a cargo de la organización.",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sistema de gestión para ONG y fundaciones sin cargo",
+          "serviceType": "Desarrollo de software pro bono"
+        }
+      },
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Página web sin costo para organizaciones sin fines de lucro",
+          "serviceType": "Desarrollo web pro bono"
+        }
+      },
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Auditoría de seguridad sin cargo para ONGs",
+          "serviceType": "Seguridad informática pro bono"
+        }
       }
     ]
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Quién hace páginas web gratis para ONGs en Argentina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zyntra desarrolla sin cargo sistemas y sitios web para organizaciones sin fines de lucro. Tomamos dos proyectos por año. El desarrollo, el diseño, la base de datos, las integraciones y la puesta en línea no se facturan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta un sistema de gestión para una fundación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dentro de nuestro programa sin fines de lucro el desarrollo cuesta cero. La organización sólo paga los proveedores externos que contrata a su nombre: dominio y hosting arrancan cerca de 3 dólares por mes. No revendemos ni cobramos comisión sobre eso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito tener personería jurídica para pedir el desarrollo sin cargo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Trabajamos con fundaciones y asociaciones civiles registradas, y también con grupos, comedores, merenderos y proteccionistas que todavía no tienen personería. Lo que miramos es qué resuelve el proyecto y a quién ayuda."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tipo de proyectos sin fines de lucro toman?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ambiente y reciclaje, refugios y rescate animal, comedores y bancos de alimentos, clubes de barrio y centros culturales, y auditorías de seguridad para organizaciones que manejan datos sensibles. También escuchamos causas de salud, discapacidad, educación, adultos mayores, bomberos voluntarios y cooperativas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué piden a cambio del trabajo sin cargo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Poder firmar el trabajo y mostrarlo en nuestro portfolio. Cuando la causa es sensible, como violencia de género, infancia o salud mental, el proyecto va sin firma, sin capturas y sin mención pública."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hacen sistemas para peluquerías, consultorios o talleres?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Desarrollamos turnos online, chatbots de WhatsApp, gestión de clientes, cobros automáticos y facturación electrónica AFIP para peluquerías, barberías, consultorios médicos y odontológicos, gimnasios, veterinarias, talleres mecánicos, estudios contables y comercios en general."
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -1911,13 +2024,13 @@
                             <span class="rounded-full bg-surface-container-highest px-3 py-1 text-xs font-bold text-on-surface-variant">iOS · Android</span>
                         </div>
                         <h3 class="text-2xl font-bold sm:text-3xl mb-3">Stratos Mobile</h3>
-                        <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">App nativa para socios del gimnasio. Panel con plan activo y créditos en tiempo real, reserva de clases, check-in QR, rutinas de entrenamiento, calculadores de nutrición y timer WOD con historial.</p>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed text-sm sm:text-base">App nativa para socios del gimnasio. Panel con plan activo y créditos en tiempo real, reserva de clases, check-in QR, rutinas de entrenamiento, calculadores de nutrición y cronómetro de entrenamiento con historial.</p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
                                 <span class="material-symbols-outlined text-base text-emerald-400/70">check_circle</span> Check-in QR + huella biométrica
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                                <span class="material-symbols-outlined text-base text-emerald-400/70">check_circle</span> Timer WOD con historial de sesiones
+                                <span class="material-symbols-outlined text-base text-emerald-400/70">check_circle</span> Cronómetro de entrenamiento con historial
                             </div>
                             <div class="flex items-center gap-2 text-sm text-on-surface-variant">
                                 <span class="material-symbols-outlined text-base text-emerald-400/70">check_circle</span> Chat grupal · Eventos · Nutrición
@@ -2254,6 +2367,7 @@
 <a class="industry-door group reveal" href="#svc-menu">
 <span class="material-symbols-outlined door-icon">restaurant</span>
 <span class="door-rubro">Gastronomía</span>
+<span class="door-tags">Restaurantes · bares · cafeterías · pizzerías · delivery</span>
 <p class="door-dolor">Dejá de reimprimir la carta cada vez que cambia un precio.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2261,6 +2375,7 @@
 <a class="industry-door group reveal" href="#svc-turnos" style="transition-delay:50ms">
 <span class="material-symbols-outlined door-icon">medical_services</span>
 <span class="door-rubro">Salud</span>
+<span class="door-tags">Consultorios · odontología · kinesiología · psicología · nutrición</span>
 <p class="door-dolor">Dejá de perder pacientes por turnos que nadie confirma.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2268,6 +2383,7 @@
 <a class="industry-door group reveal" href="#svc-chatbot" style="transition-delay:100ms">
 <span class="material-symbols-outlined door-icon">spa</span>
 <span class="door-rubro">Estética y Belleza</span>
+<span class="door-tags">Peluquerías · barberías · uñas · spa · depilación · tatuajes</span>
 <p class="door-dolor">Dejá de contestar WhatsApp mientras estás atendiendo.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2275,6 +2391,7 @@
 <a class="industry-door group reveal" href="#svc-gimnasios" style="transition-delay:150ms">
 <span class="material-symbols-outlined door-icon">fitness_center</span>
 <span class="door-rubro">Fitness</span>
+<span class="door-tags">Gimnasios · pilates · yoga · natación · artes marciales</span>
 <p class="door-dolor">Dejá de administrar socios y vencimientos en un Excel.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2282,6 +2399,7 @@
 <a class="industry-door group reveal" href="#svc-gestion" style="transition-delay:200ms">
 <span class="material-symbols-outlined door-icon">shopping_bag</span>
 <span class="door-rubro">Comercio</span>
+<span class="door-tags">Kioscos · indumentaria · ferreterías · dietéticas · librerías</span>
 <p class="door-dolor">Dejá de enterarte tarde de que te quedaste sin stock.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2289,6 +2407,7 @@
 <a class="industry-door group reveal" href="#svc-turnos" style="transition-delay:250ms">
 <span class="material-symbols-outlined door-icon">badge</span>
 <span class="door-rubro">Profesionales</span>
+<span class="door-tags">Abogados · contadores · arquitectos · diseñadores · fotógrafos</span>
 <p class="door-dolor">Dejá de coordinar cada turno por chat, uno por uno.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2296,6 +2415,7 @@
 <a class="industry-door group reveal" href="#svc-afip" style="transition-delay:300ms">
 <span class="material-symbols-outlined door-icon">payments</span>
 <span class="door-rubro">Finanzas</span>
+<span class="door-tags">Estudios contables · monotributistas · facturación electrónica</span>
 <p class="door-dolor">Dejá de cargar cada factura a mano en el portal de AFIP.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2303,6 +2423,7 @@
 <a class="industry-door group reveal" href="#svc-automatizacion" style="transition-delay:350ms">
 <span class="material-symbols-outlined door-icon">factory</span>
 <span class="door-rubro">Industria</span>
+<span class="door-tags">Fábricas · depósitos · distribuidoras · logística · mayoristas</span>
 <p class="door-dolor">Dejá de pasar los mismos datos de un sistema a otro, a mano.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2310,6 +2431,7 @@
 <a class="industry-door group reveal" href="#svc-embudos" style="transition-delay:400ms">
 <span class="material-symbols-outlined door-icon">construction</span>
 <span class="door-rubro">Construcción</span>
+<span class="door-tags">Corralones · pinturerías · instaladores · obras · remodelaciones</span>
 <p class="door-dolor">Dejá de perder presupuestos enterrados en el chat del celular.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2317,6 +2439,7 @@
 <a class="industry-door group reveal" href="#svc-cobros" style="transition-delay:450ms">
 <span class="material-symbols-outlined door-icon">school</span>
 <span class="door-rubro">Educación</span>
+<span class="door-tags">Escuelas de idiomas · academias · institutos · profesores particulares</span>
 <p class="door-dolor">Dejá de perseguir cuotas atrasadas alumno por alumno.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2324,6 +2447,7 @@
 <a class="industry-door group reveal" href="#svc-embudos" style="transition-delay:500ms">
 <span class="material-symbols-outlined door-icon">pets</span>
 <span class="door-rubro">Veterinarias</span>
+<span class="door-tags">Veterinarias · pet shops · peluquería canina · guarderías</span>
 <p class="door-dolor">Dejá de que las vacunas se venzan sin que nadie avise.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2331,6 +2455,7 @@
 <a class="industry-door group reveal" href="#svc-web" style="transition-delay:550ms">
 <span class="material-symbols-outlined door-icon">directions_car</span>
 <span class="door-rubro">Automotor y Talleres</span>
+<span class="door-tags">Talleres mecánicos · lubricentros · gomerías · concesionarias</span>
 <p class="door-dolor">Dejá de que te encuentren de casualidad y no cuando te buscan.</p>
 <span class="door-cta">Ver la solución<span class="material-symbols-outlined door-arrow">arrow_forward</span></span>
 </a>
@@ -2342,49 +2467,55 @@
 <!-- ===== / INDUSTRIAS ===== -->
 <!-- ===== IMPACTO / PROYECTOS SIN FINES DE LUCRO ===== -->
 <section class="relative overflow-hidden border-y border-outline-variant/10 bg-[#0a0908] py-24" id="impacto">
+<div class="absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
 <div class="soft-grid absolute inset-0 z-0 opacity-10"></div>
+<div class="pointer-events-none absolute -top-24 left-1/2 z-0 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[100px]"></div>
 <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 <div class="mb-12 max-w-3xl reveal">
-<span class="font-label text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">Sin cargo</span>
-<h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Hay proyectos que <span class="text-secondary">no cobramos</span></h2>
+<span class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.07] px-4 py-1.5">
+<span class="pulso-punto"></span>
+<span class="font-label text-xs font-bold uppercase tracking-[0.16em] text-primary">Programa sin fines de lucro · 2 cupos por año</span>
+</span>
+<h2 class="mt-5 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Desarrollo gratis para <span class="text-secondary">ONGs y fundaciones</span></h2>
 <p class="mt-4 text-lg text-on-surface-variant">La misma tecnología que le ahorra horas a un negocio le puede cambiar el día a una fundación que hoy trabaja con un cuaderno y un grupo de WhatsApp. Si tu proyecto ayuda a personas, animales o al ambiente y no persigue ganancia, el desarrollo lo ponemos nosotros.</p>
+<p class="mt-4 text-on-surface-variant">Si estás buscando un <strong class="font-semibold text-on-surface">sistema de gestión para una ONG</strong>, una <strong class="font-semibold text-on-surface">página web para tu fundación</strong>, una <strong class="font-semibold text-on-surface">app para un refugio de animales</strong> o <strong class="font-semibold text-on-surface">software para un comedor comunitario</strong> y no tenés con qué pagarlo, esta sección es para vos. Trabajamos con organizaciones de todo el país, con o sin personería jurídica.</p>
 </div>
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
 <div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6">
 <span class="material-symbols-outlined mb-4 text-3xl text-primary">recycling</span>
 <h3 class="mb-2 text-lg font-bold">Ambiente</h3>
-<p class="text-sm leading-relaxed text-on-surface-variant">Puntos verdes con QR, mapas de reciclaje, campañas de reforestación y denuncias de contaminación que hoy viven en una planilla que nadie lee.</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Puntos verdes con QR, mapas de reciclaje, campañas de reforestación y denuncias de contaminación que hoy viven en una planilla que nadie lee. Apps de sustentabilidad y cuidado del medio ambiente.</p>
 </div>
 
 <div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:60ms">
 <span class="material-symbols-outlined mb-4 text-3xl text-primary">pets</span>
 <h3 class="mb-2 text-lg font-bold">Refugios y rescate animal</h3>
-<p class="text-sm leading-relaxed text-on-surface-variant">Adopciones con ficha completa, historial médico, seguimiento post-adopción y campañas de castración, todo en un solo lado.</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Software para refugios y proteccionistas: adopciones con ficha completa, historial médico, seguimiento post-adopción y campañas de castración, todo en un solo lado.</p>
 </div>
 
 <div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:120ms">
 <span class="material-symbols-outlined mb-4 text-3xl text-primary">volunteer_activism</span>
 <h3 class="mb-2 text-lg font-bold">Comedores y bancos de alimentos</h3>
-<p class="text-sm leading-relaxed text-on-surface-variant">Qué entró, qué salió y qué falta. Con una rendición que se puede mostrar y que consigue más donantes que cualquier discurso.</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Sistema de stock y donaciones para comedores, merenderos y bancos de alimentos: qué entró, qué salió y qué falta, con una rendición que se puede mostrar y que consigue más donantes que cualquier discurso.</p>
 </div>
 
 <div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:180ms">
 <span class="material-symbols-outlined mb-4 text-3xl text-primary">sports_soccer</span>
 <h3 class="mb-2 text-lg font-bold">Clubes de barrio y deporte social</h3>
-<p class="text-sm leading-relaxed text-on-surface-variant">Socios, cuotas, actividades y asistencia sin el cuaderno de siempre. Es lo que ya construimos para gimnasios, adaptado a quien no factura.</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Gestión de socios, cuotas, actividades y asistencia para clubes, centros culturales y sociedades de fomento. Es lo que ya construimos para gimnasios, adaptado a quien no factura.</p>
 </div>
 
 <div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:240ms">
 <span class="material-symbols-outlined mb-4 text-3xl text-primary">shield_lock</span>
 <h3 class="mb-2 text-lg font-bold">Seguridad para organizaciones</h3>
-<p class="text-sm leading-relaxed text-on-surface-variant">Una ONG que guarda datos de menores o de víctimas y no tiene presupuesto de seguridad es el caso donde una auditoría vale más. Esa la hacemos sin cobrar.</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Auditoría de seguridad y protección de datos personales sin cargo. Una ONG que guarda datos de menores o de víctimas y no tiene presupuesto de seguridad es el caso donde una auditoría vale más.</p>
 </div>
 
 <a class="reveal flex flex-col rounded-[20px] border border-dashed border-primary/30 bg-primary/[0.04] p-6 transition-colors hover:bg-primary/[0.08]" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20tengo%20un%20proyecto%20sin%20fines%20de%20lucro%20y%20quiero%20contarles%20de%20qu%C3%A9%20se%20trata." rel="noopener noreferrer" style="transition-delay:300ms" target="_blank">
 <span class="material-symbols-outlined mb-4 text-3xl text-primary">add_circle</span>
 <h3 class="mb-2 text-lg font-bold">Tu causa</h3>
-<p class="text-sm leading-relaxed text-on-surface-variant">Salud, discapacidad, educación, adultos mayores, bomberos voluntarios, cooperativas. Si no está en la lista igual queremos escucharlo.</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Salud, discapacidad y accesibilidad, educación, adultos mayores, bomberos voluntarios, cooperativas, voluntariado, derechos humanos. Si no está en la lista igual queremos escucharlo.</p>
 <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">Contanos tu proyecto<span class="material-symbols-outlined text-base">arrow_forward</span></span>
 </a>
 
@@ -2413,6 +2544,7 @@
 </div>
 
 <p class="mt-8 max-w-3xl text-on-surface-variant reveal">Pedimos una sola cosa a cambio: poder firmar el trabajo y mostrarlo en nuestro portfolio. Cuando la causa es sensible —violencia de género, infancia, salud mental— va sin firma, sin capturas y sin mención. Eso no se negocia.</p>
+<p class="mt-4 reveal"><a class="font-semibold text-primary underline-offset-4 hover:underline" href="preguntasfrecuentes/#ongs">Ver las 12 preguntas frecuentes sobre proyectos sin fines de lucro<span class="material-symbols-outlined ml-1 align-middle text-base">arrow_forward</span></a></p>
 
 </div>
 </section>
