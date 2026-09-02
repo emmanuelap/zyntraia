@@ -70,17 +70,19 @@ def entre(texto, desde, hasta, incluir=True):
 EXTERNOS = ('http://', 'https://', '//', 'mailto:', 'tel:', 'data:', '../', '/')
 
 
-def subir_un_nivel(fragmento):
+def subir(fragmento, niveles=1):
     """
-    Las paginas generadas viven en /slug/index.html, un nivel mas abajo que
-    index.html. Hay que corregir cada ruta relativa y cada ancla que apunte
-    a la home.
+    Las paginas generadas viven mas abajo que index.html: /slug/index.html es
+    un nivel, /casos-de-exito/algo/index.html son dos. Hay que corregir cada
+    ruta relativa y cada ancla que apunte a la home.
     """
+    prefijo = '../' * niveles
+
     def arreglar(m):
         attr, valor = m.group(1), m.group(2)
         if valor.startswith(EXTERNOS) or valor == '#':
             return m.group(0)
-        return '%s="../%s"' % (attr, valor)
+        return '%s="%s%s"' % (attr, prefijo, valor)
 
     return re.sub(r'\b(href|src)="([^"]*)"', arreglar, fragmento)
 
@@ -114,8 +116,6 @@ def leer_chrome():
     chrome['fuentes'] = '\n'.join(fuentes)
     aviso = re.search(r'<!-- El font de iconos[^>]*?-->', h, re.S)
     chrome['aviso_iconos'] = aviso.group(0) if aviso else ''
-    for k in ('header', 'footer', 'flotantes'):
-        chrome[k] = subir_un_nivel(chrome[k])
     return chrome
 
 
@@ -170,7 +170,7 @@ def bloque_faq(s):
     extra = ''
     if s.get('mas'):
         enlaces = '\n'.join(
-            '<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#%s">%s</a></li>'
+            '<li><a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@preguntasfrecuentes/#%s">%s</a></li>'
             % (a, t) for a, t in s['mas'])
         extra = ('\n<div class="mt-8 rounded-2xl border border-outline-variant/10 bg-surface-container-low p-6">\n'
                  '<p class="mb-3 text-sm font-semibold text-on-surface">Mas preguntas sobre esto</p>\n'
@@ -179,7 +179,45 @@ def bloque_faq(s):
             '<div class="mt-6 max-w-3xl">\n%s\n</div>%s' % (s['h2'], '\n'.join(items), extra))
 
 
-RENDER = {'texto': bloque_texto, 'lista': bloque_lista, 'pasos': bloque_pasos, 'faq': bloque_faq}
+def bloque_cifras(s):
+    """Numeros de un caso real. Solo se usan cifras que el dueno pueda defender."""
+    celdas = []
+    for i, c in enumerate(s['numeros']):
+        celdas.append(
+            '<div class="reveal rounded-2xl border border-outline-variant/10 bg-surface-container '
+            'p-6 text-center" style="transition-delay:%dms">\n'
+            '<p class="font-headline text-4xl font-black text-primary sm:text-5xl">%s</p>\n'
+            '<p class="mt-2 text-sm font-semibold text-on-surface">%s</p>\n'
+            '<p class="mt-1 text-xs leading-relaxed text-zinc-400">%s</p>\n</div>'
+            % (i * 70, c['cifra'], c['titulo'], c.get('detalle', '')))
+    intro = ('<p class="mt-4 max-w-3xl text-on-surface-variant">%s</p>' % s['intro']) if s.get('intro') else ''
+    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n%s\n</div>\n'
+            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-%d">\n%s\n</div>'
+            % (s['h2'], intro, min(len(s['numeros']), 4), '\n'.join(celdas)))
+
+
+def bloque_casos(s):
+    """Grilla de casos que enlaza a cada ficha."""
+    fichas = []
+    for i, c in enumerate(s['casos']):
+        fichas.append(
+            '<a class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 '
+            'bg-surface-container p-6 transition-colors hover:bg-surface-container-high" '
+            'href="@@SUBIR@@%s/" style="transition-delay:%dms">\n'
+            '<span class="material-symbols-outlined mb-3 text-3xl text-primary">%s</span>\n'
+            '<h3 class="mb-2 text-lg font-bold">%s</h3>\n'
+            '<p class="mb-4 text-sm leading-relaxed text-on-surface-variant">%s</p>\n'
+            '<span class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary">'
+            '%s<span class="material-symbols-outlined text-base">arrow_forward</span></span>\n</a>'
+            % (c['slug'], i * 70, c.get('icono', 'work'), c['titulo'], c['texto'],
+               c.get('cta', 'Ver el caso')))
+    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n</div>\n'
+            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">\n%s\n</div>'
+            % (s['h2'], '\n'.join(fichas)))
+
+
+RENDER = {'texto': bloque_texto, 'lista': bloque_lista, 'pasos': bloque_pasos,
+          'faq': bloque_faq, 'cifras': bloque_cifras, 'casos': bloque_casos}
 
 
 def render_secciones(secciones):
@@ -225,6 +263,13 @@ def datos_estructurados(p):
             {"@type": "ListItem", "position": 2, "name": p['migas'], "item": url},
         ],
     }]
+    if p.get('padre'):
+        bloques[1]['itemListElement'] = [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": SITIO},
+            {"@type": "ListItem", "position": 2, "name": p['padre']['nombre'],
+             "item": SITIO + p['padre']['slug'] + '/'},
+            {"@type": "ListItem", "position": 3, "name": p['migas'], "item": url},
+        ]
     faqs = [s for s in p['secciones'] if s['tipo'] == 'faq']
     if faqs:
         preguntas = [q for s in faqs for q in s['preguntas']]
@@ -251,8 +296,8 @@ PLANTILLA = '''<!DOCTYPE html>
 <meta content="#100f0d" name="theme-color"/>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1" name="robots"/>
 <link href="@@URL@@" rel="canonical"/>
-<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="../apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="@@SUBIR@@favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="@@SUBIR@@apple-touch-icon.png" rel="apple-touch-icon"/>
 <meta content="website" property="og:type"/>
 <meta content="es_AR" property="og:locale"/>
 <meta content="Zyntra" property="og:site_name"/>
@@ -267,7 +312,7 @@ PLANTILLA = '''<!DOCTYPE html>
 @@TAILWIND@@
 @@CONFIG@@
 @@FUENTES@@
-<link href="../assets/zyntra.css" rel="stylesheet"/>
+<link href="@@SUBIR@@assets/zyntra.css" rel="stylesheet"/>
 @@SCHEMA@@
 </head>
 <body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
@@ -280,8 +325,8 @@ PLANTILLA = '''<!DOCTYPE html>
 <div class="mesh-glow absolute inset-0 z-0 opacity-40"></div>
 <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 <nav aria-label="Ruta de navegación" class="mb-6 flex items-center gap-2 text-sm text-zinc-400">
-<a class="hover:text-primary" href="../">Inicio</a>
-<span class="material-symbols-outlined text-base">chevron_right</span>
+<a class="hover:text-primary" href="@@SUBIR@@">Inicio</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>@@PADRE@@
 <span class="text-on-surface">@@MIGAS@@</span>
 </nav>
 <div class="max-w-3xl">
@@ -290,7 +335,7 @@ PLANTILLA = '''<!DOCTYPE html>
 <p class="mt-5 text-lg font-light text-on-surface-variant sm:text-xl">@@BAJADA@@</p>
 <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
 <a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto" href="@@WA@@" rel="noopener noreferrer" target="_blank">@@CTA_BOTON@@</a>
-<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto" href="../#contact-form">Pedir diagnóstico gratuito</a>
+<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto" href="@@SUBIR@@#contact-form">Pedir diagnóstico gratuito</a>
 </div>
 </div>
 </div>
@@ -305,7 +350,7 @@ PLANTILLA = '''<!DOCTYPE html>
 <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
 <a class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="@@WA@@" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-xl">chat</span>@@CTA_BOTON@@</a>
-<a class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="../preguntasfrecuentes/">Ver las preguntas frecuentes</a>
+<a class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="@@SUBIR@@preguntasfrecuentes/">Ver las preguntas frecuentes</a>
 </div>
 </div>
 </section>
@@ -313,7 +358,7 @@ PLANTILLA = '''<!DOCTYPE html>
 </main>
 @@FOOTER@@
 @@FLOTANTES@@
-<script src="../assets/zyntra.js"></script>
+<script src="@@SUBIR@@assets/zyntra.js"></script>
 </body>
 </html>
 '''
@@ -322,12 +367,18 @@ PLANTILLA = '''<!DOCTYPE html>
 def render(p, chrome):
     url = SITIO + p['slug'] + '/'
     wa = WA + p['wa']
+    niveles = p['slug'].count('/') + 1
     reemplazos = {
         '@@TITULO@@': esc(p['titulo']),
         '@@DESC@@': esc(p['descripcion']),
         '@@URL@@': url,
         '@@SITIO@@': SITIO,
         '@@MIGAS@@': p['migas'],
+        '@@PADRE@@': (
+            '\n<a class="hover:text-primary" href="%s%s/">%s</a>\n'
+            '<span class="material-symbols-outlined text-base">chevron_right</span>'
+            % ('../' * niveles, p['padre']['slug'], p['padre']['nombre'])
+        ) if p.get('padre') else '',
         '@@ICONO@@': p['icono'],
         '@@H1@@': p['h1'],
         '@@BAJADA@@': p['bajada'],
@@ -338,15 +389,16 @@ def render(p, chrome):
         '@@TAILWIND@@': chrome['tailwind'],
         '@@CONFIG@@': chrome['config'],
         '@@FUENTES@@': chrome['aviso_iconos'] + '\n' + chrome['fuentes'],
-        '@@HEADER@@': chrome['header'],
-        '@@FOOTER@@': chrome['footer'],
-        '@@FLOTANTES@@': chrome['flotantes'],
+        '@@HEADER@@': subir(chrome['header'], niveles),
+        '@@FOOTER@@': subir(chrome['footer'], niveles),
+        '@@FLOTANTES@@': subir(chrome['flotantes'], niveles),
         '@@SCHEMA@@': datos_estructurados(p),
         '@@SECCIONES@@': render_secciones(p['secciones']),
     }
     salida = PLANTILLA
     for k, v in reemplazos.items():
         salida = salida.replace(k, v)
+    salida = salida.replace('@@SUBIR@@', '../' * niveles)
     sobrantes = re.findall(r'@@[A-Z_]+@@', salida)
     if sobrantes:
         sys.exit('build: quedaron marcas sin reemplazar: %s' % set(sobrantes))

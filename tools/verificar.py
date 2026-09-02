@@ -32,7 +32,8 @@ def leer(p):
 def paginas_del_sitio():
     """Todo el HTML del sitio, con la ruta relativa a la raiz."""
     fuera = []
-    for patron in ('*.html', '*/index.html'):
+    # hasta tres niveles: raiz, /servicio/ y /casos-de-exito/algo/
+    for patron in ('*.html', '*/index.html', '*/*/index.html'):
         for p in glob.glob(os.path.join(RAIZ, patron)):
             rel = os.path.relpath(p, RAIZ).replace('\\', '/')
             if rel.split('/')[0] in EXCLUIDAS:

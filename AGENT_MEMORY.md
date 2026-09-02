@@ -109,6 +109,19 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 - Quedan 19 imagenes sin usar en portfolio/ (4.4 MB). No las sirve nadie, solo
   pesan en el repo. Preguntar al dueno antes de borrarlas.
 
+## Cifras reales (confirmadas por el dueno, NO inventar otras)
+- Stratos: 72 gimnasios y alrededor de 8.900 usuarios en total.
+- Asistente de WhatsApp: alrededor de 80 consultas por dia.
+- Recordatorio automatico: las ausencias por olvido de turno bajaron un 50%.
+- Estas son las UNICAS cifras publicables. Cualquier otra hay que pedirsela a el.
+
+## PRECIOS: no se publica ninguno
+- Pedido explicito del dueno: no va ningun precio en el sitio. Se saco el bloque
+  "$XXX.XXX" que estaba PUBLICADO con las X literales, y las menciones a los
+  3 dolares mensuales de hosting (home, FAQ, JSON-LD y desarrollo-web).
+- La unica cifra en pesos que queda es el resultado de la calculadora de
+  perdidas, que estima lo que pierde el visitante y no es un precio nuestro.
+
 ## Pendientes que necesitan datos del dueno
 - Precio real de entrada: hay un bloque con $XXX.XXX marcado con TODO en #services.
 - Testimonios reales: hay una plantilla comentada despues de la seccion de proyectos.

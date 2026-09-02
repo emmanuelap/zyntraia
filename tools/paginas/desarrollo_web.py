@@ -101,8 +101,8 @@ PAGINA = {
                 {'q': '¿Cuánto cuesta una página web para un comercio?',
                  'a': 'Hay dos costos que conviene separar. El desarrollo se presupuesta cerrado según '
                       'cuántas secciones tenga y si necesita turnos o cobros. Aparte está lo que se paga '
-                      'todos los meses: dominio y hosting, que arrancan cerca de 3 dólares mensuales y se '
-                      'contratan a tu nombre. Desconfiá del que te da un precio sin preguntarte antes qué '
+                      'todos los meses: dominio y hosting, que se contratan a tu nombre y son el gasto más '
+                      'barato de todos. Desconfiá del que te da un precio sin preguntarte antes qué '
                       'tiene que hacer la web.'},
                 {'q': '¿La web queda a mi nombre?',
                  'a': 'El dominio sí, y es lo más importante: se registra con tu cuenta y tu tarjeta. Es '
