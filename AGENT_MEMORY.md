@@ -58,6 +58,20 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   (no "emprendimiento" ni "proyecto"), CUIT 20-35971857-9, domicilio en Villa
   Urquiza, CABA. Sin altura de calle a pedido del dueno.
 
+## Rendimiento (paso 1 de la reestructuracion)
+- El font de iconos se pide RECORTADO con &icon_names= en las 6 paginas. La
+  fuente completa pesa 1.1 MB y el subset 70 KB. TRAMPA: si agregas un icono
+  nuevo tenes que sumarlo a icon_names en TODAS las paginas o se ve como texto
+  plano. La lista actual tiene 62 iconos.
+- Las capturas de portfolio/ estan en WebP, con ancho maximo 1400 px (el ancho
+  real que se muestra es 698 px CSS) y nombres en kebab-case sin acentos.
+  3.48 MB -> 1.36 MB. Todas las <img> del portfolio llevan loading="lazy".
+- El CSS y el JS de index.html viven en assets/zyntra.css y assets/zyntra.js
+  para que se cacheen entre paginas. Siguen inline a proposito: la config de
+  Tailwind (tiene que correr apenas carga el CDN) y los bloques JSON-LD.
+- Quedan 19 imagenes sin usar en portfolio/ (4.4 MB). No las sirve nadie, solo
+  pesan en el repo. Preguntar al dueno antes de borrarlas.
+
 ## Pendientes que necesitan datos del dueno
 - Precio real de entrada: hay un bloque con $XXX.XXX marcado con TODO en #services.
 - Testimonios reales: hay una plantilla comentada despues de la seccion de proyectos.
