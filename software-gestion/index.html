@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Software de gestión a medida para pymes | Zyntra</title>
+<meta content="Desarrollo de software de gestión a medida: clientes, stock, cobros, facturación y paneles en un solo lugar. Para pymes y comercios en Argentina." name="description"/>
+<meta content="Zyntra" name="author"/>
+<meta content="#100f0d" name="theme-color"/>
+<meta content="index, follow, max-image-preview:large, max-snippet:-1" name="robots"/>
+<link href="https://emmanuelap.github.io/zyntraia/software-gestion/" rel="canonical"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="website" property="og:type"/>
+<meta content="es_AR" property="og:locale"/>
+<meta content="Zyntra" property="og:site_name"/>
+<meta content="Software de gestión a medida para pymes | Zyntra" property="og:title"/>
+<meta content="Desarrollo de software de gestión a medida: clientes, stock, cobros, facturación y paneles en un solo lugar. Para pymes y comercios en Argentina." property="og:description"/>
+<meta content="https://emmanuelap.github.io/zyntraia/software-gestion/" property="og:url"/>
+<meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Software de gestión a medida para pymes | Zyntra" name="twitter:title"/>
+<meta content="Desarrollo de software de gestión a medida: clientes, stock, cobros, facturación y paneles en un solo lugar. Para pymes y comercios en Argentina." name="twitter:description"/>
+<meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" name="twitter:image"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#000000",
+                        "on-secondary-fixed-variant": "#00586b",
+                        "on-background": "#ffffff",
+                        "surface-container-high": "#211f1c",
+                        "on-primary": "#005762",
+                        "secondary-container": "#00677d",
+                        "inverse-primary": "#006976",
+                        "error-container": "#9f0519",
+                        "tertiary": "#70aaff",
+                        "inverse-on-surface": "#565555",
+                        "secondary-dim": "#00c6ee",
+                        "surface-container": "#1b1a17",
+                        "on-secondary-fixed": "#003a47",
+                        "primary-fixed-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "outline": "#767575",
+                        "on-secondary-container": "#edfaff",
+                        "tertiary-fixed-dim": "#65a4ff",
+                        "surface-dim": "#100f0d",
+                        "on-tertiary-container": "#001d3f",
+                        "error-dim": "#d7383b",
+                        "surface-tint": "rgb(var(--marca) / <alpha-value>)",
+                        "on-tertiary-fixed": "#001835",
+                        "tertiary-dim": "#5c9ffc",
+                        "surface-container-highest": "#272521",
+                        "on-primary-fixed-variant": "#005762",
+                        "surface-variant": "#272521",
+                        "secondary": "rgb(var(--marca-2) / <alpha-value>)",
+                        "surface-bright": "#2e2b26",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-fixed": "#80b2ff",
+                        "surface-container-low": "#151412",
+                        "secondary-fixed-dim": "rgb(var(--marca-2) / <alpha-value>)",
+                        "background": "#100f0d",
+                        "primary": "rgb(var(--marca) / <alpha-value>)",
+                        "surface": "#100f0d",
+                        "on-tertiary": "#002a55",
+                        "primary-fixed": "rgb(var(--marca-2) / <alpha-value>)",
+                        "primary-container": "rgb(var(--marca-2) / <alpha-value>)",
+                        "on-error": "#490006",
+                        "on-error-container": "#ffa8a3",
+                        "on-primary-container": "#004d57",
+                        "on-tertiary-fixed-variant": "#003971",
+                        "secondary-fixed": "rgb(var(--marca) / <alpha-value>)",
+                        "inverse-surface": "#fcf9f8",
+                        "tertiary-container": "#599cf9",
+                        "on-secondary": "#004554",
+                        "on-surface": "#ffffff",
+                        "error": "#ff716c",
+                        "primary-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "on-primary-fixed": "rgb(var(--marca-txt) / <alpha-value>)",
+                        "outline-variant": "#484847"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    fontFamily: {
+                        headline: ["Space Grotesk"],
+                        body: ["Inter"],
+                        label: ["Inter"]
+                    }
+                }
+            }
+        };
+    </script>
+<!-- El font de iconos se pide recortado a los que realmente usamos: la fuente
+     completa pesa 1.1 MB y este subset 70 KB. Si agregas un icono nuevo tenes
+     que sumarlo a icon_names de TODAS las paginas o se va a ver como texto. -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=add,add_circle,analytics,apps,arrow_back,arrow_forward,autorenew,badge,calculate,campaign,cancel,chat,check,check_circle,check_small,chevron_left,chevron_right,close,construction,directions_car,diversity_3,download,event_available,expand_more,factory,fitness_center,gavel,handshake,hub,insights,language,location_on,loyalty,mail,medical_services,menu,open_in_new,palette,payments,pets,phonelink_lock,qr_code_2,radio_button_unchecked,receipt_long,recycling,restaurant,restaurant_menu,reviews,school,search,search_off,security,shield,shield_lock,shopping_bag,smart_toy,spa,sports_soccer,tune,volunteer_activism,web,work&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/zyntra.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Software de gestión a medida",
+  "serviceType": "Desarrollo de software de gestión para pymes",
+  "description": "Desarrollo de software de gestión a medida: clientes, stock, cobros, facturación y paneles en un solo lugar. Para pymes y comercios en Argentina.",
+  "url": "https://emmanuelap.github.io/zyntraia/software-gestion/",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Zyntra",
+    "url": "https://emmanuelap.github.io/zyntraia/",
+    "telephone": "+5491166439309",
+    "email": "zyntraconsultoraia@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://emmanuelap.github.io/zyntraia/software-gestion/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://emmanuelap.github.io/zyntraia/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Software de gestión",
+      "item": "https://emmanuelap.github.io/zyntraia/software-gestion/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Conviene un sistema a medida o uno ya hecho?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si lo que hacés se parece a lo que hacen todos en tu rubro, un sistema ya hecho es más barato y sale mañana. El a medida se justifica cuando tu forma de trabajar es la ventaja competitiva y ningún producto la contempla, o cuando terminás pagando tres suscripciones que no se hablan entre sí. Te decimos honestamente en cuál de los dos casos estás, aunque sea el primero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tarda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un módulo acotado y bien definido suele estar andando en semanas. El sistema completo lleva meses, y por eso no lo hacemos de una: entregamos por partes para que empieces a usar lo primero mientras se construye el resto. Lo que más alarga los plazos no es programar, es que el negocio no tenga decidido cómo quiere trabajar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa con los datos que ya tengo cargados?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los migramos. Si están en Excel, en Google Sheets o en otro sistema con exportación, entran. Suele ser el paso que más tiempo lleva y el que más se subestima, porque los datos viejos siempre tienen inconsistencias que hay que resolver una por una."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito saber de computación para usarlo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, y si hace falta es que está mal diseñado. La prueba real es si la persona que menos se lleva con la tecnología en tu equipo puede cargar una venta sin preguntar. Eso lo probamos antes de entregar, no después."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si mañana no quiero trabajar más con ustedes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Te quedás con todo: el código, la base de datos y la documentación. Es la pregunta que más conviene hacer antes de contratar a cualquiera, y la respuesta debería ser siempre esta. Si un proveedor no te la puede dar, ahí tenés la respuesta."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
+<div class="scroll-progress" id="scroll-progress"></div>
+<header class="site-header fixed top-0 z-50 w-full bg-[#0a0908]/60 shadow-2xl shadow-black/40 backdrop-blur-xl">
+<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 tracking-tight sm:px-6 lg:px-8">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-zinc-100">Zyntra</span>
+</div>
+<div class="hidden items-center gap-8 md:flex">
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#senales">Diagnóstico</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#services">Servicios</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#proyectos">Proyectos</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#impacto">Impacto</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../preguntasfrecuentes/">Preguntas</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#contact-form">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-2 font-bold text-on-primary-fixed transition-transform hover:scale-95 active:scale-90 md:block" href="../#contact-form">
+                Diagnóstico Gratuito
+            </a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="text-zinc-100 md:hidden" id="menu-toggle" type="button">
+<span class="material-symbols-outlined" id="menu-icon">menu</span>
+</button>
+</div>
+</nav>
+<div class="mobile-menu border-t border-outline-variant/10 bg-[#0a0908]/95 backdrop-blur-xl md:hidden" hidden id="mobile-menu">
+<div class="flex flex-col gap-1 px-4 py-4 sm:px-6">
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#senales">Diagnóstico</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#services">Servicios</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#proyectos">Proyectos</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../preguntasfrecuentes/">Preguntas frecuentes</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#impacto">Impacto</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#about">Sobre Nosotros</a>
+<a class="mt-2 rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-3 text-center font-bold text-on-primary-fixed" href="../#contact-form">
+                    Pedir diagnóstico gratuito
+                </a>
+</div>
+</div>
+</header>
+<main>
+
+<section class="relative overflow-hidden px-0 pt-32 pb-16">
+<div class="soft-grid absolute inset-0 z-0 opacity-[0.07]"></div>
+<div class="mesh-glow absolute inset-0 z-0 opacity-40"></div>
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+<nav aria-label="Ruta de navegación" class="mb-6 flex items-center gap-2 text-sm text-zinc-400">
+<a class="hover:text-primary" href="../">Inicio</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="text-on-surface">Software de gestión</span>
+</nav>
+<div class="max-w-3xl">
+<span class="material-symbols-outlined mb-4 text-4xl text-primary">analytics</span>
+<h1 class="text-3xl font-bold leading-tight tracking-tighter sm:text-4xl md:text-5xl">Software de gestión a medida para tu negocio</h1>
+<p class="mt-5 text-lg font-light text-on-surface-variant sm:text-xl">Cuando cada área tiene su Excel, nadie sabe cuál es el dato bueno. Centralizamos la operación en una herramienta hecha para cómo trabajás vos.</p>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20un%20sistema%20de%20gesti%C3%B3n%20a%20medida." rel="noopener noreferrer" target="_blank">Quiero ordenar mi operación</a>
+<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto" href="../#contact-form">Pedir diagnóstico gratuito</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">El Excel no es el problema. Las copias sí.</h2>
+<p class="mt-4 text-on-surface-variant">Casi todo negocio arranca con una planilla, y está bien: es rápida, es gratis y la entiende cualquiera. El problema aparece después, cuando son cinco planillas, cada una con su versión de la verdad, y alguien pregunta cuánto stock hay realmente.</p>
+<p class="mt-4 text-on-surface-variant">Ahí empiezan los síntomas conocidos. Se factura algo que no había. Dos personas cargan el mismo cobro. Nadie puede decir cuánto se vendió el mes pasado sin sentarse una tarde a cruzar archivos.</p>
+<p class="mt-4 text-on-surface-variant">Un sistema a medida no es una planilla con más botones. Es que el dato se cargue una sola vez y que todos miren el mismo.</p>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-container-low">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Qué solemos incluir</h2>
+<p class="mt-4 max-w-3xl text-on-surface-variant">No hace falta arrancar con todo. Se empieza por el módulo que más duele.</p>
+</div>
+<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:0ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">badge</span>
+<h3 class="mb-2 text-lg font-bold">Clientes y contactos</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Ficha con historial completo: qué compró, qué se le hizo, cuándo fue la última vez. Sin buscar en el chat.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:60ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">shopping_bag</span>
+<h3 class="mb-2 text-lg font-bold">Stock e inventario</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Entradas, salidas y alertas de faltante. Con el stock descontándose solo cuando se vende, que es donde se rompe el control manual.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:120ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">payments</span>
+<h3 class="mb-2 text-lg font-bold">Cobros y cuentas corrientes</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Quién debe qué y desde cuándo. Con recordatorio automático antes de que la deuda se haga vieja.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:180ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">receipt_long</span>
+<h3 class="mb-2 text-lg font-bold">Facturación AFIP</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Comprobantes con CAE real, emitidos desde el mismo sistema donde cargás la venta. Sin volver a tipear todo en el portal.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:240ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">insights</span>
+<h3 class="mb-2 text-lg font-bold">Panel de indicadores</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Los cuatro o cinco números que de verdad usás para decidir, actualizados solos y a la vista.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:300ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">apps</span>
+<h3 class="mb-2 text-lg font-bold">Roles y permisos</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Que cada persona vea lo suyo. El mostrador no necesita ver la rentabilidad, y vos no querés que la toque.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Cómo trabajamos</h2>
+</div>
+<div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:0ms">
+<span class="hc-rotulo">Paso 01</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Miramos cómo trabajás hoy</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Con las planillas y los cuadernos reales a la vista. Un sistema que ignora las excepciones del negocio termina abandonado a los dos meses.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:70ms">
+<span class="hc-rotulo">Paso 02</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Elegimos por dónde empezar</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Un solo módulo, el que más horas te come. Salir con algo chico que funcione es mejor que esperar seis meses el sistema completo.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:140ms">
+<span class="hc-rotulo">Paso 03</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Migramos tus datos</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Lo que ya tenés cargado entra al sistema. Empezar de cero es la forma más rápida de que nadie lo use.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:210ms">
+<span class="hc-rotulo">Paso 04</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Entrega documentada</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">El sistema es tuyo, con la base exportable y la documentación de cómo está hecho. Sin quedar atado a nosotros.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Stratos Admin, nuestro caso más grande</h2>
+<p class="mt-4 text-on-surface-variant">Stratos Admin es un sistema de gestión completo que está en producción: socios, planes por disciplina, reservas con check-in por QR, cobros, facturación AFIP con CAE real y panel de analytics. Es multi-gimnasio y multi-idioma.</p>
+<p class="mt-4 text-on-surface-variant">Está pensado para gimnasios, pero la arquitectura es la misma que usamos para cualquier negocio con socios, turnos, stock y cobros. Cambia el vocabulario, no el sistema.</p>
+<p class="mt-4 text-on-surface-variant">Podés ver las capturas del panel en la <a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección de proyectos</a>, y si tenés un gimnasio mirá <a class="text-primary underline-offset-4 hover:underline" href="../#svc-gimnasios">el servicio armado para ese caso</a>.</p>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-container-low">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Preguntas sobre software de gestión</h2>
+</div>
+<div class="mt-6 max-w-3xl">
+<details class="faq-item" id="conviene-un-sistema-a-medida-o-uno-ya-hecho">
+<summary><h3 class="faq-q">¿Conviene un sistema a medida o uno ya hecho?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Si lo que hacés se parece a lo que hacen todos en tu rubro, un sistema ya hecho es más barato y sale mañana. El a medida se justifica cuando tu forma de trabajar es la ventaja competitiva y ningún producto la contempla, o cuando terminás pagando tres suscripciones que no se hablan entre sí. Te decimos honestamente en cuál de los dos casos estás, aunque sea el primero.</p></div>
+</details>
+<details class="faq-item" id="cuanto-tarda">
+<summary><h3 class="faq-q">¿Cuánto tarda?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Un módulo acotado y bien definido suele estar andando en semanas. El sistema completo lleva meses, y por eso no lo hacemos de una: entregamos por partes para que empieces a usar lo primero mientras se construye el resto. Lo que más alarga los plazos no es programar, es que el negocio no tenga decidido cómo quiere trabajar.</p></div>
+</details>
+<details class="faq-item" id="que-pasa-con-los-datos-que-ya-tengo-cargados">
+<summary><h3 class="faq-q">¿Qué pasa con los datos que ya tengo cargados?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Los migramos. Si están en Excel, en Google Sheets o en otro sistema con exportación, entran. Suele ser el paso que más tiempo lleva y el que más se subestima, porque los datos viejos siempre tienen inconsistencias que hay que resolver una por una.</p></div>
+</details>
+<details class="faq-item" id="necesito-saber-de-computacion-para-usarlo">
+<summary><h3 class="faq-q">¿Necesito saber de computación para usarlo?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>No, y si hace falta es que está mal diseñado. La prueba real es si la persona que menos se lleva con la tecnología en tu equipo puede cargar una venta sin preguntar. Eso lo probamos antes de entregar, no después.</p></div>
+</details>
+<details class="faq-item" id="que-pasa-si-manana-no-quiero-trabajar-mas-con-ustedes">
+<summary><h3 class="faq-q">¿Qué pasa si mañana no quiero trabajar más con ustedes?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Te quedás con todo: el código, la base de datos y la documentación. Es la pregunta que más conviene hacer antes de contratar a cualquiera, y la respuesta debería ser siempre esta. Si un proveedor no te la puede dar, ahí tenés la respuesta.</p></div>
+</details>
+</div>
+<div class="mt-8 rounded-2xl border border-outline-variant/10 bg-surface-container-low p-6">
+<p class="mb-3 text-sm font-semibold text-on-surface">Mas preguntas sobre esto</p>
+<ul class="space-y-2 text-sm text-on-surface-variant">
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-es-un-sistema-de-gestion-a-medida">¿Qué es un sistema de gestión a medida?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#conviene-un-sistema-a-medida-o-uno-ya-hecho">¿Conviene un sistema a medida o uno ya hecho?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#puedo-dejar-de-usar-excel-para-administrar-mi-negocio">¿Puedo dejar de usar Excel para administrar mi negocio?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#como-controlo-el-stock-de-mi-comercio">¿Cómo controlo el stock de mi comercio?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-es-un-panel-de-indicadores-y-para-que-sirve">¿Qué es un panel de indicadores y para qué sirve?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#se-puede-integrar-la-facturacion-con-el-control-de-stock">¿Se puede integrar la facturación con el control de stock?</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="relative overflow-hidden border-t border-outline-variant/10 bg-[#0a0908] py-20">
+<div class="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+<h2 class="text-2xl font-bold sm:text-3xl">Mostranos tus planillas</h2>
+<p class="mx-auto mt-3 max-w-xl text-on-surface-variant">En 20 minutos identificamos qué tarea manual te está comiendo más horas por semana y qué costaría automatizarla. El diagnóstico queda para vos aunque no contrates.</p>
+<div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+<a class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20un%20sistema%20de%20gesti%C3%B3n%20a%20medida." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-xl">chat</span>Quiero ordenar mi operación</a>
+<a class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="../preguntasfrecuentes/">Ver las preguntas frecuentes</a>
+</div>
+</div>
+</section>
+
+</main>
+<footer class="w-full border-t border-outline-variant/10 bg-[#0a0908] py-12">
+<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 sm:px-6 lg:px-8 md:flex-row md:items-center">
+<div class="flex flex-col items-start">
+<span class="mb-2 text-2xl font-black text-zinc-100">Zyntra</span>
+<div class="mb-4 flex items-center gap-2 text-zinc-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs uppercase tracking-widest">Capital Federal, Buenos Aires, Argentina</p>
+</div>
+<p class="mb-2 text-sm uppercase tracking-widest text-zinc-400">CEO · Pavón Emmanuel</p>
+<p class="text-sm uppercase tracking-widest text-zinc-400">© 2026 Zyntra Digital. Automatización con visión.</p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-4">
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://wa.me/5491166439309">WhatsApp</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="mailto:zyntraconsultoraia@gmail.com">Email</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">Telegram</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://www.linkedin.com/in/emmanuelpavon/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../preguntasfrecuentes/">Preguntas frecuentes</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../privacidad.html">Privacidad</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../terminos.html">Términos</a>
+</div>
+</div>
+<div class="mx-auto mt-10 max-w-7xl border-t border-outline-variant/10 px-4 pt-6 sm:px-6 lg:px-8">
+<p class="max-w-3xl text-xs leading-relaxed text-zinc-400">
+<strong class="text-zinc-300">Sobre nuestro canal de Telegram:</strong> está reservado exclusivamente para trabajos no convencionales — desarrollos a medida fuera de catálogo, integraciones poco comunes, automatizaciones experimentales y encargos que no encajan en los servicios listados en este sitio. Las consultas habituales sobre los servicios publicados se atienden por WhatsApp, por el formulario o por correo.
+                </p>
+</div>
+</footer>
+<a aria-label="Telegram: proyectos fuera de catálogo" class="tg-float" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+</a>
+<a aria-label="Escribinos por WhatsApp" class="wa-float" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<script src="../assets/zyntra.js"></script>
+</body>
+</html>

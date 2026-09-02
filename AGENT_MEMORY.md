@@ -72,6 +72,11 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   nivel mas abajo. Las que empiezan con http, mailto, tel o / quedan intactas.
 - El build tambien reescribe sitemap.xml entero. No editarlo a mano.
 - Comandos: python tools/build.py  |  python tools/build.py --listar
+- tools/verificar.py revisa TODO el sitio: que cada enlace interno exista,
+  que cada ancla exista de verdad en la pagina destino, que el JSON-LD sea
+  valido y que ninguna <img> quede sin alt. Correrlo despues de cada build;
+  devuelve 1 si encuentra algo. Una ancla mal escrita no rompe nada visible,
+  por eso hace falta el chequeo.
 
 ## Rendimiento (paso 1 de la reestructuracion)
 - El font de iconos se pide RECORTADO con &icon_names= en las 6 paginas. La
