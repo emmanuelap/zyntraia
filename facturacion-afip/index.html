@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Facturación electrónica AFIP integrada a tu sistema | Zyntra</title>
+<meta content="Facturación electrónica AFIP con CAE real desde tu propio sistema. Facturas A, B y C emitidas donde cargás la venta, sin volver a tipear en el portal." name="description"/>
+<meta content="Zyntra" name="author"/>
+<meta content="#100f0d" name="theme-color"/>
+<meta content="index, follow, max-image-preview:large, max-snippet:-1" name="robots"/>
+<link href="https://emmanuelap.github.io/zyntraia/facturacion-afip/" rel="canonical"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="website" property="og:type"/>
+<meta content="es_AR" property="og:locale"/>
+<meta content="Zyntra" property="og:site_name"/>
+<meta content="Facturación electrónica AFIP integrada a tu sistema | Zyntra" property="og:title"/>
+<meta content="Facturación electrónica AFIP con CAE real desde tu propio sistema. Facturas A, B y C emitidas donde cargás la venta, sin volver a tipear en el portal." property="og:description"/>
+<meta content="https://emmanuelap.github.io/zyntraia/facturacion-afip/" property="og:url"/>
+<meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Facturación electrónica AFIP integrada a tu sistema | Zyntra" name="twitter:title"/>
+<meta content="Facturación electrónica AFIP con CAE real desde tu propio sistema. Facturas A, B y C emitidas donde cargás la venta, sin volver a tipear en el portal." name="twitter:description"/>
+<meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" name="twitter:image"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#000000",
+                        "on-secondary-fixed-variant": "#00586b",
+                        "on-background": "#ffffff",
+                        "surface-container-high": "#211f1c",
+                        "on-primary": "#005762",
+                        "secondary-container": "#00677d",
+                        "inverse-primary": "#006976",
+                        "error-container": "#9f0519",
+                        "tertiary": "#70aaff",
+                        "inverse-on-surface": "#565555",
+                        "secondary-dim": "#00c6ee",
+                        "surface-container": "#1b1a17",
+                        "on-secondary-fixed": "#003a47",
+                        "primary-fixed-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "outline": "#767575",
+                        "on-secondary-container": "#edfaff",
+                        "tertiary-fixed-dim": "#65a4ff",
+                        "surface-dim": "#100f0d",
+                        "on-tertiary-container": "#001d3f",
+                        "error-dim": "#d7383b",
+                        "surface-tint": "rgb(var(--marca) / <alpha-value>)",
+                        "on-tertiary-fixed": "#001835",
+                        "tertiary-dim": "#5c9ffc",
+                        "surface-container-highest": "#272521",
+                        "on-primary-fixed-variant": "#005762",
+                        "surface-variant": "#272521",
+                        "secondary": "rgb(var(--marca-2) / <alpha-value>)",
+                        "surface-bright": "#2e2b26",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-fixed": "#80b2ff",
+                        "surface-container-low": "#151412",
+                        "secondary-fixed-dim": "rgb(var(--marca-2) / <alpha-value>)",
+                        "background": "#100f0d",
+                        "primary": "rgb(var(--marca) / <alpha-value>)",
+                        "surface": "#100f0d",
+                        "on-tertiary": "#002a55",
+                        "primary-fixed": "rgb(var(--marca-2) / <alpha-value>)",
+                        "primary-container": "rgb(var(--marca-2) / <alpha-value>)",
+                        "on-error": "#490006",
+                        "on-error-container": "#ffa8a3",
+                        "on-primary-container": "#004d57",
+                        "on-tertiary-fixed-variant": "#003971",
+                        "secondary-fixed": "rgb(var(--marca) / <alpha-value>)",
+                        "inverse-surface": "#fcf9f8",
+                        "tertiary-container": "#599cf9",
+                        "on-secondary": "#004554",
+                        "on-surface": "#ffffff",
+                        "error": "#ff716c",
+                        "primary-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "on-primary-fixed": "rgb(var(--marca-txt) / <alpha-value>)",
+                        "outline-variant": "#484847"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    fontFamily: {
+                        headline: ["Space Grotesk"],
+                        body: ["Inter"],
+                        label: ["Inter"]
+                    }
+                }
+            }
+        };
+    </script>
+<!-- El font de iconos se pide recortado a los que realmente usamos: la fuente
+     completa pesa 1.1 MB y este subset 70 KB. Si agregas un icono nuevo tenes
+     que sumarlo a icon_names de TODAS las paginas o se va a ver como texto. -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=add,add_circle,analytics,apps,arrow_back,arrow_forward,autorenew,badge,calculate,campaign,cancel,chat,check,check_circle,check_small,chevron_left,chevron_right,close,construction,directions_car,diversity_3,download,event_available,expand_more,factory,fitness_center,gavel,handshake,hub,insights,language,location_on,loyalty,mail,medical_services,menu,open_in_new,palette,payments,pets,phonelink_lock,qr_code_2,radio_button_unchecked,receipt_long,recycling,restaurant,restaurant_menu,reviews,school,search,search_off,security,shield,shield_lock,shopping_bag,smart_toy,spa,sports_soccer,tune,volunteer_activism,web,work&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/zyntra.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Integración de facturación electrónica AFIP",
+  "serviceType": "Desarrollo de software de facturación electrónica",
+  "description": "Facturación electrónica AFIP con CAE real desde tu propio sistema. Facturas A, B y C emitidas donde cargás la venta, sin volver a tipear en el portal.",
+  "url": "https://emmanuelap.github.io/zyntraia/facturacion-afip/",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Zyntra",
+    "url": "https://emmanuelap.github.io/zyntraia/",
+    "telephone": "+5491166439309",
+    "email": "zyntraconsultoraia@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://emmanuelap.github.io/zyntraia/facturacion-afip/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://emmanuelap.github.io/zyntraia/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Facturación AFIP",
+      "item": "https://emmanuelap.github.io/zyntraia/facturacion-afip/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo facturar desde mi propio sistema en vez del portal de AFIP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. AFIP publica servicios web justamente para eso: tu sistema pide la autorización y recibe el CAE, igual que si cargaras la factura en el portal. Lo que cambia es que los datos salen de donde ya están, no de alguien tipeando. Hace falta un certificado digital a nombre de tu CUIT con permiso para facturar, que es un trámite de una sola vez."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si me equivoco al emitir una factura?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una factura electrónica autorizada no se borra: se corrige con una nota de crédito que la anula, y después se emite la correcta. Por eso conviene que el sistema valide antes de mandar, sobre todo el tipo de comprobante y los datos del cliente, que son donde más se equivoca la carga manual. Igual las notas de crédito son parte normal del circuito, no un desastre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito un sistema si facturo poco?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si emitís tres facturas por mes, el portal de AFIP te alcanza y no vale la pena integrar nada. La cuenta cambia cuando facturás todos los días, cuando la carga manual te está generando errores, o cuando el comprobante tiene que salir en el momento de la venta con el cliente adelante. Te decimos en cuál de los dos casos estás."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si AFIP cambia algo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pasa seguido: cambian formatos, se agregan campos obligatorios, aparecen regímenes nuevos. Es parte del mantenimiento de cualquier sistema que facture, y conviene tenerlo previsto desde el principio en vez de descubrirlo el día que deja de andar. Nosotros ya venimos siguiendo esos cambios para nuestros propios sistemas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Los comprobantes quedan míos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, y quedan también en AFIP, que es el registro que vale. Tu sistema guarda el libro completo exportable para vos y para tu contador. Es algo que conviene confirmar con cualquier proveedor: si el día que te vas no te podés llevar el historial de comprobantes, tenés un problema."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
+<div class="scroll-progress" id="scroll-progress"></div>
+<header class="site-header fixed top-0 z-50 w-full bg-[#0a0908]/60 shadow-2xl shadow-black/40 backdrop-blur-xl">
+<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 tracking-tight sm:px-6 lg:px-8">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-zinc-100">Zyntra</span>
+</div>
+<div class="hidden items-center gap-8 md:flex">
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#senales">Diagnóstico</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#services">Servicios</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#proyectos">Proyectos</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#impacto">Impacto</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../preguntasfrecuentes/">Preguntas</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#contact-form">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-2 font-bold text-on-primary-fixed transition-transform hover:scale-95 active:scale-90 md:block" href="../#contact-form">
+                Diagnóstico Gratuito
+            </a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="text-zinc-100 md:hidden" id="menu-toggle" type="button">
+<span class="material-symbols-outlined" id="menu-icon">menu</span>
+</button>
+</div>
+</nav>
+<div class="mobile-menu border-t border-outline-variant/10 bg-[#0a0908]/95 backdrop-blur-xl md:hidden" hidden id="mobile-menu">
+<div class="flex flex-col gap-1 px-4 py-4 sm:px-6">
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#senales">Diagnóstico</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#services">Servicios</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#proyectos">Proyectos</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../preguntasfrecuentes/">Preguntas frecuentes</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#impacto">Impacto</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#about">Sobre Nosotros</a>
+<a class="mt-2 rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-3 text-center font-bold text-on-primary-fixed" href="../#contact-form">
+                    Pedir diagnóstico gratuito
+                </a>
+</div>
+</div>
+</header>
+<main>
+
+<section class="relative overflow-hidden px-0 pt-32 pb-16">
+<div class="soft-grid absolute inset-0 z-0 opacity-[0.07]"></div>
+<div class="mesh-glow absolute inset-0 z-0 opacity-40"></div>
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+<nav aria-label="Ruta de navegación" class="mb-6 flex items-center gap-2 text-sm text-zinc-400">
+<a class="hover:text-primary" href="../">Inicio</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="text-on-surface">Facturación AFIP</span>
+</nav>
+<div class="max-w-3xl">
+<span class="material-symbols-outlined mb-4 text-4xl text-primary">receipt_long</span>
+<h1 class="text-3xl font-bold leading-tight tracking-tighter sm:text-4xl md:text-5xl">Facturación electrónica AFIP desde tu propio sistema</h1>
+<p class="mt-5 text-lg font-light text-on-surface-variant sm:text-xl">Facturás en el momento de la venta, con CAE real, sin cargar dos veces los mismos datos ni entrar al portal. Integrado donde ya trabajás.</p>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20integrar%20la%20facturaci%C3%B3n%20AFIP%20a%20mi%20sistema." rel="noopener noreferrer" target="_blank">Quiero facturar desde mi sistema</a>
+<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto" href="../#contact-form">Pedir diagnóstico gratuito</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">El problema es la doble carga</h2>
+<p class="mt-4 text-on-surface-variant">La venta ya está cargada en algún lado: en tu sistema, en una planilla, en el cuaderno. Y después alguien la vuelve a tipear en el portal de AFIP, uno por uno, con el cliente esperando o al final del día.</p>
+<p class="mt-4 text-on-surface-variant">Ahí pasan las dos cosas de siempre. Se tipea mal un número y sale una factura que hay que anular con nota de crédito. O se juntan tres días de comprobantes y se factura todo junto, tarde y con fecha que no coincide con la venta.</p>
+<p class="mt-4 text-on-surface-variant">Integrar la facturación no es tener otro programa más. Es que el comprobante salga del mismo lugar donde ya cargaste la venta, en el mismo momento.</p>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-container-low">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Qué incluye la integración</h2>
+
+</div>
+<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:0ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">receipt_long</span>
+<h3 class="mb-2 text-lg font-bold">Facturas A, B y C</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Con el tipo de comprobante que corresponde según tu condición y la del cliente, resuelto por el sistema y no de memoria.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:60ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">check_circle</span>
+<h3 class="mb-2 text-lg font-bold">CAE real de AFIP</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">El comprobante se autoriza contra el servicio de AFIP y vuelve con su código y su vencimiento. No es un PDF que parece una factura.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:120ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">cancel</span>
+<h3 class="mb-2 text-lg font-bold">Notas de crédito y débito</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Para cuando hay que anular o corregir, que es cuando más se complica hacerlo a mano.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:180ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">shopping_bag</span>
+<h3 class="mb-2 text-lg font-bold">Conectada al stock</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">La venta descuenta inventario y emite el comprobante en la misma operación, sin dos cargas.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:240ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">phonelink_lock</span>
+<h3 class="mb-2 text-lg font-bold">Desde donde estés</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Emisión desde la computadora del mostrador o desde el celular, según cómo trabajes.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:300ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">analytics</span>
+<h3 class="mb-2 text-lg font-bold">Libro de comprobantes</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Todo lo emitido queda registrado y exportable, para vos y para tu contador.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Cómo se conecta con AFIP</h2>
+</div>
+<div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:0ms">
+<span class="hc-rotulo">Paso 01</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Certificado digital</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Se genera un certificado a nombre de tu CUIT y se le da permiso para facturar. Es un trámite que se hace una vez y te acompañamos a hacerlo.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:70ms">
+<span class="hc-rotulo">Paso 02</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Autenticación</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">El sistema pide un ticket de acceso al servicio de autenticación de AFIP y lo renueva solo cuando vence. Vos no ves nada de esto.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:140ms">
+<span class="hc-rotulo">Paso 03</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Solicitud del comprobante</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Al confirmar la venta, el sistema envía los datos al servicio de facturación y espera la autorización.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:210ms">
+<span class="hc-rotulo">Paso 04</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">CAE y entrega</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">AFIP devuelve el código de autorización y su vencimiento. Con eso se arma el comprobante final, que se imprime o se manda por WhatsApp o email.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">FactuApp, y por qué importa que sea real</h2>
+<p class="mt-4 text-on-surface-variant">FactuApp es nuestro sistema de facturación electrónica de escritorio, en producción, trabajando contra los servicios reales de AFIP con CAE real. No es una maqueta ni un simulador.</p>
+<p class="mt-4 text-on-surface-variant">La diferencia importa más de lo que parece. Conectarse a AFIP tiene sus particularidades: certificados que vencen, tickets de acceso con duración limitada, numeración que tiene que ser correlativa sin saltos, y un entorno de homologación que se comporta distinto al de producción. Todo eso ya lo pasamos.</p>
+<p class="mt-4 text-on-surface-variant">El mismo motor está integrado dentro de Stratos Admin, así que la facturación no vive aparte del sistema de gestión: es parte de la misma operación. Podés ver las capturas en la <a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección de proyectos</a>.</p>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-container-low">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Preguntas sobre facturación electrónica</h2>
+</div>
+<div class="mt-6 max-w-3xl">
+<details class="faq-item" id="puedo-facturar-desde-mi-propio-sistema-en-vez-del-portal-de-afip">
+<summary><h3 class="faq-q">¿Puedo facturar desde mi propio sistema en vez del portal de AFIP?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Sí. AFIP publica servicios web justamente para eso: tu sistema pide la autorización y recibe el CAE, igual que si cargaras la factura en el portal. Lo que cambia es que los datos salen de donde ya están, no de alguien tipeando. Hace falta un certificado digital a nombre de tu CUIT con permiso para facturar, que es un trámite de una sola vez.</p></div>
+</details>
+<details class="faq-item" id="que-pasa-si-me-equivoco-al-emitir-una-factura">
+<summary><h3 class="faq-q">¿Qué pasa si me equivoco al emitir una factura?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Una factura electrónica autorizada no se borra: se corrige con una nota de crédito que la anula, y después se emite la correcta. Por eso conviene que el sistema valide antes de mandar, sobre todo el tipo de comprobante y los datos del cliente, que son donde más se equivoca la carga manual. Igual las notas de crédito son parte normal del circuito, no un desastre.</p></div>
+</details>
+<details class="faq-item" id="necesito-un-sistema-si-facturo-poco">
+<summary><h3 class="faq-q">¿Necesito un sistema si facturo poco?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Si emitís tres facturas por mes, el portal de AFIP te alcanza y no vale la pena integrar nada. La cuenta cambia cuando facturás todos los días, cuando la carga manual te está generando errores, o cuando el comprobante tiene que salir en el momento de la venta con el cliente adelante. Te decimos en cuál de los dos casos estás.</p></div>
+</details>
+<details class="faq-item" id="que-pasa-si-afip-cambia-algo">
+<summary><h3 class="faq-q">¿Qué pasa si AFIP cambia algo?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Pasa seguido: cambian formatos, se agregan campos obligatorios, aparecen regímenes nuevos. Es parte del mantenimiento de cualquier sistema que facture, y conviene tenerlo previsto desde el principio en vez de descubrirlo el día que deja de andar. Nosotros ya venimos siguiendo esos cambios para nuestros propios sistemas.</p></div>
+</details>
+<details class="faq-item" id="los-comprobantes-quedan-mios">
+<summary><h3 class="faq-q">¿Los comprobantes quedan míos?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Sí, y quedan también en AFIP, que es el registro que vale. Tu sistema guarda el libro completo exportable para vos y para tu contador. Es algo que conviene confirmar con cualquier proveedor: si el día que te vas no te podés llevar el historial de comprobantes, tenés un problema.</p></div>
+</details>
+</div>
+<div class="mt-8 rounded-2xl border border-outline-variant/10 bg-surface-container-low p-6">
+<p class="mb-3 text-sm font-semibold text-on-surface">Mas preguntas sobre esto</p>
+<ul class="space-y-2 text-sm text-on-surface-variant">
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-es-la-facturacion-electronica-de-afip-y-quienes-tienen-que-usarla">¿Qué es la facturación electrónica de AFIP y quiénes tienen que usarla?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-es-el-cae-de-afip-y-para-que-sirve">¿Qué es el CAE de AFIP y para qué sirve?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#puedo-facturar-automaticamente-en-afip-desde-mi-propio-sistema">¿Puedo facturar automáticamente en AFIP desde mi propio sistema?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-diferencia-hay-entre-factura-a-b-y-c">¿Qué diferencia hay entre factura A, B y C?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#se-puede-integrar-la-facturacion-con-el-control-de-stock">¿Se puede integrar la facturación con el control de stock?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#puedo-emitir-comprobantes-desde-el-celular">¿Puedo emitir comprobantes desde el celular?</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="relative overflow-hidden border-t border-outline-variant/10 bg-[#0a0908] py-20">
+<div class="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+<h2 class="text-2xl font-bold sm:text-3xl">Contanos cómo facturás hoy</h2>
+<p class="mx-auto mt-3 max-w-xl text-on-surface-variant">En 20 minutos vemos cuánto tiempo se te va en carga manual y qué haría falta para integrar la emisión. El diagnóstico queda para vos aunque no contrates.</p>
+<div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+<a class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20integrar%20la%20facturaci%C3%B3n%20AFIP%20a%20mi%20sistema." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-xl">chat</span>Quiero facturar desde mi sistema</a>
+<a class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="../preguntasfrecuentes/">Ver las preguntas frecuentes</a>
+</div>
+</div>
+</section>
+
+</main>
+<footer class="w-full border-t border-outline-variant/10 bg-[#0a0908] py-12">
+<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 sm:px-6 lg:px-8 md:flex-row md:items-center">
+<div class="flex flex-col items-start">
+<span class="mb-2 text-2xl font-black text-zinc-100">Zyntra</span>
+<div class="mb-4 flex items-center gap-2 text-zinc-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs uppercase tracking-widest">Capital Federal, Buenos Aires, Argentina</p>
+</div>
+<p class="mb-2 text-sm uppercase tracking-widest text-zinc-400">CEO · Pavón Emmanuel</p>
+<p class="text-sm uppercase tracking-widest text-zinc-400">© 2026 Zyntra Digital. Automatización con visión.</p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-4">
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://wa.me/5491166439309">WhatsApp</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="mailto:zyntraconsultoraia@gmail.com">Email</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">Telegram</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://www.linkedin.com/in/emmanuelpavon/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../preguntasfrecuentes/">Preguntas frecuentes</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../privacidad.html">Privacidad</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../terminos.html">Términos</a>
+</div>
+</div>
+<div class="mx-auto mt-10 max-w-7xl border-t border-outline-variant/10 px-4 pt-6 sm:px-6 lg:px-8">
+<p class="max-w-3xl text-xs leading-relaxed text-zinc-400">
+<strong class="text-zinc-300">Sobre nuestro canal de Telegram:</strong> está reservado exclusivamente para trabajos no convencionales — desarrollos a medida fuera de catálogo, integraciones poco comunes, automatizaciones experimentales y encargos que no encajan en los servicios listados en este sitio. Las consultas habituales sobre los servicios publicados se atienden por WhatsApp, por el formulario o por correo.
+                </p>
+</div>
+</footer>
+<a aria-label="Telegram: proyectos fuera de catálogo" class="tg-float" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+</a>
+<a aria-label="Escribinos por WhatsApp" class="wa-float" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<script src="../assets/zyntra.js"></script>
+</body>
+</html>

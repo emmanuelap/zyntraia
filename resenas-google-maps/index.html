@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Más reseñas en Google Maps para tu negocio | Zyntra</title>
+<meta content="Sistema para conseguir reseñas en Google Maps: pedido automático por WhatsApp, QR y tarjeta NFC. Mejorá tu posición en las búsquedas locales." name="description"/>
+<meta content="Zyntra" name="author"/>
+<meta content="#100f0d" name="theme-color"/>
+<meta content="index, follow, max-image-preview:large, max-snippet:-1" name="robots"/>
+<link href="https://emmanuelap.github.io/zyntraia/resenas-google-maps/" rel="canonical"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="website" property="og:type"/>
+<meta content="es_AR" property="og:locale"/>
+<meta content="Zyntra" property="og:site_name"/>
+<meta content="Más reseñas en Google Maps para tu negocio | Zyntra" property="og:title"/>
+<meta content="Sistema para conseguir reseñas en Google Maps: pedido automático por WhatsApp, QR y tarjeta NFC. Mejorá tu posición en las búsquedas locales." property="og:description"/>
+<meta content="https://emmanuelap.github.io/zyntraia/resenas-google-maps/" property="og:url"/>
+<meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Más reseñas en Google Maps para tu negocio | Zyntra" name="twitter:title"/>
+<meta content="Sistema para conseguir reseñas en Google Maps: pedido automático por WhatsApp, QR y tarjeta NFC. Mejorá tu posición en las búsquedas locales." name="twitter:description"/>
+<meta content="https://emmanuelap.github.io/zyntraia/og-zyntra.jpg" name="twitter:image"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#000000",
+                        "on-secondary-fixed-variant": "#00586b",
+                        "on-background": "#ffffff",
+                        "surface-container-high": "#211f1c",
+                        "on-primary": "#005762",
+                        "secondary-container": "#00677d",
+                        "inverse-primary": "#006976",
+                        "error-container": "#9f0519",
+                        "tertiary": "#70aaff",
+                        "inverse-on-surface": "#565555",
+                        "secondary-dim": "#00c6ee",
+                        "surface-container": "#1b1a17",
+                        "on-secondary-fixed": "#003a47",
+                        "primary-fixed-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "outline": "#767575",
+                        "on-secondary-container": "#edfaff",
+                        "tertiary-fixed-dim": "#65a4ff",
+                        "surface-dim": "#100f0d",
+                        "on-tertiary-container": "#001d3f",
+                        "error-dim": "#d7383b",
+                        "surface-tint": "rgb(var(--marca) / <alpha-value>)",
+                        "on-tertiary-fixed": "#001835",
+                        "tertiary-dim": "#5c9ffc",
+                        "surface-container-highest": "#272521",
+                        "on-primary-fixed-variant": "#005762",
+                        "surface-variant": "#272521",
+                        "secondary": "rgb(var(--marca-2) / <alpha-value>)",
+                        "surface-bright": "#2e2b26",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-fixed": "#80b2ff",
+                        "surface-container-low": "#151412",
+                        "secondary-fixed-dim": "rgb(var(--marca-2) / <alpha-value>)",
+                        "background": "#100f0d",
+                        "primary": "rgb(var(--marca) / <alpha-value>)",
+                        "surface": "#100f0d",
+                        "on-tertiary": "#002a55",
+                        "primary-fixed": "rgb(var(--marca-2) / <alpha-value>)",
+                        "primary-container": "rgb(var(--marca-2) / <alpha-value>)",
+                        "on-error": "#490006",
+                        "on-error-container": "#ffa8a3",
+                        "on-primary-container": "#004d57",
+                        "on-tertiary-fixed-variant": "#003971",
+                        "secondary-fixed": "rgb(var(--marca) / <alpha-value>)",
+                        "inverse-surface": "#fcf9f8",
+                        "tertiary-container": "#599cf9",
+                        "on-secondary": "#004554",
+                        "on-surface": "#ffffff",
+                        "error": "#ff716c",
+                        "primary-dim": "rgb(var(--marca-dim) / <alpha-value>)",
+                        "on-primary-fixed": "rgb(var(--marca-txt) / <alpha-value>)",
+                        "outline-variant": "#484847"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    fontFamily: {
+                        headline: ["Space Grotesk"],
+                        body: ["Inter"],
+                        label: ["Inter"]
+                    }
+                }
+            }
+        };
+    </script>
+<!-- El font de iconos se pide recortado a los que realmente usamos: la fuente
+     completa pesa 1.1 MB y este subset 70 KB. Si agregas un icono nuevo tenes
+     que sumarlo a icon_names de TODAS las paginas o se va a ver como texto. -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=add,add_circle,analytics,apps,arrow_back,arrow_forward,autorenew,badge,calculate,campaign,cancel,chat,check,check_circle,check_small,chevron_left,chevron_right,close,construction,directions_car,diversity_3,download,event_available,expand_more,factory,fitness_center,gavel,handshake,hub,insights,language,location_on,loyalty,mail,medical_services,menu,open_in_new,palette,payments,pets,phonelink_lock,qr_code_2,radio_button_unchecked,receipt_long,recycling,restaurant,restaurant_menu,reviews,school,search,search_off,security,shield,shield_lock,shopping_bag,smart_toy,spa,sports_soccer,tune,volunteer_activism,web,work&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/zyntra.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Sistema de captación de reseñas en Google Maps",
+  "serviceType": "Reputación online y SEO local",
+  "description": "Sistema para conseguir reseñas en Google Maps: pedido automático por WhatsApp, QR y tarjeta NFC. Mejorá tu posición en las búsquedas locales.",
+  "url": "https://emmanuelap.github.io/zyntraia/resenas-google-maps/",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Zyntra",
+    "url": "https://emmanuelap.github.io/zyntraia/",
+    "telephone": "+5491166439309",
+    "email": "zyntraconsultoraia@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://emmanuelap.github.io/zyntraia/resenas-google-maps/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://emmanuelap.github.io/zyntraia/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Reseñas en Google Maps",
+      "item": "https://emmanuelap.github.io/zyntraia/resenas-google-maps/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Se pueden comprar reseñas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se pueden, y es una de las peores ideas disponibles. Google prohíbe expresamente las reseñas falsas o incentivadas y las detecta cada vez mejor: te las borra, y si insistís puede sancionar la ficha entera. Además se notan, porque llegan todas juntas, dicen lo mismo y vienen de cuentas sin historial. Perdés la ficha que tardaste años en construir por veinte reseñas que no convencen a nadie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo borrar una reseña negativa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vos no. Podés reportarla si viola las políticas de Google, por ejemplo si tiene insultos, si es spam o si es claramente de alguien que nunca fue tu cliente, y en esos casos a veces la sacan. Si simplemente es una opinión mala pero legítima, se queda. Lo que sí controlás es la respuesta, y ahí es donde se recupera la mayor parte del daño."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas reseñas necesito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No hay un número mágico, pero sí una referencia práctica: mirá cuántas tienen los tres o cuatro competidores que aparecen arriba tuyo en el mapa. Ese es tu objetivo real, y suele estar bastante más cerca de lo que uno cree. Importa más el ritmo que el total: llegar a treinta en seis meses vale más que tener cincuenta de hace cuatro años."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo pido reseñas sin resultar molesto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tres reglas que funcionan. Pedila una sola vez y nunca insistas. Pedila en el mejor momento, que es cuando la persona acaba de tener la experiencia, no tres semanas después. Y hacé que sea de un toque: cada paso extra, buscar el negocio, entrar a la ficha, encontrar el botón, pierde una parte de la gente que sí quería dejarla."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es exactamente una tarjeta NFC de reseñas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es una tarjeta o un cartel con un chip adentro. El cliente apoya el celular encima y se le abre directamente la pantalla para calificar tu negocio, sin instalar nada. Funciona en la mayoría de los teléfonos actuales, y los que no tienen NFC pueden usar el QR impreso en la misma tarjeta. Nosotros diseñamos el arte; la tarjeta física la comprás vos."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
+<div class="scroll-progress" id="scroll-progress"></div>
+<header class="site-header fixed top-0 z-50 w-full bg-[#0a0908]/60 shadow-2xl shadow-black/40 backdrop-blur-xl">
+<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 tracking-tight sm:px-6 lg:px-8">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-zinc-100">Zyntra</span>
+</div>
+<div class="hidden items-center gap-8 md:flex">
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#senales">Diagnóstico</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#services">Servicios</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#proyectos">Proyectos</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#impacto">Impacto</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../preguntasfrecuentes/">Preguntas</a>
+<a class="nav-link font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100" href="../#contact-form">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-2 font-bold text-on-primary-fixed transition-transform hover:scale-95 active:scale-90 md:block" href="../#contact-form">
+                Diagnóstico Gratuito
+            </a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="text-zinc-100 md:hidden" id="menu-toggle" type="button">
+<span class="material-symbols-outlined" id="menu-icon">menu</span>
+</button>
+</div>
+</nav>
+<div class="mobile-menu border-t border-outline-variant/10 bg-[#0a0908]/95 backdrop-blur-xl md:hidden" hidden id="mobile-menu">
+<div class="flex flex-col gap-1 px-4 py-4 sm:px-6">
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#senales">Diagnóstico</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#services">Servicios</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#proyectos">Proyectos</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../preguntasfrecuentes/">Preguntas frecuentes</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#impacto">Impacto</a>
+<a class="rounded-xl px-3 py-3 font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-zinc-100" href="../#about">Sobre Nosotros</a>
+<a class="mt-2 rounded-full bg-gradient-to-br from-primary to-primary-dim px-6 py-3 text-center font-bold text-on-primary-fixed" href="../#contact-form">
+                    Pedir diagnóstico gratuito
+                </a>
+</div>
+</div>
+</header>
+<main>
+
+<section class="relative overflow-hidden px-0 pt-32 pb-16">
+<div class="soft-grid absolute inset-0 z-0 opacity-[0.07]"></div>
+<div class="mesh-glow absolute inset-0 z-0 opacity-40"></div>
+<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+<nav aria-label="Ruta de navegación" class="mb-6 flex items-center gap-2 text-sm text-zinc-400">
+<a class="hover:text-primary" href="../">Inicio</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="text-on-surface">Reseñas en Google Maps</span>
+</nav>
+<div class="max-w-3xl">
+<span class="material-symbols-outlined mb-4 text-4xl text-primary">reviews</span>
+<h1 class="text-3xl font-bold leading-tight tracking-tighter sm:text-4xl md:text-5xl">Más reseñas en Google Maps, sin perseguir a nadie</h1>
+<p class="mt-5 text-lg font-light text-on-surface-variant sm:text-xl">El cliente apoya el celular en una tarjeta NFC y cae directo en la pantalla para calificar. Sin buscar tu negocio, sin links largos, justo cuando está contento.</p>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20conseguir%20m%C3%A1s%20rese%C3%B1as%20en%20Google%20Maps." rel="noopener noreferrer" target="_blank">Quiero más reseñas</a>
+<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto" href="../#contact-form">Pedir diagnóstico gratuito</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Cómo decide Google a quién muestra primero</h2>
+<p class="mt-4 text-on-surface-variant">Google explica que el orden en los resultados locales sale de tres cosas: relevancia, distancia y prominencia. Sobre la distancia no podés hacer nada. Sobre la relevancia, algo: completar bien la ficha, las categorías, los servicios.</p>
+<p class="mt-4 text-on-surface-variant">La prominencia es donde se juega el partido, y las reseñas pesan ahí. No solo cuántas tenés: también cuán recientes son y qué tan seguido llegan. Una ficha con cuarenta reseñas de hace tres años transmite algo distinto a una con veinte de este mes.</p>
+<p class="mt-4 text-on-surface-variant">Por eso el problema no es "conseguir reseñas" una vez. Es que lleguen todo el tiempo sin que vos tengas que pedirlas de a una.</p>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">La aritmética de una estrella</h2>
+<p class="mt-4 text-on-surface-variant">Vale la pena entender el número. Si querés sostener un promedio de 4,8, cada reseña de una estrella que recibís necesita diecinueve de cinco estrellas para compensarla y volver al mismo promedio.</p>
+<p class="mt-4 text-on-surface-variant">Esa es toda la explicación de por qué conviene pedir reseñas siempre y no solo cuando algo salió mal. Un negocio que junta reseñas de forma constante absorbe una mala sin moverse. Uno que tiene seis reseñas en total se desploma con una.</p>
+<p class="mt-4 text-on-surface-variant">El otro lado de la cuenta: responder. Google recomienda contestar las reseñas, y una respuesta buena a una crítica convence más a quien la lee que diez elogios sueltos.</p>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-container-low">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Las tres formas de pedirla</h2>
+<p class="mt-4 max-w-3xl text-on-surface-variant">Todas llevan al mismo lugar: la pantalla de calificación de tu ficha, ya abierta.</p>
+</div>
+<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:0ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">qr_code_2</span>
+<h3 class="mb-2 text-lg font-bold">Tarjeta o cartel NFC</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">El cliente apoya el celular y se le abre la pantalla para calificar. Sin aplicaciones, sin buscar, sin tipear. Es lo que mejor funciona en el mostrador porque el momento es ahora.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:60ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">chat</span>
+<h3 class="mb-2 text-lg font-bold">WhatsApp después del turno</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Mensaje automático un rato después de la visita, cuando la experiencia todavía está fresca pero la persona ya no está apurada.</p>
+</div>
+<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 bg-surface-container p-6" style="transition-delay:120ms">
+<span class="material-symbols-outlined mb-3 text-3xl text-primary">qr_code_2</span>
+<h3 class="mb-2 text-lg font-bold">QR impreso</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">En el ticket, en la mesa, en la bolsa o en la vidriera. Es la opción más barata y la que sirve para lugares donde no hay contacto directo.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Cómo lo armamos</h2>
+</div>
+<div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:0ms">
+<span class="hc-rotulo">Paso 01</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Revisamos tu ficha</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Categoría principal y secundarias, horarios, servicios, fotos. Una categoría mal elegida te deja afuera de búsquedas enteras y no te enterás nunca.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:70ms">
+<span class="hc-rotulo">Paso 02</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Armamos el enlace directo</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">El link que abre la pantalla de calificación de tu negocio, no la ficha. Cada paso extra que le pedís al cliente pierde gente.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:140ms">
+<span class="hc-rotulo">Paso 03</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Diseñamos el soporte</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">Tarjeta NFC, cartel o QR con tu marca. Lo diseñamos nosotros; la tarjeta física la comprás vos y cuesta muy poco.</p>
+</div>
+<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" style="transition-delay:210ms">
+<span class="hc-rotulo">Paso 04</span>
+<h3 class="mb-2 mt-1 text-lg font-bold">Automatizamos el pedido</h3>
+<p class="text-sm leading-relaxed text-on-surface-variant">El mensaje sale solo después de la compra o del turno, con el tono de tu negocio y sin repetirle a quien ya dejó su reseña.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-container-low">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal">
+<h2 class="text-2xl font-bold sm:text-3xl">Preguntas sobre reseñas de Google</h2>
+</div>
+<div class="mt-6 max-w-3xl">
+<details class="faq-item" id="se-pueden-comprar-resenas">
+<summary><h3 class="faq-q">¿Se pueden comprar reseñas?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Se pueden, y es una de las peores ideas disponibles. Google prohíbe expresamente las reseñas falsas o incentivadas y las detecta cada vez mejor: te las borra, y si insistís puede sancionar la ficha entera. Además se notan, porque llegan todas juntas, dicen lo mismo y vienen de cuentas sin historial. Perdés la ficha que tardaste años en construir por veinte reseñas que no convencen a nadie.</p></div>
+</details>
+<details class="faq-item" id="puedo-borrar-una-resena-negativa">
+<summary><h3 class="faq-q">¿Puedo borrar una reseña negativa?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Vos no. Podés reportarla si viola las políticas de Google, por ejemplo si tiene insultos, si es spam o si es claramente de alguien que nunca fue tu cliente, y en esos casos a veces la sacan. Si simplemente es una opinión mala pero legítima, se queda. Lo que sí controlás es la respuesta, y ahí es donde se recupera la mayor parte del daño.</p></div>
+</details>
+<details class="faq-item" id="cuantas-resenas-necesito">
+<summary><h3 class="faq-q">¿Cuántas reseñas necesito?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>No hay un número mágico, pero sí una referencia práctica: mirá cuántas tienen los tres o cuatro competidores que aparecen arriba tuyo en el mapa. Ese es tu objetivo real, y suele estar bastante más cerca de lo que uno cree. Importa más el ritmo que el total: llegar a treinta en seis meses vale más que tener cincuenta de hace cuatro años.</p></div>
+</details>
+<details class="faq-item" id="como-pido-resenas-sin-resultar-molesto">
+<summary><h3 class="faq-q">¿Cómo pido reseñas sin resultar molesto?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Tres reglas que funcionan. Pedila una sola vez y nunca insistas. Pedila en el mejor momento, que es cuando la persona acaba de tener la experiencia, no tres semanas después. Y hacé que sea de un toque: cada paso extra, buscar el negocio, entrar a la ficha, encontrar el botón, pierde una parte de la gente que sí quería dejarla.</p></div>
+</details>
+<details class="faq-item" id="que-es-exactamente-una-tarjeta-nfc-de-resenas">
+<summary><h3 class="faq-q">¿Qué es exactamente una tarjeta NFC de reseñas?</h3><span class="material-symbols-outlined faq-mas">add</span></summary>
+<div class="faq-a"><p>Es una tarjeta o un cartel con un chip adentro. El cliente apoya el celular encima y se le abre directamente la pantalla para calificar tu negocio, sin instalar nada. Funciona en la mayoría de los teléfonos actuales, y los que no tienen NFC pueden usar el QR impreso en la misma tarjeta. Nosotros diseñamos el arte; la tarjeta física la comprás vos.</p></div>
+</details>
+</div>
+<div class="mt-8 rounded-2xl border border-outline-variant/10 bg-surface-container-low p-6">
+<p class="mb-3 text-sm font-semibold text-on-surface">Mas preguntas sobre esto</p>
+<ul class="space-y-2 text-sm text-on-surface-variant">
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#como-consigo-mas-resenas-de-google-para-mi-negocio">¿Cómo consigo más reseñas de Google para mi negocio?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#las-resenas-influyen-en-el-posicionamiento">¿Las reseñas influyen en el posicionamiento?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#como-respondo-una-resena-negativa">¿Cómo respondo una reseña negativa?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-hago-si-me-dejan-una-resena-falsa">¿Qué hago si me dejan una reseña falsa?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#que-es-google-business-profile">¿Qué es Google Business Profile?</a></li>
+<li><a class="text-primary underline-offset-4 hover:underline" href="../preguntasfrecuentes/#como-verifico-mi-negocio-en-google">¿Cómo verifico mi negocio en Google?</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="relative overflow-hidden border-t border-outline-variant/10 bg-[#0a0908] py-20">
+<div class="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+<h2 class="text-2xl font-bold sm:text-3xl">Miremos tu ficha y la de tus competidores</h2>
+<p class="mx-auto mt-3 max-w-xl text-on-surface-variant">En 20 minutos comparamos tu ficha con la de los que aparecen arriba tuyo y definimos qué te falta. El diagnóstico queda para vos aunque no contrates.</p>
+<div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+<a class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20conseguir%20m%C3%A1s%20rese%C3%B1as%20en%20Google%20Maps." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-xl">chat</span>Quiero más reseñas</a>
+<a class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="../preguntasfrecuentes/">Ver las preguntas frecuentes</a>
+</div>
+</div>
+</section>
+
+</main>
+<footer class="w-full border-t border-outline-variant/10 bg-[#0a0908] py-12">
+<div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 sm:px-6 lg:px-8 md:flex-row md:items-center">
+<div class="flex flex-col items-start">
+<span class="mb-2 text-2xl font-black text-zinc-100">Zyntra</span>
+<div class="mb-4 flex items-center gap-2 text-zinc-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs uppercase tracking-widest">Capital Federal, Buenos Aires, Argentina</p>
+</div>
+<p class="mb-2 text-sm uppercase tracking-widest text-zinc-400">CEO · Pavón Emmanuel</p>
+<p class="text-sm uppercase tracking-widest text-zinc-400">© 2026 Zyntra Digital. Automatización con visión.</p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-4">
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://wa.me/5491166439309">WhatsApp</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="mailto:zyntraconsultoraia@gmail.com">Email</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">Telegram</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="https://www.linkedin.com/in/emmanuelpavon/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../preguntasfrecuentes/">Preguntas frecuentes</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../privacidad.html">Privacidad</a>
+<a class="text-sm uppercase tracking-widest text-zinc-400 opacity-80 transition-all hover:text-primary hover:opacity-100" href="../terminos.html">Términos</a>
+</div>
+</div>
+<div class="mx-auto mt-10 max-w-7xl border-t border-outline-variant/10 px-4 pt-6 sm:px-6 lg:px-8">
+<p class="max-w-3xl text-xs leading-relaxed text-zinc-400">
+<strong class="text-zinc-300">Sobre nuestro canal de Telegram:</strong> está reservado exclusivamente para trabajos no convencionales — desarrollos a medida fuera de catálogo, integraciones poco comunes, automatizaciones experimentales y encargos que no encajan en los servicios listados en este sitio. Las consultas habituales sobre los servicios publicados se atienden por WhatsApp, por el formulario o por correo.
+                </p>
+</div>
+</footer>
+<a aria-label="Telegram: proyectos fuera de catálogo" class="tg-float" href="https://t.me/zyntraconsultora" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+</a>
+<a aria-label="Escribinos por WhatsApp" class="wa-float" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20quiero%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<script src="../assets/zyntra.js"></script>
+</body>
+</html>
