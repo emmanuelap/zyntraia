@@ -27,6 +27,10 @@
 <meta content="Condiciones de uso del sitio de Zyntra y del alcance de los servicios de automatización y desarrollo que ofrecemos." name="description"/>
 <link href="https://emmanuelap.github.io/zyntraia/terminos.html" rel="canonical"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Los CSS de Google Fonts pesan poco pero costaban 1500 ms de espera:
+     casi todo es abrir la conexion. Con esto se abre en paralelo. -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- El font de iconos se pide recortado a los que realmente usamos: la fuente
      completa pesa 1.1 MB y este subset 70 KB. Si agregas un icono nuevo tenes

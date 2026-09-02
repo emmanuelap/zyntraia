@@ -107,13 +107,17 @@ def leer_chrome():
         'footer':    entre(h, '<footer class="w-full border-t', '</footer>'),
         'tailwind':  entre(h, '<script src="https://cdn.tailwindcss.com', '</script>'),
         'config':    entre(h, '<script id="tailwind-config">', '</script>'),
-        'flotantes': entre(h, '<a aria-label="Telegram', '</a>\n<script src='
-                     ).rsplit('<script src=', 1)[0].rstrip(),
+        # Los botones flotantes van del de Telegram al <script> final, lleve
+        # defer o no. El .* es codicioso a proposito: tiene que llegar hasta el
+        # ULTIMO </a>, porque en el medio esta el boton de WhatsApp.
+        'flotantes': re.search(r'(<a aria-label="Telegram.*</a>)\s*<script\b', h, re.S).group(1),
     }
     fuentes = re.findall(r'<link href="https://fonts\.googleapis\.com[^"]*" rel="stylesheet"/>', h)
     if len(fuentes) != 2:
         sys.exit('build: esperaba 2 <link> de fuentes en index.html, hay %d' % len(fuentes))
     chrome['fuentes'] = '\n'.join(fuentes)
+    # los preconnect tambien salen de index.html: unica fuente de verdad
+    chrome['preconnect'] = '\n'.join(re.findall(r'<link[^>]*rel="preconnect"[^>]*/>', h))
     aviso = re.search(r'<!-- El font de iconos[^>]*?-->', h, re.S)
     chrome['aviso_iconos'] = aviso.group(0) if aviso else ''
     return chrome
@@ -341,6 +345,7 @@ PLANTILLA = '''<!DOCTYPE html>
 <meta content="@@DESC@@" name="description"/>
 <meta content="Zyntra" name="author"/>
 <meta content="#100f0d" name="theme-color"/>
+@@PRECONNECT@@
 <meta content="index, follow, max-image-preview:large, max-snippet:-1" name="robots"/>
 <link href="@@URL@@" rel="canonical"/>
 <link href="@@SUBIR@@favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -406,7 +411,7 @@ PLANTILLA = '''<!DOCTYPE html>
 </main>
 @@FOOTER@@
 @@FLOTANTES@@
-<script src="@@SUBIR@@assets/zyntra.js"></script>
+<script defer src="@@SUBIR@@assets/zyntra.js"></script>
 </body>
 </html>
 '''
@@ -421,6 +426,7 @@ def render(p, chrome):
         '@@DESC@@': esc(p['descripcion']),
         '@@URL@@': url,
         '@@SITIO@@': SITIO,
+        '@@PRECONNECT@@': chrome['preconnect'],
         '@@MIGAS@@': p['migas'],
         '@@PADRE@@': (
             '\n<a class="hover:text-primary" href="%s%s/">%s</a>\n'

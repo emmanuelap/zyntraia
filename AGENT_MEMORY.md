@@ -109,6 +109,24 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 - Quedan 19 imagenes sin usar en portfolio/ (4.4 MB). No las sirve nadie, solo
   pesan en el repo. Preguntar al dueno antes de borrarlas.
 
+## Rendimiento medido (PageSpeed, 2026-09-02)
+- Movil: Rendimiento 80, Accesibilidad 97->100, Practicas 100, SEO 100.
+  FCP 3,8s | LCP 3,8s | TBT 0ms | CLS 0.049
+- Escritorio: Rendimiento 69, TBT 470ms, CLS 0.177. Escritorio esta PEOR que
+  movil, al reves de lo habitual. Sin diagnosticar todavia.
+- Lo que bloquea el renderizado (2930 ms estimados de ahorro):
+    cdn.tailwindcss.com   127,4 KiB  780 ms   <- el grande, necesita compilar
+    assets/zyntra.js        6,4 KiB  600 ms   <- resuelto con defer
+    CSS de Google Fonts     2,9 KiB 1500 ms   <- resuelto con preconnect
+    assets/zyntra.css       7,5 KiB  150 ms
+- El CLS de movil (0.049) lo causa el H1: carga con la fuente de reserva y
+  reflowea al llegar Space Grotesk.
+- NO se puede arreglar en GitHub Pages: los tiempos de cache (10 min en
+  nuestros assets) y las cabeceras HSTS, COOP, XFO, CSP y Trusted Types.
+  Pages no deja configurar cabeceras. No perder tiempo ahi.
+- Minificar CSS y JS: Lighthouse dice 5 KiB, pero eso es ANTES de gzip. Real
+  ~1 KiB, y minificar JS a mano es riesgoso. No se hizo a proposito.
+
 ## Blog
 - Notas en tools/paginas/blog_*.py, con slug blog/<lo-que-sea> y la clave
   'articulo': {'fecha': 'AAAA-MM-DD'}. Esa clave hace que el schema salga
