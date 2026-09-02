@@ -216,8 +216,37 @@ def bloque_casos(s):
             % (s['h2'], '\n'.join(fichas)))
 
 
+MESES = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+         'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre')
+
+
+def fecha_larga(iso):
+    a, m, d = iso.split('-')
+    return '%d de %s de %s' % (int(d), MESES[int(m) - 1], a)
+
+
+def bloque_articulos(s):
+    """Listado del blog. Cada nota enlaza a su pagina."""
+    filas = []
+    for i, a in enumerate(s['articulos']):
+        filas.append(
+            '<a class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 '
+            'bg-surface-container p-6 transition-colors hover:bg-surface-container-high" '
+            'href="@@SUBIR@@%s/" style="transition-delay:%dms">\n'
+            '<time class="hc-rotulo" datetime="%s">%s</time>\n'
+            '<h3 class="mb-2 mt-2 text-lg font-bold leading-snug">%s</h3>\n'
+            '<p class="mb-4 text-sm leading-relaxed text-on-surface-variant">%s</p>\n'
+            '<span class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary">'
+            'Leer<span class="material-symbols-outlined text-base">arrow_forward</span></span>\n</a>'
+            % (a['slug'], i * 60, a['fecha'], fecha_larga(a['fecha']), a['titulo'], a['resumen']))
+    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n</div>\n'
+            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">\n%s\n</div>'
+            % (s['h2'], '\n'.join(filas)))
+
+
 RENDER = {'texto': bloque_texto, 'lista': bloque_lista, 'pasos': bloque_pasos,
-          'faq': bloque_faq, 'cifras': bloque_cifras, 'casos': bloque_casos}
+          'faq': bloque_faq, 'cifras': bloque_cifras, 'casos': bloque_casos,
+          'articulos': bloque_articulos}
 
 
 def render_secciones(secciones):
@@ -236,7 +265,25 @@ def render_secciones(secciones):
 
 def datos_estructurados(p):
     url = SITIO + p['slug'] + '/'
-    bloques = [{
+    if p.get('articulo'):
+        cabeza = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": p['h1'],
+            "description": p['descripcion'],
+            "url": url,
+            "datePublished": p['articulo']['fecha'],
+            "dateModified": p['articulo'].get('modificado', p['articulo']['fecha']),
+            "inLanguage": "es-AR",
+            "author": {"@type": "Organization", "name": "Zyntra", "url": SITIO},
+            "publisher": {"@type": "Organization", "name": "Zyntra", "url": SITIO,
+                          "logo": {"@type": "ImageObject",
+                                   "url": SITIO + "apple-touch-icon.png"}},
+            "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+        }
+    else:
+        cabeza = None
+    bloques = [cabeza or {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": p['servicio']['nombre'],
@@ -332,6 +379,7 @@ PLANTILLA = '''<!DOCTYPE html>
 <div class="max-w-3xl">
 <span class="material-symbols-outlined mb-4 text-4xl text-primary">@@ICONO@@</span>
 <h1 class="text-3xl font-bold leading-tight tracking-tighter sm:text-4xl md:text-5xl">@@H1@@</h1>
+@@FECHA@@
 <p class="mt-5 text-lg font-light text-on-surface-variant sm:text-xl">@@BAJADA@@</p>
 <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
 <a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto" href="@@WA@@" rel="noopener noreferrer" target="_blank">@@CTA_BOTON@@</a>
@@ -382,6 +430,10 @@ def render(p, chrome):
         '@@ICONO@@': p['icono'],
         '@@H1@@': p['h1'],
         '@@BAJADA@@': p['bajada'],
+        '@@FECHA@@': ('<time class="mt-4 block text-sm text-zinc-400" datetime="%s">'
+                      'Publicado el %s</time>'
+                      % (p['articulo']['fecha'], fecha_larga(p['articulo']['fecha']))
+                      ) if p.get('articulo') else '',
         '@@WA@@': wa,
         '@@CTA_BOTON@@': p['cta']['boton'],
         '@@CTA_TITULO@@': p['cta']['titulo'],

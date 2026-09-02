@@ -109,6 +109,15 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 - Quedan 19 imagenes sin usar en portfolio/ (4.4 MB). No las sirve nadie, solo
   pesan en el repo. Preguntar al dueno antes de borrarlas.
 
+## Blog
+- Notas en tools/paginas/blog_*.py, con slug blog/<lo-que-sea> y la clave
+  'articulo': {'fecha': 'AAAA-MM-DD'}. Esa clave hace que el schema salga
+  Article en vez de Service y que aparezca la fecha bajo el H1.
+- El indice del blog NO descubre las notas solo: al agregar una hay que
+  sumarla a mano en la lista de tools/paginas/blog_index.py, arriba de todo.
+- Regla de contenido: cada nota tiene que servirle a alguien que no nos va a
+  contratar. Si solo tiene sentido como excusa para vender, no se publica.
+
 ## Cifras reales (confirmadas por el dueno, NO inventar otras)
 - Stratos: 72 gimnasios y alrededor de 8.900 usuarios en total.
 - Asistente de WhatsApp: alrededor de 80 consultas por dia.
