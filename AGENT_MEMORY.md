@@ -58,6 +58,23 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   (no "emprendimiento" ni "proyecto"), CUIT 20-35971857-9, domicilio en Villa
   Urquiza, CABA. Sin altura de calle a pedido del dueno.
 
+## Estructura del sitio (paso 4)
+- La home dejo de ser la unica pagina comercial: ahora es el hub. Hay 12
+  paginas de servicio y 57 enlaces internos desde index.html hacia ellas.
+- Las 16 tarjetas de #services enlazan a su pagina en dos lugares: el titulo
+  h4 y un "Ver el servicio en detalle" debajo del CTA de WhatsApp. Cuatro
+  tarjetas todavia no tienen pagina propia (cobros, embudos, paneles,
+  renovacion, fidelizacion) y apuntan a la mas cercana.
+- Las 12 puertas de #industrias ya NO saltan a una tarjeta de la misma home:
+  van a la pagina del servicio. El JS que resaltaba la tarjeta de destino sigue
+  ahi y funciona si se llega con un hash #svc-x, pero las puertas ya no lo usan.
+- El H1 de la home es "Automatizacion con IA y sistemas a medida". La frase de
+  marca "Creacion con vision e inteligencia artificial" quedo como renglon
+  chico arriba del H1: describe la marca pero no sirve como H1 para buscar.
+- El footer tiene un bloque de 12 enlaces de servicio. Como build.py lee el
+  footer de index.html, ese bloque se replica solo en las 12 paginas con las
+  rutas corregidas a ../
+
 ## Paginas de servicio (generadas, NO editar a mano)
 - Las carpetas de servicio como chatbot-whatsapp/ las escribe tools/build.py.
   Si editas <slug>/index.html directamente, el proximo build te lo pisa.
