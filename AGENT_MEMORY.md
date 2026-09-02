@@ -58,6 +58,21 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   (no "emprendimiento" ni "proyecto"), CUIT 20-35971857-9, domicilio en Villa
   Urquiza, CABA. Sin altura de calle a pedido del dueno.
 
+## Paginas de servicio (generadas, NO editar a mano)
+- Las carpetas de servicio como chatbot-whatsapp/ las escribe tools/build.py.
+  Si editas <slug>/index.html directamente, el proximo build te lo pisa.
+- El contenido de cada pagina vive en tools/paginas/<nombre>.py, un archivo por
+  pagina, cada uno con un dict PAGINA. El nombre del archivo usa guion bajo, el
+  slug de la URL usa guion medio.
+- El header, el footer, los botones flotantes, la config de Tailwind y los
+  <link> de fuentes se LEEN de index.html en cada build. index.html es la unica
+  fuente de verdad del chrome; si cambias el menu ahi, correr el build y las
+  paginas quedan iguales solas. Eso incluye el subset de iconos.
+- build.py reescribe las rutas relativas sumando ../ porque las paginas viven un
+  nivel mas abajo. Las que empiezan con http, mailto, tel o / quedan intactas.
+- El build tambien reescribe sitemap.xml entero. No editarlo a mano.
+- Comandos: python tools/build.py  |  python tools/build.py --listar
+
 ## Rendimiento (paso 1 de la reestructuracion)
 - El font de iconos se pide RECORTADO con &icon_names= en las 6 paginas. La
   fuente completa pesa 1.1 MB y el subset 70 KB. TRAMPA: si agregas un icono
