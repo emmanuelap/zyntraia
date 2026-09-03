@@ -82,6 +82,8 @@ def subir(fragmento, niveles=1):
         attr, valor = m.group(1), m.group(2)
         if valor.startswith(EXTERNOS) or valor == '#':
             return m.group(0)
+        if valor in ('./', '.'):          # el "./" de la home ya ES el prefijo
+            return '%s="%s"' % (attr, prefijo)
         return '%s="%s%s"' % (attr, prefijo, valor)
 
     return re.sub(r'\b(href|src)="([^"]*)"', arreglar, fragmento)

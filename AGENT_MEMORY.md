@@ -109,6 +109,26 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 - Quedan 19 imagenes sin usar en portfolio/ (4.4 MB). No las sirve nadie, solo
   pesan en el repo. Preguntar al dueno antes de borrarlas.
 
+## Logo
+- El vector original del dueno es assets/Zyntra-logo-vector.svg y esta hecho
+  para FONDO CLARO: la palabra y el lema son #0B1014, que contra el fondo del
+  sitio (#100f0d) da contraste 1.0. Invisible. No usarlo tal cual.
+- tools/logo.py lo recolorea (palabra #ffffff, diagonal #81ecff, el cian de
+  marca) y lo parte en tres, separando los subtrazos por altura:
+    assets/logo-zyntra.svg           completo, con lema
+    assets/logo-zyntra-compacto.svg  sin lema  -> header y hero
+    assets/logo-zyntra-simbolo.svg   solo la Z -> favicon
+  Si el dueno manda un vector nuevo, correr tools/logo.py otra vez.
+- En el hero va el COMPACTO a proposito: el lema del logo ("Automatizamos el
+  futuro") y el renglon de arriba del H1 ("Creacion con vision e inteligencia
+  artificial") juntos son dos slogans pegados. Si se quiere el completo, es
+  cambiar el src.
+- favicon.svg se arma desde el simbolo. apple-touch-icon.png y og-zyntra.jpg
+  se rasterizaron desde el SVG con canvas en el navegador (no hay cairosvg ni
+  ImageMagick en esta maquina).
+- assets/logo.png (908 KB) es el original que subio el dueno. No lo usa nadie:
+  el sitio sirve los SVG. Se puede borrar si el dice que si.
+
 ## Rendimiento medido (PageSpeed, 2026-09-02)
 - Movil: Rendimiento 80, Accesibilidad 97->100, Practicas 100, SEO 100.
   FCP 3,8s | LCP 3,8s | TBT 0ms | CLS 0.049

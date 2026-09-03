@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zyntra">
   <rect width="64" height="64" rx="14" fill="#0b0a09"/>
-  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#81ecff" stroke-width="3"/>
-  <text x="32" y="45" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="38"
-        font-weight="700" fill="#81ecff" text-anchor="middle">Z</text>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#81ecff" stroke-width="2.5" opacity=".55"/>
+  <g fill-rule="evenodd" clip-rule="evenodd" transform="translate(6.8095 4.7813) scale(0.081129)">
+    <path fill="#ffffff" d="M 57.5 512.0 L 303.5 232.0 L 303.0 229.5 L 136.0 229.5 L 200.0 155.5 L 426.5 156.0 L 111.0 513.5 L 58.0 513.5 Z  M 246.5 513.0 L 312.0 439.5 L 532.5 440.0 L 465.0 514.5 L 247.0 514.5 Z "/>
+    <path fill="#81ecff" d="M 155.5 513.0 L 472.0 155.5 L 563.5 156.0 L 246.0 514.5 Z "/>
+  </g>
 </svg>
