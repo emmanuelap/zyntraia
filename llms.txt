@@ -76,6 +76,10 @@ capturas y sin mencion publica.
 - Marroquineria Victoria: sitio y catalogo (https://marroquineriavictoria.com/).
 - Chat Bot Multi Rubro: asistente de WhatsApp que atiende, agenda en Google Calendar,
   toma pedidos y hace seguimiento.
+- ChevroRep: tienda mayorista de repuestos Chevrolet en WordPress + WooCommerce
+  (https://chevrorep.com.ar/). Mas de 570 productos en seis rubros, precios visibles
+  solo para clientes con cuenta aprobada a mano, buscador de autopartes y checkout.
+  Desarrollo completo y administracion continua.
 
 ## Como trabajamos
 
