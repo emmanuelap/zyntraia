@@ -1145,6 +1145,52 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
     transition: width .1s linear;
 }
 
+/* buscador de las preguntas frecuentes */
+.buscador-fila { display: flex; flex-wrap: wrap; gap: var(--gap); align-items: center; }
+.buscador-caja { position: relative; flex: 1 1 260px; }
+.buscador-caja .ico {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    margin-top: -12px;
+    color: var(--mono-claro);
+    pointer-events: none;
+}
+.buscador-input {
+    width: 100%;
+    font-family: var(--cuerpo);
+    font-size: 16px;
+    color: var(--tinta);
+    background: var(--superficie-2);
+    border: 2px solid var(--borde);
+    border-radius: var(--r-boton);
+    padding: 15px 16px 15px 48px;
+    min-height: 48px;
+    transition: var(--transicion);
+    appearance: none;
+    -webkit-appearance: none;
+}
+.buscador-input::placeholder { color: var(--apagado); }
+.buscador-input:focus { border-color: var(--tinta); }
+
+/* indice de las paginas legales. Sin Tailwind el <ol> vuelve a numerar solo,
+   y el texto de cada enlace YA trae su numero: quedaba "1. 1. Quien es...". */
+.toc ol {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 9px 34px;
+}
+@media (min-width: 640px) { .toc ol { grid-template-columns: 1fr 1fr; } }
+.toc a {
+    color: var(--texto);
+    text-decoration: none;
+    font-size: 15px;
+    transition: var(--transicion);
+}
+.toc a:hover { color: var(--acento); }
+
 .legal { max-width: 68ch; }
 .legal h2 { font-weight: 800; font-size: 26px; letter-spacing: -.03em; margin-top: 38px; }
 .legal h3 { font-weight: 600; font-size: 20px; letter-spacing: -.02em; margin-top: 26px; }
@@ -1152,6 +1198,15 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
 .legal p { margin-top: 14px; }
 .legal ul { margin-top: 14px; padding-left: 22px; }
 .legal li + li { margin-top: 8px; }
+.legal strong { color: var(--tinta); font-weight: 600; }
+.legal a {
+    color: var(--acento);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--acento);
+    transition: var(--transicion);
+}
+.legal a:hover { color: var(--tinta); border-bottom-color: var(--tinta); }
+.legal h2[id], .legal h3[id] { scroll-margin-top: 100px; }
 
 /* ------------------------------------------- 25. bloques de la home */
 
