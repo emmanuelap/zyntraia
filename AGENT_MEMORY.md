@@ -16,25 +16,85 @@ pero tenes que recordar siempre la regla de no romper codigo que ya funciona.
 - Incluir opcion de reducir movimiento cuando agregue animaciones nuevas.
 - Revisar padding, botones y grillas en mobile y tablet antes de cerrar cambios visuales.
 
+## Sistema de diseno (rebrand, septiembre 2026)
+- El sitio dejo de usar Tailwind CDN y Material Symbols. Todo el diseno vive
+  en assets/zyntra.css con custom properties. NO volver a meter Tailwind:
+  eran 127 KB y 780 ms de bloqueo, mas 70 KB de fuente de iconos.
+- La fuente de verdad del sistema es
+  "rediseno total de Zyntra/design_handoff_zyntra_rebrand/README.md".
+  Ante cualquier duda de medida o color manda ese archivo.
+- Paleta: --tinta #171310 (texto y fondos oscuros), --acento #E4572E (el
+  naranja, unico acento), --acento2 #2F6B4F (verde de apoyo y zyntra causas),
+  --arena #E3D8C4 (fondo del body), --crema #F5F0E6 (superficies).
+- Tipografias: Bricolage Grotesque 600/800 (titulos), Instrument Sans
+  400/500/600 (cuerpo), JetBrains Mono 600 (etiquetas, SIEMPRE mayuscula con
+  tracking de .18em a .3em).
+- Reglas duras, no negociables:
+    * SIN box-shadow. Ninguna. La jerarquia se resuelve con color y radio.
+    * Sin degradados. Sin sombras de color.
+    * Un solo acento por pieza, maximo dos fondos.
+    * El naranja nunca de fondo en una superficie larga (si en tarjetas).
+    * Hover = solo cambio de color, 180 ms. Sin scale, sin elevacion.
+    * Foco visible siempre: outline 2px naranja con offset 2px.
+    * Nada de texto por debajo de 15px.
+    * Los botones primarios llevan texto TINTA sobre naranja, no crema.
+- El layout es una pila de paneles redondeados (radio 24) sobre arena,
+  separados 14px. La clase es .panel; .panel--tinta / --naranja / --verde
+  cambian el fondo. Adentro, .tarjeta (radio 18) y .tarjeta-caso.
+- Las grillas son todas repeat(auto-fit, minmax(X, 1fr)) con --min: no hay
+  breakpoints fijos salvo el del menu (900px) y el de las dos columnas.
+- kit/index.html es la referencia viva del sistema, renderizada con el CSS
+  real. Lo genera tools/kit.py. Lleva noindex y esta fuera del sitemap.
+  Si algo se ve mal ahi, esta mal en assets/zyntra.css.
+
+## Iconos (propios, sin librerias)
+- tools/iconos.py tiene los iconos del sistema mas 3 marcas de terceros
+  (WhatsApp, Telegram, LinkedIn, que van rellenas y no se redibujan). Se
+  inyectan como sprite <symbol> en cada pagina: pesan ~2 KB con gzip.
+- Regla del brandboard: linea pareja sobre grilla de 24, esquinas
+  redondeadas, SIEMPRE en tinta con un unico detalle naranja (un punto).
+  Nada de iconos rellenos ni de otra libreria.
+- Se usan asi:  <svg class="ico"><use href="#i-turnos"></use></svg>
+- TRAMPA: build.py corrige las rutas relativas de las paginas generadas, y el
+  href="#i-algo" del sprite apunta a la MISMA pagina, no a la home. subir()
+  lo saltea a proposito. Si eso se rompe, no se ve un solo icono.
+- Los archivos tools/paginas/*.py siguen escribiendo el nombre VIEJO de
+  Material Symbols en su clave 'icono'. iconos.EQUIV los traduce. Si aparece
+  uno sin equivalente el build corta: hay que sumarlo a EQUIV.
+- Para ver todos juntos: python tools/kit.py y abrir kit/index.html.
+
+## Ojito, la mascota
+- Es un ojo con patas, hecho con divs y custom properties. --S es el diametro
+  y --lid el parpado: 0 abierto, .16 normal, .42 sospechando, .8 durmiendo.
+- EL PARPADO ES LA UNICA EXPRESION. No tiene boca, ni nariz, ni cejas.
+- Un solo Ojito por pieza, y siempre mirando algo real de la composicion.
+- No aparece en las paginas de pentesting: ahi va el logotipo solo.
+- En la web parpadea cada 4-7 s y el iris sigue al cursor. Las dos cosas se
+  apagan con prefers-reduced-motion (assets/zyntra.js).
+- Sobre fondo tinta el cuerpo sigue crema y el parpado sigue tinta: se lee
+  como un mordisco arriba del ojo. Lo unico que cambia son las patas, que
+  pasan a crema para no perderse contra el fondo.
+- Donde esta hoy: hero de la home (grande), bloque CTA de cada pagina de
+  servicio (chico), 404 sospechando y gracias bien abierto.
+
 ## Estructura actual de index.html
 Orden de secciones: hero -> #senales -> #calculadora -> #services -> #proyectos ->
-prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
+franja de datos -> #industrias -> #causas -> #faq -> #contact-form -> #about.
+OJO: la seccion del programa sin fines de lucro se llamaba #impacto y ahora
+es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
 
 - El sitio se publica solo en GitHub Pages con cada push a main (https://emmanuelap.github.io/zyntraia/).
-- Los 16 servicios viven en #services, agrupados en 4 frentes. Cada servicio es una card
+- Los 18 servicios viven en #services, agrupados en 5 frentes. Cada servicio es una card
   SIEMPRE VISIBLE con icono, descripcion, "Con esto:" / "Sin esto:" y micro-CTA a WhatsApp.
   Si agrego servicios, respetar ese patron.
   OJO: se probo esconderlos en acordeones <details> y el dueno pidio volver atras porque
   el copy de venta quedaba oculto. No volver a colapsarlos.
-- Jerarquia de color (medida por area en pantalla, no a ojo):
-  cyan = acciones (botones y links), ambar-400 = numeros y datos (calculadora, franja
-  de prueba), emerald-400/70 = "Con esto", error/70 = "Sin esto", zinc = decorativo.
-  El verde y el rojo van con opacidad a proposito: si se ponen a full le ganan al cyan
-  y la pagina se lee como semaforo. No volver a pintar todo de cyan ni subirles el peso.
-- Contraste: no usar text-zinc-500 ni zinc-600 para texto (dan 3.99:1 y 2.6:1 sobre el
-  fondo, no pasan WCAG AA). El minimo del sitio es zinc-400.
-- La base es calida a proposito (#100f0d, no gris neutro) y los fondos oscuros usan
-  #0a0908 en vez de zinc-950, que es frio y desentona.
+- Jerarquia de color: el naranja es el UNICO acento y se reserva para acciones,
+  numeros grandes y el punto. El verde (--acento2) es apoyo: "Con esto", estados
+  OK y zyntra causas. Todo lo demas es tinta, crema y arena. Si algo empieza a
+  tener tres colores, sobra uno.
+- Las vinetas de "Con esto / Sin esto" son puntos de 8px: verde el que suma,
+  naranja el que resta. No van iconos ahi.
 - Sin imagenes generadas por IA: las capturas son reales, de la carpeta portfolio/.
 - docs/ guarda los PDF descargables del sitio. Hoy vive ahi
   docs/propuesta-chatbot-zyntra.pdf (8 paginas, planes USD 400 / 700 / 1.000).
@@ -44,12 +104,13 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   Si se regenera el PDF hay que actualizar el peso escrito en el HTML (dos lugares).
   En pantallas menores a 480px se oculta el peso (.doc-download-size) porque la
   pastilla no entraba en una linea dentro de la card de proyecto.
-- La calculadora de perdidas y el menu mobile son JS vanilla al final del archivo.
+- La calculadora de perdidas, el menu mobile, los carruseles y Ojito viven en
+  assets/zyntra.js. Vanilla, con defer, y todo lo que anima respeta
+  prefers-reduced-motion.
 - gracias.html es la pagina de destino del formulario (FormSubmit, campo _next).
-- privacidad.html y terminos.html son las paginas legales. Copian el <head> de
-  gracias.html (config de Tailwind + fuentes) y usan la clase .legal para la
-  columna de lectura de 68ch. El texto describe el sitio REAL: sin cookies, sin
-  analytics, y con FormSubmit / GitHub Pages / Google Fonts / Tailwind CDN como
+- privacidad.html y terminos.html son las paginas legales. Usan la clase .legal
+  para la columna de lectura de 68ch. El texto describe el sitio REAL: sin
+  cookies, sin analytics, y con FormSubmit / GitHub Pages / Google Fonts como
   unicos terceros. Si se agrega alguna herramienta de medicion hay que corregir
   el punto 4 de privacidad.html, que hoy afirma que no existe ninguna.
 - El footer de index.html y el de gracias.html llevan "CEO - Pavon Emmanuel" y
@@ -61,16 +122,16 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 ## Estructura del sitio (paso 4)
 - La home dejo de ser la unica pagina comercial: ahora es el hub. Hay 12
   paginas de servicio y 57 enlaces internos desde index.html hacia ellas.
-- Las 16 tarjetas de #services enlazan a su pagina en dos lugares: el titulo
+- Las 18 tarjetas de #services enlazan a su pagina en dos lugares: el titulo
   h4 y un "Ver el servicio en detalle" debajo del CTA de WhatsApp. Cuatro
   tarjetas todavia no tienen pagina propia (cobros, embudos, paneles,
   renovacion, fidelizacion) y apuntan a la mas cercana.
 - Las 12 puertas de #industrias ya NO saltan a una tarjeta de la misma home:
   van a la pagina del servicio. El JS que resaltaba la tarjeta de destino sigue
   ahi y funciona si se llega con un hash #svc-x, pero las puertas ya no lo usan.
-- El H1 de la home es "Automatizacion con IA y sistemas a medida". La frase de
-  marca "Creacion con vision e inteligencia artificial" quedo como renglon
-  chico arriba del H1: describe la marca pero no sirve como H1 para buscar.
+- El H1 de la home es "Automatizacion con IA y sistemas a medida". Arriba va una
+  etiqueta mono, "Automatizacion e IA - Buenos Aires": ubica la marca sin robarle
+  el lugar al H1, que es el que trabaja para buscar.
 - El footer tiene un bloque de 12 enlaces de servicio. Como build.py lee el
   footer de index.html, ese bloque se replica solo en las 12 paginas con las
   rutas corregidas a ../
@@ -81,10 +142,11 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
 - El contenido de cada pagina vive en tools/paginas/<nombre>.py, un archivo por
   pagina, cada uno con un dict PAGINA. El nombre del archivo usa guion bajo, el
   slug de la URL usa guion medio.
-- El header, el footer, los botones flotantes, la config de Tailwind y los
-  <link> de fuentes se LEEN de index.html en cada build. index.html es la unica
-  fuente de verdad del chrome; si cambias el menu ahi, correr el build y las
-  paginas quedan iguales solas. Eso incluye el subset de iconos.
+- El header, el footer, los botones flotantes, los preconnect y el <link> de
+  fuentes se LEEN de index.html en cada build. index.html es la unica fuente de
+  verdad del chrome; si cambias el menu ahi, correr el build y las paginas
+  quedan iguales solas. El sprite de iconos NO sale de ahi: lo genera
+  tools/iconos.py, que es la unica fuente de verdad del set.
 - build.py reescribe las rutas relativas sumando ../ porque las paginas viven un
   nivel mas abajo. Las que empiezan con http, mailto, tel o / quedan intactas.
 - El build tambien reescribe sitemap.xml entero. No editarlo a mano.
@@ -95,57 +157,55 @@ prueba objetiva -> industrias -> #faq -> #contact-form -> #contact -> #about.
   devuelve 1 si encuentra algo. Una ancla mal escrita no rompe nada visible,
   por eso hace falta el chequeo.
 
-## Rendimiento (paso 1 de la reestructuracion)
-- El font de iconos se pide RECORTADO con &icon_names= en las 6 paginas. La
-  fuente completa pesa 1.1 MB y el subset 70 KB. TRAMPA: si agregas un icono
-  nuevo tenes que sumarlo a icon_names en TODAS las paginas o se ve como texto
-  plano. La lista actual tiene 62 iconos.
-- Las capturas de portfolio/ estan en WebP, con ancho maximo 1400 px (el ancho
-  real que se muestra es 698 px CSS) y nombres en kebab-case sin acentos.
-  3.48 MB -> 1.36 MB. Todas las <img> del portfolio llevan loading="lazy".
-- El CSS y el JS de index.html viven en assets/zyntra.css y assets/zyntra.js
-  para que se cacheen entre paginas. Siguen inline a proposito: la config de
-  Tailwind (tiene que correr apenas carga el CDN) y los bloques JSON-LD.
-- Quedan 19 imagenes sin usar en portfolio/ (4.4 MB). No las sirve nadie, solo
-  pesan en el repo. Preguntar al dueno antes de borrarlas.
+## Rendimiento
+- Se saco lo que bloqueaba el renderizado: Tailwind CDN (127,4 KiB / 780 ms)
+  y el font de iconos de Material Symbols (70 KB). Quedan tres pedidos: el
+  CSS de Google Fonts (con preconnect), assets/zyntra.css y assets/zyntra.js
+  (con defer).
+- Las capturas de portfolio/ estan en WebP, ancho maximo 1400 px, en
+  kebab-case sin acentos, todas con loading="lazy". 3,48 MB -> 1,36 MB.
+- El CSS y el JS viven en assets/ para que se cacheen entre paginas. Los
+  bloques JSON-LD siguen inline a proposito.
+- Quedan 19 imagenes sin usar en portfolio/ (4,4 MB). No las sirve nadie.
+  Preguntar al dueno antes de borrarlas.
+- NO se puede arreglar en GitHub Pages: los tiempos de cache y las cabeceras
+  HSTS, COOP, XFO, CSP y Trusted Types. Pages no deja configurar cabeceras.
+  No perder tiempo ahi.
+- Hay que volver a medir con PageSpeed despues del rebrand. Los numeros de
+  septiembre (movil 80, escritorio 69 con CLS 0,177) son del sitio viejo.
 
 ## Logo
-- El vector original del dueno es assets/Zyntra-logo-vector.svg y esta hecho
-  para FONDO CLARO: la palabra y el lema son #0B1014, que contra el fondo del
-  sitio (#100f0d) da contraste 1.0. Invisible. No usarlo tal cual.
-- tools/logo.py lo recolorea (palabra #ffffff, diagonal #81ecff, el cian de
-  marca) y lo parte en tres, separando los subtrazos por altura:
-    assets/logo-zyntra.svg           completo, con lema
-    assets/logo-zyntra-compacto.svg  sin lema  -> header y hero
-    assets/logo-zyntra-simbolo.svg   solo la Z -> favicon
-  Si el dueno manda un vector nuevo, correr tools/logo.py otra vez.
-- En el hero va el COMPACTO a proposito: el lema del logo ("Automatizamos el
-  futuro") y el renglon de arriba del H1 ("Creacion con vision e inteligencia
-  artificial") juntos son dos slogans pegados. Si se quiere el completo, es
-  cambiar el src.
-- favicon.svg se arma desde el simbolo. apple-touch-icon.png y og-zyntra.jpg
-  se rasterizaron desde el SVG con canvas en el navegador (no hay cairosvg ni
-  ImageMagick en esta maquina).
-- assets/logo.png (908 KB) es el original que subio el dueno. No lo usa nadie:
-  el sitio sirve los SVG. Se puede borrar si el dice que si.
+- El logotipo es una composicion HTML/CSS, no un archivo: la palabra "zyntra"
+  en Bricolage 800 minuscula con letter-spacing -.045em, precedida del
+  isotipo, que es un cuadrado de radio 34% en tinta con una Z crema y el
+  punto naranja abajo a la derecha.
+- El punto naranja lleva borde del color del FONDO de la pieza. En CSS eso
+  se pasa con --fondo-pieza (por defecto arena). Sobre un panel tinta hay
+  que setearlo o el borde queda mal.
+- Prohibido: rotarlo, abrir el tracking, colorearlo fuera de la paleta o
+  rehacerlo con otra tipografia.
+- favicon.svg, apple-touch-icon.png y og-zyntra.jpg los genera tools/marca.py.
+  La Z va como poligono de 10 puntos (no como texto): un favicon se dibuja
+  sin webfonts. Las fuentes para la imagen OG se bajan de Google Fonts a una
+  carpeta temporal, no al repo.
+- PENDIENTE del handoff: vectorizar el logotipo y el Ojito como SVG
+  (horizontal, apilado, isotipo, monograma y las 6 expresiones). Eso pide un
+  editor vectorial.
+- Quedan en assets/ los archivos de la marca VIEJA que subio el dueno
+  (Zyntra-logo-vector.svg, logo.png, Zyntra-logo-fondo-oscuro.png,
+  logo-zyntra-100x100.png). No los usa nadie. Preguntarle antes de borrarlos.
 
-## Rendimiento medido (PageSpeed, 2026-09-02)
-- Movil: Rendimiento 80, Accesibilidad 97->100, Practicas 100, SEO 100.
-  FCP 3,8s | LCP 3,8s | TBT 0ms | CLS 0.049
-- Escritorio: Rendimiento 69, TBT 470ms, CLS 0.177. Escritorio esta PEOR que
-  movil, al reves de lo habitual. Sin diagnosticar todavia.
-- Lo que bloquea el renderizado (2930 ms estimados de ahorro):
-    cdn.tailwindcss.com   127,4 KiB  780 ms   <- el grande, necesita compilar
-    assets/zyntra.js        6,4 KiB  600 ms   <- resuelto con defer
-    CSS de Google Fonts     2,9 KiB 1500 ms   <- resuelto con preconnect
-    assets/zyntra.css       7,5 KiB  150 ms
-- El CLS de movil (0.049) lo causa el H1: carga con la fuente de reserva y
-  reflowea al llegar Space Grotesk.
-- NO se puede arreglar en GitHub Pages: los tiempos de cache (10 min en
-  nuestros assets) y las cabeceras HSTS, COOP, XFO, CSP y Trusted Types.
-  Pages no deja configurar cabeceras. No perder tiempo ahi.
-- Minificar CSS y JS: Lighthouse dice 5 KiB, pero eso es ANTES de gzip. Real
-  ~1 KiB, y minificar JS a mano es riesgoso. No se hizo a proposito.
+## Paginas hechas a mano (las 5 que no genera build.py)
+- 404.html, gracias.html, privacidad.html, terminos.html y
+  preguntasfrecuentes/index.html se escriben a mano, pero su header, footer y
+  botones flotantes son COPIA del de index.html. Si cambias el menu ahi,
+  hay que copiarlo tambien a estas cinco.
+- TRAMPA de las paginas de la raiz: el header trae href="#senales", que en
+  404.html apunta a un ancla de 404.html, no de la home. En esas paginas las
+  anclas van como ./#senales.
+- preguntasfrecuentes tiene 130 preguntas, buscador y "abrir todas", con su
+  propio <style> y su propio <script> al final. Los estilos de esa pagina son
+  los unicos que no estan en assets/zyntra.css.
 
 ## Blog
 - Notas en tools/paginas/blog_*.py, con slug blog/<lo-que-sea> y la clave
