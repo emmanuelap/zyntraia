@@ -157,6 +157,21 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
   devuelve 1 si encuentra algo. Una ancla mal escrita no rompe nada visible,
   por eso hace falta el chequeo.
 
+## Cache de assets (TRAMPA de GitHub Pages)
+- Pages sirve assets/ con ~10 min de cache y no deja tocar cabeceras. Al
+  publicar un cambio de diseno, el visitante que ya estuvo recibe el HTML
+  NUEVO con el CSS VIEJO cacheado y ve la pagina rota hasta que expire.
+  Paso de verdad al subir el rebrand.
+- Por eso los <link> y <script> llevan ?v=<hash del contenido>. Lo pone
+  tools/version.py, que corre solo al final de build.py. El hash cambia
+  solo cuando el archivo cambia: si no tocaste el CSS, la URL no se mueve
+  y el cache sigue sirviendo.
+- Si editas assets/zyntra.css o assets/zyntra.js A MANO y no corres el
+  build, hay que correr  python tools/version.py  antes de publicar. Si no,
+  el cambio no le llega a nadie que ya haya entrado.
+- verificar.py ignora el ?v= al resolver rutas. Si algun dia se versiona
+  otro archivo, revisar que siga ignorandolo.
+
 ## Rendimiento
 - Se saco lo que bloqueaba el renderizado: Tailwind CDN (127,4 KiB / 780 ms)
   y el font de iconos de Material Symbols (70 KB). Quedan tres pedidos: el

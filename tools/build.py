@@ -513,6 +513,8 @@ def main():
         destino = os.path.join(RAIZ, p['slug'], 'index.html')
         escribir(destino, render(p, chrome))
         print('  %-30s %6.0f KB' % (p['slug'] + '/index.html', os.path.getsize(destino) / 1024))
+    import version
+    version.main()
     n = escribir_sitemap([p['slug'] for p in paginas])
     print('\n%d paginas generadas · sitemap.xml con %d URLs' % (len(paginas), n))
 

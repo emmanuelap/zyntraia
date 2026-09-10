@@ -68,6 +68,8 @@ def main():
             if not valor or valor.startswith(EXTERNO) or valor == '#':
                 continue
             ruta, _, ancla = valor.partition('#')
+            # los assets llevan ?v=<hash> para saltear el cache de Pages
+            ruta = ruta.partition('?')[0]
             destino = resolver(p, ruta) if ruta else p
 
             if not os.path.exists(os.path.join(RAIZ, destino)):
