@@ -33,20 +33,31 @@
     --tinta-3:      #241E19;   /* placeholder sobre tinta   */
 
     /* texto sobre claro */
-    --texto:        #4A423A;   /* cuerpo sobre crema     */
-    --texto-2:      #6B6155;   /* secundario             */
-    --mono-claro:   #8A7F70;   /* etiquetas mono          */
-    --apagado:      #A2957F;   /* placeholder, desactivado */
+    --texto:        #4A423A;   /* cuerpo sobre crema         8.67:1 */
+    --texto-2:      #6B6155;   /* secundario                 5.33:1 */
+    --mono-claro:   #6E6357;   /* etiquetas mono             5.18:1 */
+    --apagado:      #6F6553;   /* placeholder, desactivado   4.62:1 */
 
     /* texto sobre tinta */
-    --sobre-tinta:   #9A8F82;
-    --sobre-tinta-2: #8E8377;
-    --sobre-tinta-3: #7E7367;
+    --sobre-tinta:   #9A8F82;  /* 5.83:1 */
+    --sobre-tinta-2: #8E8377;  /* 4.86:1 */
+    --sobre-tinta-3: #90857A;  /* 4.77:1 */
 
     /* texto sobre acento */
-    --sobre-naranja: #5C1D0B;
+    --sobre-naranja: #3A1105;  /* 4.54:1 sobre naranja */
     --sobre-verde:   #BBD8CB;
     --sobre-verde-2: #D3E4DA;
+
+    /* El naranja de marca da 3.24:1 sobre crema: alcanza para un titulo
+       grande, no para un enlace de 15px. El handoff lo dice explicito
+       ("el naranja no se usa como color de texto sobre crema en tamanos
+       chicos"), asi que el texto chico usa esta version: 5.05:1 sobre crema
+       y 4.60:1 sobre la superficie secundaria, que es donde viven las
+       tarjetas y es el fondo mas exigente.
+       --acento sigue siendo el de los rellenos, los puntos y los titulos, y
+       tambien el del texto chico SOBRE TINTA, donde da 5.01:1 y el oscuro
+       no se leeria. */
+    --acento-texto: #B93A15;
 
     /* bordes y divisores */
     --borde:        #D8CCB8;
@@ -268,7 +279,7 @@ p { margin: 0; text-wrap: pretty; }
 .btn--contorno:hover { background: var(--tinta); color: var(--crema); }
 
 .btn--enlace {
-    color: var(--acento);
+    color: var(--acento-texto);
     background: transparent;
     border-bottom: 2px solid var(--acento);
     border-radius: 0;
@@ -303,7 +314,7 @@ p { margin: 0; text-wrap: pretty; }
 
 /* enlace de texto suelto dentro de parrafos */
 .enlace {
-    color: var(--acento);
+    color: var(--acento-texto);
     text-decoration: none;
     border-bottom: 2px solid var(--acento);
     transition: var(--transicion);
@@ -381,7 +392,7 @@ p { margin: 0; text-wrap: pretty; }
     font-size: 11px;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--acento);
+    color: var(--acento-texto);
 }
 
 .campo-ayuda { font-size: 14px; line-height: 1.45; color: var(--texto-2); }
@@ -498,7 +509,7 @@ a.chip--contorno:hover { background: var(--tinta); color: var(--crema); border-c
 
 .tarjeta h3, .tarjeta h4 { font-weight: 600; font-size: 22px; letter-spacing: -.025em; line-height: 1.2; }
 .tarjeta h3 a, .tarjeta h4 a { color: inherit; text-decoration: none; transition: var(--transicion); }
-.tarjeta h3 a:hover, .tarjeta h4 a:hover { color: var(--acento); }
+.tarjeta h3 a:hover, .tarjeta h4 a:hover { color: var(--acento-texto); }
 .tarjeta--tinta h3 a:hover, .tarjeta--tinta h4 a:hover { color: var(--acento); }
 .tarjeta p { font-size: 15px; line-height: 1.5; color: var(--texto); margin-top: 10px; }
 .tarjeta--tinta p, .tarjeta--tinta-2 p { color: var(--sobre-tinta); }
@@ -519,6 +530,13 @@ a.chip--contorno:hover { background: var(--tinta); color: var(--crema); border-c
 .tarjeta--tinta .con-sin strong { color: var(--crema); }
 
 .tarjeta .btn--enlace { margin-top: auto; }
+
+/* Tarjeta que es toda un enlace (casos, notas del blog). El color se fija
+   explicito: con color:inherit, adentro de un panel tinta, el titulo se
+   volvia crema sobre una tarjeta clara y no se leia. */
+.tarjeta--enlace { text-decoration: none; color: var(--tinta); }
+.tarjeta--enlace h3, .tarjeta--enlace h4 { color: var(--tinta); }
+.tarjeta--enlace:hover h3, .tarjeta--enlace:hover h4 { color: var(--acento-texto); }
 
 /* ------------------------------------------------- 11. tarjeta de caso */
 
@@ -975,7 +993,7 @@ details.faq > summary {
     transition: var(--transicion);
 }
 details.faq > summary::-webkit-details-marker { display: none; }
-details.faq > summary:hover { color: var(--acento); }
+details.faq > summary:hover { color: var(--acento-texto); }
 details.faq .respuesta { padding: 0 26px 24px; font-size: 15px; line-height: 1.6; color: var(--texto); }
 details.faq .respuesta p + p { margin-top: 12px; }
 
@@ -1064,7 +1082,7 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
     font-size: 10px;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--acento);
+    color: var(--acento-texto);
     margin-top: auto;
     display: inline-flex;
     align-items: center;
@@ -1189,7 +1207,7 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
     font-size: 15px;
     transition: var(--transicion);
 }
-.toc a:hover { color: var(--acento); }
+.toc a:hover { color: var(--acento-texto); }
 
 .legal { max-width: 68ch; }
 .legal h2 { font-weight: 800; font-size: 26px; letter-spacing: -.03em; margin-top: 38px; }
@@ -1200,7 +1218,7 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
 .legal li + li { margin-top: 8px; }
 .legal strong { color: var(--tinta); font-weight: 600; }
 .legal a {
-    color: var(--acento);
+    color: var(--acento-texto);
     text-decoration: none;
     border-bottom: 1.5px solid var(--acento);
     transition: var(--transicion);
@@ -1272,7 +1290,7 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
     text-decoration: none;
     transition: var(--transicion);
 }
-.enlace-suave:hover { color: var(--acento); }
+.enlace-suave:hover { color: var(--acento-texto); }
 .enlace-suave .ico { color: currentColor; }
 
 /* franja de datos objetivos */
@@ -1371,6 +1389,63 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
     transition: opacity .5s ease, transform .5s ease;
 }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* ------------------------------------------- 27. correcciones de contraste
+   Todo lo de aca sale de auditar el DOM real contra WCAG AA (4.5:1 en texto
+   normal, 3:1 en texto grande). Son casos donde una regla general dejaba un
+   texto por debajo del minimo. Si tocas colores, volve a auditar. */
+
+/* El eyebrow mono sobre tinta: la regla de arriba solo cubria .sobre-tinta,
+   pero varios paneles son .panel--tinta a secas. 3,39:1 -> 4,77:1 */
+.panel--tinta .etiqueta,
+.tarjeta--tinta .etiqueta,
+.tarjeta--tinta-2 .etiqueta,
+.tarjeta-caso .etiqueta { color: var(--sobre-tinta-3); }
+
+/* Los rotulos de los campos dentro del formulario oscuro. 3,12:1 -> 4,77:1 */
+.panel--tinta .campo > label,
+.tarjeta--tinta-2 .campo > label { color: var(--sobre-tinta-3); }
+
+/* Las vinetas de la tarjeta de caso quedaban en el gris de fondo claro
+   sobre tinta: 1,87:1, practicamente invisibles. */
+.tarjeta-caso .con-sin { border-top-color: var(--divisor-tinta); }
+.tarjeta-caso .con-sin span:last-child { color: var(--sobre-tinta); }
+.tarjeta-caso .con-sin strong { color: var(--crema); }
+
+/* Sobre tinta el naranja oscuro no se lee (3,45:1). Ahi va el naranja pleno,
+   que da 5,01:1. Es al reves que sobre crema. */
+.panel--tinta .btn--enlace,
+.tarjeta--tinta .btn--enlace,
+.tarjeta-caso .btn--enlace,
+.panel--tinta .enlace,
+.panel--tinta .puerta-cta { color: var(--acento); }
+
+/* El boton del menu mobile: .mobile-menu a le ganaba a .btn--primario por
+   especificidad y le dejaba el texto gris sobre naranja. 2,67:1 -> 5,01:1 */
+.mobile-menu a.btn--primario {
+    color: var(--tinta);
+    font-weight: 600;
+    justify-content: center;
+}
+.mobile-menu a.btn--primario:hover { background: var(--acento-hover); color: var(--crema); }
+
+/* Una tarjeta CLARA dentro de un panel tinta: las reglas de arriba pintan
+   para fondo oscuro y ahi adentro dejan el texto ilegible. Estas las
+   devuelven al color de fondo claro. Va al final para ganar por orden. */
+.panel--tinta .tarjeta .etiqueta,
+.panel--tinta details.faq .etiqueta { color: var(--mono-claro); }
+.panel--tinta .tarjeta .enlace,
+.panel--tinta .tarjeta .btn--enlace,
+.panel--tinta .tarjeta .puerta-cta { color: var(--acento-texto); }
+
+/* La pregunta de un <details> no tenia color propio y heredaba el crema del
+   panel oscuro, sobre una tarjeta clara: 1,09:1. Invisible. */
+details.faq > summary { color: var(--tinta); }
+details.faq .respuesta p { color: var(--texto); }
+
+/* .tarjeta p le ganaba a .etiqueta y le subia el cuerpo de 11 a 15px */
+.tarjeta p.etiqueta { font-size: 11px; margin-top: 0; color: var(--mono-claro); }
+.tarjeta p.etiqueta--chica { font-size: 10px; }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

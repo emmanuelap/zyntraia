@@ -167,7 +167,7 @@ def bloque_pasos(s):
     for i, p in enumerate(s['pasos'], 1):
         filas.append(
             '<div class="tarjeta reveal">\n'
-            '<div class="paso-num" style="color:var(--acento)">%02d</div>\n'
+            '<div class="paso-num" style="color:var(--acento-texto)">%02d</div>\n'
             '<div><h3>%s</h3><p>%s</p></div>\n</div>' % (i, p['titulo'], p['texto']))
     return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n</div>\n'
             '<div class="rejilla" style="--min:220px">\n%s\n</div>'
@@ -214,7 +214,7 @@ def bloque_casos(s):
     fichas = []
     for c in s['casos']:
         fichas.append(
-            '<a class="tarjeta reveal" href="@@SUBIR@@%s/" style="text-decoration:none;color:inherit">\n'
+            '<a class="tarjeta tarjeta--enlace reveal" href="@@SUBIR@@%s/">\n'
             '<div class="caja-ico">%s</div>\n'
             '<div><h3>%s</h3><p>%s</p></div>\n'
             '<span class="puerta-cta">%s %s</span>\n</a>'
@@ -238,7 +238,7 @@ def bloque_articulos(s):
     filas = []
     for a in s['articulos']:
         filas.append(
-            '<a class="tarjeta reveal" href="@@SUBIR@@%s/" style="text-decoration:none;color:inherit">\n'
+            '<a class="tarjeta tarjeta--enlace reveal" href="@@SUBIR@@%s/">\n'
             '<time class="etiqueta etiqueta--chica" datetime="%s">%s</time>\n'
             '<div><h3>%s</h3><p>%s</p></div>\n'
             '<span class="puerta-cta">Leer %s</span>\n</a>'
