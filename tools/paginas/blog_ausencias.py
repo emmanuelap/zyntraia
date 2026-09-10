@@ -6,6 +6,7 @@ PAGINA = {
     'padre': {'slug': 'blog', 'nombre': 'Blog'},
     'migas': 'Reducir ausencias',
     'icono': 'event_available',
+    'ojito': 'sospechando',
     'articulo': {'fecha': '2026-09-02'},
 
     'titulo': 'Cómo reducir las ausencias a los turnos | Zyntra',

@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'sistemas-gimnasios',
     'migas': 'Sistemas para gimnasios',
     'icono': 'fitness_center',
+    'ojito': 'normal',
 
     'titulo': 'Software de gestión para gimnasios y centros fitness | Zyntra',
     'descripcion': ('Sistema de administración para gimnasios: socios, planes, cuotas, reservas de clases, '

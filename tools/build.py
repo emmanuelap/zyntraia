@@ -37,6 +37,7 @@ from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import iconos  # noqa: E402
+import ojito as mascota  # noqa: E402
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX = os.path.join(RAIZ, 'index.html')
@@ -396,7 +397,7 @@ PLANTILLA = '''<!DOCTYPE html>
 <section class="panel bloque-cta">
 <div class="fila">
 <h2>@@CTA_TITULO@@</h2>
-<div class="ojito" data-ojito style="--S:clamp(56px,8vw,78px)"><div class="ojito-cuerpo"><div class="ojito-iris"><div class="ojito-pupila"></div></div><div class="ojito-brillo"></div><div class="ojito-parpado"></div></div><div class="ojito-patas"><span></span><span></span></div></div>
+@@OJITO@@
 </div>
 <div>
 <p class="cuerpo" style="color:var(--sobre-naranja);max-width:56ch;margin-bottom:22px">@@CTA_TEXTO@@</p>
@@ -417,6 +418,19 @@ PLANTILLA = '''<!DOCTYPE html>
 </body>
 </html>
 '''
+
+
+def ojito_de(p):
+    """
+    El Ojito del bloque CTA, con la cara que le corresponde a esa pagina.
+    Se elige con la clave 'ojito' de PAGINA; por defecto va 'normal'.
+
+    Pentesting es la excepcion del brandboard: ahi NO va la mascota. Una
+    auditoria de seguridad no se vende con un personaje simpatico.
+    """
+    if p.get('sin_ojito') or p['slug'].startswith('pentesting'):
+        return ''
+    return mascota.ojito(p.get('ojito', 'normal'), 'clamp(56px,8vw,78px)')
 
 
 def render(p, chrome):
@@ -448,6 +462,7 @@ def render(p, chrome):
         '@@HEADER@@': subir(chrome['header'], niveles),
         '@@FOOTER@@': subir(chrome['footer'], niveles),
         '@@FLOTANTES@@': subir(chrome['flotantes'], niveles),
+        '@@OJITO@@': ojito_de(p),
         '@@SCHEMA@@': datos_estructurados(p),
         '@@SECCIONES@@': render_secciones(p['secciones']),
     }

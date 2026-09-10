@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'casos-de-exito',
     'migas': 'Casos de éxito',
     'icono': 'insights',
+    'ojito': 'normal',
 
     'titulo': 'Casos de éxito: sistemas de Zyntra en producción | Zyntra',
     'descripcion': ('Sistemas de Zyntra funcionando: 72 gimnasios con 8.900 usuarios, un asistente de '

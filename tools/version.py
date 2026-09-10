@@ -21,7 +21,9 @@ import os
 import re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ASSETS = ('assets/zyntra.css', 'assets/zyntra.js')
+# El favicon y el icono de app tambien: los navegadores los cachean todavia
+# mas fuerte que una hoja de estilos, y al cambiar la marca hay que forzarlos.
+ASSETS = ('assets/zyntra.css', 'assets/zyntra.js', 'favicon.svg', 'apple-touch-icon.png')
 EXCLUIDAS = {'byheart', 'tools', 'docs', 'rediseno total de Zyntra'}
 
 
@@ -47,10 +49,10 @@ def main():
         h = io.open(ruta, encoding='utf-8').read()
         original = h
         for asset, v in versiones.items():
-            nombre = asset.split('/')[-1]
             # atrapa la ruta con cualquier cantidad de ../ adelante y con o
-            # sin ?v= previo, para poder correrlo las veces que haga falta
-            h = re.sub(r'((?:\.\./)*assets/' + re.escape(nombre) + r')(\?v=[a-f0-9]+)?"',
+            # sin ?v= previo, para poder correrlo las veces que haga falta.
+            # El (?<=") ancla el arranque para no comerse un prefijo de mas.
+            h = re.sub(r'(?<=")((?:\.\./)*' + re.escape(asset) + r')(\?v=[a-f0-9]+)?"',
                        r'\1?v=' + v + '"', h)
         if h != original:
             io.open(ruta, 'w', encoding='utf-8', newline='').write(h)

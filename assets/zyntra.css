@@ -792,6 +792,23 @@ a.chip--contorno:hover { background: var(--tinta); color: var(--crema); border-c
 /* parpadeo automatico, lo dispara el JS agregando la clase */
 .ojito.parpadea { --lid: 1; }
 
+/* Ojito con su frase debajo. Una sola frase por seccion. */
+.ojito-bloque { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.ojito-frase { max-width: 26ch; line-height: 1.7; }
+
+/* Ojito acompanando el encabezado de una seccion: se va al costado y en
+   pantalla chica se pone arriba del texto, centrado. */
+.seccion-con-ojito {
+    display: flex;
+    gap: var(--gap-columna);
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.seccion-con-ojito > .encabezado-seccion { margin-bottom: 0; flex: 1 1 420px; }
+.seccion-con-ojito > .ojito,
+.seccion-con-ojito > .ojito-bloque { flex: 0 0 auto; margin: 0 auto; }
+
 /* --------------------------------------------------------- 15. patrones */
 
 .patron-puntos {

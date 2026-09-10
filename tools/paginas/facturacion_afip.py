@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'facturacion-afip',
     'migas': 'Facturación AFIP',
     'icono': 'receipt_long',
+    'ojito': 'sospechando',
 
     'titulo': 'Facturación electrónica AFIP integrada a tu sistema | Zyntra',
     'descripcion': ('Facturación electrónica AFIP con CAE real desde tu propio sistema. Facturas A, B y C '

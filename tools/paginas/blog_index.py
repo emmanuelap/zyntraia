@@ -10,6 +10,7 @@ PAGINA = {
     'slug': 'blog',
     'migas': 'Blog',
     'icono': 'campaign',
+    'ojito': 'normal',
 
     'titulo': 'Blog de Zyntra: automatización, turnos y presencia digital',
     'descripcion': ('Notas prácticas sobre chatbots de WhatsApp, turnos online, reseñas en Google Maps y '

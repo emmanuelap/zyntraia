@@ -74,8 +74,26 @@ pero tenes que recordar siempre la regla de no romper codigo que ya funciona.
 - Sobre fondo tinta el cuerpo sigue crema y el parpado sigue tinta: se lee
   como un mordisco arriba del ojo. Lo unico que cambia son las patas, que
   pasan a crema para no perderse contra el fondo.
-- Donde esta hoy: hero de la home (grande), bloque CTA de cada pagina de
-  servicio (chico), 404 sospechando y gracias bien abierto.
+- El markup lo arma tools/ojito.py, que es el unico lugar donde se escribe.
+  Nunca copiar el HTML a mano: si cambia la construccion, cambia ahi.
+- Donde esta y con que cara (la expresion sale de lo que DICE el texto, no
+  del rubro):
+    home hero              normal        acompana
+    home #senales          sospechando   esta revisando tu lista de sintomas
+    home #calculadora      abierto       el numero que sale asusta
+    home #causas           abierto       es la seccion mas calida del sitio
+    home #faq              normal        escucha
+    preguntasfrecuentes    sospechando   130 preguntas
+    404                    sospechando   algo salio mal
+    gracias                abierto       buenas noticias
+    paginas de servicio    la que diga la clave 'ojito' de su PAGINA
+- Cada PAGINA puede traer 'ojito': 'abierto|normal|sospechando|durmiendo'.
+  Si no la trae va 'normal'. Con 'sin_ojito': True no se dibuja ninguno.
+- pentesting NO lleva mascota, y esta forzado en build.py aparte de la
+  clave: una auditoria de seguridad no se vende con un personaje simpatico.
+- Las leyendas que acompanan a Ojito salen de FRASES en tools/ojito.py y son
+  las del brandboard. Maximo UNA por seccion. Si hace falta una nueva, se
+  escribe con esa voz: frase corta, voseo, un solo chiste.
 
 ## Estructura actual de index.html
 Orden de secciones: hero -> #senales -> #calculadora -> #services -> #proyectos ->
@@ -200,9 +218,15 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
 - Prohibido: rotarlo, abrir el tracking, colorearlo fuera de la paleta o
   rehacerlo con otra tipografia.
 - favicon.svg, apple-touch-icon.png y og-zyntra.jpg los genera tools/marca.py.
-  La Z va como poligono de 10 puntos (no como texto): un favicon se dibuja
-  sin webfonts. Las fuentes para la imagen OG se bajan de Google Fonts a una
-  carpeta temporal, no al repo.
+  Las fuentes para la imagen OG se bajan de Google Fonts a una carpeta
+  temporal, no al repo.
+- EL FAVICON ES OJITO, no la Z. Lo dice la ficha "Avatares y favicon" del
+  brandboard y lo eligio el dueno: cuadrado blando crema, ojo con borde
+  tinta, iris naranja y pupila tinta. La Z quedo solo en el logotipo.
+- TRAMPA al dibujar Ojito con PIL: el parpado es un chord cuyos extremos
+  caen en el punto mas alto del circulo, donde el circulo no tiene ancho.
+  Dibujado directo le salen dos alas planas a los costados. Hay que armarlo
+  en una capa y recortarlo con mascara circular (en SVG, con clipPath).
 - PENDIENTE del handoff: vectorizar el logotipo y el Ojito como SVG
   (horizontal, apilado, isotipo, monograma y las 6 expresiones). Eso pide un
   editor vectorial.

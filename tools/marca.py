@@ -101,17 +101,85 @@ def isotipo(lienzo, x, y, lado, fondo=TINTA, con_punto=True):
         lienzo.ellipse([cx - s * .11, cy - s * .11, cx + s * .11, cy + s * .11], fill=ACENTO)
 
 
+# ------------------------------------------------------- Ojito como avatar
+
+# El favicon y el icono de app son OJITO, no la Z: es lo que dice la ficha
+# "Avatares y favicon" del brandboard. Variante elegida por el dueno: cuadrado
+# blando crema, ojo con borde tinta, iris naranja y pupila tinta.
+#
+# Proporciones tomadas del brandboard, sobre una caja de 100:
+#   ojo 63 (0.63 de la caja)   borde 0.042 del ojo
+#   iris 0.458 del ojo         pupila 0.455 del iris
+#   brillo 0.146 del ojo       parpado 0.167 del ojo
+OJO = .63
+BORDE = .042
+IRIS = .229      # radio
+PUPILA = .455    # del radio del iris
+BRILLO = .073    # radio
+PARPADO = .167
+
+
+def ojito_avatar(img, x, y, n, fondo, cuerpo, borde, iris, pupila, brillo, parpado, forma='cuadrado'):
+    """
+    Dibuja el avatar completo sobre img, ya escalado. (x, y) es la esquina.
+
+    El ojo se arma en una capa aparte y se recorta con mascara circular. El
+    parpado es un chord cuyos extremos caen en el punto mas alto del circulo,
+    donde el circulo no tiene ancho: dibujado directo le salen dos alas planas
+    a los costados, y el aro solo tapa una banda finita.
+    """
+    d = ImageDraw.Draw(img)
+    if forma == 'cuadrado':
+        d.rounded_rectangle([x, y, x + n, y + n], radius=n * .22, fill=fondo)
+    else:
+        d.ellipse([x, y, x + n, y + n], fill=fondo)
+
+    o = int(n * OJO)
+    capa = Image.new('RGB', (o, o), cuerpo)
+    c = ImageDraw.Draw(capa)
+    ir = o * IRIS
+    c.ellipse([o / 2 - ir, o / 2 - ir, o / 2 + ir, o / 2 + ir], fill=iris)
+    pr = ir * PUPILA
+    c.ellipse([o / 2 - pr, o / 2 - pr, o / 2 + pr, o / 2 + pr], fill=pupila)
+    if brillo:
+        bx, by, br = o / 2 + o * .14, o / 2 - o * .16, o * BRILLO
+        c.ellipse([bx - br, by - br, bx + br, by + br], fill=brillo)
+    lid = o * PARPADO
+    c.chord([0, -lid, o, lid], 0, 180, fill=parpado)
+
+    mascara = Image.new('L', (o, o), 0)
+    ImageDraw.Draw(mascara).ellipse([0, 0, o - 1, o - 1], fill=255)
+    img.paste(capa, (int(x + (n - o) / 2), int(y + (n - o) / 2)), mascara)
+
+    cx, cy, r = x + n / 2, y + n / 2, o / 2
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=borde, width=max(1, int(o * BORDE)))
+
+
 def escribir_favicon():
-    d = ' '.join('%g %g' % (x, y) for x, y in Z)
-    puntos = 'M' + ('L'.join('%g,%g' % (x, y) for x, y in Z)) + 'Z'
+    """
+    El mismo Ojito, en vector. El parpado va recortado con un <clipPath> del
+    circulo del ojo: si no, se le ven dos alas planas a los costados.
+    """
+    o = 100 * OJO
+    r = o / 2
+    top = 50 - r
+    lid = o * PARPADO
     svg = '''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Zyntra">
-  <rect width="100" height="100" rx="34" fill="#171310"/>
-  <path fill="#F5F0E6" d="%s"/>
-  <circle cx="84" cy="84" r="14.5" fill="#171310"/>
-  <circle cx="84" cy="84" r="11" fill="#E4572E"/>
+  <defs><clipPath id="ojo"><circle cx="50" cy="50" r="%(r).2f"/></clipPath></defs>
+  <rect width="100" height="100" rx="22" fill="%(crema)s"/>
+  <circle cx="50" cy="50" r="%(r).2f" fill="%(crema)s"/>
+  <circle cx="50" cy="50" r="%(iris).2f" fill="%(acento)s"/>
+  <circle cx="50" cy="50" r="%(pupila).2f" fill="%(tinta)s"/>
+  <circle cx="%(bx).2f" cy="%(by).2f" r="%(br).2f" fill="%(crema)s"/>
+  <path clip-path="url(#ojo)" fill="%(tinta)s" d="M%(izq).2f %(top).2f H%(der).2f Q50 %(ctrl).2f %(izq).2f %(top).2f Z"/>
+  <circle cx="50" cy="50" r="%(r).2f" fill="none" stroke="%(tinta)s" stroke-width="%(sw).2f"/>
 </svg>
-''' % puntos
+''' % {'r': r, 'iris': o * IRIS, 'pupila': o * IRIS * PUPILA,
+       'bx': 50 + o * .14, 'by': 50 - o * .16, 'br': o * BRILLO,
+       'izq': 50 - r, 'der': 50 + r, 'top': top, 'ctrl': top + 2 * lid,
+       'sw': o * BORDE,
+       'crema': '#F5F0E6', 'tinta': '#171310', 'acento': '#E4572E'}
     ruta = os.path.join(RAIZ, 'favicon.svg')
     io.open(ruta, 'w', encoding='utf-8', newline='\n').write(svg)
     return ruta
@@ -119,8 +187,10 @@ def escribir_favicon():
 
 def escribir_apple():
     n = 180
-    img = Image.new('RGB', (n * SUPER, n * SUPER), TINTA)
-    isotipo(ImageDraw.Draw(img), 0, 0, n * SUPER)
+    img = Image.new('RGB', (n * SUPER, n * SUPER), CREMA)
+    ojito_avatar(img, 0, 0, n * SUPER,
+                 fondo=CREMA, cuerpo=CREMA, borde=TINTA, iris=ACENTO,
+                 pupila=TINTA, brillo=CREMA, parpado=TINTA)
     img = img.resize((n, n), Image.LANCZOS)
     ruta = os.path.join(RAIZ, 'apple-touch-icon.png')
     img.save(ruta, 'PNG', optimize=True)

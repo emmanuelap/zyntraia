@@ -6,6 +6,7 @@ PAGINA = {
     'padre': {'slug': 'blog', 'nombre': 'Blog'},
     'migas': 'Antes de contratar una web',
     'icono': 'gavel',
+    'ojito': 'abierto',
     'articulo': {'fecha': '2026-09-02'},
 
     'titulo': 'Seis preguntas antes de contratar una página web | Zyntra',

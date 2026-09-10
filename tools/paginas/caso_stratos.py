@@ -11,6 +11,7 @@ PAGINA = {
     'padre': {'slug': 'casos-de-exito', 'nombre': 'Casos de éxito'},
     'migas': 'Stratos',
     'icono': 'fitness_center',
+    'ojito': 'normal',
 
     'titulo': 'Caso Stratos: 72 gimnasios y 8.900 usuarios | Zyntra',
     'descripcion': ('Cómo Stratos administra 72 gimnasios y alrededor de 8.900 usuarios: socios, planes, '

@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'menus-digitales-qr',
     'migas': 'Menús digitales QR',
     'icono': 'restaurant_menu',
+    'ojito': 'normal',
 
     'titulo': 'Menú digital con QR para restaurantes y bares | Zyntra',
     'descripcion': ('Menú digital con código QR para restaurantes, bares y cafeterías: cambiás precios en '

@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'chatbot-whatsapp',
     'migas': 'Chatbot de WhatsApp',
     'icono': 'smart_toy',
+    'ojito': 'normal',
 
     'titulo': 'Chatbot de WhatsApp para empresas | Zyntra',
     'descripcion': ('Chatbots de WhatsApp que atienden, agendan turnos y hacen seguimiento las 24 horas. '

@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'software-gestion',
     'migas': 'Software de gestión',
     'icono': 'analytics',
+    'ojito': 'sospechando',
 
     'titulo': 'Software de gestión a medida para pymes | Zyntra',
     'descripcion': ('Desarrollo de software de gestión a medida: clientes, stock, cobros, facturación y '

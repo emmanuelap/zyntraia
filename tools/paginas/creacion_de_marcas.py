@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'creacion-de-marcas',
     'migas': 'Creación de marcas',
     'icono': 'palette',
+    'ojito': 'abierto',
 
     'titulo': 'Creación de marcas e identidad visual | Zyntra',
     'descripcion': ('Diseño de marca desde cero: logo, paleta de colores, tipografías y piezas gráficas. '

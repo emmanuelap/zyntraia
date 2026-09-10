@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'desarrollo-web',
     'migas': 'Desarrollo web',
     'icono': 'web',
+    'ojito': 'abierto',
 
     'titulo': 'Desarrollo de páginas web a medida | Zyntra',
     'descripcion': ('Diseño y desarrollo de páginas web a medida para comercios y pymes: rápidas, '

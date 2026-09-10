@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'automatizacion-procesos',
     'migas': 'Automatización de procesos',
     'icono': 'hub',
+    'ojito': 'sospechando',
 
     'titulo': 'Automatización de procesos para empresas | Zyntra',
     'descripcion': ('Automatización de tareas repetitivas: conectamos formularios, WhatsApp, correo, '

@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'accesos-qr',
     'migas': 'Accesos por QR',
     'icono': 'qr_code_2',
+    'ojito': 'sospechando',
 
     'titulo': 'Control de acceso por QR para gimnasios y edificios | Zyntra',
     'descripcion': ('Control de ingreso con código QR único por persona: gimnasios, oficinas, eventos y '

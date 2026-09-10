@@ -6,6 +6,7 @@ PAGINA = {
     'padre': {'slug': 'blog', 'nombre': 'Blog'},
     'migas': 'Conseguir reseñas',
     'icono': 'reviews',
+    'ojito': 'sospechando',
     'articulo': {'fecha': '2026-09-02'},
 
     'titulo': 'Cómo conseguir reseñas en Google sin que te las borren | Zyntra',

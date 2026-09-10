@@ -11,6 +11,7 @@ PAGINA = {
     'padre': {'slug': 'casos-de-exito', 'nombre': 'Casos de éxito'},
     'migas': 'Asistente de WhatsApp',
     'icono': 'smart_toy',
+    'ojito': 'normal',
 
     'titulo': 'Caso: un asistente de WhatsApp que atiende 80 consultas por día | Zyntra',
     'descripcion': ('Un asistente de WhatsApp que responde alrededor de 80 consultas diarias, agenda en '

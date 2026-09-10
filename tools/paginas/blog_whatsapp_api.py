@@ -6,6 +6,7 @@ PAGINA = {
     'padre': {'slug': 'blog', 'nombre': 'Blog'},
     'migas': 'WhatsApp Business vs Cloud API',
     'icono': 'chat',
+    'ojito': 'sospechando',
     'articulo': {'fecha': '2026-09-02'},
 
     'titulo': 'WhatsApp Business o Cloud API: cuál te conviene | Zyntra',

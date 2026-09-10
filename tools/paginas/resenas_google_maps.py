@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'resenas-google-maps',
     'migas': 'Reseñas en Google Maps',
     'icono': 'reviews',
+    'ojito': 'sospechando',
 
     'titulo': 'Más reseñas en Google Maps para tu negocio | Zyntra',
     'descripcion': ('Sistema para conseguir reseñas en Google Maps: pedido automático por WhatsApp, QR y '

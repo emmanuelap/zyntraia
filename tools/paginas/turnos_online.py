@@ -5,6 +5,7 @@ PAGINA = {
     'slug': 'turnos-online',
     'migas': 'Turnos online',
     'icono': 'event_available',
+    'ojito': 'sospechando',
 
     'titulo': 'Sistema de turnos online para tu negocio | Zyntra',
     'descripcion': ('Sistema de turnos y reservas online a medida: tus clientes reservan solos las 24 horas, '

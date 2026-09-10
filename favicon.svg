@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Zyntra">
-  <rect width="100" height="100" rx="34" fill="#171310"/>
-  <path fill="#F5F0E6" d="M20,22L80,22L80,34L38,66L80,66L80,78L20,78L20,66L62,34L20,34Z"/>
-  <circle cx="84" cy="84" r="14.5" fill="#171310"/>
-  <circle cx="84" cy="84" r="11" fill="#E4572E"/>
+  <defs><clipPath id="ojo"><circle cx="50" cy="50" r="31.50"/></clipPath></defs>
+  <rect width="100" height="100" rx="22" fill="#F5F0E6"/>
+  <circle cx="50" cy="50" r="31.50" fill="#F5F0E6"/>
+  <circle cx="50" cy="50" r="14.43" fill="#E4572E"/>
+  <circle cx="50" cy="50" r="6.56" fill="#171310"/>
+  <circle cx="58.82" cy="39.92" r="4.60" fill="#F5F0E6"/>
+  <path clip-path="url(#ojo)" fill="#171310" d="M18.50 18.50 H81.50 Q50 39.54 18.50 18.50 Z"/>
+  <circle cx="50" cy="50" r="31.50" fill="none" stroke="#171310" stroke-width="2.65"/>
 </svg>
