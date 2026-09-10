@@ -88,7 +88,7 @@ PAGINA = {
                 'Los dos casos enseñan lo mismo: el problema nunca es mostrar un calendario. Es que la '
                 'disponibilidad que muestra sea la verdadera, con todas las excepciones del negocio '
                 'adentro. Podés ver las capturas en la '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección '
+                '<a class="enlace" href="../#proyectos">sección '
                 'de proyectos</a>.',
             ],
         },

@@ -90,9 +90,9 @@ PAGINA = {
                 'Si respondiste que no a las tres, la app Business te alcanza. Si respondiste que sí a '
                 'alguna, ahí empieza a tener sentido la Cloud API.',
                 'Si querés ver cómo queda funcionando, mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@chatbot-whatsapp/">'
+                '<a class="enlace" href="@@SUBIR@@chatbot-whatsapp/">'
                 'el servicio de chatbot</a> o '
-                '<a class="text-primary underline-offset-4 hover:underline" '
+                '<a class="enlace" '
                 'href="@@SUBIR@@casos-de-exito/chatbot-whatsapp/">el caso de las 80 consultas diarias</a>.',
             ],
         },

@@ -88,7 +88,7 @@ PAGINA = {
                 'sistema a una cerradura o un molinete. Pero no es por donde conviene empezar: primero '
                 'que el control funcione y que el registro sirva, después la automatización física.',
                 'En gimnasios esto ya está andando dentro de '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../sistemas-gimnasios/">Stratos</a>, '
+                '<a class="enlace" href="../sistemas-gimnasios/">Stratos</a>, '
                 'con check-in por QR y también por huella.',
             ],
         },

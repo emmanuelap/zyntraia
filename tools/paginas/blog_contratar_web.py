@@ -76,16 +76,16 @@ PAGINA = {
             'tipo': 'texto',
             'h2': 'Dos respuestas que son señal de alarma',
             'parrafos': [
-                '<strong class="text-on-surface">"Te la posiciono primero en Google."</strong> Nadie puede '
+                '<strong class="resalte">"Te la posiciono primero en Google."</strong> Nadie puede '
                 'garantizar eso. Se puede trabajar para mejorar la posición, y lleva meses. El que te '
                 'promete el primer puesto en dos semanas te está mintiendo o va a usar métodos que '
                 'después te penalizan.',
-                '<strong class="text-on-surface">Un precio cerrado sin preguntarte nada.</strong> Una web '
+                '<strong class="resalte">Un precio cerrado sin preguntarte nada.</strong> Una web '
                 'de una página informativa y una con turnos, cobros y catálogo no cuestan lo mismo ni de '
                 'cerca. Quien te cotiza sin preguntar qué tiene que lograr el sitio, está cotizando otra '
                 'cosa.',
                 'Si querés ver cómo respondemos nosotros estas seis, están contestadas en '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@desarrollo-web/">'
+                '<a class="enlace" href="@@SUBIR@@desarrollo-web/">'
                 'la página de desarrollo web</a>.',
             ],
         },

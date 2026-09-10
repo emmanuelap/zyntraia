@@ -91,7 +91,7 @@ PAGINA = {
                 'de producción. Todo eso ya lo pasamos.',
                 'El mismo motor está integrado dentro de Stratos Admin, así que la facturación no vive '
                 'aparte del sistema de gestión: es parte de la misma operación. Podés ver las capturas en '
-                'la <a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección '
+                'la <a class="enlace" href="../#proyectos">sección '
                 'de proyectos</a>.',
             ],
         },

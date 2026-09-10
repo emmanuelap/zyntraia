@@ -309,6 +309,10 @@ p { margin: 0; text-wrap: pretty; }
     transition: var(--transicion);
 }
 .enlace:hover { color: var(--tinta); border-bottom-color: var(--tinta); }
+
+/* resalta una palabra dentro de un parrafo, sin cambiarle el color */
+.resalte { color: var(--tinta); font-weight: 600; }
+.panel--tinta .resalte, .sobre-tinta .resalte, .tarjeta--tinta .resalte { color: var(--crema); }
 .sobre-tinta .enlace:hover,
 .panel--tinta .enlace:hover { color: var(--crema); border-bottom-color: var(--crema); }
 
@@ -477,6 +481,9 @@ a.chip--contorno:hover { background: var(--tinta); color: var(--crema); border-c
 
 .tarjeta {
     background: var(--superficie-2);
+    /* explicito a proposito: una tarjeta clara dentro de un panel tinta
+       heredaba el crema del panel y los titulos quedaban ilegibles */
+    color: var(--tinta);
     border-radius: var(--r-tarjeta);
     padding: 28px;
     display: flex;
@@ -1247,6 +1254,30 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
 .panel--verde .caja-ico--crema .ico { color: var(--acento2); }
 .panel--verde .cuerpo, .panel--verde .cuerpo-chico { color: var(--sobre-verde-2); }
 .panel--verde .tarjeta--crema .cuerpo { color: var(--texto); }
+
+/* migas de las paginas generadas */
+.migas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.migas a { color: var(--sobre-tinta-3); text-decoration: none; transition: var(--transicion); }
+.migas a:hover { color: var(--acento); }
+.migas a::after { content: "/"; margin-left: 10px; color: var(--divisor-tinta); }
+.migas [aria-current] { color: var(--sobre-tinta); }
+
+.portada { max-width: 780px; }
+
+/* el bloque CTA usado como panel entero necesita el padding de seccion,
+   no el de tarjeta */
+.panel.bloque-cta { padding: var(--pad-seccion); }
+.panel.bloque-cta h2 { font-size: clamp(26px, 3.4vw, 38px); max-width: 20ch; }
 
 /* contacto */
 .contacto-grid { display: grid; gap: var(--gap-columna); align-items: start; }

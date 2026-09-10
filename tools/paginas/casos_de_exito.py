@@ -57,18 +57,18 @@ PAGINA = {
             'tipo': 'texto',
             'h2': 'Otros trabajos publicados',
             'parrafos': [
-                '<strong class="text-on-surface">Marroquinería Victoria.</strong> Sitio y catálogo, en '
+                '<strong class="resalte">Marroquinería Victoria.</strong> Sitio y catálogo, en '
                 'línea y funcionando: podés verlo en '
-                '<a class="text-primary underline-offset-4 hover:underline" '
+                '<a class="enlace" '
                 'href="https://marroquineriavictoria.com/" rel="noopener noreferrer" target="_blank">'
                 'marroquineriavictoria.com</a>.',
-                '<strong class="text-on-surface">FactuApp.</strong> Facturación electrónica de escritorio '
+                '<strong class="resalte">FactuApp.</strong> Facturación electrónica de escritorio '
                 'trabajando contra los servicios reales de AFIP, con CAE real. El mismo motor está '
                 'integrado dentro de Stratos.',
-                '<strong class="text-on-surface">Mini Turnos App.</strong> Gestión de turnos online '
+                '<strong class="resalte">Mini Turnos App.</strong> Gestión de turnos online '
                 'personalizable por rubro.',
                 'Las capturas de todos están en la '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@#proyectos">'
+                '<a class="enlace" href="@@SUBIR@@#proyectos">'
                 'sección de proyectos</a> de la home.',
             ],
         },

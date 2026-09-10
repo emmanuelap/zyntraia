@@ -90,9 +90,9 @@ PAGINA = {
                 'Está pensado para gimnasios, pero la arquitectura es la misma que usamos para cualquier '
                 'negocio con socios, turnos, stock y cobros. Cambia el vocabulario, no el sistema.',
                 'Podés ver las capturas del panel en la '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección '
+                '<a class="enlace" href="../#proyectos">sección '
                 'de proyectos</a>, y si tenés un gimnasio mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../#svc-gimnasios">el '
+                '<a class="enlace" href="../#svc-gimnasios">el '
                 'servicio armado para ese caso</a>.',
             ],
         },

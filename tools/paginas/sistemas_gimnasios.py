@@ -88,9 +88,9 @@ PAGINA = {
                 'día. Empezar de cero es la forma más rápida de que el equipo del mostrador vuelva a la '
                 'planilla en dos semanas.',
                 'Podés ver las capturas del panel y de la app en la '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección de '
+                '<a class="enlace" href="../#proyectos">sección de '
                 'proyectos</a>, y si tu caso no es un gimnasio pero se parece, mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../software-gestion/">software '
+                '<a class="enlace" href="../software-gestion/">software '
                 'de gestión a medida</a>.',
             ],
         },

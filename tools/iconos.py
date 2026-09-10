@@ -181,7 +181,59 @@ ICONOS = {
     'personas':     '<circle cx="9" cy="8.4" r="3.4"/>'
                     '<path d="M3 20.4c0-3.3 2.7-6 6-6s6 2.7 6 6"/>'
                     '<circle cx="17.6" cy="8" r="2.4" %s/>' % D,
+    'bloques':      '<circle cx="7" cy="7" r="3.2"/><circle cx="17" cy="7" r="3.2"/>'
+                    '<circle cx="7" cy="17" r="3.2"/><circle cx="17" cy="17" r="3.2" %s/>' % D,
+    'maletin':      '<rect x="2.6" y="7" width="18.8" height="13" rx="3"/>'
+                    '<path d="M8.6 7V5.4a2 2 0 0 1 2-2h2.8a2 2 0 0 1 2 2V7"/>'
+                    '<circle cx="12" cy="13.6" r="1.9" %s/>' % D,
+    'balanza':      '<path d="M12 5.6v14.8M6.4 20.4h11.2M4 9.2h16"/>'
+                    '<path d="M4 9.2l-2.4 5.2h4.8zM20 9.2l-2.4 5.2h4.8z"/>'
+                    '<circle cx="12" cy="4" r="1.8" %s/>' % D,
+    'check-circulo': '<circle cx="12" cy="12" r="8.6"/>'
+                     '<path d="M8.2 12.2l2.6 2.6 5-5.4" stroke="var(--punto-ico)"/>',
+    'equis-circulo': '<circle cx="12" cy="12" r="8.6"/>'
+                     '<path d="M9.2 9.2l5.6 5.6M14.8 9.2l-5.6 5.6" stroke="var(--punto-ico)"/>',
 }
+
+# Que icono nuevo reemplaza a cada Material Symbol del sitio viejo. Lo usan
+# build.py (el campo 'icono' de cada PAGINA sigue escrito con el nombre viejo)
+# y los scripts de migracion. Si una pagina pide un nombre que no esta aca,
+# build.py corta: mejor eso que servir un icono equivocado.
+EQUIV = {
+    # servicios
+    'smart_toy': 'chatbot', 'event_available': 'turnos', 'campaign': 'embudo',
+    'reviews': 'mapa', 'analytics': 'gestion', 'hub': 'automatizacion',
+    'fitness_center': 'mancuerna', 'qr_code_2': 'qr', 'insights': 'tablero',
+    'payments': 'cobros', 'receipt_long': 'factura', 'loyalty': 'medalla',
+    'web': 'web', 'autorenew': 'renovar', 'palette': 'gota',
+    'restaurant_menu': 'carta', 'security': 'escudo', 'shield': 'escudo',
+    'phonelink_lock': 'candado', 'shield_lock': 'escudo',
+    # industrias y causas
+    'restaurant': 'plato', 'medical_services': 'salud', 'spa': 'hoja',
+    'shopping_bag': 'bolsa', 'badge': 'credencial', 'factory': 'fabrica',
+    'construction': 'escuadra', 'school': 'birrete', 'pets': 'huella',
+    'directions_car': 'auto', 'recycling': 'hoja', 'volunteer_activism': 'plato',
+    'sports_soccer': 'personas', 'add_circle': 'corazon', 'handshake': 'personas',
+    'diversity_3': 'personas', 'volunteer': 'corazon',
+    # chrome
+    'apps': 'bloques', 'work': 'maletin', 'gavel': 'balanza',
+    'language': 'idiomas', 'chat': 'chatbot', 'search': 'lupa',
+    'search_off': 'lupa', 'cancel': 'equis-circulo', 'check_circle': 'check-circulo',
+    'check': 'check', 'check_small': 'check', 'location_on': 'mapa',
+    'download': 'descarga', 'mail': 'mail', 'menu': 'menu', 'close': 'cerrar',
+    'arrow_forward': 'flecha', 'arrow_back': 'flecha', 'open_in_new': 'externo',
+    'expand_more': 'flecha-abajo', 'add': 'flecha-abajo', 'tune': 'tablero',
+    'calculate': 'calculadora', 'radio_button_unchecked': 'check-circulo',
+}
+
+
+def equivalente(viejo):
+    """Nombre nuevo para un icono viejo de Material Symbols."""
+    if viejo in ICONOS or viejo in MARCAS:
+        return viejo
+    if viejo not in EQUIV:
+        sys.exit('iconos: no hay equivalente para %r. Agregalo a EQUIV.' % viejo)
+    return EQUIV[viejo]
 
 # Marcas de terceros: van tal cual, rellenas. Son logos registrados, no se
 # redibujan con la grilla del sistema.

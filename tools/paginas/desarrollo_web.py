@@ -89,7 +89,7 @@ PAGINA = {
                 'mal en el celular, el navegador avisa que no es segura, o los precios y los horarios que '
                 'muestra ya no son los de ahora.',
                 'Marroquinería Victoria es uno de nuestros trabajos publicados: podés verlo andando en '
-                '<a class="text-primary underline-offset-4 hover:underline" href="https://marroquineriavictoria.com/" '
+                '<a class="enlace" href="https://marroquineriavictoria.com/" '
                 'rel="noopener noreferrer" target="_blank">marroquineriavictoria.com</a>.',
             ],
         },

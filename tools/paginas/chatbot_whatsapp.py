@@ -90,7 +90,7 @@ PAGINA = {
                 'Eso significa que no arrancás de cero. Arrancás de algo que ya funciona y lo adaptamos '
                 'a cómo trabajás vos, que es donde se va el tiempo de verdad.',
                 'Podés ver las capturas del asistente funcionando en la '
-                '<a class="text-primary underline-offset-4 hover:underline" href="../#proyectos">sección '
+                '<a class="enlace" href="../#proyectos">sección '
                 'de proyectos</a>.',
             ],
         },

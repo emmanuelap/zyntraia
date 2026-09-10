@@ -72,10 +72,10 @@ PAGINA = {
             'tipo': 'texto',
             'h2': 'Dos errores comunes',
             'parrafos': [
-                '<strong class="text-on-surface">Mandar el recordatorio demasiado temprano.</strong> Tres '
+                '<strong class="resalte">Mandar el recordatorio demasiado temprano.</strong> Tres '
                 'días antes se olvida igual. El día anterior, o unas horas antes si el turno es a la '
                 'tarde, es lo que funciona.',
-                '<strong class="text-on-surface">Depender de que alguien se acuerde de mandarlo.</strong> '
+                '<strong class="resalte">Depender de que alguien se acuerde de mandarlo.</strong> '
                 'Un recordatorio que sale cuando el mostrador tiene tiempo no sale los días complicados, '
                 'que son justamente los días con más turnos. Tiene que salir solo.',
                 'Y una advertencia sobre la política de cancelación: sirve tenerla escrita, pero solo si '
@@ -90,9 +90,9 @@ PAGINA = {
                 'Poné el recordatorio automático y medí un mes. Ese solo cambio suele mover el número lo '
                 'suficiente como para que el resto se vuelva opcional.',
                 'Si querés ver cómo queda armado, mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@turnos-online/">'
+                '<a class="enlace" href="@@SUBIR@@turnos-online/">'
                 'el sistema de turnos</a>, o '
-                '<a class="text-primary underline-offset-4 hover:underline" '
+                '<a class="enlace" '
                 'href="@@SUBIR@@casos-de-exito/chatbot-whatsapp/">el caso donde las ausencias bajaron a la '
                 'mitad</a>.',
             ],

@@ -35,6 +35,9 @@ import html as html_mod
 import importlib.util
 from datetime import date
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import iconos  # noqa: E402
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX = os.path.join(RAIZ, 'index.html')
 DIR_PAGINAS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'paginas')
@@ -82,6 +85,12 @@ def subir(fragmento, niveles=1):
         attr, valor = m.group(1), m.group(2)
         if valor.startswith(EXTERNOS) or valor == '#':
             return m.group(0)
+        # OJO: los iconos son <use href="#i-algo"> y apuntan al sprite que esta
+        # en ESTA pagina, no a la home. Si se les agrega ../ quedan todos rotos
+        # y no se ve ni un icono. Las otras anclas (#contact-form) SI van a la
+        # home y por eso se reescriben.
+        if valor.startswith('#i-'):
+            return m.group(0)
         if valor in ('./', '.'):          # el "./" de la home ya ES el prefijo
             return '%s="%s"' % (attr, prefijo)
         return '%s="%s%s"' % (attr, prefijo, valor)
@@ -105,62 +114,63 @@ def esc(t):
 def leer_chrome():
     h = leer(INDEX)
     chrome = {
-        'header':    entre(h, '<header class="site-header', '</header>'),
-        'footer':    entre(h, '<footer class="w-full border-t', '</footer>'),
-        'tailwind':  entre(h, '<script src="https://cdn.tailwindcss.com', '</script>'),
-        'config':    entre(h, '<script id="tailwind-config">', '</script>'),
-        # Los botones flotantes van del de Telegram al <script> final, lleve
-        # defer o no. El .* es codicioso a proposito: tiene que llegar hasta el
-        # ULTIMO </a>, porque en el medio esta el boton de WhatsApp.
-        'flotantes': re.search(r'(<a aria-label="Telegram.*</a>)\s*<script\b', h, re.S).group(1),
+        'header': entre(h, '<header class="site-header">', '</header>'),
+        'footer': entre(h, '<footer class="site-footer">', '</footer>'),
     }
+    # Los botones flotantes son un solo <div> sin divs adentro, asi que el
+    # cierre no goloso alcanza. Se ancla al <script> final para no agarrar
+    # otro div si algun dia se agrega uno.
+    m = re.search(r'(<div class="flotantes">.*?</div>)\s*<script\b', h, re.S)
+    if not m:
+        sys.exit('build: no encuentro los botones flotantes en index.html')
+    chrome['flotantes'] = m.group(1)
+
     fuentes = re.findall(r'<link href="https://fonts\.googleapis\.com[^"]*" rel="stylesheet"/>', h)
-    if len(fuentes) != 2:
-        sys.exit('build: esperaba 2 <link> de fuentes en index.html, hay %d' % len(fuentes))
-    chrome['fuentes'] = '\n'.join(fuentes)
+    if len(fuentes) != 1:
+        sys.exit('build: esperaba 1 <link> de fuentes en index.html, hay %d' % len(fuentes))
+    chrome['fuentes'] = fuentes[0]
     # los preconnect tambien salen de index.html: unica fuente de verdad
     chrome['preconnect'] = '\n'.join(re.findall(r'<link[^>]*rel="preconnect"[^>]*/>', h))
-    aviso = re.search(r'<!-- El font de iconos[^>]*?-->', h, re.S)
-    chrome['aviso_iconos'] = aviso.group(0) if aviso else ''
+    # el sprite de iconos no se lee de index.html: lo genera tools/iconos.py,
+    # que es la unica fuente de verdad del set
+    chrome['sprite'] = iconos.sprite()
     return chrome
 
 
 # ------------------------------------------------------------- render de HTML
 
+def ico(nombre, clase='ico'):
+    return iconos.ico(iconos.equivalente(nombre), clase)
+
+
 def bloque_texto(s):
-    p = '\n'.join('<p class="mt-4 text-on-surface-variant">%s</p>' % x for x in s['parrafos'])
-    return ('<div class="max-w-3xl reveal">\n'
-            '<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n%s\n</div>' % (s['h2'], p))
+    p = '\n'.join('<p class="cuerpo" style="margin-top:16px">%s</p>' % x for x in s['parrafos'])
+    return ('<div class="encabezado-seccion" style="margin-bottom:0">\n'
+            '<h2 class="h-seccion">%s</h2>\n%s\n</div>' % (s['h2'], p))
 
 
 def bloque_lista(s):
     tarjetas = []
-    for i, it in enumerate(s['items']):
+    for it in s['items']:
         tarjetas.append(
-            '<div class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 '
-            'bg-surface-container p-6" style="transition-delay:%dms">\n'
-            '<span class="material-symbols-outlined mb-3 text-3xl text-primary">%s</span>\n'
-            '<h3 class="mb-2 text-lg font-bold">%s</h3>\n'
-            '<p class="text-sm leading-relaxed text-on-surface-variant">%s</p>\n</div>'
-            % (i * 60, it.get('icono', 'check_circle'), it['titulo'], it['texto']))
-    intro = ('<p class="mt-4 max-w-3xl text-on-surface-variant">%s</p>' % s['intro']) if s.get('intro') else ''
-    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n%s\n</div>\n'
-            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">\n%s\n</div>'
-            % (s['h2'], intro, '\n'.join(tarjetas)))
+            '<div class="tarjeta reveal">\n'
+            '<div class="caja-ico">%s</div>\n'
+            '<div><h3>%s</h3><p>%s</p></div>\n</div>'
+            % (ico(it.get('icono', 'check_circle')), it['titulo'], it['texto']))
+    intro = ('<p class="cuerpo" style="margin-top:14px">%s</p>' % s['intro']) if s.get('intro') else ''
+    return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n%s\n</div>\n'
+            '<div class="rejilla">\n%s\n</div>' % (s['h2'], intro, '\n'.join(tarjetas)))
 
 
 def bloque_pasos(s):
     filas = []
     for i, p in enumerate(s['pasos'], 1):
         filas.append(
-            '<div class="reveal glass-panel rounded-2xl border border-outline-variant/10 p-6" '
-            'style="transition-delay:%dms">\n'
-            '<span class="hc-rotulo">Paso %02d</span>\n'
-            '<h3 class="mb-2 mt-1 text-lg font-bold">%s</h3>\n'
-            '<p class="text-sm leading-relaxed text-on-surface-variant">%s</p>\n</div>'
-            % ((i - 1) * 70, i, p['titulo'], p['texto']))
-    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n</div>\n'
-            '<div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">\n%s\n</div>'
+            '<div class="tarjeta reveal">\n'
+            '<div class="paso-num" style="color:var(--acento)">%02d</div>\n'
+            '<div><h3>%s</h3><p>%s</p></div>\n</div>' % (i, p['titulo'], p['texto']))
+    return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n</div>\n'
+            '<div class="rejilla" style="--min:220px">\n%s\n</div>'
             % (s['h2'], '\n'.join(filas)))
 
 
@@ -168,58 +178,50 @@ def bloque_faq(s):
     items = []
     for q in s['preguntas']:
         items.append(
-            '<details class="faq-item" id="%s">\n'
-            '<summary><h3 class="faq-q">%s</h3>'
-            '<span class="material-symbols-outlined faq-mas">add</span></summary>\n'
-            '<div class="faq-a"><p>%s</p></div>\n</details>'
+            '<details class="faq" id="%s">\n'
+            '<summary>%s<span class="faq-flecha"></span></summary>\n'
+            '<div class="respuesta"><p>%s</p></div>\n</details>'
             % (slug_de(q['q']), q['q'], q['a']))
     extra = ''
     if s.get('mas'):
         enlaces = '\n'.join(
-            '<li><a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@preguntasfrecuentes/#%s">%s</a></li>'
+            '<li><span class="punto"></span><a class="enlace" href="@@SUBIR@@preguntasfrecuentes/#%s">%s</a></li>'
             % (a, t) for a, t in s['mas'])
-        extra = ('\n<div class="mt-8 rounded-2xl border border-outline-variant/10 bg-surface-container-low p-6">\n'
-                 '<p class="mb-3 text-sm font-semibold text-on-surface">Mas preguntas sobre esto</p>\n'
-                 '<ul class="space-y-2 text-sm text-on-surface-variant">\n%s\n</ul>\n</div>' % enlaces)
-    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n</div>\n'
-            '<div class="mt-6 max-w-3xl">\n%s\n</div>%s' % (s['h2'], '\n'.join(items), extra))
+        extra = ('\n<div class="tarjeta" style="margin-top:22px">\n'
+                 '<p class="etiqueta">M&#225;s preguntas sobre esto</p>\n'
+                 '<ul class="lista-puntos" style="margin-top:16px">\n%s\n</ul>\n</div>' % enlaces)
+    return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n</div>\n'
+            '<div style="max-width:820px">\n%s\n</div>%s' % (s['h2'], '\n'.join(items), extra))
 
 
 def bloque_cifras(s):
     """Numeros de un caso real. Solo se usan cifras que el dueno pueda defender."""
     celdas = []
-    for i, c in enumerate(s['numeros']):
+    for c in s['numeros']:
         celdas.append(
-            '<div class="reveal rounded-2xl border border-outline-variant/10 bg-surface-container '
-            'p-6 text-center" style="transition-delay:%dms">\n'
-            '<p class="font-headline text-4xl font-black text-primary sm:text-5xl">%s</p>\n'
-            '<p class="mt-2 text-sm font-semibold text-on-surface">%s</p>\n'
-            '<p class="mt-1 text-xs leading-relaxed text-zinc-400">%s</p>\n</div>'
-            % (i * 70, c['cifra'], c['titulo'], c.get('detalle', '')))
-    intro = ('<p class="mt-4 max-w-3xl text-on-surface-variant">%s</p>' % s['intro']) if s.get('intro') else ''
-    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n%s\n</div>\n'
-            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-%d">\n%s\n</div>'
-            % (s['h2'], intro, min(len(s['numeros']), 4), '\n'.join(celdas)))
+            '<div class="tarjeta tarjeta--tinta reveal">\n'
+            '<div class="dato" style="font-size:clamp(30px,4vw,46px)">%s</div>\n'
+            '<div><h3 style="color:var(--crema);font-size:18px">%s</h3><p>%s</p></div>\n</div>'
+            % (c['cifra'], c['titulo'], c.get('detalle', '')))
+    intro = ('<p class="cuerpo" style="margin-top:14px">%s</p>' % s['intro']) if s.get('intro') else ''
+    return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n%s\n</div>\n'
+            '<div class="rejilla" style="--min:230px">\n%s\n</div>'
+            % (s['h2'], intro, '\n'.join(celdas)))
 
 
 def bloque_casos(s):
     """Grilla de casos que enlaza a cada ficha."""
     fichas = []
-    for i, c in enumerate(s['casos']):
+    for c in s['casos']:
         fichas.append(
-            '<a class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 '
-            'bg-surface-container p-6 transition-colors hover:bg-surface-container-high" '
-            'href="@@SUBIR@@%s/" style="transition-delay:%dms">\n'
-            '<span class="material-symbols-outlined mb-3 text-3xl text-primary">%s</span>\n'
-            '<h3 class="mb-2 text-lg font-bold">%s</h3>\n'
-            '<p class="mb-4 text-sm leading-relaxed text-on-surface-variant">%s</p>\n'
-            '<span class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary">'
-            '%s<span class="material-symbols-outlined text-base">arrow_forward</span></span>\n</a>'
-            % (c['slug'], i * 70, c.get('icono', 'work'), c['titulo'], c['texto'],
-               c.get('cta', 'Ver el caso')))
-    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n</div>\n'
-            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">\n%s\n</div>'
-            % (s['h2'], '\n'.join(fichas)))
+            '<a class="tarjeta reveal" href="@@SUBIR@@%s/" style="text-decoration:none;color:inherit">\n'
+            '<div class="caja-ico">%s</div>\n'
+            '<div><h3>%s</h3><p>%s</p></div>\n'
+            '<span class="puerta-cta">%s %s</span>\n</a>'
+            % (c['slug'], ico(c.get('icono', 'work')), c['titulo'], c['texto'],
+               c.get('cta', 'Ver el caso'), ico('arrow_forward', 'ico ico--chico')))
+    return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n</div>\n'
+            '<div class="rejilla">\n%s\n</div>' % (s['h2'], '\n'.join(fichas)))
 
 
 MESES = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
@@ -234,20 +236,16 @@ def fecha_larga(iso):
 def bloque_articulos(s):
     """Listado del blog. Cada nota enlaza a su pagina."""
     filas = []
-    for i, a in enumerate(s['articulos']):
+    for a in s['articulos']:
         filas.append(
-            '<a class="reveal flex flex-col rounded-[20px] border border-outline-variant/10 '
-            'bg-surface-container p-6 transition-colors hover:bg-surface-container-high" '
-            'href="@@SUBIR@@%s/" style="transition-delay:%dms">\n'
-            '<time class="hc-rotulo" datetime="%s">%s</time>\n'
-            '<h3 class="mb-2 mt-2 text-lg font-bold leading-snug">%s</h3>\n'
-            '<p class="mb-4 text-sm leading-relaxed text-on-surface-variant">%s</p>\n'
-            '<span class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary">'
-            'Leer<span class="material-symbols-outlined text-base">arrow_forward</span></span>\n</a>'
-            % (a['slug'], i * 60, a['fecha'], fecha_larga(a['fecha']), a['titulo'], a['resumen']))
-    return ('<div class="reveal">\n<h2 class="text-2xl font-bold sm:text-3xl">%s</h2>\n</div>\n'
-            '<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">\n%s\n</div>'
-            % (s['h2'], '\n'.join(filas)))
+            '<a class="tarjeta reveal" href="@@SUBIR@@%s/" style="text-decoration:none;color:inherit">\n'
+            '<time class="etiqueta etiqueta--chica" datetime="%s">%s</time>\n'
+            '<div><h3>%s</h3><p>%s</p></div>\n'
+            '<span class="puerta-cta">Leer %s</span>\n</a>'
+            % (a['slug'], a['fecha'], fecha_larga(a['fecha']), a['titulo'], a['resumen'],
+               ico('arrow_forward', 'ico ico--chico')))
+    return ('<div class="encabezado-seccion">\n<h2 class="h-seccion">%s</h2>\n</div>\n'
+            '<div class="rejilla">\n%s\n</div>' % (s['h2'], '\n'.join(filas)))
 
 
 RENDER = {'texto': bloque_texto, 'lista': bloque_lista, 'pasos': bloque_pasos,
@@ -256,14 +254,14 @@ RENDER = {'texto': bloque_texto, 'lista': bloque_lista, 'pasos': bloque_pasos,
 
 
 def render_secciones(secciones):
+    """Cada seccion es un panel de la pila. 'fondo' la pinta en tinta."""
     fuera = []
     for s in secciones:
         f = RENDER.get(s['tipo'])
         if not f:
             sys.exit('build: tipo de seccion desconocido: %r' % s['tipo'])
-        fondo = ' bg-surface-container-low' if s.get('fondo') else ''
-        fuera.append('<section class="py-16%s">\n<div class="container mx-auto px-4 sm:px-6 lg:px-8">\n%s\n</div>\n</section>'
-                     % (fondo, f(s)))
+        clases = 'panel panel--tinta sobre-tinta' if s.get('fondo') else 'panel'
+        fuera.append('<section class="%s">\n%s\n</section>' % (clases, f(s)))
     return '\n'.join(fuera)
 
 
@@ -339,14 +337,14 @@ def datos_estructurados(p):
 # ------------------------------------------------------------------ plantilla
 
 PLANTILLA = '''<!DOCTYPE html>
-<html class="dark" lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>@@TITULO@@</title>
 <meta content="@@DESC@@" name="description"/>
 <meta content="Zyntra" name="author"/>
-<meta content="#100f0d" name="theme-color"/>
+<meta content="#E3D8C4" name="theme-color"/>
 @@PRECONNECT@@
 <meta content="index, follow, max-image-preview:large, max-snippet:-1" name="robots"/>
 <link href="@@URL@@" rel="canonical"/>
@@ -363,34 +361,31 @@ PLANTILLA = '''<!DOCTYPE html>
 <meta content="@@TITULO@@" name="twitter:title"/>
 <meta content="@@DESC@@" name="twitter:description"/>
 <meta content="@@SITIO@@og-zyntra.jpg" name="twitter:image"/>
-@@TAILWIND@@
-@@CONFIG@@
 @@FUENTES@@
 <link href="@@SUBIR@@assets/zyntra.css" rel="stylesheet"/>
 @@SCHEMA@@
 </head>
-<body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary">
+<body>
+@@SPRITE@@
 <div class="scroll-progress" id="scroll-progress"></div>
 @@HEADER@@
 <main>
+<div class="envoltorio">
 
-<section class="relative overflow-hidden px-0 pt-32 pb-16">
-<div class="soft-grid absolute inset-0 z-0 opacity-[0.07]"></div>
-<div class="mesh-glow absolute inset-0 z-0 opacity-40"></div>
-<div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-<nav aria-label="Ruta de navegación" class="mb-6 flex items-center gap-2 text-sm text-zinc-400">
-<a class="hover:text-primary" href="@@SUBIR@@">Inicio</a>
-<span class="material-symbols-outlined text-base">chevron_right</span>@@PADRE@@
-<span class="text-on-surface">@@MIGAS@@</span>
+<section class="panel panel--tinta sobre-tinta panel--primero">
+<nav aria-label="Ruta de navegaci&#243;n" class="migas">
+<a href="@@SUBIR@@">Inicio</a>@@PADRE@@
+<span aria-current="page">@@MIGAS@@</span>
 </nav>
-<div class="max-w-3xl">
-<span class="material-symbols-outlined mb-4 text-4xl text-primary">@@ICONO@@</span>
-<h1 class="text-3xl font-bold leading-tight tracking-tighter sm:text-4xl md:text-5xl">@@H1@@</h1>
+<div class="portada">
+<div>
+<div class="caja-ico caja-ico--naranja" style="margin-bottom:22px">@@ICONO@@</div>
+<h1 class="display" style="color:var(--crema)">@@H1@@</h1>
 @@FECHA@@
-<p class="mt-5 text-lg font-light text-on-surface-variant sm:text-xl">@@BAJADA@@</p>
-<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-<a class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105 sm:w-auto" href="@@WA@@" rel="noopener noreferrer" target="_blank">@@CTA_BOTON@@</a>
-<a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5 sm:w-auto" href="@@SUBIR@@#contact-form">Pedir diagnóstico gratuito</a>
+<p class="cuerpo" style="margin-top:20px;max-width:56ch">@@BAJADA@@</p>
+<div class="fila-botones" style="margin-top:28px">
+<a class="btn btn--primario" href="@@WA@@" rel="noopener noreferrer" target="_blank">@@CTA_BOTON@@</a>
+<a class="btn btn--contorno" href="@@SUBIR@@#contact-form">Pedir diagn&#243;stico gratis</a>
 </div>
 </div>
 </div>
@@ -398,20 +393,25 @@ PLANTILLA = '''<!DOCTYPE html>
 
 @@SECCIONES@@
 
-<section class="relative overflow-hidden border-t border-outline-variant/10 bg-[#0a0908] py-20">
-<div class="container mx-auto px-4 text-center sm:px-6 lg:px-8">
-<h2 class="text-2xl font-bold sm:text-3xl">@@CTA_TITULO@@</h2>
-<p class="mx-auto mt-3 max-w-xl text-on-surface-variant">@@CTA_TEXTO@@</p>
-<div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-<a class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 font-bold text-on-primary-fixed shadow-xl shadow-primary/20 transition-transform hover:scale-105" href="@@WA@@" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-xl">chat</span>@@CTA_BOTON@@</a>
-<a class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 px-8 py-4 font-medium text-on-surface transition-colors hover:bg-white/5" href="@@SUBIR@@preguntasfrecuentes/">Ver las preguntas frecuentes</a>
+<section class="panel bloque-cta">
+<div class="fila">
+<h2>@@CTA_TITULO@@</h2>
+<div class="ojito" data-ojito style="--S:clamp(56px,8vw,78px)"><div class="ojito-cuerpo"><div class="ojito-iris"><div class="ojito-pupila"></div></div><div class="ojito-brillo"></div><div class="ojito-parpado"></div></div><div class="ojito-patas"><span></span><span></span></div></div>
+</div>
+<div>
+<p class="cuerpo" style="color:var(--sobre-naranja);max-width:56ch;margin-bottom:22px">@@CTA_TEXTO@@</p>
+<div class="fila-botones">
+<a class="btn btn--secundario" href="@@WA@@" rel="noopener noreferrer" target="_blank">@@CTA_BOTON@@</a>
+<a class="btn btn--contorno" href="@@SUBIR@@preguntasfrecuentes/">Ver las preguntas frecuentes</a>
 </div>
 </div>
 </section>
 
+</div>
 </main>
+<div class="envoltorio">
 @@FOOTER@@
+</div>
 @@FLOTANTES@@
 <script defer src="@@SUBIR@@assets/zyntra.js"></script>
 </body>
@@ -430,25 +430,21 @@ def render(p, chrome):
         '@@SITIO@@': SITIO,
         '@@PRECONNECT@@': chrome['preconnect'],
         '@@MIGAS@@': p['migas'],
-        '@@PADRE@@': (
-            '\n<a class="hover:text-primary" href="%s%s/">%s</a>\n'
-            '<span class="material-symbols-outlined text-base">chevron_right</span>'
-            % ('../' * niveles, p['padre']['slug'], p['padre']['nombre'])
-        ) if p.get('padre') else '',
-        '@@ICONO@@': p['icono'],
+        '@@PADRE@@': ('\n<a href="%s%s/">%s</a>' % ('../' * niveles, p['padre']['slug'],
+                                                    p['padre']['nombre'])) if p.get('padre') else '',
+        '@@ICONO@@': ico(p['icono']),
         '@@H1@@': p['h1'],
         '@@BAJADA@@': p['bajada'],
-        '@@FECHA@@': ('<time class="mt-4 block text-sm text-zinc-400" datetime="%s">'
-                      'Publicado el %s</time>'
+        '@@FECHA@@': ('<time class="etiqueta etiqueta--chica" style="display:block;margin-top:16px" '
+                      'datetime="%s">Publicado el %s</time>'
                       % (p['articulo']['fecha'], fecha_larga(p['articulo']['fecha']))
                       ) if p.get('articulo') else '',
         '@@WA@@': wa,
         '@@CTA_BOTON@@': p['cta']['boton'],
         '@@CTA_TITULO@@': p['cta']['titulo'],
         '@@CTA_TEXTO@@': p['cta']['texto'],
-        '@@TAILWIND@@': chrome['tailwind'],
-        '@@CONFIG@@': chrome['config'],
-        '@@FUENTES@@': chrome['aviso_iconos'] + '\n' + chrome['fuentes'],
+        '@@FUENTES@@': chrome['fuentes'],
+        '@@SPRITE@@': chrome['sprite'],
         '@@HEADER@@': subir(chrome['header'], niveles),
         '@@FOOTER@@': subir(chrome['footer'], niveles),
         '@@FLOTANTES@@': subir(chrome['flotantes'], niveles),

@@ -98,12 +98,12 @@ PAGINA = {
                 'cobros recurrentes y facturación. Cambia el vocabulario, no el sistema: donde dice '
                 'disciplina puede decir servicio, y donde dice socio puede decir cliente.',
                 'Si tenés un gimnasio, la página del servicio es '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@sistemas-gimnasios/">'
+                '<a class="enlace" href="@@SUBIR@@sistemas-gimnasios/">'
                 'sistemas para gimnasios</a>. Si tu caso se parece pero no es un gimnasio, mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@software-gestion/">'
+                '<a class="enlace" href="@@SUBIR@@software-gestion/">'
                 'software de gestión a medida</a>.',
                 'Podés ver las capturas del panel y de la app en la '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@#proyectos">'
+                '<a class="enlace" href="@@SUBIR@@#proyectos">'
                 'sección de proyectos</a>.',
             ],
         },

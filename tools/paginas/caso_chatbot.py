@@ -97,9 +97,9 @@ PAGINA = {
                 'Eso significa que no arrancás de cero: arrancás de algo que ya funciona y lo adaptamos '
                 'a cómo trabajás vos, que es donde de verdad se va el tiempo.',
                 'La página del servicio es '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@chatbot-whatsapp/">'
+                '<a class="enlace" href="@@SUBIR@@chatbot-whatsapp/">'
                 'chatbot de WhatsApp</a>, y si lo que te interesa es solo la parte de la agenda, mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@turnos-online/">'
+                '<a class="enlace" href="@@SUBIR@@turnos-online/">'
                 'turnos online</a>.',
             ],
         },

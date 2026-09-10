@@ -57,7 +57,7 @@ PAGINA = {
                 'sistema, que si facturás tres veces por mes el portal de AFIP está bien.',
                 'Y no vas a encontrar cifras inventadas. Los únicos números que publicamos son los que '
                 'podemos sostener, y están en '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@casos-de-exito/">'
+                '<a class="enlace" href="@@SUBIR@@casos-de-exito/">'
                 'los casos</a>.',
             ],
         },

@@ -105,7 +105,7 @@ PAGINA = {
                 'contesta una de cada tres, en dos meses tenés siete reseñas reales. Eso ya te cambia la '
                 'ficha, y no infringiste nada.',
                 'Si querés que el pedido salga solo de acá en adelante, mirá '
-                '<a class="text-primary underline-offset-4 hover:underline" href="@@SUBIR@@resenas-google-maps/">'
+                '<a class="enlace" href="@@SUBIR@@resenas-google-maps/">'
                 'cómo lo automatizamos con QR y tarjeta NFC</a>.',
             ],
         },
