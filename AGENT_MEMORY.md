@@ -208,6 +208,32 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
   devuelve 1 si encuentra algo. Una ancla mal escrita no rompe nada visible,
   por eso hace falta el chequeo.
 
+## Certificado HTTPS de Pages (lo que paso y que NO hacer)
+- Al poner el dominio, GitHub pidio el certificado antes de que el DNS
+  terminara de propagar. El pedido a Let's Encrypt fallo y quedo clavado en
+  https_certificate.state = "bad_authz" ("The ACME authorization is in a bad
+  state. We need to start over"). GitHub NO se recupera solo de ese estado.
+- Se ve con:  gh api repos/emmanuelap/zyntraia/pages --jq .https_certificate
+- El remedio conocido es sacar y reponer el dominio, que fuerza un pedido
+  nuevo:
+    gh api -X PUT repos/emmanuelap/zyntraia/pages -f 'cname='
+    gh api -X PUT repos/emmanuelap/zyntraia/pages -f 'cname=zyntraexperts.com'
+  Cada una de esas deja un commit automatico (Delete CNAME / Create CNAME),
+  asi que despues hay que hacer git pull.
+- LO QUE NO HAY QUE HACER: repetirlo. Se probo dos veces en 2,5 horas y las
+  dos quedaron igual. Let's Encrypt limita los fallos de validacion (del
+  orden de 5 por hora por dominio) y GitHub comparte una sola cuenta ACME,
+  asi que insistir probablemente empeora el cuadro en vez de arreglarlo.
+  Despues del segundo intento, esperar. Puede tardar horas.
+- Descartado y verificado, para no volver a mirarlo: no hay registros CAA
+  bloqueando, los 4 A del apex apuntan bien a GitHub, el apex no tiene AAAA
+  (no hacen falta), www resuelve por CNAME a emmanuelap.github.io, y la ruta
+  /.well-known/acme-challenge/ responde 404 limpio en apex y en www. El DNS
+  esta bien; el problema esta del lado de GitHub.
+- Mientras no haya certificado el sitio anda por http:// y la URL vieja
+  redirige igual. No indexar en Search Console hasta que HTTPS funcione: si
+  no, Google se guarda las URL http:// y despues hay que corregirlas.
+
 ## Cache de assets (TRAMPA de GitHub Pages)
 - Pages sirve assets/ con ~10 min de cache y no deja tocar cabeceras. Al
   publicar un cambio de diseno, el visitante que ya estuvo recibe el HTML
