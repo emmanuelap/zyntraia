@@ -201,7 +201,7 @@ def escribir_apple():
 
 TITULO_OG = 'Sistemas a medida, turnos y chatbots para tu negocio'
 PIE_IZQ = 'DIAGNÓSTICO GRATIS · CABA'
-PIE_DER = 'EMMANUELAP.GITHUB.IO'
+PIE_DER = 'ZYNTRAEXPERTS.COM'
 
 
 def ojito_og(img, x, y, s):

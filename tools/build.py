@@ -42,7 +42,7 @@ import ojito as mascota  # noqa: E402
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX = os.path.join(RAIZ, 'index.html')
 DIR_PAGINAS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'paginas')
-SITIO = 'https://emmanuelap.github.io/zyntraia/'
+SITIO = 'https://zyntraexperts.com/'
 
 WA = ('https://wa.me/5491166439309?text=')
 

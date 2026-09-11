@@ -101,7 +101,21 @@ franja de datos -> #industrias -> #causas -> #faq -> #contact-form -> #about.
 OJO: la seccion del programa sin fines de lucro se llamaba #impacto y ahora
 es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
 
-- El sitio se publica solo en GitHub Pages con cada push a main (https://emmanuelap.github.io/zyntraia/).
+- El sitio se publica solo en GitHub Pages con cada push a main.
+- DOMINIO: https://zyntraexperts.com (comprado en Hostinger, septiembre 2026).
+  El archivo CNAME de la raiz es lo que se lo dice a Pages: contiene
+  "zyntraexperts.com" y NADA mas. Si se borra, el sitio vuelve a
+  emmanuelap.github.io/zyntraia/ y se rompen las 244 URL absolutas.
+  DNS en Hostinger (los nameservers siguen siendo los de ellos):
+    4 A de @    -> 185.199.108.153 .109 .110 .111   (GitHub Pages)
+    4 AAAA de @ -> 2606:50c0:8000::153 ... :8003::153
+    CNAME www   -> emmanuelap.github.io
+  El apex es el canonico y www redirige solo. GitHub deja un 301 permanente
+  desde la URL vieja, asi que los enlaces de antes siguen funcionando.
+- SITIO en tools/build.py es la constante que arma todas las URL absolutas
+  (canonical, og, JSON-LD, sitemap). Si cambia el dominio se cambia ahi Y
+  hay que rehacer las URL de index.html y las 5 paginas a mano, que no las
+  genera el build.
 - Los 18 servicios viven en #services, agrupados en 5 frentes. Cada servicio es una card
   SIEMPRE VISIBLE con icono, descripcion, "Con esto:" / "Sin esto:" y micro-CTA a WhatsApp.
   Si agrego servicios, respetar ese patron.

@@ -12,4 +12,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://emmanuelap.github.io/zyntraia/sitemap.xml
+Sitemap: https://zyntraexperts.com/sitemap.xml
