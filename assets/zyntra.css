@@ -1280,13 +1280,133 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
 }
 .hero-pruebas .punto { margin-top: 0; }
 
-/* frentes de servicio */
-.frente + .frente { margin-top: 42px; }
-.frente-cabecera {
-    border-left: 3px solid var(--acento);
-    padding-left: 20px;
-    margin-bottom: 22px;
+/* ------------------------------------------------- frentes de servicio
+
+   Son un acordeon: 18 tarjetas de golpe eran demasiada informacion junta.
+   Se abre uno por vez con el atributo name de <details>, que es nativo y no
+   necesita JS. assets/zyntra.js solo pone un respaldo para los navegadores
+   que todavia no lo soportan.
+
+   OJO: en la version anterior del sitio esto se colapso y hubo que volver
+   atras porque el copy de venta quedaba escondido. Por eso ahora el primer
+   frente viene ABIERTO y la cabecera cerrada sigue diciendo de que se trata
+   y cuantos servicios tiene. Si se vuelve a tocar, mantener eso. */
+
+.acordeon {
+    background: var(--superficie-2);
+    border-radius: var(--r-tarjeta);
+    overflow: hidden;
 }
+.acordeon + .acordeon { margin-top: 10px; }
+
+.acordeon > summary {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    padding: 24px 26px;
+    cursor: pointer;
+    list-style: none;
+    transition: var(--transicion);
+}
+.acordeon > summary::-webkit-details-marker { display: none; }
+.acordeon > summary:hover { background: var(--crema); }
+.acordeon[open] > summary { background: var(--crema); }
+
+.acordeon-texto { flex: 1 1 320px; min-width: 0; }
+.acordeon-texto h3 {
+    font-family: var(--titulo);
+    font-weight: 800;
+    font-size: clamp(21px, 2.4vw, 27px);
+    letter-spacing: -.03em;
+    line-height: 1.15;
+    margin-top: 8px;
+    transition: var(--transicion);
+}
+.acordeon > summary:hover .acordeon-texto h3 { color: var(--acento-texto); }
+.acordeon-texto p { font-size: 15px; line-height: 1.5; color: var(--texto-2); margin-top: 8px; }
+
+/* el llamador: dice que hay adentro y que hay que apretar */
+.acordeon-abrir {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    flex: none;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--tinta);
+    background: var(--crema);
+    border: 1.5px solid var(--borde-3);
+    border-radius: var(--r-pildora);
+    padding: 11px 16px;
+    transition: var(--transicion);
+    white-space: nowrap;
+}
+.acordeon > summary:hover .acordeon-abrir { background: var(--tinta); color: var(--crema); border-color: var(--tinta); }
+.acordeon[open] .acordeon-abrir { background: var(--tinta); color: var(--crema); border-color: var(--tinta); }
+
+/* el indicador es el punto del sistema: cerrado es punto, abierto es raya */
+.acordeon-signo {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--acento);
+    flex: none;
+    transition: border-radius .2s ease, height .2s ease;
+}
+.acordeon[open] .acordeon-signo { border-radius: 3px; height: 4px; }
+
+.acordeon-abrir .abre { display: inline; }
+.acordeon-abrir .cierra { display: none; }
+.acordeon[open] .acordeon-abrir .abre { display: none; }
+.acordeon[open] .acordeon-abrir .cierra { display: inline; }
+
+.acordeon-cuerpo { padding: 0 26px 26px; }
+
+@media (max-width: 620px) {
+    .acordeon > summary { flex-wrap: wrap; padding: 22px; }
+    .acordeon-cuerpo { padding: 0 22px 22px; }
+    .acordeon-texto p { display: none; }   /* en mobile la bajada aprieta de mas */
+}
+
+/* --- el mismo acordeon sobre fondo tinta (el portfolio) --- */
+.acordeon--oscuro { background: var(--tinta-2); }
+.acordeon--oscuro > summary:hover,
+.acordeon--oscuro[open] > summary { background: var(--tinta-hover); }
+.acordeon--oscuro .acordeon-texto h3 { color: var(--crema); }
+.acordeon--oscuro > summary:hover .acordeon-texto h3 { color: var(--acento); }
+.acordeon--oscuro .acordeon-texto p { color: var(--sobre-tinta); }
+.acordeon--oscuro .acordeon-abrir {
+    background: var(--tinta);
+    color: var(--crema);
+    border-color: var(--divisor-tinta);
+}
+.acordeon--oscuro > summary:hover .acordeon-abrir,
+.acordeon--oscuro[open] .acordeon-abrir {
+    background: var(--crema);
+    color: var(--tinta);
+    border-color: var(--crema);
+}
+
+/* Adentro: la captura de un lado y el detalle del otro. Al ser una fila
+   entera y no una tarjeta de media grilla, la captura entra mucho mas
+   grande, que es el punto de mostrar un portfolio. */
+.caso-cuerpo {
+    display: grid;
+    gap: var(--gap-columna);
+    align-items: start;
+}
+@media (min-width: 900px) {
+    .caso-cuerpo { grid-template-columns: 1.1fr .9fr; }
+}
+.caso-cuerpo .con-sin { border-top-color: var(--divisor-tinta); }
+.caso-cuerpo .con-sin span:last-child { color: var(--sobre-tinta); }
+.caso-detalle { display: flex; flex-direction: column; gap: 18px; }
+.caso-capturas { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.caso-capturas .marco-captura { width: 100%; }
+.caso-capturas .phone-frame { width: min(240px, 70vw); }
 
 /* pie de la tarjeta de servicio: los tres enlaces van apilados */
 .tarjeta-pie {

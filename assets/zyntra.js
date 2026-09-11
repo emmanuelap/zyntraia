@@ -190,7 +190,49 @@
         }, { passive: true });
     }
 
-    /* ------------------------------------------------- 7. año del footer */
+    /* -------------------------------------------- 7. acordeon de frentes */
+
+    /* El acordeon es nativo: <details name="frentes"> ya cierra los hermanos
+       solo. Esto es el respaldo para los navegadores que todavia no lo
+       soportan, mas el scroll para que al abrir uno de abajo no te quede el
+       titulo tapado por el header. */
+    (function () {
+        var frentes = document.querySelectorAll('details.acordeon[name]');
+        if (!frentes.length) return;
+
+        var nativo = 'name' in document.createElement('details');
+
+        Array.prototype.forEach.call(frentes, function (d) {
+            d.addEventListener('toggle', function () {
+                if (!d.open) return;
+
+                if (!nativo) {
+                    // hay dos grupos, "frentes" y "proyectos": solo se cierran
+                    // los del mismo. Se compara por atributo porque justamente
+                    // aca la propiedad .name no existe.
+                    var grupo = d.getAttribute('name');
+                    Array.prototype.forEach.call(frentes, function (otro) {
+                        if (otro !== d && otro.getAttribute('name') === grupo) otro.open = false;
+                    });
+                }
+
+                // si el titulo quedo arriba del viewport, traerlo de vuelta
+                if (!quieto.matches) {
+                    requestAnimationFrame(function () {
+                        var y = d.getBoundingClientRect().top;
+                        if (y < 80 || y > window.innerHeight - 120) {
+                            window.scrollTo({
+                                top: window.pageYOffset + y - 88,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    }());
+
+    /* ------------------------------------------------- 8. año del footer */
 
     Array.prototype.forEach.call(document.querySelectorAll('[data-anio]'), function (el) {
         el.textContent = new Date().getFullYear();

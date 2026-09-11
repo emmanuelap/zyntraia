@@ -116,11 +116,30 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
   (canonical, og, JSON-LD, sitemap). Si cambia el dominio se cambia ahi Y
   hay que rehacer las URL de index.html y las 5 paginas a mano, que no las
   genera el build.
-- Los 18 servicios viven en #services, agrupados en 5 frentes. Cada servicio es una card
-  SIEMPRE VISIBLE con icono, descripcion, "Con esto:" / "Sin esto:" y micro-CTA a WhatsApp.
-  Si agrego servicios, respetar ese patron.
-  OJO: se probo esconderlos en acordeones <details> y el dueno pidio volver atras porque
-  el copy de venta quedaba oculto. No volver a colapsarlos.
+- Los 18 servicios viven en #services, agrupados en 5 frentes, y los 7 proyectos
+  en #proyectos. Las dos secciones son ACORDEON: 18 tarjetas y 7 casos de golpe
+  eran demasiada informacion junta y el dueno lo pidio asi (septiembre 2026).
+- HISTORIA, que importa: la primera vez que esto se colapso hubo que volver
+  atras porque el copy de venta quedaba escondido. Ahora funciona por tres
+  condiciones que NO se tocan:
+    1. el primer item de cada grupo viene ABIERTO, asi la seccion nunca se ve
+       vacia y siempre hay copy de venta a la vista
+    2. la cabecera cerrada dice rubro, titulo Y bajada: se entiende que hay
+       adentro sin abrirlo
+    3. hay un llamador explicito ("Ver los 4 servicios" / "Ver el proyecto")
+       con el punto naranja, y la cabecera entera cambia de fondo al pasar el
+       mouse, para que se note que se clickea
+  Si se vuelve a tocar la seccion, mantener las tres.
+- Cada card de servicio sigue teniendo icono, descripcion, "Con esto:" /
+  "Sin esto:" y micro-CTA a WhatsApp. Si agrego servicios, respetar ese patron.
+- El acordeon es la clase .acordeon (antes se llamaba .frente, cuando lo usaban
+  solo los servicios). Es <details name="grupo">, que cierra los hermanos solo,
+  sin JS: hay dos grupos, "frentes" y "proyectos". assets/zyntra.js solo pone el
+  respaldo para navegadores sin soporte de name, mas el scroll al abrir.
+  .acordeon--oscuro es la variante para el panel tinta del portfolio.
+- De rebote: las 41 capturas del portfolio llevan loading="lazy" y adentro de un
+  <details> cerrado no se descargan hasta abrirlo. Si algun dia se saca el
+  acordeon, la home vuelve a cargar las 41 de entrada.
 - Jerarquia de color: el naranja es el UNICO acento y se reserva para acciones,
   numeros grandes y el punto. El verde (--acento2) es apoyo: "Con esto", estados
   OK y zyntra causas. Todo lo demas es tinta, crema y arena. Si algo empieza a
