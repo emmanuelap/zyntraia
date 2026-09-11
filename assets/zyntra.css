@@ -1363,11 +1363,18 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
 .acordeon[open] .acordeon-abrir .abre { display: none; }
 .acordeon[open] .acordeon-abrir .cierra { display: inline; }
 
-.acordeon-cuerpo { padding: 0 26px 26px; }
+/* El contenido arrancaba pegado al titulo y quedaba apretado. El divisor
+   ademas marca donde termina la cabecera que se clickea y donde empieza lo
+   que se abrio. */
+.acordeon-cuerpo {
+    padding: 26px;
+    border-top: 1px solid var(--borde-2);
+}
+.acordeon--oscuro .acordeon-cuerpo { border-top-color: var(--divisor-tinta); }
 
 @media (max-width: 620px) {
     .acordeon > summary { flex-wrap: wrap; padding: 22px; }
-    .acordeon-cuerpo { padding: 0 22px 22px; }
+    .acordeon-cuerpo { padding: 22px; }
     .acordeon-texto p { display: none; }   /* en mobile la bajada aprieta de mas */
 }
 
