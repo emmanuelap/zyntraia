@@ -4,3 +4,9 @@ byheart/
 rediseño total de Zyntra/ojito-video/node_modules/
 rediseño total de Zyntra/ojito-video/out/
 rediseño total de Zyntra/ojito-video/build/
+
+# Propuestas de sociedad para agencias: llevan la lista MAYORISTA, que es
+# interna. Todo lo que se commitea aca lo sirve GitHub Pages, asi que si esta
+# carpeta entra al repo los precios de costo quedan publicos en el dominio.
+# Se regeneran con: python tools/alianza_pdf.py
+salida-alianza/

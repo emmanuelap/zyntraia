@@ -354,10 +354,17 @@ class Documento(object):
     """
 
     def __init__(self, archivo, titulo, subtitulo, rotulo='PROPUESTA DE SERVICIO',
-                 pie=None, lid=.16, ojito=True):
+                 pie=None, lid=.16, ojito=True, carpeta='docs'):
         # ojito=False es para pentesting: el brandboard prohibe la mascota
         # ahi, va el logotipo solo.
-        self.ruta = os.path.join(RAIZ, 'docs', archivo + '.pdf')
+        #
+        # carpeta: 'docs' son los PDF que se publican en el sitio. Las piezas
+        # que se mandan por mano (propuestas a medida, por ejemplo) van a otra
+        # carpeta para no terminar servidas en zyntraexperts.com sin querer.
+        destino = os.path.join(RAIZ, carpeta)
+        if not os.path.isdir(destino):
+            os.makedirs(destino)
+        self.ruta = os.path.join(destino, archivo + '.pdf')
         self.titulo = titulo
         self.subtitulo = subtitulo
         self.rotulo = rotulo
