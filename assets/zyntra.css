@@ -809,6 +809,32 @@ a.chip--contorno:hover { background: var(--tinta); color: var(--crema); border-c
 .seccion-con-ojito > .ojito,
 .seccion-con-ojito > .ojito-bloque { flex: 0 0 auto; margin: 0 auto; }
 
+/* Ficha del fundador. La foto YA trae el circulo crema y el canto naranja de
+   la marca: sobre 1254 px de lado, el naranja son 16. Por eso no se le agrega
+   ningun anillo ni borde extra, se recorta en circulo y el naranja del origen
+   queda de borde solo. Agregarle un border encima lo engrosaria al doble. */
+.ficha-fundador {
+    display: flex;
+    gap: var(--gap-columna);
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ficha-fundador > .fundador-texto { flex: 1 1 360px; }
+.retrato {
+    flex: 0 0 auto;
+    display: block;
+    width: clamp(180px, 30vw, 260px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    /* si la imagen tarda, el hueco ya es del color del canto y no parpadea */
+    background: var(--acento);
+}
+@media (max-width: 620px) {
+    .retrato { margin: 0 auto; }
+    .ficha-fundador { justify-content: center; }
+}
+
 /* --------------------------------------------------------- 15. patrones */
 
 .patron-puntos {
