@@ -984,6 +984,22 @@ a.chip--contorno:hover { background: var(--tinta); color: var(--crema); border-c
     color: var(--sobre-tinta-2);
 }
 
+/* Sello Data Fiscal de AFIP.
+   Dos detalles que parecen erratas y no lo son:
+   - la IMAGEN va por https aunque el snippet que da AFIP diga http. Sobre una
+     pagina https el navegador bloquea la imagen por contenido mixto y el sello
+     no aparece nunca. AFIP la sirve igual por https.
+   - el ENLACE queda en http, tambien contra la intuicion: qr.afip.gob.ar no
+     atiende https (la conexion muere), y por http responde y redirige solo a
+     servicioscf.afip.gob.ar. Un enlace de navegacion no lo bloquea el navegador.
+   La imagen no se puede alojar local: AFIP exige que salga de su propia URL. */
+.sello-fiscal {
+    display: block;
+    height: 56px;
+    width: auto;
+    border-radius: 4px;
+}
+
 /* -------------------------------------------------- 18. botones flotantes */
 
 .flotantes {
