@@ -1649,3 +1649,150 @@ details.faq .respuesta p { color: var(--texto); }
     .ojito.parpadea { --lid: .16; }
     .ojito-iris { transform: none !important; }
 }
+
+/* ------------------------------------------------------ 28. carrusel
+
+   Una sola pieza para las tres secciones que se deslizan: industrias (de a
+   4), frentes (de a 1) y portfolio (de a 1).
+
+   Mejora progresiva, y no es un detalle: sin JavaScript la pista es una
+   grilla que envuelve y se ve TODO, igual que antes. Recien cuando el
+   script arranca le pone data-listo y ahi se vuelve carrusel. Si el JS
+   falla o tarda, la seccion queda completa en vez de mostrar una sola
+   tarjeta sin forma de avanzar.
+
+   En el telefono las flechas al costado se comerian el ancho de la
+   tarjeta, asi que bajan al pie junto a los puntos y el dedo desliza
+   directo sobre la pista. */
+
+.carrusel { position: relative; }
+
+.carrusel-pista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    align-items: start;
+}
+.carrusel-pista > * { flex: 1 1 var(--min-sin-js, 240px); min-width: 0; }
+
+.carrusel[data-listo] .carrusel-pista {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.carrusel[data-listo] .carrusel-pista::-webkit-scrollbar { width: 0; height: 0; }
+.carrusel[data-listo] .carrusel-pista > * {
+    flex: 0 0 calc((100% - (var(--por-vista) - 1) * var(--gap)) / var(--por-vista));
+    scroll-snap-align: start;
+}
+/* Las industrias son tarjetas hermanas: conviene que midan lo mismo. Los
+   acordeones no, porque al abrirse crecen y estirarlos deforma el cerrado. */
+.carrusel--parejo[data-listo] .carrusel-pista { align-items: stretch; }
+
+/* --------------------------------------------------------- flechas */
+
+.carrusel-flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--borde-2);
+    background: var(--crema);
+    color: var(--acento-texto);
+    cursor: pointer;
+    transition: var(--transicion);
+}
+.carrusel-flecha .ico { width: 20px; height: 20px; }
+.carrusel-flecha--izq { left: 0; }
+.carrusel-flecha--der { right: 0; }
+.carrusel-flecha--izq .ico { transform: rotate(180deg); }
+.carrusel-flecha:hover:not(:disabled) {
+    background: var(--acento);
+    border-color: var(--acento);
+    color: var(--sobre-naranja);
+}
+.carrusel-flecha:disabled { opacity: .3; cursor: default; }
+
+/* Sobre el panel tinta (portfolio) el crema no sirve de fondo. */
+.carrusel--oscuro .carrusel-flecha {
+    background: var(--tinta-2);
+    border-color: var(--divisor-tinta);
+    color: var(--acento);
+}
+.carrusel--oscuro .carrusel-flecha:hover:not(:disabled) {
+    background: var(--acento);
+    border-color: var(--acento);
+    color: var(--sobre-naranja);
+}
+
+/* ------------------------------------------------- puntos y cuenta */
+
+.carrusel-pie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.carrusel-puntos { display: flex; align-items: center; gap: 7px; }
+.carrusel-punto {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--borde-2);
+    cursor: pointer;
+    transition: var(--transicion), width .18s ease;
+}
+.carrusel-punto[aria-current="true"] {
+    width: 26px;
+    border-radius: 5px;
+    background: var(--acento);
+}
+.carrusel--oscuro .carrusel-punto { background: var(--divisor-tinta); }
+.carrusel--oscuro .carrusel-punto[aria-current="true"] { background: var(--acento); }
+.carrusel-cuenta {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .08em;
+    color: var(--texto-2);
+    font-variant-numeric: tabular-nums;
+}
+.carrusel--oscuro .carrusel-cuenta { color: var(--sobre-tinta-3); }
+
+/* ----------------------------------------------- escritorio / movil */
+
+@media (min-width: 900px) {
+    /* el hueco donde viven las flechas, para que no tapen la tarjeta */
+    .carrusel[data-listo] { padding-inline: 62px; }
+    .carrusel-pie .carrusel-flecha { display: none; }
+}
+@media (max-width: 899px) {
+    /* al costado se comerian el ancho: van al pie, y el dedo desliza */
+    .carrusel > .carrusel-flecha { display: none; }
+    .carrusel-pie .carrusel-flecha { position: static; transform: none; }
+}
+
+/* Cuantas tarjetas entran por pantalla en cada seccion.
+   Industrias pasa por 3 antes de bajar a 2: con 4 a 900 px de viewport cada
+   tarjeta quedaria en unos 158 px y el renglon de adentro no entra. En
+   escritorio ancho son las 4 pedidas. */
+#industrias .carrusel { --por-vista: 1; --min-sin-js: 230px; }
+@media (min-width: 560px)  { #industrias .carrusel { --por-vista: 2; } }
+@media (min-width: 900px)  { #industrias .carrusel { --por-vista: 3; } }
+@media (min-width: 1200px) { #industrias .carrusel { --por-vista: 4; } }
+
+/* Frentes y portfolio van de a uno siempre: cada tarjeta es un bloque de
+   lectura, no una ficha que se compare de un vistazo con la de al lado. */
+#services .carrusel,
+#proyectos .carrusel { --por-vista: 1; --min-sin-js: 100%; }

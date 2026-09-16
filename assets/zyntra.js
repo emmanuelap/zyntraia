@@ -232,6 +232,141 @@
         });
     }());
 
+    /* ------------------------------------- 9. secciones que se deslizan */
+
+    /* OJO, no confundir con el punto 5: aquel ([data-carousel], en ingles)
+       es la galeria de capturas DENTRO de cada proyecto. Este
+       ([data-carrusel], en castellano) desliza las tarjetas de una seccion
+       entera: industrias, frentes y portfolio.
+
+       El HTML no trae flechas ni puntos, los pone este script. Por eso el
+       CSS del carrusel cuelga de data-listo: si este codigo no corre, la
+       pista queda como grilla y se ve todo, en vez de una sola tarjeta sin
+       forma de avanzar. */
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-carrusel]'), function (caja) {
+        var pista = caja.querySelector('.carrusel-pista');
+        if (!pista) return;
+        var items = Array.prototype.slice.call(pista.children);
+        if (items.length < 2) return;
+
+        // Estas tarjetas traen .reveal y arrancan en opacity 0. Dentro de una
+        // pista horizontal las que estan mas alla quedan recortadas, asi que
+        // el IntersectionObserver no dispara hasta que llegan y se veria el
+        // fade en cada flechazo. Se las muestra de entrada.
+        items.forEach(function (el) {
+            el.classList.add('visible');
+            Array.prototype.forEach.call(el.querySelectorAll('.reveal'), function (h) {
+                h.classList.add('visible');
+            });
+        });
+
+        caja.setAttribute('data-listo', '');
+
+        function porVista() {
+            return parseInt(getComputedStyle(caja).getPropertyValue('--por-vista'), 10) || 1;
+        }
+        function paginas() { return Math.ceil(items.length / porVista()); }
+        function origen(i) { return items[i].offsetLeft - items[0].offsetLeft; }
+
+        function indice() {
+            var x = pista.scrollLeft;
+            var mejor = 0, dist = Infinity;
+            for (var i = 0; i < items.length; i++) {
+                var d = Math.abs(origen(i) - x);
+                if (d < dist) { dist = d; mejor = i; }
+            }
+            return Math.min(paginas() - 1, Math.floor(mejor / porVista()));
+        }
+
+        function irA(pagina) {
+            var p = Math.max(0, Math.min(paginas() - 1, pagina));
+            pista.scrollTo({
+                left: origen(p * porVista()),
+                behavior: quieto.matches ? 'auto' : 'smooth'
+            });
+        }
+
+        function flecha(clase, etiqueta, salto) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'carrusel-flecha ' + clase;
+            b.setAttribute('aria-label', etiqueta);
+            b.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-flecha"></use></svg>';
+            b.addEventListener('click', function () { irA(indice() + salto); });
+            return b;
+        }
+
+        // Dos juegos de flechas: el CSS muestra el del costado en escritorio
+        // y el del pie en telefono, donde al costado se comerian el ancho.
+        var izqLado = flecha('carrusel-flecha--izq', 'Anterior', -1);
+        var derLado = flecha('carrusel-flecha--der', 'Siguiente', 1);
+        caja.appendChild(izqLado);
+        caja.appendChild(derLado);
+
+        var pie = document.createElement('div');
+        pie.className = 'carrusel-pie';
+        var izqPie = flecha('carrusel-flecha--izq', 'Anterior', -1);
+        var derPie = flecha('carrusel-flecha--der', 'Siguiente', 1);
+        var puntos = document.createElement('div');
+        puntos.className = 'carrusel-puntos';
+        var cuenta = document.createElement('span');
+        cuenta.className = 'carrusel-cuenta';
+        cuenta.setAttribute('aria-live', 'polite');
+        pie.appendChild(izqPie);
+        pie.appendChild(puntos);
+        pie.appendChild(cuenta);
+        pie.appendChild(derPie);
+        caja.appendChild(pie);
+
+        var flechas = [izqLado, izqPie, derLado, derPie];
+        var bolitas = [];
+
+        function armarPuntos() {
+            var n = paginas();
+            if (bolitas.length === n) return;
+            puntos.innerHTML = '';
+            bolitas = [];
+            for (var i = 0; i < n; i++) {
+                (function (i) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'carrusel-punto';
+                    b.setAttribute('aria-label', 'Ir a ' + (i + 1) + ' de ' + n);
+                    b.addEventListener('click', function () { irA(i); });
+                    puntos.appendChild(b);
+                    bolitas.push(b);
+                }(i));
+            }
+        }
+
+        function pintar() {
+            armarPuntos();
+            var i = indice();
+            var n = paginas();
+            bolitas.forEach(function (b, k) {
+                b.setAttribute('aria-current', k === i ? 'true' : 'false');
+            });
+            cuenta.textContent = (i + 1) + ' de ' + n;
+            izqLado.disabled = izqPie.disabled = i <= 0;
+            derLado.disabled = derPie.disabled = i >= n - 1;
+        }
+
+        var pendiente = false;
+        pista.addEventListener('scroll', function () {
+            if (pendiente) return;
+            pendiente = true;
+            requestAnimationFrame(function () { pendiente = false; pintar(); });
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+            bolitas = [];          // cambia el por-vista, cambian las paginas
+            pintar();
+        });
+
+        pintar();
+    });
+
     /* ------------------------------------------------- 8. año del footer */
 
     Array.prototype.forEach.call(document.querySelectorAll('[data-anio]'), function (el) {
