@@ -1559,7 +1559,12 @@ details.faq > summary:hover .faq-flecha { border-color: var(--acento); }
 
 /* footer */
 .footer-grid { display: grid; gap: var(--gap-columna); }
-@media (min-width: 760px) { .footer-grid { grid-template-columns: 1.2fr 1fr 1fr; } }
+/* La primera columna lleva el logo, la direccion y los 6 chips de contacto.
+   Con 1.2fr median 295 px a 1024 de viewport y los chips necesitan 304
+   (6 x 44 + 5 de gap de 8): Facebook caia solo a una segunda fila. Se
+   ensancha la columna en vez de achicar los botones, que a 44 px son el
+   minimo comodo para tocar con el dedo. */
+@media (min-width: 760px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
 .footer-enlaces { display: flex; flex-direction: column; gap: 9px; margin-top: 16px; font-size: 14px; }
 .site-footer .flotante { border-color: var(--divisor-tinta); background: var(--tinta-2); }
 .site-footer .flotante .ico { width: 20px; height: 20px; }
