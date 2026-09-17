@@ -352,11 +352,15 @@
             derLado.disabled = derPie.disabled = i >= n - 1;
         }
 
-        var pendiente = false;
+        // Se regula con setTimeout y no con requestAnimationFrame a proposito:
+        // rAF queda suspendido mientras la pestana esta en segundo plano, y
+        // como el flag nunca se libera, los puntos y el contador se quedan
+        // clavados en la posicion vieja. Aca no se anima nada, solo se
+        // actualizan textos y clases, asi que un timer alcanza y siempre corre.
+        var pendiente = null;
         pista.addEventListener('scroll', function () {
             if (pendiente) return;
-            pendiente = true;
-            requestAnimationFrame(function () { pendiente = false; pintar(); });
+            pendiente = setTimeout(function () { pendiente = null; pintar(); }, 60);
         }, { passive: true });
 
         window.addEventListener('resize', function () {
