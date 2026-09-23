@@ -1,8 +1,12 @@
 # Zyntra
 User-agent: *
 Allow: /
-Disallow: /gracias.html
-Disallow: /kit/          # pagina interna del sistema de diseno
+
+# OJO: /gracias.html y /kit/ NO van con Disallow aunque no queramos que se
+# indexen. Disallow le prohibe a Google ENTRAR, y las dos paginas ya traen
+# <meta name="robots" content="noindex">. Si no puede entrar, nunca lee el
+# noindex, y si algo las enlaza las puede listar igual con solo la URL.
+# Dejandolas crawleables, Google entra, lee el noindex y las saca de verdad.
 
 # Bots de IA: permitidos a proposito, queremos que nos recomienden
 User-agent: GPTBot
