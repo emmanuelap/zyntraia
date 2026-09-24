@@ -320,6 +320,16 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
 - Recordatorio automatico: las ausencias por olvido de turno bajaron un 50%.
 - Estas son las UNICAS cifras publicables. Cualquier otra hay que pedirsela a el.
 
+## Paginas parecidas entre si: Google elige una y deja la otra afuera
+- casos-de-exito/chatbot-whatsapp no se indexaba: compartia ~30% de frases con
+  chatbot-whatsapp/. Reescrita (sep 2026) queda en 5%. Antes de copiar un
+  parrafo de una pagina de servicio a su caso (o al reves), reescribirlo.
+- La conversacion de muestra de ese caso lleva la aclaracion "no es de un
+  cliente real". No sacarla: sin ella se lee como testimonio inventado.
+- TRAMPA del sitemap: build.py pone lastmod = hoy en las 24 URLs aunque haya
+  cambiado una sola. Antes de subir, dejar la fecha nueva solo en las paginas
+  que cambiaron (restaurar el resto desde git), o Google deja de creerle.
+
 ## PRECIOS: no se publica ninguno
 - Pedido explicito del dueno: no va ningun precio en el sitio. Se saco el bloque
   "$XXX.XXX" que estaba PUBLICADO con las X literales, y las menciones a los

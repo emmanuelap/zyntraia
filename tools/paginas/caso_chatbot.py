@@ -4,6 +4,14 @@ Caso de exito: asistente de WhatsApp multi rubro.
 
 Cifras confirmadas por el dueno: alrededor de 80 consultas diarias y una caida
 del 50% en las ausencias por olvido de turno. No agregar ninguna otra cifra.
+
+Esta pagina tiene que decir cosas que la de servicio (chatbot_whatsapp.py) no
+dice: Google la dejo sin indexar mientras compartia un 30% de frases con esa
+pagina. Antes de copiar un parrafo de alla para aca, reescribirlo.
+
+La conversacion de muestra NO es de un cliente real y lo dice arriba. Esa
+aclaracion no se saca: sin ella se lee como testimonio, y no se inventan
+testimonios.
 """
 
 PAGINA = {
@@ -44,35 +52,56 @@ PAGINA = {
         },
         {
             'tipo': 'texto',
-            'h2': 'El problema',
+            'h2': 'Antes del asistente',
             'parrafos': [
-                'Ochenta consultas por día son ochenta interrupciones. Y la mayoría no son complicadas: '
-                'cuánto sale, a qué hora abren, si hay lugar el jueves, dónde quedan. Las mismas diez '
-                'preguntas, todo el día.',
-                'El problema no era contestar, era cuándo. Llegan a las once de la noche, un domingo, o '
-                'justo mientras se atiende a alguien que está adelante. Y una consulta contestada seis '
-                'horas después ya no es una consulta: es un cliente que mientras tanto le escribió a '
-                'otro.',
-                'Al mismo tiempo estaba el otro agujero: el turno agendado al que la persona no venía. '
-                'Casi nunca por mala fe, casi siempre por olvido.',
+                'Ochenta mensajes por día no parecen tantos hasta que se reparten a lo largo de la '
+                'jornada: uno cada pocos minutos, cada uno cortando lo que se estaba haciendo. El costo '
+                'no está en cada respuesta, que lleva segundos. Está en la interrupción, y en volver a '
+                'concentrarse después.',
+                'Del otro lado estaba la agenda. Un turno confirmado no garantiza que la persona venga, '
+                'y cada hueco que queda vacío es una hora que se pagó igual: el local abierto, el '
+                'profesional esperando, nadie en la silla.',
+                'Eran dos problemas distintos con la misma raíz: todo dependía de que alguien estuviera '
+                'libre para agarrar el teléfono en el momento justo.',
+            ],
+        },
+        {
+            'tipo': 'texto',
+            'fondo': True,
+            'h2': 'Una conversación de principio a fin',
+            'parrafos': [
+                '<em>Conversación de muestra, armada para mostrar el recorrido completo. No es de un '
+                'cliente real.</em>',
+                '<strong>Cliente, martes 23:40:</strong> hola, ¿tienen lugar el jueves a la tarde para '
+                'corte?',
+                '<strong>Asistente:</strong> ¡Hola! El jueves a la tarde tengo libre a las 16:00 y a las '
+                '17:30. ¿Te reservo alguno?',
+                '<strong>Cliente:</strong> el de 17:30',
+                '<strong>Asistente:</strong> Listo, quedó reservado el jueves a las 17:30. El miércoles '
+                'te escribo para recordártelo.',
+                '<strong>Asistente, miércoles 10:00:</strong> Te recuerdo tu turno de mañana jueves a '
+                'las 17:30. Si no podés venir, avisame por acá y lo cambiamos.',
+                'Nadie del negocio tocó el teléfono, y el turno ya figura en el calendario con nombre y '
+                'horario. El mensaje de las once y cuarenta de la noche, que antes se contestaba recién '
+                'a la mañana siguiente, quedó resuelto en el momento.',
             ],
         },
         {
             'tipo': 'pasos',
-            'h2': 'Cómo funciona',
+            'h2': 'Qué pasa por detrás de esa conversación',
             'pasos': [
-                {'titulo': 'Entiende lo que le escriben',
-                 'texto': 'Sin menús de números. Un modelo de lenguaje interpreta el mensaje escrito como '
-                          'lo escribiría cualquiera.'},
-                {'titulo': 'Trabaja sobre la agenda real',
-                 'texto': 'Consulta la disponibilidad verdadera y agenda, cancela o reprograma con evento '
-                          'creado en Google Calendar.'},
-                {'titulo': 'Recuerda antes del turno',
-                 'texto': 'El aviso automático del día antes. Es la pieza que explica la mitad de las '
-                          'ausencias recuperadas.'},
-                {'titulo': 'Pasa a una persona',
-                 'texto': 'Cuando la consulta se sale de lo que sabe resolver, deriva con todo el '
-                          'contexto de lo que se venía hablando.'},
+                {'titulo': 'Lee el mensaje como viene',
+                 'texto': 'Con errores de tipeo, sin signos, todo en una línea. Nadie tiene que aprender '
+                          'a hablarle a un bot.'},
+                {'titulo': 'Mira la agenda antes de ofrecer',
+                 'texto': 'Los horarios que propone salen del calendario en ese momento, no de una lista '
+                          'fija. Por eso no ofrece un turno que ya se dio.'},
+                {'titulo': 'Deja el turno escrito',
+                 'texto': 'Cada reserva crea su evento en Google Calendar. El negocio la ve en el mismo '
+                          'calendario que ya usaba, sin abrir otro sistema.'},
+                {'titulo': 'Vuelve a escribir el día antes',
+                 'texto': 'El recordatorio sale solo. Si la persona avisa que no puede, el turno se mueve '
+                          'o queda libre para otro.'},
             ],
         },
         {
@@ -89,27 +118,71 @@ PAGINA = {
             ],
         },
         {
+            'tipo': 'lista',
+            'fondo': True,
+            'h2': 'Lo que el asistente no hace',
+            'intro': 'Los límites también son parte del diseño.',
+            'items': [
+                {'icono': 'check', 'titulo': 'No adivina',
+                 'texto': 'Lo que dice sale de la información que cargó el negocio: servicios, horarios '
+                          'y precios. Lo que no está ahí no lo completa de memoria.'},
+                {'icono': 'personas', 'titulo': 'No se hace pasar por persona',
+                 'texto': 'Se presenta como asistente. Esconderlo sale caro el día que alguien se da '
+                          'cuenta.'},
+                {'icono': 'chatbot', 'titulo': 'No se queda con lo difícil',
+                 'texto': 'Un reclamo o un caso especial va a una persona del negocio, que entra al mismo '
+                          'chat y lee todo lo anterior antes de contestar.'},
+                {'icono': 'candado', 'titulo': 'No usa atajos que Meta bloquea',
+                 'texto': 'Corre sobre la API oficial de WhatsApp. Las herramientas no oficiales andan '
+                          'hasta el día en que suspenden el número.'},
+            ],
+        },
+        {
+            'tipo': 'faq',
+            'h2': 'Preguntas sobre este caso',
+            'preguntas': [
+                {'q': '¿Puedo empezar solo por el recordatorio?',
+                 'a': 'Sí. Es la parte más chica y la que antes se paga, así que muchas veces conviene '
+                      'arrancar por ahí y sumar la atención de consultas después. Si lo que buscás es '
+                      'sobre todo ordenar la agenda, mirá '
+                      '<a class="enlace" href="@@SUBIR@@turnos-online/">turnos online</a>.'},
+                {'q': '¿Qué hace falta de mi lado?',
+                 'a': 'Un número de WhatsApp para el negocio, la agenda donde ya la llevás (Google '
+                      'Calendar, una planilla o tu sistema) y la información que el asistente va a usar: '
+                      'servicios, horarios, precios y las respuestas a las preguntas de siempre. La '
+                      'conexión y el armado quedan de nuestro lado.'},
+                {'q': '¿Los recordatorios tienen algún costo aparte?',
+                 'a': 'Sí, y conviene saberlo desde el principio: Meta cobra los mensajes que inicia el '
+                      'negocio, y el recordatorio es uno de ellos. Se paga directo a Meta desde tu '
+                      'cuenta, sin pasar por nosotros. Antes de arrancar te mostramos cuánto da con tu '
+                      'cantidad de turnos.'},
+            ],
+            'mas': [
+                ('se-pueden-mandar-recordatorios-automaticos-por-whatsapp',
+                 '¿Se pueden mandar recordatorios automáticos por WhatsApp?'),
+                ('se-pueden-tomar-turnos-automaticamente-por-whatsapp',
+                 '¿Se pueden tomar turnos automáticamente por WhatsApp?'),
+            ],
+        },
+        {
             'tipo': 'texto',
-            'h2': 'La misma base, otro rubro',
+            'h2': 'Si tu negocio es otro',
             'parrafos': [
-                'El asistente es multi rubro por diseño. La misma base sirve para una peluquería, un '
-                'consultorio, un gimnasio, un restaurante o un comercio: cambian los servicios, los '
-                'horarios y el tono, no el sistema.',
-                'Eso significa que no arrancás de cero: arrancás de algo que ya funciona y lo adaptamos '
-                'a cómo trabajás vos, que es donde de verdad se va el tiempo.',
-                'La página del servicio es '
-                '<a class="enlace" href="@@SUBIR@@chatbot-whatsapp/">'
-                'chatbot de WhatsApp</a>, y si lo que te interesa es solo la parte de la agenda, mirá '
-                '<a class="enlace" href="@@SUBIR@@turnos-online/">'
-                'turnos online</a>.',
+                'Este asistente se pensó para cualquier rubro que viva de turnos y de consultas '
+                'repetidas. De un negocio a otro cambia la información que usa y la forma de hablar; '
+                'el mecanismo es el mismo.',
+                'Todo lo que puede hacer, incluida la toma de pedidos, está en la página de '
+                '<a class="enlace" href="@@SUBIR@@chatbot-whatsapp/">chatbot de WhatsApp</a>. '
+                'Si te interesa solo la agenda, mirá '
+                '<a class="enlace" href="@@SUBIR@@turnos-online/">turnos online</a>.',
             ],
         },
     ],
 
     'cta': {
         'boton': 'Quiero un asistente así',
-        'titulo': 'Contanos qué te preguntan todo el día',
-        'texto': ('En 20 minutos vemos cuántas de tus consultas se pueden automatizar y cuántos turnos '
-                  'estás perdiendo por olvido. El diagnóstico queda para vos aunque no contrates.'),
+        'titulo': '¿Cuántos turnos se te caen por olvido?',
+        'texto': ('En 20 minutos miramos tus consultas y tu agenda, y te decimos qué conviene '
+                  'automatizar primero. Si la respuesta es "todavía nada", también te lo decimos.'),
     },
 }

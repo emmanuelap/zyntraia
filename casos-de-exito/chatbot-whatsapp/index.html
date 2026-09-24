@@ -83,6 +83,38 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo empezar solo por el recordatorio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Es la parte más chica y la que antes se paga, así que muchas veces conviene arrancar por ahí y sumar la atención de consultas después. Si lo que buscás es sobre todo ordenar la agenda, mirá <a class=\"enlace\" href=\"../../turnos-online/\">turnos online</a>."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué hace falta de mi lado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un número de WhatsApp para el negocio, la agenda donde ya la llevás (Google Calendar, una planilla o tu sistema) y la información que el asistente va a usar: servicios, horarios, precios y las respuestas a las preguntas de siempre. La conexión y el armado quedan de nuestro lado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Los recordatorios tienen algún costo aparte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, y conviene saberlo desde el principio: Meta cobra los mensajes que inicia el negocio, y el recordatorio es uno de ellos. Se paga directo a Meta desde tu cuenta, sin pasar por nosotros. Antes de arrancar te mostramos cuánto da con tu cantidad de turnos."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- iconos: los genera tools/iconos.py, no editar a mano -->
@@ -220,32 +252,44 @@
 </section>
 <section class="panel">
 <div class="encabezado-seccion" style="margin-bottom:0">
-<h2 class="h-seccion">El problema</h2>
-<p class="cuerpo" style="margin-top:16px">Ochenta consultas por día son ochenta interrupciones. Y la mayoría no son complicadas: cuánto sale, a qué hora abren, si hay lugar el jueves, dónde quedan. Las mismas diez preguntas, todo el día.</p>
-<p class="cuerpo" style="margin-top:16px">El problema no era contestar, era cuándo. Llegan a las once de la noche, un domingo, o justo mientras se atiende a alguien que está adelante. Y una consulta contestada seis horas después ya no es una consulta: es un cliente que mientras tanto le escribió a otro.</p>
-<p class="cuerpo" style="margin-top:16px">Al mismo tiempo estaba el otro agujero: el turno agendado al que la persona no venía. Casi nunca por mala fe, casi siempre por olvido.</p>
+<h2 class="h-seccion">Antes del asistente</h2>
+<p class="cuerpo" style="margin-top:16px">Ochenta mensajes por día no parecen tantos hasta que se reparten a lo largo de la jornada: uno cada pocos minutos, cada uno cortando lo que se estaba haciendo. El costo no está en cada respuesta, que lleva segundos. Está en la interrupción, y en volver a concentrarse después.</p>
+<p class="cuerpo" style="margin-top:16px">Del otro lado estaba la agenda. Un turno confirmado no garantiza que la persona venga, y cada hueco que queda vacío es una hora que se pagó igual: el local abierto, el profesional esperando, nadie en la silla.</p>
+<p class="cuerpo" style="margin-top:16px">Eran dos problemas distintos con la misma raíz: todo dependía de que alguien estuviera libre para agarrar el teléfono en el momento justo.</p>
+</div>
+</section>
+<section class="panel panel--tinta sobre-tinta">
+<div class="encabezado-seccion" style="margin-bottom:0">
+<h2 class="h-seccion">Una conversación de principio a fin</h2>
+<p class="cuerpo" style="margin-top:16px"><em>Conversación de muestra, armada para mostrar el recorrido completo. No es de un cliente real.</em></p>
+<p class="cuerpo" style="margin-top:16px"><strong>Cliente, martes 23:40:</strong> hola, ¿tienen lugar el jueves a la tarde para corte?</p>
+<p class="cuerpo" style="margin-top:16px"><strong>Asistente:</strong> ¡Hola! El jueves a la tarde tengo libre a las 16:00 y a las 17:30. ¿Te reservo alguno?</p>
+<p class="cuerpo" style="margin-top:16px"><strong>Cliente:</strong> el de 17:30</p>
+<p class="cuerpo" style="margin-top:16px"><strong>Asistente:</strong> Listo, quedó reservado el jueves a las 17:30. El miércoles te escribo para recordártelo.</p>
+<p class="cuerpo" style="margin-top:16px"><strong>Asistente, miércoles 10:00:</strong> Te recuerdo tu turno de mañana jueves a las 17:30. Si no podés venir, avisame por acá y lo cambiamos.</p>
+<p class="cuerpo" style="margin-top:16px">Nadie del negocio tocó el teléfono, y el turno ya figura en el calendario con nombre y horario. El mensaje de las once y cuarenta de la noche, que antes se contestaba recién a la mañana siguiente, quedó resuelto en el momento.</p>
 </div>
 </section>
 <section class="panel">
 <div class="encabezado-seccion">
-<h2 class="h-seccion">Cómo funciona</h2>
+<h2 class="h-seccion">Qué pasa por detrás de esa conversación</h2>
 </div>
 <div class="rejilla" style="--min:220px">
 <div class="tarjeta reveal">
 <div class="paso-num" style="color:var(--acento-texto)">01</div>
-<div><h3>Entiende lo que le escriben</h3><p>Sin menús de números. Un modelo de lenguaje interpreta el mensaje escrito como lo escribiría cualquiera.</p></div>
+<div><h3>Lee el mensaje como viene</h3><p>Con errores de tipeo, sin signos, todo en una línea. Nadie tiene que aprender a hablarle a un bot.</p></div>
 </div>
 <div class="tarjeta reveal">
 <div class="paso-num" style="color:var(--acento-texto)">02</div>
-<div><h3>Trabaja sobre la agenda real</h3><p>Consulta la disponibilidad verdadera y agenda, cancela o reprograma con evento creado en Google Calendar.</p></div>
+<div><h3>Mira la agenda antes de ofrecer</h3><p>Los horarios que propone salen del calendario en ese momento, no de una lista fija. Por eso no ofrece un turno que ya se dio.</p></div>
 </div>
 <div class="tarjeta reveal">
 <div class="paso-num" style="color:var(--acento-texto)">03</div>
-<div><h3>Recuerda antes del turno</h3><p>El aviso automático del día antes. Es la pieza que explica la mitad de las ausencias recuperadas.</p></div>
+<div><h3>Deja el turno escrito</h3><p>Cada reserva crea su evento en Google Calendar. El negocio la ve en el mismo calendario que ya usaba, sin abrir otro sistema.</p></div>
 </div>
 <div class="tarjeta reveal">
 <div class="paso-num" style="color:var(--acento-texto)">04</div>
-<div><h3>Pasa a una persona</h3><p>Cuando la consulta se sale de lo que sabe resolver, deriva con todo el contexto de lo que se venía hablando.</p></div>
+<div><h3>Vuelve a escribir el día antes</h3><p>El recordatorio sale solo. Si la persona avisa que no puede, el turno se mueve o queda libre para otro.</p></div>
 </div>
 </div>
 </section>
@@ -257,22 +301,71 @@
 <p class="cuerpo" style="margin-top:16px">Si estás evaluando por dónde empezar, empezá por ahí. El resto suma, pero esto se paga antes.</p>
 </div>
 </section>
+<section class="panel panel--tinta sobre-tinta">
+<div class="encabezado-seccion">
+<h2 class="h-seccion">Lo que el asistente no hace</h2>
+<p class="cuerpo" style="margin-top:14px">Los límites también son parte del diseño.</p>
+</div>
+<div class="rejilla">
+<div class="tarjeta reveal">
+<div class="caja-ico"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg></div>
+<div><h3>No adivina</h3><p>Lo que dice sale de la información que cargó el negocio: servicios, horarios y precios. Lo que no está ahí no lo completa de memoria.</p></div>
+</div>
+<div class="tarjeta reveal">
+<div class="caja-ico"><svg class="ico" aria-hidden="true"><use href="#i-personas"></use></svg></div>
+<div><h3>No se hace pasar por persona</h3><p>Se presenta como asistente. Esconderlo sale caro el día que alguien se da cuenta.</p></div>
+</div>
+<div class="tarjeta reveal">
+<div class="caja-ico"><svg class="ico" aria-hidden="true"><use href="#i-chatbot"></use></svg></div>
+<div><h3>No se queda con lo difícil</h3><p>Un reclamo o un caso especial va a una persona del negocio, que entra al mismo chat y lee todo lo anterior antes de contestar.</p></div>
+</div>
+<div class="tarjeta reveal">
+<div class="caja-ico"><svg class="ico" aria-hidden="true"><use href="#i-candado"></use></svg></div>
+<div><h3>No usa atajos que Meta bloquea</h3><p>Corre sobre la API oficial de WhatsApp. Las herramientas no oficiales andan hasta el día en que suspenden el número.</p></div>
+</div>
+</div>
+</section>
+<section class="panel">
+<div class="encabezado-seccion">
+<h2 class="h-seccion">Preguntas sobre este caso</h2>
+</div>
+<div style="max-width:820px">
+<details class="faq" id="puedo-empezar-solo-por-el-recordatorio">
+<summary>¿Puedo empezar solo por el recordatorio?<span class="faq-flecha"></span></summary>
+<div class="respuesta"><p>Sí. Es la parte más chica y la que antes se paga, así que muchas veces conviene arrancar por ahí y sumar la atención de consultas después. Si lo que buscás es sobre todo ordenar la agenda, mirá <a class="enlace" href="../../turnos-online/">turnos online</a>.</p></div>
+</details>
+<details class="faq" id="que-hace-falta-de-mi-lado">
+<summary>¿Qué hace falta de mi lado?<span class="faq-flecha"></span></summary>
+<div class="respuesta"><p>Un número de WhatsApp para el negocio, la agenda donde ya la llevás (Google Calendar, una planilla o tu sistema) y la información que el asistente va a usar: servicios, horarios, precios y las respuestas a las preguntas de siempre. La conexión y el armado quedan de nuestro lado.</p></div>
+</details>
+<details class="faq" id="los-recordatorios-tienen-algun-costo-aparte">
+<summary>¿Los recordatorios tienen algún costo aparte?<span class="faq-flecha"></span></summary>
+<div class="respuesta"><p>Sí, y conviene saberlo desde el principio: Meta cobra los mensajes que inicia el negocio, y el recordatorio es uno de ellos. Se paga directo a Meta desde tu cuenta, sin pasar por nosotros. Antes de arrancar te mostramos cuánto da con tu cantidad de turnos.</p></div>
+</details>
+</div>
+<div class="tarjeta" style="margin-top:22px">
+<p class="etiqueta">M&#225;s preguntas sobre esto</p>
+<ul class="lista-puntos" style="margin-top:16px">
+<li><span class="punto"></span><a class="enlace" href="../../preguntasfrecuentes/#se-pueden-mandar-recordatorios-automaticos-por-whatsapp">¿Se pueden mandar recordatorios automáticos por WhatsApp?</a></li>
+<li><span class="punto"></span><a class="enlace" href="../../preguntasfrecuentes/#se-pueden-tomar-turnos-automaticamente-por-whatsapp">¿Se pueden tomar turnos automáticamente por WhatsApp?</a></li>
+</ul>
+</div>
+</section>
 <section class="panel">
 <div class="encabezado-seccion" style="margin-bottom:0">
-<h2 class="h-seccion">La misma base, otro rubro</h2>
-<p class="cuerpo" style="margin-top:16px">El asistente es multi rubro por diseño. La misma base sirve para una peluquería, un consultorio, un gimnasio, un restaurante o un comercio: cambian los servicios, los horarios y el tono, no el sistema.</p>
-<p class="cuerpo" style="margin-top:16px">Eso significa que no arrancás de cero: arrancás de algo que ya funciona y lo adaptamos a cómo trabajás vos, que es donde de verdad se va el tiempo.</p>
-<p class="cuerpo" style="margin-top:16px">La página del servicio es <a class="enlace" href="../../chatbot-whatsapp/">chatbot de WhatsApp</a>, y si lo que te interesa es solo la parte de la agenda, mirá <a class="enlace" href="../../turnos-online/">turnos online</a>.</p>
+<h2 class="h-seccion">Si tu negocio es otro</h2>
+<p class="cuerpo" style="margin-top:16px">Este asistente se pensó para cualquier rubro que viva de turnos y de consultas repetidas. De un negocio a otro cambia la información que usa y la forma de hablar; el mecanismo es el mismo.</p>
+<p class="cuerpo" style="margin-top:16px">Todo lo que puede hacer, incluida la toma de pedidos, está en la página de <a class="enlace" href="../../chatbot-whatsapp/">chatbot de WhatsApp</a>. Si te interesa solo la agenda, mirá <a class="enlace" href="../../turnos-online/">turnos online</a>.</p>
 </div>
 </section>
 
 <section class="panel bloque-cta">
 <div class="fila">
-<h2>Contanos qué te preguntan todo el día</h2>
+<h2>¿Cuántos turnos se te caen por olvido?</h2>
 <div class="ojito" data-ojito style="--S:clamp(56px,8vw,78px);--lid:.16"><div class="ojito-cuerpo"><div class="ojito-iris"><div class="ojito-pupila"></div></div><div class="ojito-brillo"></div><div class="ojito-parpado"></div></div><div class="ojito-patas"><span></span><span></span></div></div>
 </div>
 <div>
-<p class="cuerpo" style="color:var(--sobre-naranja);max-width:56ch;margin-bottom:22px">En 20 minutos vemos cuántas de tus consultas se pueden automatizar y cuántos turnos estás perdiendo por olvido. El diagnóstico queda para vos aunque no contrates.</p>
+<p class="cuerpo" style="color:var(--sobre-naranja);max-width:56ch;margin-bottom:22px">En 20 minutos miramos tus consultas y tu agenda, y te decimos qué conviene automatizar primero. Si la respuesta es "todavía nada", también te lo decimos.</p>
 <div class="fila-botones">
 <a class="btn btn--secundario" href="https://wa.me/5491166439309?text=Hola%20Zyntra%2C%20vi%20el%20caso%20del%20chatbot%20y%20quiero%20algo%20as%C3%AD." rel="noopener noreferrer" target="_blank">Quiero un asistente así</a>
 <a class="btn btn--contorno" href="../../preguntasfrecuentes/">Ver las preguntas frecuentes</a>
