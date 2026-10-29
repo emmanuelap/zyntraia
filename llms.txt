@@ -10,9 +10,10 @@ Contacto: WhatsApp +54 9 11 6643-9309 - zyntraconsultoraia@gmail.com
 
 ## Que hacemos
 
-Captar mas clientes: chatbots de WhatsApp, turnos y reservas online, embudos y
-seguimiento comercial automatizado, resenas y reputacion en Google Maps (incluye
-tarjeta NFC para dejar la resena de un toque).
+Captar mas clientes: chatbots de WhatsApp, agentes de IA multi rubro, CRM de
+WhatsApp a medida, turnos y reservas online, embudos y seguimiento comercial
+automatizado, resenas y reputacion en Google Maps (incluye tarjeta NFC para dejar
+la resena de un toque).
 
 Ordenar la operacion: software de gestion a medida, automatizacion de procesos,
 administracion de gimnasios y centros fitness, control de accesos por QR, paneles
@@ -27,6 +28,20 @@ creacion de marcas, menus digitales con QR.
 Seguridad: pentesting y pruebas de intrusion autorizadas para empresas, y revision de
 seguridad de cuentas y dispositivos para particulares. Siempre con autorizacion firmada
 del titular, alcance definido por escrito y acuerdo de confidencialidad.
+
+## Agentes de IA y CRM (https://zyntraexperts.com/agentes-ia/)
+
+Agentes de IA para WhatsApp que atienden, filtran, agendan, toman pedidos, mandan el
+catalogo en PDF y derivan a una persona con la ficha del cliente armada. Ficha tecnica:
+Claude de Anthropic como modelo (configurable, se cambia sin tocar codigo), WhatsApp
+Cloud API oficial de Meta (con modo coexistencia si el negocio sigue usando la app en
+el mismo numero), n8n para la orquestacion, Supabase y PostgreSQL con seguridad por
+fila, Google Calendar para la agenda y avisos por Telegram y bandeja web. La misma base
+se adapta a cualquier rubro; las cuentas quedan a nombre del negocio.
+
+CRM de WhatsApp a medida: bandeja compartida para todo el equipo sobre el mismo numero,
+embudos de venta por etapas, campanas con plantillas aprobadas por Meta, atribucion de
+fuentes y anuncios, agentes de IA con supervision e instalacion como app en el celular.
 
 ## Rubros que atendemos
 

@@ -183,8 +183,8 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
 - El H1 de la home es "Automatizacion con IA y sistemas a medida". Arriba va una
   etiqueta mono, "Automatizacion e IA - Buenos Aires": ubica la marca sin robarle
   el lugar al H1, que es el que trabaja para buscar.
-- El footer tiene un bloque de 12 enlaces de servicio. Como build.py lee el
-  footer de index.html, ese bloque se replica solo en las 12 paginas con las
+- El footer tiene un bloque de 13 enlaces de servicio. Como build.py lee el
+  footer de index.html, ese bloque se replica solo en las paginas generadas con las
   rutas corregidas a ../
 
 ## Paginas de servicio (generadas, NO editar a mano)
@@ -293,6 +293,16 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
   (Zyntra-logo-vector.svg, logo.png, Zyntra-logo-fondo-oscuro.png,
   logo-zyntra-100x100.png). No los usa nadie. Preguntarle antes de borrarlos.
 
+## Agentes de IA y CRM (agentes-ia/, oct 2026)
+- Pagina de servicio con la ficha tecnica de los agentes (Claude, WhatsApp Cloud
+  API con coexistencia, n8n, Supabase/PostgreSQL con RLS, Google Calendar, avisos
+  por Telegram) y la seccion #crm. En la home son dos tarjetas del Frente 1.
+- El CRM va como SERVICIO: sin nombre de producto, sin capturas y sin mencionar
+  socios, hasta que tenga nombre definitivo (es una sociedad con Imactions).
+  Solo funciones ya hechas; Google Ads queda afuera hasta probarlo con una
+  cuenta real.
+- Cualquier seccion de tools/paginas acepta 'id' para tener ancla (la usa #crm).
+
 ## Paginas hechas a mano (las 5 que no genera build.py)
 - 404.html, gracias.html, privacidad.html, terminos.html y
   preguntasfrecuentes/index.html se escriben a mano, pero su header, footer y
@@ -326,7 +336,7 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
   parrafo de una pagina de servicio a su caso (o al reves), reescribirlo.
 - La conversacion de muestra de ese caso lleva la aclaracion "no es de un
   cliente real". No sacarla: sin ella se lee como testimonio inventado.
-- TRAMPA del sitemap: build.py pone lastmod = hoy en las 24 URLs aunque haya
+- TRAMPA del sitemap: build.py pone lastmod = hoy en todas las URLs aunque haya
   cambiado una sola. Antes de subir, dejar la fecha nueva solo en las paginas
   que cambiaron (restaurar el resto desde git), o Google deja de creerle.
 

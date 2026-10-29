@@ -255,14 +255,16 @@ RENDER = {'texto': bloque_texto, 'lista': bloque_lista, 'pasos': bloque_pasos,
 
 
 def render_secciones(secciones):
-    """Cada seccion es un panel de la pila. 'fondo' la pinta en tinta."""
+    """Cada seccion es un panel de la pila. 'fondo' la pinta en tinta.
+    'id' le da un ancla, para enlazar a esa seccion desde otra pagina."""
     fuera = []
     for s in secciones:
         f = RENDER.get(s['tipo'])
         if not f:
             sys.exit('build: tipo de seccion desconocido: %r' % s['tipo'])
         clases = 'panel panel--tinta sobre-tinta' if s.get('fondo') else 'panel'
-        fuera.append('<section class="%s">\n%s\n</section>' % (clases, f(s)))
+        ancla = ' id="%s"' % s['id'] if s.get('id') else ''
+        fuera.append('<section class="%s"%s>\n%s\n</section>' % (clases, ancla, f(s)))
     return '\n'.join(fuera)
 
 
