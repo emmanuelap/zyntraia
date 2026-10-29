@@ -174,7 +174,9 @@ PAGINA = {
                 'Todo lo que puede hacer, incluida la toma de pedidos, está en la página de '
                 '<a class="enlace" href="@@SUBIR@@chatbot-whatsapp/">chatbot de WhatsApp</a>. '
                 'Si te interesa solo la agenda, mirá '
-                '<a class="enlace" href="@@SUBIR@@turnos-online/">turnos online</a>.',
+                '<a class="enlace" href="@@SUBIR@@turnos-online/">turnos online</a>. Y la ficha '
+                'técnica completa, con qué está hecha cada pieza, está en '
+                '<a class="enlace" href="@@SUBIR@@agentes-ia/">agentes de IA</a>.',
             ],
         },
     ],

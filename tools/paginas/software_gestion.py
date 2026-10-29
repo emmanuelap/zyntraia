@@ -45,7 +45,8 @@ PAGINA = {
             'items': [
                 {'icono': 'badge', 'titulo': 'Clientes y contactos',
                  'texto': 'Ficha con historial completo: qué compró, qué se le hizo, cuándo fue la última '
-                          'vez. Sin buscar en el chat.'},
+                          'vez. Si vendés por WhatsApp, eso es un '
+                          '<a class="enlace" href="@@SUBIR@@agentes-ia/#crm">CRM de WhatsApp</a>.'},
                 {'icono': 'shopping_bag', 'titulo': 'Stock e inventario',
                  'texto': 'Entradas, salidas y alertas de faltante. Con el stock descontándose solo cuando '
                           'se vende, que es donde se rompe el control manual.'},

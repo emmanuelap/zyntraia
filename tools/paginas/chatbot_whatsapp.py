@@ -92,7 +92,9 @@ PAGINA = {
                 'a cómo trabajás vos, que es donde se va el tiempo de verdad.',
                 'Podés ver las capturas del asistente funcionando en la '
                 '<a class="enlace" href="../#proyectos">sección '
-                'de proyectos</a>.',
+                'de proyectos</a>, y con qué está construido, pieza por pieza, en la '
+                '<a class="enlace" href="@@SUBIR@@agentes-ia/">ficha técnica de nuestros '
+                'agentes de IA</a>.',
             ],
         },
         {

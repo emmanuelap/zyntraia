@@ -83,7 +83,7 @@ pero tenes que recordar siempre la regla de no romper codigo que ya funciona.
     home #calculadora      abierto       el numero que sale asusta
     home #causas           abierto       es la seccion mas calida del sitio
     home #faq              normal        escucha
-    preguntasfrecuentes    sospechando   130 preguntas
+    preguntasfrecuentes    sospechando   134 preguntas
     404                    sospechando   algo salio mal
     gracias                abierto       buenas noticias
     paginas de servicio    la que diga la clave 'ojito' de su PAGINA
@@ -311,7 +311,7 @@ es #causas ("zyntra causas", la unica excepcion de color del sistema: verde).
 - TRAMPA de las paginas de la raiz: el header trae href="#senales", que en
   404.html apunta a un ancla de 404.html, no de la home. En esas paginas las
   anclas van como ./#senales.
-- preguntasfrecuentes tiene 130 preguntas, buscador y "abrir todas", con su
+- preguntasfrecuentes tiene 134 preguntas, buscador y "abrir todas", con su
   propio <style> y su propio <script> al final. Los estilos de esa pagina son
   los unicos que no estan en assets/zyntra.css.
 

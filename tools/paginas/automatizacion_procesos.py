@@ -36,6 +36,9 @@ PAGINA = {
                 'El costo real no es el tiempo, igual. Es el error: el dato que se copió mal, el '
                 'seguimiento que no se mandó, el pedido que se traspapeló. Eso no se recupera con horas '
                 'extra.',
+                'Cuando lo repetido es atender mensajes y no mover datos, lo que hace falta es un '
+                '<a class="enlace" href="@@SUBIR@@agentes-ia/">agente de IA</a> que conteste, '
+                'agende y derive por WhatsApp.',
             ],
         },
         {
