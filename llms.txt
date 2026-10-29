@@ -62,7 +62,7 @@ Tomamos dos proyectos por ano de organizaciones sin fines de lucro y el desarrol
 cobra: diseno, programacion, base de datos, integraciones, puesta en linea y las
 correcciones de los primeros meses. Los proveedores externos (dominio, hosting, API de
 WhatsApp, pasarelas de cobro) se contratan a nombre de la organizacion y quedan a su
-cargo; no revendemos ni cobramos comision. Un sitio simple arranca cerca de USD 3 por mes.
+cargo; no revendemos ni cobramos comision.
 
 No hace falta personeria juridica. Trabajamos con fundaciones y asociaciones civiles
 registradas y tambien con grupos, comedores, merenderos y proteccionistas que todavia no
